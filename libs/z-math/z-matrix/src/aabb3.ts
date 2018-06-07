@@ -6,9 +6,11 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Vector3} from "./vector3";
+import {Vector3} from './vector3';
 
 export class Aabb3 {
+  private _min: Vector3;
+  private _max: Vector3;
 
   public get min() {
     return this._min;
@@ -18,7 +20,7 @@ export class Aabb3 {
     return this._max;
   }
 
-  constructor(private _min: Vector3, private _max: Vector3) {
+  constructor() {
   }
 
   public setCenterAndHalfExtents(center: Vector3, halfExtents: Vector3) {
@@ -45,7 +47,7 @@ export class Aabb3 {
       (this._max.z >= otherMin.z);
   }
 
-  intersectsWithSphere(other: Sphere) {
+  public intersectsWithSphere(other: Sphere) {
     const center = other._center;
     const radius = other._radius;
     let d        = 0.0;
@@ -96,7 +98,7 @@ export class Aabb3 {
   private static _u1: Vector3 = new Vector3([0.0, 1.0, 0.0]);
   private static _u2: Vector3 = new Vector3([0.0, 0.0, 1.0]);
 
-  intersectsWithTriangle(other: Triangle, epsilon: 1e-3, result: IntersectionResult) {
+  public intersectsWithTriangle(other: Triangle, epsilon: 1e-3, result: IntersectionResult) {
     let p0, p1, p2, r, len;
     let a;
     const _aabbCenter    = Aabb3._aabbCenter,
@@ -340,7 +342,7 @@ export class Aabb3 {
     // Test separating axis corresponding to triangle face normal (category 2)
     _f0.crossInto(_f1, _trianglePlane.normal);
     _trianglePlane.constant = _trianglePlane.normal.dot(_v0);
-    return intersectsWithPlane(_trianglePlane, result:result);
+    return intersectsWithPlane(_trianglePlane, result: result);
   }
 
   public intersectsWithPlane(other: Plane, result: IntersectionResult) {

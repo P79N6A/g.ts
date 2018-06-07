@@ -1,7 +1,3 @@
-import {Aabb3} from "./aabb3";
-import {clamp, EPSILON} from "./common";
-import {Matrix3} from "./matrix3";
-import {Matrix4} from "./matrix4";
 /**
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
@@ -9,7 +5,13 @@ import {Matrix4} from "./matrix4";
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {Vector3} from "./vector3";
+
+import {Triangle} from '@gradii/z-math/z-geometry';
+import {Aabb3} from './aabb3';
+import {clamp, EPSILON} from './common';
+import {Matrix3} from './matrix3';
+import {Matrix4} from './matrix4';
+import {Vector3} from './vector3';
 
 export class Obb3 {
   private _center: Vector3;
@@ -110,7 +112,7 @@ export class Obb3 {
   }
 
   public transform(m: Matrix4): this {
-    m.transform3(this._center)
+    m.transform3(this._center);
     m.rotate3(this._axis0.scale(this._halfExtents.x)).normalize();
     m.rotate3(this._axis1.scale(this._halfExtents.y)).normalize();
     m.rotate3(this._axis2.scale(this._halfExtents.z)).normalize();
@@ -330,62 +332,62 @@ export class Obb3 {
 
   }
 
-  private static _triangle: Triangle = new Triangle();
-  private static _aabb3: Aabb3 = new Aabb3();
-  private static _zeroVector: Vector3 = new Vector3.zero();
+  private static _triangle: Triangle = new Triangle(); //tslint:disable-line
+  private static _aabb3: Aabb3 = new Aabb3(); //tslint:disable-line
+  private static _zeroVector: Vector3 = new Vector3.zero(); //tslint:disable-line
 
-  public intersectsWithTriangle(other: Triangle, result: IntersectionResult) {
-    Obb3._triangle.copyFrom(other);
+  // public intersectsWithTriangle(other: Triangle, result: IntersectionResult) {
+  //   Obb3._triangle.copyFrom(other);
+  //
+  //   Obb3._triangle.point0
+  //     .sub(this._center)
+  //     .setValues(
+  //       Obb3._triangle.point0.dot(this._axis0),
+  //       Obb3._triangle.point0.dot(this._axis1),
+  //       Obb3._triangle.point0.dot(this._axis2)
+  //     );
+  //
+  //   Obb3._triangle.point1
+  //     .sub(this._center)
+  //     .setValues(
+  //       Obb3._triangle.point1.dot(this._axis0),
+  //       Obb3._triangle.point1.dot(this._axis1),
+  //       Obb3._triangle.point1.dot(this._axis2)
+  //     );
+  //
+  //   Obb3._triangle.point2
+  //     .sub(this._center)
+  //     .setValues(
+  //       Obb3._triangle.point2.dot(this._axis0),
+  //       Obb3._triangle.point2.dot(this._axis1),
+  //       Obb3._triangle.point2.dot(this._axis2)
+  //     );
+  //
+  //   Obb3._aabb3.setCenterAndHalfExtents(Obb3._zeroVector, this._halfExtents);
+  //
+  //   return Obb3._aabb3.intersectsWithTriangle(Obb3._triangle, result);
+  // }
 
-    _triangle.point0
-      .sub(this._center)
-      .setValues(
-        _triangle.point0.dot(this._axis0),
-        _triangle.point0.dot(this._axis1),
-        _triangle.point0.dot(this._axis2),
-      );
-
-    _triangle.point1
-      .sub(this._center)
-      .setValues(
-        _triangle.point1.dot(this._axis0),
-        _triangle.point1.dot(this._axis1),
-        _triangle.point1.dot(this._axis2),
-      );
-
-    _triangle.point2
-      .sub(this._center)
-      .setValues(
-        _triangle.point2.dot(this._axis0),
-        _triangle.point2.dot(this._axis1),
-        _triangle.point2.dot(this._axis2),
-      );
-
-    _aabb3.setCenterAndHalfExtents(this._zeroVector, this._halfExtents);
-
-    return _aabb3.intersectsWithTriangle(_triangle, result);
-  }
-
-  private static _vector: Vector3 = new Vector3();
+  private static _vector: Vector3 = new Vector3(); //tslint:disable-line
 
   public intersectsWithVector3(other: Vector3) {
-    _vector.setFrom(other)
+    Obb3._vector.setFrom(other)
       .sub(this._center)
-      .setValues(_vector.dot(this._axis0), _vector.dot(this._axis1), _vector.dot(this._axis2));
+      .setValues(Obb3._vector.dot(this._axis0), Obb3._vector.dot(this._axis1), Obb3._vector.dot(this._axis2));
 
-    _aabb3.setCenterAndHalfExtents(this._zeroVector, this._halfExtents);
+    Obb3._aabb3.setCenterAndHalfExtents(Obb3._zeroVector, this._halfExtents);
 
-    return _aabb3.intersectsWithVector3(_vector);
+    return Obb3._aabb3.intersectsWithVector3(Obb3._vector);
   }
 
-  private static _quadTriangle0: Triangle = new Triangle();
-  private static _quadTriangle1: Triangle = new Triangle();
-
-  public intersectsWithQuad(other: Quad, result: IntersectionResult) {
-    other.copyTriangles(_quadTriangle0, _quadTriangle1);
-
-    return this.intersectsWithTriangle(_quadTriangle0, result: result) ||
-    this.intersectsWithTriangle(_quadTriangle1, result: result);
-  }
+  // private static _quadTriangle0: Triangle = new Triangle();
+  // private static _quadTriangle1: Triangle = new Triangle();
+  //
+  // public intersectsWithQuad(other: Quad, result: IntersectionResult) {
+  //   other.copyTriangles(_quadTriangle0, _quadTriangle1);
+  //
+  //   return this.intersectsWithTriangle(_quadTriangle0, result: result) ||
+  //   this.intersectsWithTriangle(_quadTriangle1, result: result);
+  // }
 
 }

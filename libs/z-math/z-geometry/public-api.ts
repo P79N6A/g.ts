@@ -7,3 +7,4 @@ export * from './src/plane';
 export * from './src/quadratic';
 export * from './src/ray';
 export * from './src/sphere';
+export * from './src/triangle';
