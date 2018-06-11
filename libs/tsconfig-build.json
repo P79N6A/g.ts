@@ -17,7 +17,10 @@
     "strictNullChecks": false,
     "rootDir": ".",
     "outDir": "./../dist/out-tsc/libs",
-    "types": [],
+    "types": [
+      "jasmine",
+      "tslib"
+    ],
     "lib": [
       "es2015",
       "dom",

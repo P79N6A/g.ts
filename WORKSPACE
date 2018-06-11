@@ -1,4 +1,4 @@
-workspace(name = "angular")
+workspace(name = "gradii_g")
 
 http_archive(
     name = "build_bazel_rules_nodejs",
@@ -65,24 +65,4 @@ http_archive(
     url = "https://github.com/bazelbuild/bazel/archive/5a35e72f9e97c06540c479f8c31512fb4656202f.zip",
     strip_prefix = "bazel-5a35e72f9e97c06540c479f8c31512fb4656202f",
     sha256 = "ed33a52874c14e3b487fb50f390c541fab9c81a33d986d38fb01766a66dbcd21",
-)
-
-# We have a source dependency on the Devkit repository, because it's built with
-# Bazel.
-# This allows us to edit sources and have the effect appear immediately without
-# re-packaging or "npm link"ing.
-# Even better, things like aspects will visit the entire graph including
-# ts_library rules in the devkit repository.
-http_archive(
-    name = "angular_devkit",
-    url = "https://github.com/angular/devkit/archive/v0.3.1.zip",
-    strip_prefix = "devkit-0.3.1",
-    sha256 = "31d4b597fe9336650acf13df053c1c84dcbe9c29c6a833bcac3819cd3fd8cad3",
-)
-
-http_archive(
-    name = "org_brotli",
-    url = "https://github.com/google/brotli/archive/c6333e1e79fb62ea088443f192293f964409b04e.zip",
-    strip_prefix = "brotli-c6333e1e79fb62ea088443f192293f964409b04e",
-    sha256 = "3f781988dee7dd3bcce2bf238294663cfaaf3b6433505bdb762e24d0a284d1dc",
 )

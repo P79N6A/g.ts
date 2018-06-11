@@ -11,6 +11,7 @@
   "private": true,
   "devDependencies": {
     "@antv/g": "^2.0.7-beta.3",
+    "@types/jasmine": "^2.8.8",
     "chai": "~4.0.1",
     "event-simulate": "~1.0.0",
     "istanbul": "~0.4.5",
