@@ -26,3 +26,14 @@ export function interpolateBasis(values) {
     return basis((t - i / n) * n, v0, v1, v2, v3);
   };
 }
+
+export class InterpolateBasis {
+
+  public interpolate() {
+
+  }
+
+  public static create() {
+
+  }
+}

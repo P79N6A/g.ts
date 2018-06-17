@@ -5,7 +5,7 @@ ts_library(
   name = "z_easing_sources",
   testonly = 1,
   srcs = glob(["**/*.ts"], exclude=["**/*.spec.ts"]),
-  module_name = "@gradii/z-easing",
+  module_name = "@gradii/z-timer",
   deps = [
 #    ":a11y",
 #    "//src/cdk/keycodes",
