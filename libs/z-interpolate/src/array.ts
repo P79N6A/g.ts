@@ -9,24 +9,48 @@
 
 import {interpolateValue} from './value';
 
-export function interpolateArray(a, b) {
-  let nb = b ? b.length : 0,
-      na = a ? Math.min(nb, a.length) : 0,
-      x  = new Array(na),
-      c  = new Array(nb),
-      i;
+export class InterpolateArray {
+  private _x: any[];
+  private _c: any[];
 
-  for (i = 0; i < na; ++i) {
-    x[i] = interpolateValue(a[i], b[i]);
-  }
-  for (; i < nb; ++i) {
-    c[i] = b[i];
+  public a: any[];
+  public b: any[];
+
+  public constructor(a: any[], b: any[]) {
+    this.a = a;
+    this.b = b;
+
+    this._init();
   }
 
-  return (t) => {
+  private _init() {
+    const nb = this.b ? this.b.length : 0;
+    const na = this.a ? Math.min(nb, this.a.length) : 0;
+    const x = new Array(na);
+    const c = new Array(nb);
+
+    let i;
     for (i = 0; i < na; ++i) {
-      c[i] = x[i](t);
+      x[i] = interpolateValue(this.a[i], this.b[i]);
     }
-    return c;
-  };
+    for (; i < nb; ++i) {
+      c[i] = this.b[i];
+    }
+
+    this._x = x;
+    this._c = c;
+  }
+
+  public interpolate(t) {
+    let rst = [];
+    const mLen = Math.min(this.a.length, this.b.length);
+    for (let i = 0; i < mLen; ++i) {
+      rst[i] = this._x[i](t);
+    }
+    return [...rst, ...this._c];
+  }
+
+  public static create(a, b) {
+    return new InterpolateArray(a, b);
+  }
 }

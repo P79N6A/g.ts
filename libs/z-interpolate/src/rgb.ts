@@ -24,7 +24,7 @@ export class RgbGamma {
           g       = this.color(start.g, end.g),
           b       = this.color(start.b, end.b),
           opacity = noGamma(start.opacity, end.opacity);
-    return function(t) {
+    return (t) => {
       start.r       = r(t);
       start.g       = g(t);
       start.b       = b(t);
@@ -60,7 +60,7 @@ export class RgbSpline {
     const sG      = this.spline(g);
     const sB      = this.spline(b);
     color.opacity = 1;
-    return function(t) {
+    return (t) => {
       color.r = sR(t);
       color.g = sG(t);
       color.b = sB(t);
