@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -15,12 +6,13 @@ const div = document.createElement('div');
 div.id = 'canvas-fan';
 document.body.appendChild(div);
 
+
 describe('CFan', function() {
   const canvas = new Canvas({
     containerId: 'canvas-fan',
     width: 200,
     heigth: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const fan = new G.Fan({
@@ -31,8 +23,8 @@ describe('CFan', function() {
       re: 0,
       startAngle: 0,
       endAngle: 0,
-      clockwise: false,
-    },
+      clockwise: false
+    }
   });
   it('init attr', function() {
     expect(fan.attr('x')).to.equal(0);
@@ -124,7 +116,7 @@ describe('CFan', function() {
   it('stroke', function() {
     fan.attr({
       x: 40,
-      y: 40,
+      y: 40
     });
     fan.attr('stroke', 'l (210) 0:#ff0000 1:#ffffff');
     expect(fan.attr('stroke')).to.equal('l (210) 0:#ff0000 1:#ffffff');
@@ -143,3 +135,4 @@ describe('CFan', function() {
     expect(fan.isHit(40, 60)).to.be.true;
   });
 });
+

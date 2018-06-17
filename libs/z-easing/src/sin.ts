@@ -11,7 +11,7 @@ const _HALF_PI = Math.PI / 2;
 /**
  * @private
  */
-export class SineIn {
+export class SinIn {
 
   public getRatio(p: number): number {
     return -Math.cos(p * _HALF_PI) + 1;
@@ -21,7 +21,7 @@ export class SineIn {
 /**
  * @private
  */
-export class SineOut {
+export class SinOut {
 
   public getRatio(p: number): number {
     return Math.sin(p * _HALF_PI);
@@ -31,15 +31,15 @@ export class SineOut {
 /**
  * @private
  */
-export class SineInOut {
+export class SinInOut {
 
   public getRatio(p: number): number {
     return -0.5 * (Math.cos(Math.PI * p) - 1);
   }
 }
 
-export class EasingSine {
-  public static easeIn: SineIn       = new SineIn();
-  public static easeOut: SineOut     = new SineOut();
-  public static easeInOut: SineInOut = new SineInOut();
+export class EasingSin {
+  public static easeIn: SinIn       = new SinIn();
+  public static easeOut: SinOut     = new SinOut();
+  public static easeInOut: SinInOut = new SinInOut();
 }

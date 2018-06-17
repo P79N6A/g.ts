@@ -12,22 +12,22 @@ import {createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId
 
 export class Canvas extends Group {
   public static CFG = {
-    eventEnable : true,
+    eventEnable: true,
     /**
      * 像素宽度
      * @type {Number}
      */
-    width       : null,
+    width: null,
     /**
      * 像素高度
      * @type {Number}
      */
-    height      : null,
+    height: null,
     /**
      * 画布宽度
      * @type {Number}
      */
-    widthCanvas : null,
+    widthCanvas: null,
     /**
      * 画布高度
      * @type {Number}
@@ -37,12 +37,12 @@ export class Canvas extends Group {
      * CSS宽
      * @type {String}
      */
-    widthStyle  : null,
+    widthStyle: null,
     /**
      * CSS高
      * @type {String}
      */
-    heightStyle : null,
+    heightStyle: null,
     /**
      * 容器DOM
      * @type {Object}
@@ -52,12 +52,12 @@ export class Canvas extends Group {
      * 当前Canvas的DOM
      * @type {Object}
      */
-    canvasDOM   : null,
+    canvasDOM: null,
     /**
      * 屏幕像素比
      * @type {Number}
      */
-    pixelRatio  : null,
+    pixelRatio: null,
   };
 
   constructor(cfg) {
@@ -90,13 +90,13 @@ export class Canvas extends Group {
   }
 
   public _getEventObj(type, e, point, target) {
-    const event         = new Event(type, e, true, true);
-    event.x             = point.x;
-    event.y             = point.y;
-    event.clientX       = e.clientX;
-    event.clientY       = e.clientY;
+    const event = new Event(type, e, true, true);
+    event.x = point.x;
+    event.y = point.y;
+    event.clientX = e.clientX;
+    event.clientY = e.clientY;
     event.currentTarget = target;
-    event.target        = target;
+    event.target = target;
     return event;
   }
 
@@ -111,13 +111,13 @@ export class Canvas extends Group {
       const preShape = this.get('preShape');
       if (preShape && preShape !== shape) {
         const mouseleave = this._getEventObj('mouseleave', e, point, preShape);
-        emitObj          = this.getEmitter(preShape, e);
+        emitObj = this.getEmitter(preShape, e);
         emitObj && emitObj.emit('mouseleave', mouseleave);
       }
 
       if (shape) {
         const mousemove = this._getEventObj('mousemove', e, point, shape);
-        emitObj         = this.getEmitter(shape, e);
+        emitObj = this.getEmitter(shape, e);
         emitObj && emitObj.emit('mousemove', mousemove);
 
         if (preShape !== shape) {
@@ -129,7 +129,7 @@ export class Canvas extends Group {
       this.set('preShape', shape);
     } else {
       const event = this._getEventObj(type, e, point, shape || this);
-      emitObj     = this.getEmitter(shape, e);
+      emitObj = this.getEmitter(shape, e);
       if (emitObj && emitObj !== this) {
         emitObj.emit(type, event);
       }
@@ -219,7 +219,7 @@ export class Canvas extends Group {
 
   public _setContainer() {
     const containerId = this.get('containerId');
-    let containerDOM  = this.get('containerDOM');
+    let containerDOM = this.get('containerDOM');
     if (!containerDOM) {
       containerDOM = document.getElementById(containerId);
       this.set('containerDOM', containerDOM);
@@ -231,7 +231,7 @@ export class Canvas extends Group {
 
   public _setLayer() {
     const containerDOM = this.get('containerDOM');
-    const canvasId     = uniqueId('canvas_');
+    const canvasId = uniqueId('canvas_');
     if (containerDOM) {
       const canvasDOM = createDom('<canvas id="' + canvasId + '"></canvas>');
       containerDOM.appendChild(canvasDOM);
@@ -244,13 +244,13 @@ export class Canvas extends Group {
   }
 
   public _reSize() {
-    const canvasDOM    = this.get('canvasDOM');
-    const widthCanvas  = this.get('widthCanvas');
+    const canvasDOM = this.get('canvasDOM');
+    const widthCanvas = this.get('widthCanvas');
     const heightCanvas = this.get('heightCanvas');
-    const widthStyle   = this.get('widthStyle');
-    const heightStyle  = this.get('heightStyle');
+    const widthStyle = this.get('widthStyle');
+    const heightStyle = this.get('heightStyle');
 
-    canvasDOM.style.width  = widthStyle;
+    canvasDOM.style.width = widthStyle;
     canvasDOM.style.height = heightStyle;
     canvasDOM.setAttribute('width', widthCanvas);
     canvasDOM.setAttribute('height', heightCanvas);
@@ -258,19 +258,19 @@ export class Canvas extends Group {
 
   public getWidth() {
     const pixelRatio = this.get('pixelRatio');
-    const width      = this.get('width');
+    const width = this.get('width');
     return width * pixelRatio;
   }
 
   public getHeight() {
     const pixelRatio = this.get('pixelRatio');
-    const height     = this.get('height');
+    const height = this.get('height');
     return height * pixelRatio;
   }
 
   public changeSize(width, height) {
-    const pixelRatio   = this.get('pixelRatio');
-    const widthCanvas  = width * pixelRatio;
+    const pixelRatio = this.get('pixelRatio');
+    const widthCanvas = width * pixelRatio;
     const heightCanvas = height * pixelRatio;
 
     this.set('widthCanvas', widthCanvas);
@@ -289,9 +289,9 @@ export class Canvas extends Group {
    * @return {Object} canvas坐标
    */
   public getPointByClient(clientX, clientY) {
-    const el     = this.get('el');
-    const bbox   = el.getBoundingClientRect();
-    const width  = bbox.right - bbox.left;
+    const el = this.get('el');
+    const bbox = el.getBoundingClientRect();
+    const width = bbox.right - bbox.left;
     const height = bbox.bottom - bbox.top;
     return {
       x: (clientX - bbox.left) * (el.width / width),
@@ -300,9 +300,9 @@ export class Canvas extends Group {
   }
 
   public getClientByPoint(x, y) {
-    const el     = this.get('el');
-    const bbox   = el.getBoundingClientRect();
-    const width  = bbox.right - bbox.left;
+    const el = this.get('el');
+    const bbox = el.getBoundingClientRect();
+    const width = bbox.right - bbox.left;
     const height = bbox.bottom - bbox.top;
     return {
       clientX: x / (el.width / width) + bbox.left,
@@ -312,7 +312,7 @@ export class Canvas extends Group {
 
   public beforeDraw() {
     const context = this.get('context');
-    const el      = this.get('el');
+    const el = this.get('el');
     context && context.clearRect(0, 0, el.width, el.height);
   }
 
@@ -357,7 +357,7 @@ export class Canvas extends Group {
 
   public destroy() {
     const containerDOM = this.get('containerDOM');
-    const canvasDOM    = this.get('canvasDOM');
+    const canvasDOM = this.get('canvasDOM');
     if (canvasDOM && containerDOM) {
       containerDOM.removeChild(canvasDOM);
     }

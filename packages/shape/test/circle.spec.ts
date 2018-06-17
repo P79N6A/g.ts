@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -18,15 +9,15 @@ describe('Circle', function() {
     containerId: 'canvas-circle',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const circle = new G.Circle({
     attrs: {
       x: 0,
       y: 0,
-      r: 0,
-    },
+      r: 0
+    }
   });
 
   it('init attr', function() {
@@ -100,8 +91,8 @@ describe('Circle', function() {
       attrs: {
         x: 50,
         y: 50,
-        r: 50,
-      },
+        r: 50
+      }
     });
 
     expect(circle1.isHit(0, 50)).to.be.false;
@@ -123,8 +114,8 @@ describe('Circle', function() {
       attrs: {
         x: 50,
         y: 50,
-        r: 50,
-      },
+        r: 50
+      }
     });
 
     expect(circle2.isHit(20, 50)).to.be.false;
@@ -155,8 +146,8 @@ describe('Circle', function() {
         y: 150,
         r: 100,
         stroke: 'red',
-        strokeOpactiy: 0.4,
-      },
+        strokeOpactiy: 0.4
+      }
     });
 
     canvas.add(circle);
@@ -164,3 +155,4 @@ describe('Circle', function() {
   });
 
 });
+

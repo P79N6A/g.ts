@@ -1,14 +1,6 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
+
 
 describe('animate', function() {
   const div = document.createElement('div');
@@ -17,7 +9,7 @@ describe('animate', function() {
   const canvas = new G.Canvas({
     containerId: 'canvas-animate',
     width: 500,
-    height: 500,
+    height: 500
   });
   it('repeat', () => {
     const shape = canvas.addShape('circle', {
@@ -25,13 +17,13 @@ describe('animate', function() {
         x: 0,
         y: 0,
         fill: 'red',
-        r: 10,
-      },
+        r: 10
+      }
     });
     shape.animate({
       x: 100,
       y: 100,
-      repeat: true,
+      repeat: true
     }, 2000);
   });
   it('start animate', function(done) {
@@ -41,12 +33,12 @@ describe('animate', function() {
         x: 0,
         y: 0,
         fill: 'red',
-        r: 10,
-      },
+        r: 10
+      }
     });
     shape.animate({
       x: 100,
-      y: 100,
+      y: 100
     }, 500, function() {
       called = true;
     });
@@ -69,13 +61,13 @@ describe('animate', function() {
         width: 20,
         height: 20,
         stroke: 'blue',
-        lineWidth: 3,
-      },
+        lineWidth: 3
+      }
     });
     canvas.draw();
     shape.animate({
       x: 200,
-      width: 20,
+      width: 20
     }, 500, function() {
       called = true;
     }, 100);
@@ -99,8 +91,8 @@ describe('animate', function() {
         y: 50,
         width: 20,
         height: 20,
-        fill: 'pink',
-      },
+        fill: 'pink'
+      }
     });
     shape.animate({ fill: 'red' }, 300, function() {
       called = true;
@@ -121,9 +113,9 @@ describe('animate', function() {
         x: 100,
         y: 100,
         r: 10,
-        fill: 'blue',
+        fill: 'blue'
       },
-      canvas,
+      canvas
     });
     const shape = canvas.addShape('rect', {
       attrs: {
@@ -132,14 +124,14 @@ describe('animate', function() {
         clip,
         width: 20,
         height: 20,
-        fill: 'red',
-      },
+        fill: 'red'
+      }
     });
     canvas.draw();
     shape.set('animating', true);
     clip.animate({
       r: 20,
-      repeat: true,
+      repeat: true
     }, 1000);
 
     setTimeout(function() {

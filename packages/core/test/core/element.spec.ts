@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const Element = require('../../../src/core/element');
 const mat3 = require('gl-matrix').mat3;
@@ -18,8 +9,8 @@ describe('Element', function() {
       attrs: {
         width: 20,
         height: 30,
-        stroke: '#231',
-      },
+        stroke: '#231'
+      }
     });
 
     expect(e.__cfg).not.to.be.undefined;
@@ -47,7 +38,6 @@ describe('Element', function() {
 
   it('eventEmitter', function() {
     const ele = new Element();
-    console.log(ele);
     expect(ele.on).to.be.a('function');
     expect(ele.off).to.be.a('function');
     expect(ele.trigger).to.be.a('function');

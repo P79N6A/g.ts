@@ -5,79 +5,52 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import {EasingCubic} from '..';
+import {genericInOut, genericOut} from './generic';
 
-let tape = require('tape'),
-    ease = require('../'),
-    generic = require('./generic');
+describe('easing cubic test suit', () => {
 
-require('./inDelta');
+  it('easeCubicIn(t) returns the expected results', () => {
+    expect(EasingCubic.easeIn.getRatio(0.0)).toBeCloseTo(0.000, 6);
+    expect(EasingCubic.easeIn.getRatio(0.1)).toBeCloseTo(0.001, 6);
+    expect(EasingCubic.easeIn.getRatio(0.2)).toBeCloseTo(0.008, 6);
+    expect(EasingCubic.easeIn.getRatio(0.3)).toBeCloseTo(0.027, 6);
+    expect(EasingCubic.easeIn.getRatio(0.4)).toBeCloseTo(0.064, 6);
+    expect(EasingCubic.easeIn.getRatio(0.5)).toBeCloseTo(0.125, 6);
+    expect(EasingCubic.easeIn.getRatio(0.6)).toBeCloseTo(0.216, 6);
+    expect(EasingCubic.easeIn.getRatio(0.7)).toBeCloseTo(0.343, 6);
+    expect(EasingCubic.easeIn.getRatio(0.8)).toBeCloseTo(0.512, 6);
+    expect(EasingCubic.easeIn.getRatio(0.9)).toBeCloseTo(0.729, 6);
+    expect(EasingCubic.easeIn.getRatio(1.0)).toBeCloseTo(1.000, 6);
+  });
 
-tape('easeCubic is an alias for easeCubicInOut', function(test) {
-  test.equal(ease.easeCubic, ease.easeCubicInOut);
-  test.end();
-});
+  it('easeCubicOut(t) returns the expected results', () => {
+    const genericEaseOut = genericOut(EasingCubic.easeIn.getRatio);
+    expect(EasingCubic.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
+    expect(EasingCubic.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
+    expect(EasingCubic.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
+    expect(EasingCubic.easeOut.getRatio(0.3)).toBeCloseTo(genericEaseOut(0.3), 6);
+    expect(EasingCubic.easeOut.getRatio(0.4)).toBeCloseTo(genericEaseOut(0.4), 6);
+    expect(EasingCubic.easeOut.getRatio(0.5)).toBeCloseTo(genericEaseOut(0.5), 6);
+    expect(EasingCubic.easeOut.getRatio(0.6)).toBeCloseTo(genericEaseOut(0.6), 6);
+    expect(EasingCubic.easeOut.getRatio(0.7)).toBeCloseTo(genericEaseOut(0.7), 6);
+    expect(EasingCubic.easeOut.getRatio(0.8)).toBeCloseTo(genericEaseOut(0.8), 6);
+    expect(EasingCubic.easeOut.getRatio(0.9)).toBeCloseTo(genericEaseOut(0.9), 6);
+    expect(EasingCubic.easeOut.getRatio(1.0)).toBeCloseTo(genericEaseOut(1.0), 6);
+  });
 
-tape('easeCubicIn(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeCubicIn(0.0), 0.000);
-  test.inDelta(ease.easeCubicIn(0.1), 0.001);
-  test.inDelta(ease.easeCubicIn(0.2), 0.008);
-  test.inDelta(ease.easeCubicIn(0.3), 0.027);
-  test.inDelta(ease.easeCubicIn(0.4), 0.064);
-  test.inDelta(ease.easeCubicIn(0.5), 0.125);
-  test.inDelta(ease.easeCubicIn(0.6), 0.216);
-  test.inDelta(ease.easeCubicIn(0.7), 0.343);
-  test.inDelta(ease.easeCubicIn(0.8), 0.512);
-  test.inDelta(ease.easeCubicIn(0.9), 0.729);
-  test.inDelta(ease.easeCubicIn(1.0), 1.000);
-  test.end();
-});
-
-tape('easeCubicIn(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeCubicIn('.9'), ease.easeCubicIn(0.9));
-  test.strictEqual(ease.easeCubicIn({valueOf() { return 0.9; }}), ease.easeCubicIn(0.9));
-  test.end();
-});
-
-tape('easeCubicOut(t) returns the expected results', function(test) {
-  let cubicOut = generic.out(ease.easeCubicIn);
-  test.inDelta(ease.easeCubicOut(0.0), cubicOut(0.0));
-  test.inDelta(ease.easeCubicOut(0.1), cubicOut(0.1));
-  test.inDelta(ease.easeCubicOut(0.2), cubicOut(0.2));
-  test.inDelta(ease.easeCubicOut(0.3), cubicOut(0.3));
-  test.inDelta(ease.easeCubicOut(0.4), cubicOut(0.4));
-  test.inDelta(ease.easeCubicOut(0.5), cubicOut(0.5));
-  test.inDelta(ease.easeCubicOut(0.6), cubicOut(0.6));
-  test.inDelta(ease.easeCubicOut(0.7), cubicOut(0.7));
-  test.inDelta(ease.easeCubicOut(0.8), cubicOut(0.8));
-  test.inDelta(ease.easeCubicOut(0.9), cubicOut(0.9));
-  test.inDelta(ease.easeCubicOut(1.0), cubicOut(1.0));
-  test.end();
-});
-
-tape('easeCubicOut(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeCubicOut('.9'), ease.easeCubicOut(0.9));
-  test.strictEqual(ease.easeCubicOut({valueOf() { return 0.9; }}), ease.easeCubicOut(0.9));
-  test.end();
-});
-
-tape('easeCubicInOut(t) returns the expected results', function(test) {
-  let cubicInOut = generic.inOut(ease.easeCubicIn);
-  test.inDelta(ease.easeCubicInOut(0.0), cubicInOut(0.0));
-  test.inDelta(ease.easeCubicInOut(0.1), cubicInOut(0.1));
-  test.inDelta(ease.easeCubicInOut(0.2), cubicInOut(0.2));
-  test.inDelta(ease.easeCubicInOut(0.3), cubicInOut(0.3));
-  test.inDelta(ease.easeCubicInOut(0.4), cubicInOut(0.4));
-  test.inDelta(ease.easeCubicInOut(0.5), cubicInOut(0.5));
-  test.inDelta(ease.easeCubicInOut(0.6), cubicInOut(0.6));
-  test.inDelta(ease.easeCubicInOut(0.7), cubicInOut(0.7));
-  test.inDelta(ease.easeCubicInOut(0.8), cubicInOut(0.8));
-  test.inDelta(ease.easeCubicInOut(0.9), cubicInOut(0.9));
-  test.inDelta(ease.easeCubicInOut(1.0), cubicInOut(1.0));
-  test.end();
-});
-
-tape('easeCubicInOut(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeCubicInOut('.9'), ease.easeCubicInOut(0.9));
-  test.strictEqual(ease.easeCubicInOut({valueOf() { return 0.9; }}), ease.easeCubicInOut(0.9));
-  test.end();
+  it('easeCubicInOut(t) returns the expected results', () => {
+    const genericEaseInOut = genericInOut(EasingCubic.easeIn.getRatio);
+    expect(EasingCubic.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.3)).toBeCloseTo(genericEaseInOut(0.3), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.4)).toBeCloseTo(genericEaseInOut(0.4), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.5)).toBeCloseTo(genericEaseInOut(0.5), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.6)).toBeCloseTo(genericEaseInOut(0.6), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.7)).toBeCloseTo(genericEaseInOut(0.7), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.8)).toBeCloseTo(genericEaseInOut(0.8), 6);
+    expect(EasingCubic.easeInOut.getRatio(0.9)).toBeCloseTo(genericEaseInOut(0.9), 6);
+    expect(EasingCubic.easeInOut.getRatio(1.0)).toBeCloseTo(genericEaseInOut(1.0), 6);
+  });
 });

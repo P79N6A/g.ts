@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Event = require('../../../src/event');
@@ -21,12 +12,12 @@ describe('Group', function() {
     containerId: 'canvas-group-1',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   it('constructor', function() {
     const g = new G.Group({
-      id: 'g1',
+      id: 'g1'
     });
 
     expect(g.isGroup).to.be.true;
@@ -36,14 +27,14 @@ describe('Group', function() {
 
   it('add', function() {
     const e = new G.Circle({
-      id: 'e1',
+      id: 'e1'
     });
     const e2 = new G.Circle({
-      id: 'e2',
+      id: 'e2'
     });
 
     const g2 = new G.Group({
-      id: 'g2',
+      id: 'g2'
     });
 
     g2.add(e);
@@ -51,7 +42,7 @@ describe('Group', function() {
     expect(e.get('parent')).to.eql(g2);
     expect(g2.getCount()).to.equal(1);
     const g3 = new G.Group({
-      id: 'g3',
+      id: 'g3'
     });
 
     g3.add(e);
@@ -61,7 +52,7 @@ describe('Group', function() {
     expect(g2.getCount()).to.equal(0);
 
     const g4 = new G.Group({
-      id: 'g4',
+      id: 'g4'
     });
 
     g4.add(g3);
@@ -91,17 +82,17 @@ describe('Group', function() {
 
   it('clear', function() {
     const g = new G.Group({
-      id: 'g',
+      id: 'g'
     });
 
     const e1 = new G.Circle({
-      id: 'e1',
+      id: 'e1'
     });
     const e2 = new G.Circle({
-      id: 'e2',
+      id: 'e2'
     });
     const e3 = new G.Circle({
-      id: 'e3',
+      id: 'e3'
     });
 
     g.add(e1);
@@ -116,17 +107,17 @@ describe('Group', function() {
 
   it('destroy', function() {
     const g = new G.Group({
-      id: 'g',
+      id: 'g'
     });
 
     const e1 = new G.Circle({
-      id: 'e1',
+      id: 'e1'
     });
     const e2 = new G.Circle({
-      id: 'e2',
+      id: 'e2'
     });
     const e3 = new G.Circle({
-      id: 'e3',
+      id: 'e3'
     });
 
     g.add(e1);
@@ -141,27 +132,27 @@ describe('Group', function() {
 
   it('remove', function() {
     const g1 = new G.Group({
-      id: 'g1',
+      id: 'g1'
     });
 
     const g2 = new G.Group({
-      id: 'g2',
+      id: 'g2'
     });
 
     const e1 = new G.Circle({
-      id: 'e1',
+      id: 'e1'
     });
     const e2 = new G.Circle({
-      id: 'e2',
+      id: 'e2'
     });
     const e3 = new G.Circle({
-      id: 'e3',
+      id: 'e3'
     });
     const e4 = new G.Circle({
-      id: 'e4',
+      id: 'e4'
     });
     const e5 = new G.Circle({
-      id: 'e5',
+      id: 'e5'
     });
 
     g1.add(e1);
@@ -196,22 +187,22 @@ describe('Group', function() {
 
   it('zIndex', function() {
     const g = new G.Group({
-      id: 'g',
+      id: 'g'
     });
 
     const e1 = new G.Circle({
       id: 'e1',
-      zIndex: 1,
+      zIndex: 1
     });
 
     const e2 = new G.Circle({
       id: 'e2',
-      zIndex: 2,
+      zIndex: 2
     });
 
     const e3 = new G.Circle({
       id: 'e3',
-      zIndex: 3,
+      zIndex: 3
     });
 
     g.add(e1);
@@ -229,27 +220,28 @@ describe('Group', function() {
 
   it('find and findBy', function() {
     const g1 = new G.Group({
-      id: 'g1',
+      id: 'g1'
     });
 
     const g2 = new G.Group({
-      id: 'g2',
+      id: 'g2'
     });
 
     const e1 = new G.Circle({
       id: 'e1',
-      zIndex: 1,
+      zIndex: 1
     });
 
     const e2 = new G.Circle({
       id: 'e2',
-      zIndex: 2,
+      zIndex: 2
     });
 
     const e3 = new G.Circle({
       id: 'e3',
-      zIndex: 3,
+      zIndex: 3
     });
+
 
     g1.add(g2);
     g1.add(e1);
@@ -328,8 +320,8 @@ describe('Group', function() {
         x: 100,
         y: 100,
         r: 50,
-        fill: 'red',
-      },
+        fill: 'red'
+      }
     });
     canvas.add(arc);
     expect(canvas.getShape(0, 120)).to.be.undefined;

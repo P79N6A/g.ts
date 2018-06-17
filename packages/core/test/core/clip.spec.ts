@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -20,7 +11,7 @@ describe('clip', function() {
     containerId: 'canvas-clip',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const shape = new G.Circle({
@@ -28,8 +19,8 @@ describe('clip', function() {
       x: 100,
       y: 100,
       r: 50,
-      fill: 'black',
-    },
+      fill: 'black'
+    }
   });
 
   canvas.add(shape);
@@ -40,8 +31,8 @@ describe('clip', function() {
         x: 50,
         y: 50,
         width: 50,
-        height: 50,
-      },
+        height: 50
+      }
     });
     shape.attr('clip', rect);
     canvas.draw();
@@ -56,8 +47,8 @@ describe('clip', function() {
       attrs: {
         x: 50,
         y: 100,
-        r: 50,
-      },
+        r: 50
+      }
     });
 
     shape.attr('clip', circle);
@@ -76,8 +67,8 @@ describe('clip', function() {
         x: 100,
         y: 100,
         rx: 50,
-        ry: 20,
-      },
+        ry: 20
+      }
     });
 
     shape.attr('clip', ellipse);
@@ -96,8 +87,8 @@ describe('clip', function() {
         rs: 60,
         re: 100,
         startAngle: 0,
-        endAngle: 360,
-      },
+        endAngle: 360
+      }
     });
     shape.attr('clip', fan);
     canvas.draw();
@@ -116,9 +107,9 @@ describe('clip', function() {
           [ 100, 40 ],
           [ 40, 100 ],
           [ 100, 160 ],
-          [ 160, 100 ],
-        ],
-      },
+          [ 160, 100 ]
+        ]
+      }
     });
 
     shape.attr('clip', polygon);
@@ -137,9 +128,9 @@ describe('clip', function() {
           [ 'A', 25, 25, 0, 1, 1, 100, 100 ],
           [ 'A', 25, 25, 0, 1, 0, 100, 150 ],
           [ 'L', 50, 150 ],
-          [ 'Z' ],
-        ],
-      },
+          [ 'Z' ]
+        ]
+      }
     });
 
     shape.attr('clip', path);
@@ -160,8 +151,8 @@ describe('clip', function() {
       re: 50,
       startAngle: 0,
       endAngle: Math.PI * 2 / 3,
-      fill: 'green',
-    },
+      fill: 'green'
+    }
   });
   group.add([ shape, fan ]);
   canvas.add(group);
@@ -172,8 +163,8 @@ describe('clip', function() {
         x: 80,
         y: 75,
         width: 100,
-        height: 100,
-      },
+        height: 100
+      }
     });
     group.attr('clip', rect);
     canvas.draw();
@@ -190,8 +181,8 @@ describe('clip', function() {
       attrs: {
         x: 130,
         y: 100,
-        r: 60,
-      },
+        r: 60
+      }
     });
 
     group.attr('clip', circle);
@@ -204,8 +195,8 @@ describe('clip', function() {
         x: 130,
         y: 100,
         rx: 60,
-        ry: 30,
-      },
+        ry: 30
+      }
     });
 
     group.attr('clip', ellipse);
@@ -220,8 +211,8 @@ describe('clip', function() {
         rs: 30,
         re: 60,
         startAngle: 0,
-        endAngle: Math.PI * 2,
-      },
+        endAngle: Math.PI * 2
+      }
     });
     group.attr('clip', fan);
     canvas.draw();
@@ -234,9 +225,9 @@ describe('clip', function() {
           [ 120, 40 ],
           [ 60, 100 ],
           [ 120, 160 ],
-          [ 180, 100 ],
-        ],
-      },
+          [ 180, 100 ]
+        ]
+      }
     });
 
     group.attr('clip', polygon);

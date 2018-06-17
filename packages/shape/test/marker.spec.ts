@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const Canvas = require('../../../src/canvas');
 
@@ -18,7 +9,7 @@ describe('Marker', function() {
     containerId: 'canvas-marker',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
   it('init', function() {
     const marker = canvas.addShape('marker', {
@@ -27,8 +18,8 @@ describe('Marker', function() {
         y: 10,
         radius: 10,
         fill: 'red',
-        symbol: 'circle',
-      },
+        symbol: 'circle'
+      }
     });
     expect(marker.attr('x')).to.equal(10);
     expect(marker.attr('y')).to.equal(10);
@@ -41,8 +32,8 @@ describe('Marker', function() {
         y: 20,
         radius: 10,
         fill: 'blue',
-        symbol: 'circle',
-      },
+        symbol: 'circle'
+      }
     });
     expect(marker.isHit(20, 20)).to.be.true;
     expect(marker.isHit(10, 10)).to.be.false;
@@ -56,8 +47,8 @@ describe('Marker', function() {
         radius: 5,
         lineWidth: 6,
         fill: 'blue',
-        symbol: 'circle',
-      },
+        symbol: 'circle'
+      }
     });
     expect(marker.isHit(100, 100)).to.be.true;
     expect(marker.isHit(95, 95)).to.be.true;

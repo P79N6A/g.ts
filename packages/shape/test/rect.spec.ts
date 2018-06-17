@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -19,7 +10,7 @@ describe('Rect', function() {
     containerId: 'canvas-rect',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const rect = new G.Rect({
@@ -27,8 +18,8 @@ describe('Rect', function() {
       x: 0,
       y: 0,
       width: 0,
-      height: 0,
-    },
+      height: 0
+    }
   });
 
   it('init attrs', function() {
@@ -59,8 +50,8 @@ describe('Rect', function() {
         x: 0,
         y: 0,
         height: 1,
-        width: 15,
-      },
+        width: 15
+      }
     });
     expect(rect1.attr('width')).to.equal(15);
     box = rect1.getBBox();
@@ -71,8 +62,8 @@ describe('Rect', function() {
         x: 10,
         y: 0,
         width: 15,
-        height: 1,
-      },
+        height: 1
+      }
     });
     expect(rect2.attr('width')).to.equal(15);
     box = rect2.getBBox();
@@ -92,8 +83,8 @@ describe('Rect', function() {
         x: 0,
         y: 0,
         height: 25,
-        width: 1,
-      },
+        width: 1
+      }
     });
     expect(rect1.attr('height')).to.equal(25);
     box = rect1.getBBox();
@@ -104,8 +95,8 @@ describe('Rect', function() {
         x: 0,
         y: 10,
         height: 25,
-        width: 1,
-      },
+        width: 1
+      }
     });
     expect(rect2.attr('height')).to.equal(25);
     box = rect2.getBBox();
@@ -124,8 +115,8 @@ describe('Rect', function() {
         x: 10,
         y: 0,
         width: 0,
-        height: 0,
-      },
+        height: 0
+      }
     });
     expect(rect1.attr('x')).to.equal(10);
     box = rect1.getBBox();
@@ -136,8 +127,8 @@ describe('Rect', function() {
         x: 20,
         y: 0,
         width: 15,
-        height: 0,
-      },
+        height: 0
+      }
     });
     expect(rect2.attr('x')).to.equal(20);
     box = rect2.getBBox();
@@ -156,8 +147,8 @@ describe('Rect', function() {
         x: 0,
         y: 12,
         height: 0,
-        width: 0,
-      },
+        width: 0
+      }
     });
     expect(rect1.attr('y')).to.equal(12);
     box = rect1.getBBox();
@@ -168,8 +159,8 @@ describe('Rect', function() {
         x: 0,
         y: 12,
         height: 20,
-        width: 0,
-      },
+        width: 0
+      }
     });
     expect(rect2.attr('y')).to.equal(12);
     box = rect2.getBBox();
@@ -192,8 +183,8 @@ describe('Rect', function() {
         y: 0,
         width: 0,
         height: 0,
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     expect(rect1.attr('lineWidth')).to.equal(2);
     box = rect1.getBBox();
@@ -208,8 +199,8 @@ describe('Rect', function() {
         y: 40,
         width: 200,
         height: 100,
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     expect(rect2.attr('lineWidth')).to.equal(2);
     box = rect2.getBBox();
@@ -244,8 +235,8 @@ describe('Rect', function() {
         x: 40,
         y: 40,
         width: 50,
-        height: 70,
-      },
+        height: 70
+      }
     });
 
     expect(rect1.isHit(39.5, 39.5)).to.be.false;
@@ -268,13 +259,14 @@ describe('Rect', function() {
     rect1.attr('radius', 6);
     expect(rect1.isHit(41, 41)).to.be.false;
 
+
     const rect2 = new G.Rect({
       attrs: {
         x: 50,
         y: 50,
         width: 40,
-        height: 50,
-      },
+        height: 50
+      }
     });
     expect(rect2.isHit(50, 50)).to.be.false;
     expect(rect2.isHit(49.5, 50)).to.be.false;
@@ -308,8 +300,8 @@ describe('Rect', function() {
         height: 120,
         stroke: 'red',
         fill: 'green',
-        lineWidth: 4,
-      },
+        lineWidth: 4
+      }
     });
 
     canvas.add(rect3);

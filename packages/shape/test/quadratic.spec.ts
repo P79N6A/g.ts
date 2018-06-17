@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Util = require('../../../src/util/index');
@@ -15,13 +6,14 @@ const div = document.createElement('div');
 div.id = 'canvas-quadratic';
 document.body.appendChild(div);
 
+
 describe('Quadratic line', function() {
 
   const canvas = new Canvas({
     containerId: 'canvas-quadratic',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const quadratic = new G.Quadratic();
@@ -40,7 +32,7 @@ describe('Quadratic line', function() {
     quadratic.attr({
       p1: [ 50, 50 ],
       p2: [ 80, 12 ],
-      p3: [ 120, 150 ],
+      p3: [ 120, 150 ]
     });
     expect(quadratic.attr('p1')[0]).to.equal(50);
     expect(quadratic.attr('p2')[1]).to.equal(12);
@@ -120,6 +112,7 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
+
   it('isHit', function() {
     expect(quadratic.isHit(70, 39)).to.be.true;
     expect(quadratic.isHit(90, 52.2)).to.be.true;
@@ -131,8 +124,8 @@ describe('Quadratic line', function() {
       attrs: {
         p1: [ 100, 100 ],
         p2: [ 200, 200 ],
-        p3: [ 300, 100 ],
-      },
+        p3: [ 300, 100 ]
+      }
     });
 
     const point1 = quadratic.getPoint(0);

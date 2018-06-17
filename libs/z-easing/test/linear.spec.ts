@@ -5,29 +5,20 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import {EasingLinear} from '..';
 
-let tape = require('tape'),
-    ease = require('../');
-
-require('./inDelta');
-
-tape('easeLinear(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeLinear(0.0), 0.0);
-  test.inDelta(ease.easeLinear(0.1), 0.1);
-  test.inDelta(ease.easeLinear(0.2), 0.2);
-  test.inDelta(ease.easeLinear(0.3), 0.3);
-  test.inDelta(ease.easeLinear(0.4), 0.4);
-  test.inDelta(ease.easeLinear(0.5), 0.5);
-  test.inDelta(ease.easeLinear(0.6), 0.6);
-  test.inDelta(ease.easeLinear(0.7), 0.7);
-  test.inDelta(ease.easeLinear(0.8), 0.8);
-  test.inDelta(ease.easeLinear(0.9), 0.9);
-  test.inDelta(ease.easeLinear(1.0), 1.0);
-  test.end();
-});
-
-tape('easeLinear(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeLinear('.9'), ease.easeLinear(0.9));
-  test.strictEqual(ease.easeLinear({valueOf() { return 0.9; }}), ease.easeLinear(0.9));
-  test.end();
+describe('easing linear test suit', () => {
+  it('easeLinear(t) returns the expected results', () => {
+    expect(EasingLinear.easeIn.getRatio(0.0)).toBe(0.0);
+    expect(EasingLinear.easeIn.getRatio(0.1)).toBe(0.1);
+    expect(EasingLinear.easeIn.getRatio(0.2)).toBe(0.2);
+    expect(EasingLinear.easeIn.getRatio(0.3)).toBe(0.3);
+    expect(EasingLinear.easeIn.getRatio(0.4)).toBe(0.4);
+    expect(EasingLinear.easeIn.getRatio(0.5)).toBe(0.5);
+    expect(EasingLinear.easeIn.getRatio(0.6)).toBe(0.6);
+    expect(EasingLinear.easeIn.getRatio(0.7)).toBe(0.7);
+    expect(EasingLinear.easeIn.getRatio(0.8)).toBe(0.8);
+    expect(EasingLinear.easeIn.getRatio(0.9)).toBe(0.9);
+    expect(EasingLinear.easeIn.getRatio(1.0)).toBe(1.0);
+  });
 });

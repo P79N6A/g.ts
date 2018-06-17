@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -14,13 +5,14 @@ const div = document.createElement('div');
 div.id = 'canvas-polygon';
 document.body.appendChild(div);
 
+
 describe('Polygon', function() {
 
   const canvas = new Canvas({
     containerId: 'canvas-polygon',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const polygon = new G.Polygon();
@@ -46,8 +38,8 @@ describe('Polygon', function() {
 
     const polygon1 = new G.Polygon({
       attrs: {
-        points: [[ 58, 60 ], [ 80, 190 ], [ 32, 53 ], [ 45, 32 ]],
-      },
+        points: [[ 58, 60 ], [ 80, 190 ], [ 32, 53 ], [ 45, 32 ]]
+      }
     });
     box = polygon1.getBBox();
     expect(box.minX).to.equal(31.5);
@@ -69,8 +61,8 @@ describe('Polygon', function() {
     const polygon1 = new G.Polygon({
       attrs: {
         points: [[ 58, 60 ], [ 80, 190 ], [ 32, 53 ], [ 45, 32 ]],
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     box = polygon1.getBBox();
     expect(box.minX).to.equal(31);
@@ -102,8 +94,8 @@ describe('Polygon', function() {
       attrs: {
         points: [[ 31, 23 ], [ 43, 12 ], [ 53, 23 ], [ 64, 33 ]],
         lineWidth: 2,
-        stroke: 'red',
-      },
+        stroke: 'red'
+      }
     });
     expect(polygon1.isHit(30, 23)).to.be.true;
     expect(polygon1.isHit(31, 23)).to.be.true;
@@ -119,8 +111,8 @@ describe('Polygon', function() {
       attrs: {
         points: [[ 31, 23 ], [ 43, 12 ], [ 53, 23 ], [ 64, 33 ]],
         lineWidth: 2,
-        fill: 'red',
-      },
+        fill: 'red'
+      }
     });
     canvas.add(polygon2);
     expect(polygon2.isHit(30, 23)).to.be.false;
@@ -137,8 +129,8 @@ describe('Polygon', function() {
         points: [[ 31, 23 ], [ 43, 12 ], [ 53, 23 ], [ 64, 33 ]],
         lineWidth: 2,
         stroke: 'green',
-        fill: 'red',
-      },
+        fill: 'red'
+      }
     });
     canvas.add(polygon3);
     expect(polygon3.isHit(30, 23)).to.be.true;
@@ -153,3 +145,4 @@ describe('Polygon', function() {
   });
 
 });
+

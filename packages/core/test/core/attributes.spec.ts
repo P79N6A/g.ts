@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const Elements = require('../../../src/core/element');
 describe('Attributes', function() {
@@ -14,9 +5,10 @@ describe('Attributes', function() {
     const e = new Elements({
       attrs: {
         width: 100,
-        height: 50,
-      },
+        height: 50
+      }
     });
+
 
     expect(e.__attrs.width).to.equal(100);
     expect(e.__attrs.height).to.equal(50);
@@ -26,8 +18,8 @@ describe('Attributes', function() {
     const e = new Elements({
       attrs: {
         width: 100,
-        height: 50,
-      },
+        height: 50
+      }
     });
 
     expect(e.attr('width')).to.equal(100);
@@ -43,7 +35,7 @@ describe('Attributes', function() {
     expect(e.attr('height')).to.equal(40);
     e.attr({
       width: 100,
-      text: '123',
+      text: '123'
     });
     expect(e.attr('width')).to.equal(100);
     expect(e.attr('text')).to.equal('123');
@@ -52,8 +44,8 @@ describe('Attributes', function() {
   it('attr fill', function() {
     const e = new Elements({
       attrs: {
-        fill: '#333333',
-      },
+        fill: '#333333'
+      }
     });
     e.attr('fill', '#333333');
     expect(e.attr('fill')).to.equal('#333333');
@@ -67,8 +59,8 @@ describe('Attributes', function() {
   it('attr stroke', function() {
     const e = new Elements({
       attrs: {
-        stroke: 'black',
-      },
+        stroke: 'black'
+      }
     });
     e.attr('stroke', 'black');
     expect(e.attr('stroke')).to.equal('black');
@@ -82,8 +74,8 @@ describe('Attributes', function() {
   it('attr opacity', function() {
     const e = new Elements({
       attrs: {
-        opacity: 0.1,
-      },
+        opacity: 0.1
+      }
     });
 
     expect(e.attr('opacity')).to.equal(0.1);
@@ -101,8 +93,8 @@ describe('Attributes', function() {
         width: 100,
         opacity: 0.2,
         stroke: '#222',
-        fill: '#444',
-      },
+        fill: '#444'
+      }
     });
 
     const attrs = e.attr();

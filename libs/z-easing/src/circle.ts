@@ -41,7 +41,7 @@ export class CircleInOut {
 }
 
 export class EasingCircle {
-  public easeIn: CircleIn       = new CircleIn();
-  public easeOut: CircleOut     = new CircleOut();
-  public easeInOut: CircleInOut = new CircleInOut();
+  public static easeIn: CircleIn       = new CircleIn();
+  public static easeOut: CircleOut     = new CircleOut();
+  public static easeInOut: CircleInOut = new CircleInOut();
 }

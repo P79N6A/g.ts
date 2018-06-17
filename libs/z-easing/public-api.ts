@@ -6,15 +6,15 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export * from './src/back';
-export * from './src/bounce';
-export * from './src/circle';
-export * from './src/cubic';
-export * from './src/elastic';
-export * from './src/exp';
-export * from './src/linear';
-export * from './src/poly';
-export * from './src/quad';
-export * from './src/quart';
-export * from './src/quint';
-export * from './src/sin';
+export {EasingBack} from './src/back';
+export {EasingBounce} from './src/bounce';
+export {EasingCircle} from './src/circle';
+export {EasingCubic} from './src/cubic';
+export {EasingElastic} from './src/elastic';
+export {EasingExp} from './src/exp';
+export {EasingLinear} from './src/linear';
+export {EasingPoly} from './src/poly';
+export {EasingQuad} from './src/quad';
+export {EasingQuart} from './src/quart';
+export {EasingQuint} from './src/quint';
+export {EasingSin} from './src/sin';

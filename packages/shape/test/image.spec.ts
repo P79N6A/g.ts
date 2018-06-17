@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 
 const G = require('../../../src/index');
@@ -26,7 +17,7 @@ describe('Image', function() {
     containerId: 'canvas-img',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const image = new G.Image({
@@ -34,8 +25,8 @@ describe('Image', function() {
       x: 0,
       y: 0,
       width: 0,
-      height: 0,
-    },
+      height: 0
+    }
   });
   it('init attr', function() {
     expect(image.attr('x'))
@@ -98,8 +89,8 @@ describe('Image', function() {
     const image = new G.Image({
       attrs: {
         x: 0,
-        y: 0,
-      },
+        y: 0
+      }
     });
     const img = can1;
     image.attr('img', img);
@@ -124,8 +115,8 @@ describe('Image', function() {
     const image = new G.Image({
       attrs: {
         x: 0,
-        y: 0,
-      },
+        y: 0
+      }
     });
     const img = can1.getContext('2d')
       .getImageData(0, 0, 800, 800);
@@ -219,7 +210,7 @@ describe('Image', function() {
       sx: 20,
       sy: 20,
       swidth: 100,
-      sheight: 200,
+      sheight: 200
     });
     canvas.draw();
   });
@@ -232,8 +223,8 @@ describe('Image', function() {
         width: 300,
         height: 300,
         // img: '../fixtures/test2.jpg' // relative to test/unit
-        img: (baseHref + '/test/fixtures/test1.jpg'), // relative to test/unit
-      },
+        img: (baseHref + '/test/fixtures/test1.jpg') // relative to test/unit
+      }
     });
 
     canvas.add(image1);

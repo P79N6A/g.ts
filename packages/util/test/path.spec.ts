@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const Util = require('../../../src/util/common');
 const PathUtil = require('../../../src/util/path');
@@ -18,7 +9,7 @@ document.body.appendChild(dom);
 const canvas = new Canvas({
   containerDOM: dom,
   width: 800,
-  height: 800,
+  height: 800
 });
 
 function drawPoints(arr, canvas) {
@@ -29,8 +20,8 @@ function drawPoints(arr, canvas) {
         y: v.y,
         r: 5,
         stroke: 'green',
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
   });
 }
@@ -73,18 +64,17 @@ describe('path util test', function() {
     canvas.addShape('path', {
       attrs: {
         path: pathStr1,
-        stroke: 'red',
-      },
+        stroke: 'red'
+      }
     });
     canvas.addShape('path', {
       attrs: {
         path: pathStr2,
-        stroke: 'blue',
-      },
+        stroke: 'blue'
+      }
     });
     drawPoints(rst, canvas);
     canvas.draw();
-    console.log(rst);
   });
 
   it('path Insert', function() {
@@ -101,23 +91,24 @@ describe('path util test', function() {
       [ 'M', 300, 150 ],
       [ 'L', 200, 150 ],
       [ 'M', 300, 200 ],
-      [ 'L', 190, 200 ],
+      [ 'L', 190, 200 ]
     ];
     const rst = PathUtil.intersection(pathStr1, pathStr2);
     canvas.addShape('path', {
       attrs: {
         path: pathStr1,
-        stroke: 'red',
-      },
+        stroke: 'red'
+      }
     });
     canvas.addShape('path', {
       attrs: {
         path: pathStr2,
-        stroke: 'blue',
-      },
+        stroke: 'blue'
+      }
     });
     drawPoints(rst, canvas);
     canvas.draw();
     console.log(rst);
   });
 });
+

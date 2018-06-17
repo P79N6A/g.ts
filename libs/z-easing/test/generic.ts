@@ -6,14 +6,14 @@
  * See LICENSE file in the project root for full license information.
  */
 
-exports.out = function(easeIn) {
-  return function(t) {
+export function genericOut(easeIn) {
+  return (t) => {
     return 1 - easeIn(1 - t);
   };
-};
+}
 
-exports.inOut = function(easeIn) {
-  return function(t) {
+export function genericInOut(easeIn) {
+  return (t) => {
     return (t < 0.5 ? easeIn(t * 2) : (2 - easeIn((1 - t) * 2))) / 2;
   };
-};
+}

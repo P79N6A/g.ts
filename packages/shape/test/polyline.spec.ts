@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -14,12 +5,13 @@ const div = document.createElement('div');
 div.id = 'canvas-polyline';
 document.body.appendChild(div);
 
+
 describe('Polyline', function() {
   const canvas = new Canvas({
     containerId: 'canvas-polyline',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const polyline = new G.Polyline();
@@ -50,8 +42,8 @@ describe('Polyline', function() {
 
     const polyline1 = new G.Polyline({
       attrs: {
-        points: [[ 40, 23 ], [ 53, 64 ], [ 79, 120 ], [ 234, 56 ]],
-      },
+        points: [[ 40, 23 ], [ 53, 64 ], [ 79, 120 ], [ 234, 56 ]]
+      }
     });
     points = polyline1.attr('points');
     expect(points.length).to.equal(4);
@@ -74,8 +66,8 @@ describe('Polyline', function() {
     const polyline1 = new G.Polyline({
       attrs: {
         points: [[ 23, 12 ], [ 42, 52 ]],
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     box = polyline1.getBBox();
     expect(box.minX).to.equal(22);
@@ -100,8 +92,8 @@ describe('Polyline', function() {
     expect(polyline.isHit(18, 29)).to.be.false;
     const polyline1 = new G.Polyline({
       attrs: {
-        points: [[ 10, 10 ]],
-      },
+        points: [[ 10, 10 ]]
+      }
     });
     expect(polyline1.isHit(10, 10)).to.be.false;
     polyline1.attr('stroke', 'red');
@@ -122,3 +114,4 @@ describe('Polyline', function() {
     expect(polyline.getPoint(0)).to.eql({ x: 20, y: 30 });
   });
 });
+

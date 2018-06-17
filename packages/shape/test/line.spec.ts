@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -20,15 +11,15 @@ describe('Line', function() {
     containerId: 'canvas-line',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
   const line = new G.Line({
     attrs: {
       x1: 0,
       x2: 0,
       y1: 0,
-      y2: 0,
-    },
+      y2: 0
+    }
   });
   it('init attrs', function() {
     expect(line.attr('x1')).to.equal(0);
@@ -106,8 +97,8 @@ describe('Line', function() {
         x1: 0,
         y1: 0,
         x2: 100,
-        y2: 100,
-      },
+        y2: 100
+      }
     });
     expect(line1.isHit(101, 101)).to.be.false;
     expect(line1.isHit(100, 100)).to.be.false;
@@ -119,73 +110,61 @@ describe('Line', function() {
   it('arrow', function() {
     line.attr({
       startArrow: true,
-      endArrow: {
-        shape: new G.Marker({
-          attrs: {
-            symbol: 'triangle',
-          },
-        }),
-      },
+      endArrow: new G.Marker({
+        attrs: {
+          symbol: 'triangle'
+        }
+      })
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow: {
-          shape: new G.Marker({
-            attrs: {
-              symbol: 'triangle',
-            },
-          }),
-        },
-        endArrow: {
-          shape: new G.Marker({
-            attrs: {
-              symbol: 'triangle',
-            },
-          }),
-        },
+        startArrow: new G.Marker({
+          attrs: {
+            symbol: 'triangle'
+          }
+        }),
+        endArrow: new G.Marker({
+          attrs: {
+            symbol: 'triangle'
+          }
+        }),
         arrowLength: 15,
         x1: 80,
         y1: 80,
         x2: 150,
         y2: 60,
         stroke: 'l (0) 0.1:#0fedae 1:#6542da',
-        lineWidth: 8,
-      },
+        lineWidth: 8
+      }
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow: {
-          shape: new G.Marker({
-            attrs: {
-              symbol: 'circle',
-            },
-          }),
-        },
-        endArrow: {
-          shape: new G.Marker({
-            attrs: {
-              symbol: 'square',
-            },
-          }),
-        },
+        startArrow: new G.Marker({
+          attrs: {
+            symbol: 'circle'
+          }
+        }),
+        endArrow: new G.Marker({
+          attrs: {
+            symbol: 'square'
+          }
+        }),
         arrowLength: 15,
         x1: 180,
         y1: 60,
         x2: 180,
         y2: 150,
         stroke: '#000',
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow: {
-          shape: new G.Marker({
-            attrs: {
-              symbol: 'triangle',
-            },
-          }),
-        },
+        startArrow: new G.Marker({
+          attrs: {
+            symbol: 'triangle'
+          }
+        }),
         endArrow: true,
         arrowLength: 15,
         x1: 30,
@@ -193,8 +172,8 @@ describe('Line', function() {
         x2: 180,
         y2: 30,
         stroke: '#000',
-        lineWidth: 2,
-      },
+        lineWidth: 2
+      }
     });
     canvas.draw();
   });
@@ -205,8 +184,8 @@ describe('Line', function() {
         x1: 0,
         y1: 0,
         x2: 200,
-        y2: 300,
-      },
+        y2: 300
+      }
     });
 
     const point = line.getPoint(0.5);
@@ -214,3 +193,4 @@ describe('Line', function() {
     expect(point.y).to.equal(150);
   });
 });
+

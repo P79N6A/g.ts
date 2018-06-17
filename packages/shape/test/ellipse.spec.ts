@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -14,13 +5,14 @@ const div = document.createElement('div');
 div.id = 'canvas-ellipse';
 document.body.appendChild(div);
 
+
 describe('Ellipse', function() {
 
   const canvas = new Canvas({
     containerId: 'canvas-ellipse',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const ellipse = new G.Ellipse({
@@ -28,8 +20,8 @@ describe('Ellipse', function() {
       x: 0,
       y: 0,
       rx: 1,
-      ry: 1,
-    },
+      ry: 1
+    }
   });
 
   it('init attr', function() {
@@ -89,6 +81,7 @@ describe('Ellipse', function() {
     expect(box.maxY).to.equal(40.5);
   });
 
+
   it('lineWidth', function() {
     expect(ellipse.attr('lineWidth')).to.equal(1);
     ellipse.attr('lineWidth', 2);
@@ -113,14 +106,15 @@ describe('Ellipse', function() {
     canvas.draw();
   });
 
+
   it('isHit', function() {
     const ellipse1 = new G.Ellipse({
       attrs: {
         x: 50,
         y: 50,
         rx: 200,
-        ry: 100,
-      },
+        ry: 100
+      }
     });
 
     expect(ellipse1.isHit(-150, 50)).to.be.false;
@@ -139,8 +133,8 @@ describe('Ellipse', function() {
         x: 100,
         y: 200,
         rx: 50,
-        ry: 80,
-      },
+        ry: 80
+      }
     });
 
     expect(ellipse2.isHit(70, 200)).to.be.false;
@@ -160,8 +154,8 @@ describe('Ellipse', function() {
         x: 200,
         y: 200,
         rx: 50,
-        ry: 100,
-      },
+        ry: 100
+      }
     });
 
     expect(ellipse3.isHit(150, 200)).to.be.false;
@@ -171,7 +165,7 @@ describe('Ellipse', function() {
     expect(ellipse3.isHit(170, 200)).to.be.false;
     ellipse3.attr({
       fill: 'green',
-      stroke: 'red',
+      stroke: 'red'
     });
     expect(ellipse3.isHit(150, 200)).to.be.true;
     expect(ellipse3.isHit(250, 200)).to.be.true;

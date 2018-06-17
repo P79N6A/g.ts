@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Canvas = require('../../../src/canvas');
@@ -20,7 +11,7 @@ describe('Cubic line', function() {
     containerId: 'canvas-cubic',
     width: 200,
     height: 200,
-    pixelRatio: 1,
+    pixelRatio: 1
   });
 
   const cubic = new G.Cubic();
@@ -41,7 +32,7 @@ describe('Cubic line', function() {
       p1: [ 50, 50 ],
       p2: [ 80, 12 ],
       p3: [ 120, 150 ],
-      p4: [ 150, 50 ],
+      p4: [ 150, 50 ]
     });
     expect(cubic.attr('p1')[0]).to.equal(50);
     expect(cubic.attr('p2')[1]).to.equal(12);
@@ -127,12 +118,18 @@ describe('Cubic line', function() {
 
   it('arrow', function() {
     cubic.attr('startArrow', true);
-    cubic.attr('endArrow', true);
+    cubic.attr('endArrow', new G.Marker({
+      attrs: {
+        symbol: 'triangle',
+        r: 5,
+        fill: 'red'
+      }
+    }));
     cubic.attr('arrowLength', 5);
     cubic.attr('lineWidth', 1);
     cubic.attr('arrowAngle', 90);
     expect(cubic.attr('startArrow')).to.be.true;
-    expect(cubic.attr('endArrow')).to.be.true;
+    expect(cubic.attr('endArrow')).not.to.be.undefined;
     expect(cubic.attr('arrowLength')).to.equal(5);
     expect(cubic.attr('arrowAngle')).to.equal(90);
     canvas.draw();
@@ -150,8 +147,8 @@ describe('Cubic line', function() {
         p1: [ 100, 100 ],
         p2: [ 200, 200 ],
         p3: [ 300, 0 ],
-        p4: [ 400, 100 ],
-      },
+        p4: [ 400, 100 ]
+      }
     });
 
     const point = cubic.getPoint(0);

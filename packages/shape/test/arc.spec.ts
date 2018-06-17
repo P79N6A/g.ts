@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const G = require('../../../src/index');
 const Util = require('../../../src/util/index');
@@ -20,7 +11,7 @@ describe('Arc line', function() {
   const canvas = new Canvas({
     containerId: 'canvas-arc',
     width: 200,
-    height: 200,
+    height: 200
   });
 
   canvas.on('canvas-click', function(ev) {
@@ -118,7 +109,7 @@ describe('Arc line', function() {
       clockwise: false,
       x: 60,
       y: 60,
-      r: 20,
+      r: 20
     });
     arc.attr('stroke', 'l (0) 0:#ff00ff 1:#00ffff');
     expect(arc.attr('stroke')).to.equal('l (0) 0:#ff00ff 1:#00ffff');
@@ -151,8 +142,8 @@ describe('Arc line', function() {
         r: 40,
         startAngle: 0,
         endAngle: 110 / 180 * Math.PI,
-        stroke: 'red',
-      },
+        stroke: 'red'
+      }
     });
     canvas.add(arc);
     canvas.draw();

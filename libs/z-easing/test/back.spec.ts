@@ -6,78 +6,52 @@
  * See LICENSE file in the project root for full license information.
  */
 
-let tape = require('tape'),
-    ease = require('../'),
-    generic = require('./generic');
+import {EasingBack} from '../src/back';
+import {genericInOut, genericOut} from './generic';
 
-require('./inDelta');
+describe('easing back test suit', () => {
 
-tape('easeBack is an alias for easeBackInOut', function(test) {
-  test.equal(ease.easeBack, ease.easeBackInOut);
-  test.end();
-});
+  it('easeBackIn(t) returns the expected results', () => {
+    expect(EasingBack.easeIn.getRatio(0.0)).toBeCloseTo(0.000000, 6);
+    expect(EasingBack.easeIn.getRatio(0.1)).toBeCloseTo(-0.014314, 6);
+    expect(EasingBack.easeIn.getRatio(0.2)).toBeCloseTo(-0.046451, 6);
+    expect(EasingBack.easeIn.getRatio(0.3)).toBeCloseTo(-0.080200, 6);
+    expect(EasingBack.easeIn.getRatio(0.4)).toBeCloseTo(-0.099352, 6);
+    expect(EasingBack.easeIn.getRatio(0.5)).toBeCloseTo(-0.087698, 6);
+    expect(EasingBack.easeIn.getRatio(0.6)).toBeCloseTo(-0.029028, 6);
+    expect(EasingBack.easeIn.getRatio(0.7)).toBeCloseTo(+0.092868, 6);
+    expect(EasingBack.easeIn.getRatio(0.8)).toBeCloseTo(+0.294198, 6);
+    expect(EasingBack.easeIn.getRatio(0.9)).toBeCloseTo(+0.591172, 6);
+    expect(EasingBack.easeIn.getRatio(1.0)).toBeCloseTo(+1.000000, 6);
+  });
 
-tape('easeBackIn(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeBackIn(0.0),  0.000000);
-  test.inDelta(ease.easeBackIn(0.1), -0.014314);
-  test.inDelta(ease.easeBackIn(0.2), -0.046451);
-  test.inDelta(ease.easeBackIn(0.3), -0.080200);
-  test.inDelta(ease.easeBackIn(0.4), -0.099352);
-  test.inDelta(ease.easeBackIn(0.5), -0.087698);
-  test.inDelta(ease.easeBackIn(0.6), -0.029028);
-  test.inDelta(ease.easeBackIn(0.7), +0.092868);
-  test.inDelta(ease.easeBackIn(0.8), +0.294198);
-  test.inDelta(ease.easeBackIn(0.9), +0.591172);
-  test.inDelta(ease.easeBackIn(1.0), +1.000000);
-  test.end();
-});
+  it('easeBackOut(t) returns the expected results', () => {
+    const genericEaseOut = genericOut(EasingBack.easeIn.getRatio);
+    expect(EasingBack.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
+    expect(EasingBack.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
+    expect(EasingBack.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
+    expect(EasingBack.easeOut.getRatio(0.3)).toBeCloseTo(genericEaseOut(0.3), 6);
+    expect(EasingBack.easeOut.getRatio(0.4)).toBeCloseTo(genericEaseOut(0.4), 6);
+    expect(EasingBack.easeOut.getRatio(0.5)).toBeCloseTo(genericEaseOut(0.5), 6);
+    expect(EasingBack.easeOut.getRatio(0.6)).toBeCloseTo(genericEaseOut(0.6), 6);
+    expect(EasingBack.easeOut.getRatio(0.7)).toBeCloseTo(genericEaseOut(0.7), 6);
+    expect(EasingBack.easeOut.getRatio(0.8)).toBeCloseTo(genericEaseOut(0.8), 6);
+    expect(EasingBack.easeOut.getRatio(0.9)).toBeCloseTo(genericEaseOut(0.9), 6);
+    expect(EasingBack.easeOut.getRatio(1.0)).toBeCloseTo(genericEaseOut(1.0), 6);
+  });
 
-tape('easeBackIn(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeBackIn('.9'), ease.easeBackIn(0.9));
-  test.strictEqual(ease.easeBackIn({valueOf() { return 0.9; }}), ease.easeBackIn(0.9));
-  test.end();
-});
-
-tape('easeBackOut(t) returns the expected results', function(test) {
-  let backOut = generic.out(ease.easeBackIn);
-  test.inDelta(ease.easeBackOut(0.0), backOut(0.0));
-  test.inDelta(ease.easeBackOut(0.1), backOut(0.1));
-  test.inDelta(ease.easeBackOut(0.2), backOut(0.2));
-  test.inDelta(ease.easeBackOut(0.3), backOut(0.3));
-  test.inDelta(ease.easeBackOut(0.4), backOut(0.4));
-  test.inDelta(ease.easeBackOut(0.5), backOut(0.5));
-  test.inDelta(ease.easeBackOut(0.6), backOut(0.6));
-  test.inDelta(ease.easeBackOut(0.7), backOut(0.7));
-  test.inDelta(ease.easeBackOut(0.8), backOut(0.8));
-  test.inDelta(ease.easeBackOut(0.9), backOut(0.9));
-  test.inDelta(ease.easeBackOut(1.0), backOut(1.0));
-  test.end();
-});
-
-tape('easeBackOut(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeBackOut('.9'), ease.easeBackOut(0.9));
-  test.strictEqual(ease.easeBackOut({valueOf() { return 0.9; }}), ease.easeBackOut(0.9));
-  test.end();
-});
-
-tape('easeBackInOut(t) returns the expected results', function(test) {
-  let backInOut = generic.inOut(ease.easeBackIn);
-  test.inDelta(ease.easeBackInOut(0.0), backInOut(0.0));
-  test.inDelta(ease.easeBackInOut(0.1), backInOut(0.1));
-  test.inDelta(ease.easeBackInOut(0.2), backInOut(0.2));
-  test.inDelta(ease.easeBackInOut(0.3), backInOut(0.3));
-  test.inDelta(ease.easeBackInOut(0.4), backInOut(0.4));
-  test.inDelta(ease.easeBackInOut(0.5), backInOut(0.5));
-  test.inDelta(ease.easeBackInOut(0.6), backInOut(0.6));
-  test.inDelta(ease.easeBackInOut(0.7), backInOut(0.7));
-  test.inDelta(ease.easeBackInOut(0.8), backInOut(0.8));
-  test.inDelta(ease.easeBackInOut(0.9), backInOut(0.9));
-  test.inDelta(ease.easeBackInOut(1.0), backInOut(1.0));
-  test.end();
-});
-
-tape('easeBackInOut(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeBackInOut('.9'), ease.easeBackInOut(0.9));
-  test.strictEqual(ease.easeBackInOut({valueOf() { return 0.9; }}), ease.easeBackInOut(0.9));
-  test.end();
+  it('easeBackInOut(t) returns the expected results', () => {
+    const genericEaseInOut = genericInOut(EasingBack.easeIn.getRatio);
+    expect(EasingBack.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
+    expect(EasingBack.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
+    expect(EasingBack.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);
+    expect(EasingBack.easeInOut.getRatio(0.3)).toBeCloseTo(genericEaseInOut(0.3), 6);
+    expect(EasingBack.easeInOut.getRatio(0.4)).toBeCloseTo(genericEaseInOut(0.4), 6);
+    expect(EasingBack.easeInOut.getRatio(0.5)).toBeCloseTo(genericEaseInOut(0.5), 6);
+    expect(EasingBack.easeInOut.getRatio(0.6)).toBeCloseTo(genericEaseInOut(0.6), 6);
+    expect(EasingBack.easeInOut.getRatio(0.7)).toBeCloseTo(genericEaseInOut(0.7), 6);
+    expect(EasingBack.easeInOut.getRatio(0.8)).toBeCloseTo(genericEaseInOut(0.8), 6);
+    expect(EasingBack.easeInOut.getRatio(0.9)).toBeCloseTo(genericEaseInOut(0.9), 6);
+    expect(EasingBack.easeInOut.getRatio(1.0)).toBeCloseTo(genericEaseInOut(1.0), 6);
+  });
 });

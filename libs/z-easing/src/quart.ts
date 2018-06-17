@@ -8,7 +8,7 @@
 
 import {PolyIn, PolyInOut, PolyOut} from './poly';
 
-export class Quart {
+export class EasingQuart {
   public static easeIn: PolyIn = PolyIn.create(4);
 
   public static easeOut: PolyOut = PolyOut.create(4);

@@ -5,129 +5,93 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import {EasingElastic} from '..';
+import {ElasticIn} from '../src/elastic';
+import {genericInOut, genericOut} from './generic';
 
-let tape = require('tape'),
-    ease = require('../'),
-    generic = require('./generic');
+describe('easing elastic test suit', () => {
+  it('easeElasticIn(t) returns the expected results', () => {
+    expect(EasingElastic.easingIn.getRatio(0.0)).toBeCloseTo(-0.000488, 6);
+    expect(EasingElastic.easingIn.getRatio(0.1)).toBeCloseTo(+0.001953, 6);
+    expect(EasingElastic.easingIn.getRatio(0.2)).toBeCloseTo(-0.001953, 6);
+    expect(EasingElastic.easingIn.getRatio(0.3)).toBeCloseTo(-0.003906, 6);
+    expect(EasingElastic.easingIn.getRatio(0.4)).toBeCloseTo(+0.015625, 6);
+    expect(EasingElastic.easingIn.getRatio(0.5)).toBeCloseTo(-0.015625, 6);
+    expect(EasingElastic.easingIn.getRatio(0.6)).toBeCloseTo(-0.031250, 6);
+    expect(EasingElastic.easingIn.getRatio(0.7)).toBeCloseTo(+0.125000, 6);
+    expect(EasingElastic.easingIn.getRatio(0.8)).toBeCloseTo(-0.125000, 6);
+    expect(EasingElastic.easingIn.getRatio(0.9)).toBeCloseTo(-0.250000, 6);
+    expect(EasingElastic.easingIn.getRatio(1.0)).toBeCloseTo(+1.000000, 6);
+  });
 
-require('./inDelta');
+  it('easeElasticIn(t) is the same as elasticIn.amplitude(1).period(0.3)(t)', () => {
+    const customEaseElasticIn = new ElasticIn(1, .3);
+    expect(EasingElastic.easingIn.getRatio(0.1)).toBe(customEaseElasticIn.getRatio(0.1));
+    expect(EasingElastic.easingIn.getRatio(0.2)).toBe(customEaseElasticIn.getRatio(0.2));
+    expect(EasingElastic.easingIn.getRatio(0.3)).toBe(customEaseElasticIn.getRatio(0.3));
+  });
 
-tape('easeElastic is an alias for easeElasticOut', function(test) {
-  test.equal(ease.easeElastic, ease.easeElasticOut);
-  test.end();
-});
+  it('easeElasticIn.amplitude(a)(t) is the same as elasticIn(t) if a <= 1', () => {
+    expect(new ElasticIn(-1).getRatio(0.1)).toBeCloseTo(EasingElastic.easingIn.getRatio(0.1));
+    expect(new ElasticIn(+0.4).getRatio(0.2)).toBeCloseTo(EasingElastic.easingIn.getRatio(0.2));
+    expect(new ElasticIn(+0.8).getRatio(0.3)).toBeCloseTo(EasingElastic.easingIn.getRatio(0.3));
+  });
 
-tape('easeElasticIn(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeElasticIn(0.0), -0.000488); // Note: not exactly zero.
-  test.inDelta(ease.easeElasticIn(0.1),  0.001953);
-  test.inDelta(ease.easeElasticIn(0.2), -0.001953);
-  test.inDelta(ease.easeElasticIn(0.3), -0.003906);
-  test.inDelta(ease.easeElasticIn(0.4),  0.015625);
-  test.inDelta(ease.easeElasticIn(0.5), -0.015625);
-  test.inDelta(ease.easeElasticIn(0.6), -0.031250);
-  test.inDelta(ease.easeElasticIn(0.7),  0.125000);
-  test.inDelta(ease.easeElasticIn(0.8), -0.125000);
-  test.inDelta(ease.easeElasticIn(0.9), -0.250000);
-  test.inDelta(ease.easeElasticIn(1.0),  1.000000);
-  test.end();
-});
+  it('easeElasticIn.amplitude(1.3)(t) returns the expected results', () => {
+    expect(new ElasticIn(1.3).getRatio(0.0)).toBeCloseTo(+0.000214, 6);
+    expect(new ElasticIn(1.3).getRatio(0.1)).toBeCloseTo(+0.001953, 6);
+    expect(new ElasticIn(1.3).getRatio(0.2)).toBeCloseTo(-0.004763, 6);
+    expect(new ElasticIn(1.3).getRatio(0.3)).toBeCloseTo(+0.001714, 6);
+    expect(new ElasticIn(1.3).getRatio(0.4)).toBeCloseTo(+0.015625, 6);
+    expect(new ElasticIn(1.3).getRatio(0.5)).toBeCloseTo(-0.038105, 6);
+    expect(new ElasticIn(1.3).getRatio(0.6)).toBeCloseTo(+0.013711, 6);
+    expect(new ElasticIn(1.3).getRatio(0.7)).toBeCloseTo(+0.125000, 6);
+    expect(new ElasticIn(1.3).getRatio(0.8)).toBeCloseTo(-0.304844, 6);
+    expect(new ElasticIn(1.3).getRatio(0.9)).toBeCloseTo(+0.109687, 6);
+    expect(new ElasticIn(1.3).getRatio(1.0)).toBeCloseTo(+1.000000, 6);
+  });
 
-tape('easeElasticIn(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easeElasticIn('.9'), ease.easeElasticIn(0.9));
-  test.strictEqual(ease.easeElasticIn({valueOf() { return 0.9; }}), ease.easeElasticIn(0.9));
-  test.end();
-});
+  it('easeElasticIn.amplitude(1.5).period(1)(t) returns the expected results', () => {
+    expect(new ElasticIn(1.5, 1).getRatio(0.0)).toBeCloseTo(+0.000977, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.1)).toBeCloseTo(+0.000297, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.2)).toBeCloseTo(-0.002946, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.3)).toBeCloseTo(-0.010721, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.4)).toBeCloseTo(-0.022909, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.5)).toBeCloseTo(-0.031250, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.6)).toBeCloseTo(-0.009491, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.7)).toBeCloseTo(+0.094287, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.8)).toBeCloseTo(+0.343083, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(0.9)).toBeCloseTo(+0.733090, 6);
+    expect(new ElasticIn(1.5, 1).getRatio(1.0)).toBeCloseTo(+1.000000, 6);
+  });
 
-tape('easeElasticIn(t) is the same as elasticIn.amplitude(1).period(0.3)(t)', function(test) {
-  test.equal(ease.easeElasticIn(0.1), ease.easeElasticIn.amplitude(1).period(0.3)(0.1));
-  test.equal(ease.easeElasticIn(0.2), ease.easeElasticIn.amplitude(1).period(0.3)(0.2));
-  test.equal(ease.easeElasticIn(0.3), ease.easeElasticIn.amplitude(1).period(0.3)(0.3));
-  test.end();
-});
+  it('easeElasticOut(t) returns the expected results', () => {
+    const genericEaseOut = genericOut(EasingElastic.easingIn.getRatio);
+    expect(EasingElastic.easingOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0));
+    expect(EasingElastic.easingOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1));
+    expect(EasingElastic.easingOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2));
+    expect(EasingElastic.easingOut.getRatio(0.3)).toBeCloseTo(genericEaseOut(0.3));
+    expect(EasingElastic.easingOut.getRatio(0.4)).toBeCloseTo(genericEaseOut(0.4));
+    expect(EasingElastic.easingOut.getRatio(0.5)).toBeCloseTo(genericEaseOut(0.5));
+    expect(EasingElastic.easingOut.getRatio(0.6)).toBeCloseTo(genericEaseOut(0.6));
+    expect(EasingElastic.easingOut.getRatio(0.7)).toBeCloseTo(genericEaseOut(0.7));
+    expect(EasingElastic.easingOut.getRatio(0.8)).toBeCloseTo(genericEaseOut(0.8));
+    expect(EasingElastic.easingOut.getRatio(0.9)).toBeCloseTo(genericEaseOut(0.9));
+    expect(EasingElastic.easingOut.getRatio(1.0)).toBeCloseTo(genericEaseOut(1.0));
+  });
 
-tape('easeElasticIn.amplitude(a)(t) is the same as elasticIn(t) if a <= 1', function(test) {
-  test.equal(ease.easeElasticIn.amplitude(-1.0)(0.1), ease.easeElasticIn(0.1));
-  test.equal(ease.easeElasticIn.amplitude(+0.4)(0.2), ease.easeElasticIn(0.2));
-  test.equal(ease.easeElasticIn.amplitude(+0.8)(0.3), ease.easeElasticIn(0.3));
-  test.end();
-});
-
-tape('easeElasticIn.amplitude(a).period(p)(t) coerces t, a and p to numbers', function(test) {
-  test.strictEqual(ease.easeElasticIn.amplitude('1.3').period('0.2')('.9'), ease.easeElasticIn.amplitude(1.3).period(0.2)(.9));
-  test.strictEqual(ease.easeElasticIn.amplitude({valueOf() { return 1.3; }}).period({valueOf() { return 0.2; }})({valueOf() { return .9; }}), ease.easeElasticIn.amplitude(1.3).period(0.2)(.9));
-  test.end();
-});
-
-tape('easeElasticIn.amplitude(1.3)(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.0),  0.000214); // Note: not exactly zero.
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.1),  0.001953);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.2), -0.004763);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.3),  0.001714);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.4),  0.015625);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.5), -0.038105);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.6),  0.013711);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.7),  0.125000);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.8), -0.304844);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(0.9),  0.109687);
-  test.inDelta(ease.easeElasticIn.amplitude(1.3)(1.0),  1.000000);
-  test.end();
-});
-
-tape('easeElasticIn.amplitude(1.5).period(1)(t) returns the expected results', function(test) {
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.0),  0.000977); // Note: not exactly zero.
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.1),  0.000297);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.2), -0.002946);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.3), -0.010721);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.4), -0.022909);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.5), -0.031250);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.6), -0.009491);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.7),  0.094287);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.8),  0.343083);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(0.9),  0.733090);
-  test.inDelta(ease.easeElasticIn.amplitude(1.5).period(1)(1.0),  1.000000);
-  test.end();
-});
-
-tape('easeElasticOut(t) returns the expected results', function(test) {
-  let elasticOut = generic.out(ease.easeElasticIn);
-  test.inDelta(ease.easeElasticOut(0.0), elasticOut(0.0));
-  test.inDelta(ease.easeElasticOut(0.1), elasticOut(0.1));
-  test.inDelta(ease.easeElasticOut(0.2), elasticOut(0.2));
-  test.inDelta(ease.easeElasticOut(0.3), elasticOut(0.3));
-  test.inDelta(ease.easeElasticOut(0.4), elasticOut(0.4));
-  test.inDelta(ease.easeElasticOut(0.5), elasticOut(0.5));
-  test.inDelta(ease.easeElasticOut(0.6), elasticOut(0.6));
-  test.inDelta(ease.easeElasticOut(0.7), elasticOut(0.7));
-  test.inDelta(ease.easeElasticOut(0.8), elasticOut(0.8));
-  test.inDelta(ease.easeElasticOut(0.9), elasticOut(0.9));
-  test.inDelta(ease.easeElasticOut(1.0), elasticOut(1.0));
-  test.end();
-});
-
-tape('easeElasticOut.amplitude(a).period(p)(t) coerces t, a and p to numbers', function(test) {
-  test.strictEqual(ease.easeElasticOut.amplitude('1.3').period('0.2')('.9'), ease.easeElasticOut.amplitude(1.3).period(0.2)(.9));
-  test.strictEqual(ease.easeElasticOut.amplitude({valueOf() { return 1.3; }}).period({valueOf() { return 0.2; }})({valueOf() { return .9; }}), ease.easeElasticOut.amplitude(1.3).period(0.2)(.9));
-  test.end();
-});
-
-tape('easeElasticInOut(t) returns the expected results', function(test) {
-  let elasticInOut = generic.inOut(ease.easeElasticIn);
-  test.inDelta(ease.easeElasticInOut(0.0), elasticInOut(0.0));
-  test.inDelta(ease.easeElasticInOut(0.1), elasticInOut(0.1));
-  test.inDelta(ease.easeElasticInOut(0.2), elasticInOut(0.2));
-  test.inDelta(ease.easeElasticInOut(0.3), elasticInOut(0.3));
-  test.inDelta(ease.easeElasticInOut(0.4), elasticInOut(0.4));
-  test.inDelta(ease.easeElasticInOut(0.5), elasticInOut(0.5));
-  test.inDelta(ease.easeElasticInOut(0.6), elasticInOut(0.6));
-  test.inDelta(ease.easeElasticInOut(0.7), elasticInOut(0.7));
-  test.inDelta(ease.easeElasticInOut(0.8), elasticInOut(0.8));
-  test.inDelta(ease.easeElasticInOut(0.9), elasticInOut(0.9));
-  test.inDelta(ease.easeElasticInOut(1.0), elasticInOut(1.0));
-  test.end();
-});
-
-tape('easeElasticInOut.amplitude(a).period(p)(t) coerces t, a and p to numbers', function(test) {
-  test.strictEqual(ease.easeElasticInOut.amplitude('1.3').period('0.2')('.9'), ease.easeElasticInOut.amplitude(1.3).period(0.2)(.9));
-  test.strictEqual(ease.easeElasticInOut.amplitude({valueOf() { return 1.3; }}).period({valueOf() { return 0.2; }})({valueOf() { return .9; }}), ease.easeElasticInOut.amplitude(1.3).period(0.2)(.9));
-  test.end();
+  it('easeElasticInOut(t) returns the expected results', () => {
+    const genericEaseInOut = genericInOut(EasingElastic.easingIn.getRatio);
+    expect(EasingElastic.easingInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0));
+    expect(EasingElastic.easingInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1));
+    expect(EasingElastic.easingInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2));
+    expect(EasingElastic.easingInOut.getRatio(0.3)).toBeCloseTo(genericEaseInOut(0.3));
+    expect(EasingElastic.easingInOut.getRatio(0.4)).toBeCloseTo(genericEaseInOut(0.4));
+    expect(EasingElastic.easingInOut.getRatio(0.5)).toBeCloseTo(genericEaseInOut(0.5));
+    expect(EasingElastic.easingInOut.getRatio(0.6)).toBeCloseTo(genericEaseInOut(0.6));
+    expect(EasingElastic.easingInOut.getRatio(0.7)).toBeCloseTo(genericEaseInOut(0.7));
+    expect(EasingElastic.easingInOut.getRatio(0.8)).toBeCloseTo(genericEaseInOut(0.8));
+    expect(EasingElastic.easingInOut.getRatio(0.9)).toBeCloseTo(genericEaseInOut(0.9));
+    expect(EasingElastic.easingInOut.getRatio(1.0)).toBeCloseTo(genericEaseInOut(1.0));
+  });
 });

@@ -1,12 +1,3 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2017-2018 Alipay inc.
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
-
 const expect = require('chai').expect;
 const Arc = require('../../../src/shape/math/arc');
 const Util = require('../../../src/util/index');
@@ -58,10 +49,11 @@ describe('Arc math', function() {
   //   const endAngle = Util.toRadian(360);
   // });
 
+
   it('arcProjectPoint', function() {
     expect(Util.isNumberEqual(
       Arc.pointDistance(10, 10, 10, -Math.PI / 2, Math.PI / 2, false, 20, 0),
-      Math.sqrt(2) * 10 - 10,
+      Math.sqrt(2) * 10 - 10
     )).to.be.true;
   });
 });

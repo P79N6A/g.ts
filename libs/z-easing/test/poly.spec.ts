@@ -5,135 +5,90 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import {EasingPoly} from '..';
+import {PolyIn, PolyInOut, PolyOut} from '../src/poly';
+import {genericInOut, genericOut} from './generic';
 
-let tape = require('tape'),
-    ease = require('../'),
-    generic = require('./generic');
+describe('easing poly test suit', () => {
+  it('easePolyIn(t) returns the expected results', () => {
+    expect(EasingPoly.easeIn.getRatio(0.0)).toBeCloseTo(0.000, 6);
+    expect(EasingPoly.easeIn.getRatio(0.1)).toBeCloseTo(0.001, 6);
+    expect(EasingPoly.easeIn.getRatio(0.2)).toBeCloseTo(0.008, 6);
+    expect(EasingPoly.easeIn.getRatio(0.3)).toBeCloseTo(0.027, 6);
+    expect(EasingPoly.easeIn.getRatio(0.4)).toBeCloseTo(0.064, 6);
+    expect(EasingPoly.easeIn.getRatio(0.5)).toBeCloseTo(0.125, 6);
+    expect(EasingPoly.easeIn.getRatio(0.6)).toBeCloseTo(0.216, 6);
+    expect(EasingPoly.easeIn.getRatio(0.7)).toBeCloseTo(0.343, 6);
+    expect(EasingPoly.easeIn.getRatio(0.8)).toBeCloseTo(0.512, 6);
+    expect(EasingPoly.easeIn.getRatio(0.9)).toBeCloseTo(0.729, 6);
+    expect(EasingPoly.easeIn.getRatio(1.0)).toBeCloseTo(1.000, 6);
+  });
 
-require('./inDelta');
+  it('easePolyIn(t) is the same as polyIn.exponent(3)(t)', () => {
+    expect(EasingPoly.easeIn.getRatio(0.1)).toBeCloseTo(new PolyIn(3).getRatio(0.1), 6);
+    expect(EasingPoly.easeIn.getRatio(0.2)).toBeCloseTo(new PolyIn(3).getRatio(0.2), 6);
+    expect(EasingPoly.easeIn.getRatio(0.3)).toBeCloseTo(new PolyIn(3).getRatio(0.3), 6);
+  });
 
-tape('easePoly is an alias for easePolyInOut', function(test) {
-  test.equal(ease.easePoly, ease.easePolyInOut);
-  test.end();
-});
+  it('easePolyIn.exponent(2.5)(t) returns the expected results', () => {
+    expect(new PolyIn(2.5).getRatio(0.0)).toBeCloseTo(0.000000, 6);
+    expect(new PolyIn(2.5).getRatio(0.1)).toBeCloseTo(0.003162, 6);
+    expect(new PolyIn(2.5).getRatio(0.2)).toBeCloseTo(0.017889, 6);
+    expect(new PolyIn(2.5).getRatio(0.3)).toBeCloseTo(0.049295, 6);
+    expect(new PolyIn(2.5).getRatio(0.4)).toBeCloseTo(0.101193, 6);
+    expect(new PolyIn(2.5).getRatio(0.5)).toBeCloseTo(0.176777, 6);
+    expect(new PolyIn(2.5).getRatio(0.6)).toBeCloseTo(0.278855, 6);
+    expect(new PolyIn(2.5).getRatio(0.7)).toBeCloseTo(0.409963, 6);
+    expect(new PolyIn(2.5).getRatio(0.8)).toBeCloseTo(0.572433, 6);
+    expect(new PolyIn(2.5).getRatio(0.9)).toBeCloseTo(0.768433, 6);
+    expect(new PolyIn(2.5).getRatio(1.0)).toBeCloseTo(1.000000, 6);
+  });
 
-tape('easePolyIn(t) returns the expected results', function(test) {
-  test.inDelta(ease.easePolyIn(0.0), 0.000);
-  test.inDelta(ease.easePolyIn(0.1), 0.001);
-  test.inDelta(ease.easePolyIn(0.2), 0.008);
-  test.inDelta(ease.easePolyIn(0.3), 0.027);
-  test.inDelta(ease.easePolyIn(0.4), 0.064);
-  test.inDelta(ease.easePolyIn(0.5), 0.125);
-  test.inDelta(ease.easePolyIn(0.6), 0.216);
-  test.inDelta(ease.easePolyIn(0.7), 0.343);
-  test.inDelta(ease.easePolyIn(0.8), 0.512);
-  test.inDelta(ease.easePolyIn(0.9), 0.729);
-  test.inDelta(ease.easePolyIn(1.0), 1.000);
-  test.end();
-});
+  it('easePolyOut(t) is the same as polyOut.exponent(3)(t)', () => {
+    expect(EasingPoly.easeOut.getRatio(0.1)).toBeCloseTo(new PolyOut(3).getRatio(0.1), 6);
+    expect(EasingPoly.easeOut.getRatio(0.2)).toBeCloseTo(new PolyOut(3).getRatio(0.2), 6);
+    expect(EasingPoly.easeOut.getRatio(0.3)).toBeCloseTo(new PolyOut(3).getRatio(0.3), 6);
+  });
 
-tape('easePolyIn(t) coerces t to a number', function(test) {
-  test.strictEqual(ease.easePolyIn('.9'), ease.easePolyIn(0.9));
-  test.strictEqual(ease.easePolyIn({valueOf() { return 0.9; }}), ease.easePolyIn(0.9));
-  test.end();
-});
+  it('easePolyOut(t) is the same as polyOut.exponent(3)(t)', () => {
+    expect(EasingPoly.easeOut.getRatio(0.1)).toBeCloseTo(new PolyOut(3).getRatio(0.1), 6);
+    expect(EasingPoly.easeOut.getRatio(0.2)).toBeCloseTo(new PolyOut(3).getRatio(0.2), 6);
+    expect(EasingPoly.easeOut.getRatio(0.3)).toBeCloseTo(new PolyOut(3).getRatio(0.3), 6);
+  });
 
-tape('easePolyIn(t) is the same as polyIn.exponent(3)(t)', function(test) {
-  test.equal(ease.easePolyIn(0.1), ease.easePolyIn.exponent(3)(0.1));
-  test.equal(ease.easePolyIn(0.2), ease.easePolyIn.exponent(3)(0.2));
-  test.equal(ease.easePolyIn(0.3), ease.easePolyIn.exponent(3)(0.3));
-  test.end();
-});
+  it('easePolyOut.exponent(2.5)(t) returns the expected results', () => {
+    const genericEaseOut = genericOut(new PolyIn(2.5).getRatio);
+    expect(new PolyOut(2.5).getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
+    expect(new PolyOut(2.5).getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
+    expect(new PolyOut(2.5).getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
+    expect(new PolyOut(2.5).getRatio(0.3)).toBeCloseTo(genericEaseOut(0.3), 6);
+    expect(new PolyOut(2.5).getRatio(0.4)).toBeCloseTo(genericEaseOut(0.4), 6);
+    expect(new PolyOut(2.5).getRatio(0.5)).toBeCloseTo(genericEaseOut(0.5), 6);
+    expect(new PolyOut(2.5).getRatio(0.6)).toBeCloseTo(genericEaseOut(0.6), 6);
+    expect(new PolyOut(2.5).getRatio(0.7)).toBeCloseTo(genericEaseOut(0.7), 6);
+    expect(new PolyOut(2.5).getRatio(0.8)).toBeCloseTo(genericEaseOut(0.8), 6);
+    expect(new PolyOut(2.5).getRatio(0.9)).toBeCloseTo(genericEaseOut(0.9), 6);
+    expect(new PolyOut(2.5).getRatio(1.0)).toBeCloseTo(genericEaseOut(1.0), 6);
+  });
 
-tape('easePolyIn.exponent(e)(t) coerces t and e to numbers', function(test) {
-  test.equal(ease.easePolyIn.exponent('1.3')('.9'), ease.easePolyIn.exponent(1.3)(0.9));
-  test.equal(ease.easePolyIn.exponent({valueOf() { return 1.3; }})({valueOf() { return 0.9; }}), ease.easePolyIn.exponent(1.3)(0.9));
-  test.end();
-});
+  it('easePolyInOut(t) is the same as polyInOut.exponent(3)(t)', () => {
+    expect(EasingPoly.easeInOut.getRatio(0.1)).toBeCloseTo(new PolyInOut(3).getRatio(0.1), 6);
+    expect(EasingPoly.easeInOut.getRatio(0.2)).toBeCloseTo(new PolyInOut(3).getRatio(0.2), 6);
+    expect(EasingPoly.easeInOut.getRatio(0.3)).toBeCloseTo(new PolyInOut(3).getRatio(0.3), 6);
+  });
 
-tape('easePolyIn.exponent(2.5)(t) returns the expected results', function(test) {
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.0), 0.000000);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.1), 0.003162);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.2), 0.017889);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.3), 0.049295);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.4), 0.101193);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.5), 0.176777);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.6), 0.278855);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.7), 0.409963);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.8), 0.572433);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(0.9), 0.768433);
-  test.inDelta(ease.easePolyIn.exponent(2.5)(1.0), 1.000000);
-  test.end();
-});
-
-tape('easePolyOut.exponent(e)(t) coerces t and e to numbers', function(test) {
-  test.equal(ease.easePolyOut.exponent('1.3')('.9'), ease.easePolyOut.exponent(1.3)(0.9));
-  test.equal(ease.easePolyOut.exponent({valueOf() { return 1.3; }})({valueOf() { return 0.9; }}), ease.easePolyOut.exponent(1.3)(0.9));
-  test.end();
-});
-
-tape('easePolyOut(t) is the same as polyOut.exponent(3)(t)', function(test) {
-  test.equal(ease.easePolyOut(0.1), ease.easePolyOut.exponent(3)(0.1));
-  test.equal(ease.easePolyOut(0.2), ease.easePolyOut.exponent(3)(0.2));
-  test.equal(ease.easePolyOut(0.3), ease.easePolyOut.exponent(3)(0.3));
-  test.end();
-});
-
-tape('easePolyOut(t, null) is the same as polyOut.exponent(3)(t)', function(test) {
-  test.equal(ease.easePolyOut(0.1, null), ease.easePolyOut.exponent(3)(0.1));
-  test.equal(ease.easePolyOut(0.2, null), ease.easePolyOut.exponent(3)(0.2));
-  test.equal(ease.easePolyOut(0.3, null), ease.easePolyOut.exponent(3)(0.3));
-  test.end();
-});
-
-tape('easePolyOut(t, undefined) is the same as polyOut.exponent(3)(t)', function(test) {
-  test.equal(ease.easePolyOut(0.1, undefined), ease.easePolyOut.exponent(3)(0.1));
-  test.equal(ease.easePolyOut(0.2, undefined), ease.easePolyOut.exponent(3)(0.2));
-  test.equal(ease.easePolyOut(0.3, undefined), ease.easePolyOut.exponent(3)(0.3));
-  test.end();
-});
-
-tape('easePolyOut.exponent(2.5)(t) returns the expected results', function(test) {
-  let polyOut = generic.out(ease.easePolyIn.exponent(2.5));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.0), polyOut(0.0));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.1), polyOut(0.1));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.2), polyOut(0.2));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.3), polyOut(0.3));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.4), polyOut(0.4));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.5), polyOut(0.5));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.6), polyOut(0.6));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.7), polyOut(0.7));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.8), polyOut(0.8));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(0.9), polyOut(0.9));
-  test.inDelta(ease.easePolyOut.exponent(2.5)(1.0), polyOut(1.0));
-  test.end();
-});
-
-tape('easePolyInOut.exponent(e)(t) coerces t and e to numbers', function(test) {
-  test.equal(ease.easePolyInOut.exponent('1.3')('.9'), ease.easePolyInOut.exponent(1.3)(0.9));
-  test.equal(ease.easePolyInOut.exponent({valueOf() { return 1.3; }})({valueOf() { return 0.9; }}), ease.easePolyInOut.exponent(1.3)(0.9));
-  test.end();
-});
-
-tape('easePolyInOut(t) is the same as polyInOut.exponent(3)(t)', function(test) {
-  test.equal(ease.easePolyInOut(0.1), ease.easePolyInOut.exponent(3)(0.1));
-  test.equal(ease.easePolyInOut(0.2), ease.easePolyInOut.exponent(3)(0.2));
-  test.equal(ease.easePolyInOut(0.3), ease.easePolyInOut.exponent(3)(0.3));
-  test.end();
-});
-
-tape('easePolyInOut.exponent(2.5)(t) returns the expected results', function(test) {
-  let polyInOut = generic.inOut(ease.easePolyIn.exponent(2.5));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.0), polyInOut(0.0));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.1), polyInOut(0.1));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.2), polyInOut(0.2));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.3), polyInOut(0.3));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.4), polyInOut(0.4));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.5), polyInOut(0.5));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.6), polyInOut(0.6));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.7), polyInOut(0.7));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.8), polyInOut(0.8));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(0.9), polyInOut(0.9));
-  test.inDelta(ease.easePolyInOut.exponent(2.5)(1.0), polyInOut(1.0));
-  test.end();
+  it('easePolyInOut.exponent(2.5)(t) returns the expected results', () => {
+    const genericEaseInOut = genericInOut(new PolyIn(2.5).getRatio);
+    expect(new PolyInOut(2.5).getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
+    expect(new PolyInOut(2.5).getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
+    expect(new PolyInOut(2.5).getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);
+    expect(new PolyInOut(2.5).getRatio(0.3)).toBeCloseTo(genericEaseInOut(0.3), 6);
+    expect(new PolyInOut(2.5).getRatio(0.4)).toBeCloseTo(genericEaseInOut(0.4), 6);
+    expect(new PolyInOut(2.5).getRatio(0.5)).toBeCloseTo(genericEaseInOut(0.5), 6);
+    expect(new PolyInOut(2.5).getRatio(0.6)).toBeCloseTo(genericEaseInOut(0.6), 6);
+    expect(new PolyInOut(2.5).getRatio(0.7)).toBeCloseTo(genericEaseInOut(0.7), 6);
+    expect(new PolyInOut(2.5).getRatio(0.8)).toBeCloseTo(genericEaseInOut(0.8), 6);
+    expect(new PolyInOut(2.5).getRatio(0.9)).toBeCloseTo(genericEaseInOut(0.9), 6);
+    expect(new PolyInOut(2.5).getRatio(1.0)).toBeCloseTo(genericEaseInOut(1.0), 6);
+  });
 });
