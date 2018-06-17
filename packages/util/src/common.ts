@@ -7,6 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
+//TODO UPDATE
 const PRECISION = 0.00001; // 常量，据的精度，小于这个精度认为是0
 
 export const isFunction = require('lodash/isFunction');
