@@ -17,6 +17,9 @@ const b1 = 4 / 11,
       b9 = 63 / 64,
       b0 = 1 / b1 / b1;
 
+/**
+ * @private
+ */
 export class BounceIn {
 
   public getRatio(p: number): number {
@@ -32,6 +35,9 @@ export class BounceIn {
   }
 }
 
+/**
+ * @private
+ */
 export class BounceOut {
 
   public getRatio(p: number): number {
@@ -47,10 +53,13 @@ export class BounceOut {
   }
 }
 
+/**
+ * @private
+ */
 export class BounceInOut {
 
   public getRatio(p: number): number {
-    let invert: Boolean;
+    let invert: boolean;
     if (p < 0.5) {
       invert = true;
       p      = 1 - (p * 2);

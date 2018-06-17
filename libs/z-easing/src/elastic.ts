@@ -10,6 +10,9 @@ const Tau       = 2 * Math.PI,
       Amplitude = 1,
       Period    = 0.3;
 
+/**
+ * @private
+ */
 export class ElasticIn {
   private _p3: number;
 
@@ -26,6 +29,9 @@ export class ElasticIn {
   }
 }
 
+/**
+ * @private
+ */
 export class ElasticOut {
   private _p3: number;
 
@@ -42,6 +48,9 @@ export class ElasticOut {
   }
 }
 
+/**
+ * @private
+ */
 export class ElasticInOut {
   private _p3: number;
 

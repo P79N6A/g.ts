@@ -6,8 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {EasingBack} from './back';
-
+/**
+ * @private
+ */
 export class ExpoIn {
 
   public getRatio(p: number): number {
@@ -15,6 +16,9 @@ export class ExpoIn {
   }
 }
 
+/**
+ * @private
+ */
 export class ExpoOut {
 
   public getRatio(p: number): number {
@@ -22,6 +26,9 @@ export class ExpoOut {
   }
 }
 
+/**
+ * @private
+ */
 export class ExpoInOut {
 
   public getRatio(p: number): number {

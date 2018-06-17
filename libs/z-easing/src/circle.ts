@@ -6,6 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
+/**
+ * @private
+ */
 export class CircleIn {
 
   public getRatio(p: number): number {
@@ -13,6 +16,9 @@ export class CircleIn {
   }
 }
 
+/**
+ * @private
+ */
 export class CircleOut {
 
   public getRatio(p: number): number {
@@ -20,6 +26,9 @@ export class CircleOut {
   }
 }
 
+/**
+ * @private
+ */
 export class CircleInOut {
 
   public getRatio(p: number): number {

@@ -8,6 +8,9 @@
 
 const Exponent = 3;
 
+/**
+ * @private
+ */
 export class PolyIn {
   constructor(protected exponent = Exponent) {
   }
@@ -21,6 +24,9 @@ export class PolyIn {
   }
 }
 
+/**
+ * @private
+ */
 export class PolyOut {
   constructor(protected exponent = Exponent) {
   }
@@ -34,6 +40,9 @@ export class PolyOut {
   }
 }
 
+/**
+ * @private
+ */
 export class PolyInOut {
   constructor(protected exponent = Exponent) {
   }

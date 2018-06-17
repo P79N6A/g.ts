@@ -8,6 +8,9 @@
 
 const _HALF_PI = Math.PI / 2;
 
+/**
+ * @private
+ */
 export class SineIn {
 
   public getRatio(p: number): number {
@@ -15,6 +18,9 @@ export class SineIn {
   }
 }
 
+/**
+ * @private
+ */
 export class SineOut {
 
   public getRatio(p: number): number {
@@ -22,6 +28,9 @@ export class SineOut {
   }
 }
 
+/**
+ * @private
+ */
 export class SineInOut {
 
   public getRatio(p: number): number {

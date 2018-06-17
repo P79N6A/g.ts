@@ -8,6 +8,9 @@
 
 const Overshoot = 1.70158;
 
+/**
+ * @private
+ */
 export class BackIn {
 
   constructor(protected overshoot: number = Overshoot) {
@@ -22,6 +25,9 @@ export class BackIn {
   }
 }
 
+/**
+ * @private
+ */
 export class BackOut {
 
   constructor(protected overshoot: number = Overshoot) {
@@ -36,6 +42,9 @@ export class BackOut {
   }
 }
 
+/**
+ * @private
+ */
 export class BackInOut {
 
   constructor(protected overshoot: number = Overshoot) {

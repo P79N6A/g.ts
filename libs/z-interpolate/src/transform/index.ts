@@ -27,7 +27,11 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 
   function rotate(a, b, s, q) {
     if (a !== b) {
-      if (a - b > 180) { b += 360; } else if (b - a > 180) { a += 360; } // shortest path
+      if (a - b > 180) {
+        b += 360;
+      } else if (b - a > 180) {
+        a += 360;
+      } // shortest path
       q.push({i: s.push(pop(s) + 'rotate(', null, degParen) - 2, x: interpolateNumber(a, b)});
     } else if (b) {
       s.push(pop(s) + 'rotate(' + b + degParen);
@@ -51,18 +55,20 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
     }
   }
 
-  return function(a, b) {
+  return function (a, b) {
     let s = [], // string constants and placeholders
-        q = []; // number interpolators
+      q = []; // number interpolators
     a = parse(a), b = parse(b);
     translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
     rotate(a.rotate, b.rotate, s, q);
     skewX(a.skewX, b.skewX, s, q);
     scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
     a = b = null; // gc
-    return function(t) {
+    return (t) => {
       let i = -1, n = q.length, o;
-      while (++i < n) { s[(o = q[i]).i] = o.x(t); }
+      while (++i < n) {
+        s[(o = q[i]).i] = o.x(t);
+      }
       return s.join('');
     };
   };
