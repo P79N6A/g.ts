@@ -7,19 +7,19 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util   = require('../util/index');
-const Shape  = require('../core/shape');
+const Util = require('../util/index');
+const Shape = require('../core/shape');
 const Inside = require('./util/inside');
 
 export class Polygon extends Shape {
-  public static ATTRS        = {
-    points   : null,
+  public static ATTRS = {
+    points: null,
     lineWidth: 1,
   };
 
-  protected canFill   = true;
+  protected canFill = true;
   protected canStroke = true;
-  protected type      = 'polygon';
+  protected type = 'polygon';
 
   constructor(cfg) {
     super(cfg);
@@ -32,9 +32,9 @@ export class Polygon extends Shape {
   }
 
   public calculateBox() {
-    const self      = this;
-    const attrs     = self.__attrs;
-    const points    = attrs.points;
+    const self = this;
+    const attrs = self.__attrs;
+    const points = attrs.points;
     const lineWidth = this.getHitLineWidth();
     if (!points || points.length === 0) {
       return null;
@@ -44,7 +44,7 @@ export class Polygon extends Shape {
     let maxX = -Infinity;
     let maxY = -Infinity;
 
-    Util.each(points, function(point) {
+    Util.each(points, function (point) {
       const x = point[0];
       const y = point[1];
       if (x < minX) {
@@ -73,8 +73,8 @@ export class Polygon extends Shape {
   }
 
   public isPointInPath(x, y) {
-    const self   = this;
-    const fill   = self.hasFill();
+    const self = this;
+    const fill = self.hasFill();
     const stroke = self.hasStroke();
 
     if (fill && stroke) {
@@ -93,15 +93,15 @@ export class Polygon extends Shape {
   }
 
   public __isPointInFill(x, y) {
-    const self    = this;
+    const self = this;
     const context = self.get('context');
     self.createPath();
     return context.isPointInPath(x, y);
   }
 
   public __isPointInStroke(x, y) {
-    const self   = this;
-    const attrs  = self.__attrs;
+    const self = this;
+    const attrs = self.__attrs;
     const points = attrs.points;
     if (points.length < 2) {
       return false;
@@ -116,15 +116,15 @@ export class Polygon extends Shape {
   }
 
   public createPath(context) {
-    const self   = this;
-    const attrs  = self.__attrs;
+    const self = this;
+    const attrs = self.__attrs;
     const points = attrs.points;
     if (points.length < 2) {
       return;
     }
     context = context || self.get('context');
     context.beginPath();
-    Util.each(points, function(point, index) {
+    points.forEach((point, index) => {
       if (index === 0) {
         context.moveTo(point[0], point[1]);
       } else {

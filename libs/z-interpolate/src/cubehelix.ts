@@ -10,7 +10,7 @@
 import {ColorCubehelix} from '@gradii/g/z-color';
 import {interpolateColor, interpolateHue} from './color';
 
-export class Cubehelix {
+export class InterpolateCubehelix {
 
   constructor(private hue, private gamma = 1) {
   }

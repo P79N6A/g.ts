@@ -87,6 +87,7 @@ export class Arc extends Shape {
     context.beginPath();
     context.arc(x, y, r, startAngle, endAngle, clockwise);
   }
+
   public afterPath(context) {
     const attrs = this.__attrs;
     const { x, y, r, startAngle, endAngle, clockwise } = attrs;
@@ -121,5 +122,4 @@ export class Arc extends Shape {
       Arrow.addEndArrow(context, attrs, x2, y2, x1, y1);
     }
   }
-
 }

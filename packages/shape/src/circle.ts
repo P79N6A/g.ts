@@ -17,15 +17,17 @@ export class Circle extends Shape {
     lineWidth: 1,
   };
 
+  private canFill   = true;
+  private canStroke = true;
+  private type      = 'circle';
+
   protected __attrs: any;
 
   constructor(cfg) {
     super(cfg);
   }
 
-  private canFill   = true;
-  private canStroke = true;
-  private type      = 'circle';
+
 
   public getDefaultAttrs() {
     return {

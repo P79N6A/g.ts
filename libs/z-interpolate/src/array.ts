@@ -16,13 +16,6 @@ export class InterpolateArray {
   public a: any[];
   public b: any[];
 
-  public constructor(a: any[], b: any[]) {
-    this.a = a;
-    this.b = b;
-
-    this._init();
-  }
-
   private _init() {
     const nb = this.b ? this.b.length : 0;
     const na = this.a ? Math.min(nb, this.a.length) : 0;
@@ -41,16 +34,19 @@ export class InterpolateArray {
     this._c = c;
   }
 
-  public interpolate(t) {
+  public interpolate(a: any[], b: any[]) {
+    this.a = a;
+    this.b = b;
+
+    this._init();
+  }
+
+  public getResult(t) {
     let rst = [];
     const mLen = Math.min(this.a.length, this.b.length);
     for (let i = 0; i < mLen; ++i) {
       rst[i] = this._x[i](t);
     }
     return [...rst, ...this._c];
-  }
-
-  public static create(a, b) {
-    return new InterpolateArray(a, b);
   }
 }

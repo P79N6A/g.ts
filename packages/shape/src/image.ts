@@ -151,7 +151,11 @@ export class CImage extends Shape {
     const sheight = attrs.sheight;
     this.set('toDraw', false);
 
-    if (img instanceof Image || (img instanceof HTMLElement && Util.isString(img.nodeName) && img.nodeName.toUpperCase() === 'CANVAS')) {
+    if (img instanceof Image || (
+      img instanceof HTMLElement &&
+      Util.isString(img.nodeName) &&
+      img.nodeName.toUpperCase() === 'CANVAS'
+    )) {
       if (
         Util.isNil(sx) ||
         Util.isNil(sy) ||

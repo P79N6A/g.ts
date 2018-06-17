@@ -18,6 +18,16 @@ export let identity = {
   scaleY: 1,
 };
 
+/**
+ * @deprecated use matrix3 instead
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param e
+ * @param f
+ * @returns {{translateX: any; translateY: any; rotate: number; skewX: number; scaleX: any; scaleY: any}}
+ */
 export function decompose(a, b, c, d, e, f) {
   let scaleX, scaleY, skewX;
   if (scaleX = Math.sqrt(a * a + b * b)) { a /= scaleX, b /= scaleX; }

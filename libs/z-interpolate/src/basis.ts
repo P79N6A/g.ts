@@ -29,11 +29,11 @@ export function interpolateBasis(values) {
 
 export class InterpolateBasis {
 
-  public interpolate() {
+  public interpolate(a, b) {
 
   }
 
-  public static create() {
+  public getResult(t) {
 
   }
 }

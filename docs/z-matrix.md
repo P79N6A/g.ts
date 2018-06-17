@@ -30,10 +30,10 @@ status marker `✔` `✘`
 |  Class  | Status | Description |      |
 | :-----: | :----: | :---------: | ---- |
 | Matrix2 |   ✔    |             |      |
-| Matrix3 |   ✘    |             |      |
-| Matrix4 |   ✘    |             |      |
-| Vector2 |   ✘    |             |      |
-| Vector3 |   ✘    |             |      |
+| Matrix3 |   ✔    |             |      |
+| Matrix4 |   ✔    |             |      |
+| Vector2 |   ✔    |             |      |
+| Vector3 |   ✔    |             |      |
 
 
 

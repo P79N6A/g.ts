@@ -7,9 +7,17 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export function interpolateDate(a, b) {
-  let d = new Date;
-  return a = +a, b -= a, function(t) {
-    return d.setTime(a + b * t), d;
-  };
+export class InterpolateDate {
+  constructor(protected a, protected b) {
+  }
+
+  public interpolate(t: number) {
+    let d = new Date;
+    d.setTime(+this.a + (this.b - this.a) * t);
+    return d;
+  }
+
+  public static create(a, b) {
+    return new InterpolateDate(a, b);
+  }
 }

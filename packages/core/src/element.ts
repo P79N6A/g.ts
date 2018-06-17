@@ -18,6 +18,7 @@ import {PathUtil} from '../../util/path';
 import {Format} from '../util/format';
 import {Animate} from './animate';
 import {Transform} from './transform';
+import {EventEmitter} from '@gradii/z-event-emitter';
 
 const ReservedProps = {
   delay: 'delay',
@@ -42,7 +43,7 @@ const SHAPE_ATTRS = [
   'lineDashOffset',
 ];
 
-export class Element extends Transform {
+export class Element extends Transform, EventEmitter {
   public static CFG = {
     /**
      * 唯一标示

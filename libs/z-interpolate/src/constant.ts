@@ -7,8 +7,15 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export function interpolateConstant(x) {
-  return function() {
-    return x;
-  };
+export class InterpolateConstant {
+  constructor(protected x: any) {
+  }
+
+  public interpolate(t?: number) {
+    return this.x;
+  }
+
+  public static create(a) {
+    return new InterpolateConstant(a);
+  }
 }
