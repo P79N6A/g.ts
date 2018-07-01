@@ -14,7 +14,7 @@ import {Rgb} from './rgb';
 
 const K = 18;
 
-export class Hcl extends Color {
+export class ColorHcl extends Color {
 
   constructor(public h, public c, public l, public opacity) {
     super();

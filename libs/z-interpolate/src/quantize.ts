@@ -9,6 +9,27 @@
 
 export function interpolateQuantize(interpolator, n) {
   let samples = new Array(n);
-  for (let i = 0; i < n; ++i) { samples[i] = interpolator(i / (n - 1)); }
+  for (let i = 0; i < n; ++i) {
+    samples[i] = interpolator(i / (n - 1));
+  }
   return samples;
+}
+
+export class InterpolateQuantize {
+  protected samples: any[];
+
+  constructor(public interpolator: any) {
+  }
+
+  public interpolate(n) {
+    this.samples = new Array(n);
+    for (let i = 0; i < n; ++i) {
+      this.samples[i] = this.interpolator(i / (n - 1));
+    }
+    return this;
+  }
+
+  public getResult(t) {
+    return this.samples;
+  }
 }

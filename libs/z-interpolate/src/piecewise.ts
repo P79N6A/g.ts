@@ -7,11 +7,29 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export function InterplolatePiecewise(interpolate, values) {
-  let i = 0, n = values.length - 1, v = values[0], I = new Array(n < 0 ? 0 : n);
-  while (i < n) { I[i] = interpolate(v, v = values[++i]); }
-  return function(t) {
+export class InterplolatePiecewise {
+  protected I;
+
+  public values: any[];
+
+  constructor(public interpolator: any) {
+  }
+
+  public interpolate(values: any[]): this {
+    this.values = values;
+    let i = 0,
+      n = values.length - 1,
+      v = values[0];
+    this.I = new Array(n < 0 ? 0 : n);
+    while (i < n) {
+      this.I[i] = this.interpolator(v, v = values[++i]);
+    }
+    return this;
+  }
+
+  public getResult(t) {
+    let n = this.values.length - 1;
     let i = Math.max(0, Math.min(n - 1, Math.floor(t *= n)));
-    return I[i](t - i);
-  };
+    return this.I[i](t - i);
+  }
 }

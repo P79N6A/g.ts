@@ -39,6 +39,7 @@ export class InterpolateArray {
     this.b = b;
 
     this._init();
+    return this;
   }
 
   public getResult(t) {

@@ -11,7 +11,7 @@ import {Color} from './color';
 import {brighter, darker} from './const';
 import {Rgb} from './rgb';
 
-export class Hsl extends Color {
+export class ColorHsl extends Color {
   constructor(public h?: number, public s?: number, public l?: number,
               public opacity: number = 1) {
     super();

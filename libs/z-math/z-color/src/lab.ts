@@ -9,7 +9,7 @@
 
 import {Color} from './color';
 import {deg2rad} from './common';
-import {Hcl} from "./hcl";
+import {ColorHcl} from './hcl';
 import {Rgb} from './rgb';
 
 // https://beta.observablehq.com/@mbostock/lab-and-rgb
@@ -23,20 +23,20 @@ const K  = 18,
       t3 = t1 * t1 * t1;
 
 export function gray(l, opacity) {
-  return new Lab(l, 0, 0, opacity == null ? 1 : opacity);
+  return new ColorLab(l, 0, 0, opacity === null ? 1 : opacity);
 }
 
-export class Lab extends Color {
+export class ColorLab extends Color {
   constructor(public l, public a, public b, public opacity) {
     super();
   }
 
   public brighter(k) {
-    return new Lab(this.l + K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    return new ColorLab(this.l + K * (k === null ? 1 : k), this.a, this.b, this.opacity);
   }
 
   public darker(k) {
-    return new Lab(this.l - K * (k == null ? 1 : k), this.a, this.b, this.opacity);
+    return new ColorLab(this.l - K * (k === null ? 1 : k), this.a, this.b, this.opacity);
   }
 
   public rgb(): Rgb {
@@ -55,11 +55,11 @@ export class Lab extends Color {
   }
 
   public static create(o) {
-    if (o instanceof Lab) { return new Lab(o.l, o.a, o.b, o.opacity); }
-    if (o instanceof Hcl) {
-      if (isNaN(o.h)) { return new Lab(o.l, 0, 0, o.opacity); }
+    if (o instanceof ColorLab) { return new ColorLab(o.l, o.a, o.b, o.opacity); }
+    if (o instanceof ColorHcl) {
+      if (isNaN(o.h)) { return new ColorLab(o.l, 0, 0, o.opacity); }
       let h = o.h * deg2rad;
-      return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
+      return new ColorLab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
     }
     if (!(o instanceof Rgb)) { o = Rgb.create(o); }
     let r = rgb2lrgb(o.r),
@@ -70,7 +70,7 @@ export class Lab extends Color {
       x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
       z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
     }
-    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+    return new ColorLab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
   }
 }
 

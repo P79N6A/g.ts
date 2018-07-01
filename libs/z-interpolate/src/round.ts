@@ -7,8 +7,17 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export function interpolateRound(a, b) {
-  return a = +a, b -= a, function(t) {
-    return Math.round(a + b * t);
-  };
+export class InterpolateRound {
+  public a;
+  public b;
+
+  public interpolate(a, b): this {
+    this.a = a;
+    this.b = b;
+    return this;
+  }
+
+  public getResult(t) {
+    return Math.round(this.a + (this.b - this.a) * t);
+  }
 }

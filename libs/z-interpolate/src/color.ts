@@ -7,34 +7,96 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {interpolateConstant} from './constant';
+import {InterpolateConstant} from './constant';
 
 function interpolateLinear(a, d) {
-  return function(t) {
+  return (t) => {
     return a + t * d;
   };
 }
 
-function interpolateExponential(a, b, y) {
-  return a = Math.pow(a, y), b = Math.pow(b, y) - a, y = 1 / y, function(t) {
-    return Math.pow(a + t * b, y);
-  };
+export class InterpolateLinear {
+  constructor(public a, public d) {
+  }
+
+  public interpolate(a, d) {
+    this.a = a;
+    this.d = d;
+  }
+
+  public getResult(t) {
+    return this.a + t * this.d;
+  }
 }
 
-export function interpolateHue(a, b) {
-  const d = b - a;
-  return d ? interpolateLinear(a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d) : interpolateConstant(isNaN(a) ? b : a);
+export class InterpolateExponential {
+  public a;
+  public b;
+
+  constructor(public y) {
+  }
+
+  public interpolate(a, b) {
+    this.a = a;
+    this.b = b;
+    return this;
+  }
+
+  public getResult(t) {
+    return Math.pow(this.a + t * this.b, this.y);
+  }
 }
 
-export function gamma(y) {
-  return (y = +y) === 1 ? noGamma : function(a, b) {
-    return b - a ? interpolateExponential(a, b, y) : interpolateConstant(isNaN(a) ? b : a);
-  };
+export class InterpolateHue {
+  public a;
+  public b;
+
+  public interpolate(a, b) {
+    this.a = a;
+    this.b = b;
+  }
+
+  public getResult(t) {
+    const d = this.b - this.a;
+    if (d) {
+      return new InterpolateLinear(this.a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d).getResult(t);
+    } else {
+      return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
+    }
+  }
 }
 
-export function noGamma(a, b) {
-  const d = b - a;
-  return d ? interpolateLinear(a, d) : interpolateConstant(isNaN(a) ? b : a);
-}
+export class InterpolateColor {
+  public a;
+  public b;
 
-export const interpolateColor = noGamma;
+  constructor(public gamma: number = 1) {
+  }
+
+  private noGamma(t) {
+    const d = this.b - this.a;
+    if (d) {
+      return new InterpolateLinear(this.a, d).getResult(t);
+    } else {
+      return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
+    }
+  }
+
+  public interpolate(a, b) {
+    this.a = a;
+    this.b = b;
+    return this;
+  }
+
+  public getResult(t) {
+    if (this.gamma === 1) {
+      return this.noGamma(t);
+    } else {
+      if (this.b - this.a) {
+        return new InterpolateExponential(this.gamma).interpolate(this.a, this.b).getResult(t);
+      } else {
+        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
+      }
+    }
+  }
+}

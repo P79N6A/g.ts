@@ -38,7 +38,7 @@ export function interpolateZoom(p0, p1) {
   // Special case for u0 ≅ u1.
   if (d2 < epsilon2) {
     S = Math.log(w1 / w0) / rho;
-    i = function(t) {
+    i = (t) => {
       return [
         ux0 + t * dx,
         uy0 + t * dy,
@@ -52,7 +52,7 @@ export function interpolateZoom(p0, p1) {
         r0 = Math.log(Math.sqrt(b0 * b0 + 1) - b0),
         r1 = Math.log(Math.sqrt(b1 * b1 + 1) - b1);
     S = (r1 - r0) / rho;
-    i = function(t) {
+    i = (t) => {
       let s = t * S,
           coshr0 = cosh(r0),
           u = w0 / (rho2 * d1) * (coshr0 * tanh(rho * s + r0) - sinh(r0));

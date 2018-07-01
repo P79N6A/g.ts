@@ -8,31 +8,40 @@
  */
 
 import {ColorCubehelix} from '@gradii/g/z-color';
-import {interpolateColor, interpolateHue} from './color';
+import {InterpolateColor, InterpolateHue} from './color';
 
 export class InterpolateCubehelix {
+  public h: any;
+  public s: any;
+  public l: any;
+  public opacity: any;
 
-  constructor(private hue, private gamma = 1) {
+  constructor(public hue: InterpolateHue = new InterpolateHue(), public gamma = 1) {
   }
 
   public interpolate(start, end) {
-    const h = this.hue((start = ColorCubehelix.create(start)).h, (end = ColorCubehelix.create(end)).h),
-          s       = interpolateColor(start.s, end.s),
-          l       = interpolateColor(start.l, end.l),
-          opacity = interpolateColor(start.opacity, end.opacity);
-    return function(t) {
-      start.h       = h(t);
-      start.s       = s(t);
-      start.l       = l(Math.pow(t, this.gamma));
-      start.opacity = opacity(t);
-      return start + '';
-    };
+    this.h = this.hue.interpolate((start = ColorCubehelix.create(start)).h, (end = ColorCubehelix.create(end)).h);
+    this.s = new InterpolateColor().interpolate(start.s, end.s);
+    this.l = new InterpolateColor().interpolate(start.l, end.l);
+    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+  }
+
+  public getResult(t) {
+    return new ColorCubehelix(
+      this.h.getResult(t),
+      this.s.getResult(t),
+      this.l.getResult(Math.pow(t, this.gamma)),
+      this.opacity.getResult(t)
+    );
   }
 
   public static create(hue, gamma = 1) {
-    return new Cubehelix(hue, gamma);
+    return new ColorCubehelix(hue, gamma);
   }
 }
 
-export const interpolateCubehelix   = Cubehelix.create(interpolateHue).interpolate;
-export let interpolateCubehelixLong = Cubehelix.create(interpolateColor);
+export class InterpolateCubehelixLong extends InterpolateCubehelix {
+  constructor(gamma) {
+    super(new InterpolateColor, gamma);
+  }
+}

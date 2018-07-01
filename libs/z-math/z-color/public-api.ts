@@ -7,13 +7,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export * from './src/color/hsl';
-export * from './src/color/rgb';
-
 export * from './src/color';
 export * from './src/const';
 export * from './src/cubehelix';
+export * from './src/hcl';
+export * from './src/hsl';
 export * from './src/lab';
-export * from './src/math';
+export * from './src/rgb';
 
 export * from './private-export';

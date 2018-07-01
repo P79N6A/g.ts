@@ -11,7 +11,11 @@ export class InterpolateConstant {
   constructor(protected x: any) {
   }
 
-  public interpolate(t?: number) {
+  public interpolate() {
+    return this;
+  }
+
+  public getResult(t: number) {
     return this.x;
   }
 

@@ -7,24 +7,37 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {hcl as colorHcl} from '@gradii/z-math/z-color';
-import {interpolateColor, interpolateHue} from './color';
+import {ColorHcl} from '@gradii/z-math/z-color';
+import {InterpolateColor, InterpolateHue} from './color';
 
-function hcl(hue) {
-  return (start, end) => {
-    let h = hue((start = colorHcl(start)).h, (end = colorHcl(end)).h),
-        c       = interpolateColor(start.c, end.c),
-        l       = interpolateColor(start.l, end.l),
-        opacity = interpolateColor(start.opacity, end.opacity);
-    return (t) => {
-      start.h       = h(t);
-      start.c       = c(t);
-      start.l       = l(t);
-      start.opacity = opacity(t);
-      return start + '';
-    };
-  };
+export class InterpolateHcl {
+  private h: any;
+  private c: any;
+  private l: any;
+  private opacity: any;
+
+  constructor(public hue: InterpolateHue | InterpolateColor | any = new InterpolateHue()) {
+  }
+
+  public interpolate(start, end) {
+    this.h = this.hue.interpolate((start = ColorHcl.create(start)).h, (end = ColorHcl.create(end)).h);
+    this.c = new InterpolateColor().interpolate(start.c, end.c);
+    this.l = new InterpolateColor().interpolate(start.l, end.l);
+    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+  }
+
+  public getResult(t) {
+    return new ColorHcl(
+      this.h.getResult(t),
+      this.c.getResult(t),
+      this.l.getResult(t),
+      this.opacity.getResult(t)
+    );
+  }
 }
 
-export const interpolateHcl     = hcl(interpolateHue);
-export const interpolateHclLong = hcl(interpolateColor);
+export class InterpolateHclLong extends InterpolateHcl {
+  constructor(hue: InterpolateColor = new InterpolateColor()) {
+    super(hue);
+  }
+}

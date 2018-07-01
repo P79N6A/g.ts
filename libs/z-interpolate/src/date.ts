@@ -8,16 +8,18 @@
  */
 
 export class InterpolateDate {
-  constructor(protected a, protected b) {
+  public a;
+  public b;
+
+  public interpolate(a, b) {
+    this.a = a;
+    this.b = b;
+    return this;
   }
 
-  public interpolate(t: number) {
+  public getResult(t: number) {
     let d = new Date;
     d.setTime(+this.a + (this.b - this.a) * t);
     return d;
-  }
-
-  public static create(a, b) {
-    return new InterpolateDate(a, b);
   }
 }

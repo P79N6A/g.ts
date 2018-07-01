@@ -7,8 +7,16 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export function interpolateNumber(a, b) {
-  return a = +a, b -= a, function(t) {
-    return a + b * t;
-  };
+export class InterpolateNumber {
+  private a: any;
+  private b: any;
+
+  public interpolate(a, b) {
+    this.a = a;
+    this.b = b;
+  }
+
+  public getResult(t) {
+    return this.a + (this.b - this.a) * t;
+  }
 }

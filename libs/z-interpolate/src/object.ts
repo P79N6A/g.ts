@@ -9,24 +9,31 @@
 
 import {interpolateValue} from './value';
 
-export function interpolateObject(a, b) {
-  let i = {},
-      c = {},
-      k;
+export class InterpolateObject {
+  public c: any = {};
+  public i: any = {};
 
-  if (a === null || typeof a !== 'object') { a = {}; }
-  if (b === null || typeof b !== 'object') { b = {}; }
+  public interpolate(a, b) {
+    if (a === null || typeof a !== 'object') {
+      a = {};
+    }
+    if (b === null || typeof b !== 'object') {
+      b = {};
+    }
 
-  for (k in b) {
-    if (k in a) {
-      i[k] = interpolateValue(a[k], b[k]);
-    } else {
-      c[k] = b[k];
+    for (let k in b) {
+      if (k in a) {
+        this.i[k] = interpolateValue(a[k], b[k]);
+      } else {
+        this.c[k] = b[k];
+      }
     }
   }
 
-  return function(t) {
-    for (k in i) { c[k] = i[k](t); }
-    return c;
-  };
+  public getResult(t) {
+    this.i.forEach((_i, k) => {
+      this.c[k] = _i(t);
+    });
+    return this.c;
+  }
 }
