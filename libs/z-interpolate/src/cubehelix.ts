@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {ColorCubehelix} from '@gradii/g/z-color';
+import {ColorCubehelix} from '@gradii/z-math/z-color';
 import {InterpolateColor, InterpolateHue} from './color';
 
 export class InterpolateCubehelix {
@@ -16,14 +16,17 @@ export class InterpolateCubehelix {
   public l: any;
   public opacity: any;
 
-  constructor(public hue: InterpolateHue = new InterpolateHue(), public gamma = 1) {
+  constructor(public gamma = 1) {
   }
 
-  public interpolate(start, end) {
-    this.h = this.hue.interpolate((start = ColorCubehelix.create(start)).h, (end = ColorCubehelix.create(end)).h);
-    this.s = new InterpolateColor().interpolate(start.s, end.s);
-    this.l = new InterpolateColor().interpolate(start.l, end.l);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+  public interpolate(start: string, end: string) {
+    const _start = ColorCubehelix.create(start);
+    const _end = ColorCubehelix.create(end);
+
+    this.h = new InterpolateHue().interpolate(_start.h, _end.h);
+    this.s = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
   }
 
   public getResult(t) {
@@ -34,14 +37,21 @@ export class InterpolateCubehelix {
       this.opacity.getResult(t)
     );
   }
-
-  public static create(hue, gamma = 1) {
-    return new ColorCubehelix(hue, gamma);
-  }
 }
 
 export class InterpolateCubehelixLong extends InterpolateCubehelix {
   constructor(gamma) {
-    super(new InterpolateColor, gamma);
+    super(gamma);
   }
+
+  public interpolate(start: string, end: string) {
+    const _start = ColorCubehelix.create(start);
+    const _end = ColorCubehelix.create(end);
+
+    this.h = new InterpolateColor().interpolate(_start.h, _end.h);
+    this.s = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
+  }
+
 }

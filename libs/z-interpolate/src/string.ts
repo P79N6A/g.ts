@@ -38,16 +38,14 @@ export function interpolateString(a, b) {
       bs = b.slice(bi, bs);
       if (s[i]) {
         s[i] += bs;
-      } // coalesce with previous string
-      else {
+      } else { // coalesce with previous string
         s[++i] = bs;
       }
     }
     if ((am = am[0]) === (bm = bm[0])) { // numbers in a & b match
       if (s[i]) {
         s[i] += bm;
-      } // coalesce with previous string
-      else {
+      } else { // coalesce with previous string
         s[++i] = bm;
       }
     } else { // interpolate non-matching numbers
@@ -62,8 +60,7 @@ export function interpolateString(a, b) {
     bs = b.slice(bi);
     if (s[i]) {
       s[i] += bs;
-    } // coalesce with previous string
-    else {
+    } else { // coalesce with previous string
       s[++i] = bs;
     }
   }

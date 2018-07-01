@@ -9,19 +9,14 @@
 
 import {InterpolateConstant} from './constant';
 
-function interpolateLinear(a, d) {
-  return (t) => {
-    return a + t * d;
-  };
-}
-
 export class InterpolateLinear {
-  constructor(public a, public d) {
-  }
+  public a;
+  public d;
 
   public interpolate(a, d) {
     this.a = a;
     this.d = d;
+    return this;
   }
 
   public getResult(t) {
@@ -59,7 +54,9 @@ export class InterpolateHue {
   public getResult(t) {
     const d = this.b - this.a;
     if (d) {
-      return new InterpolateLinear(this.a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d).getResult(t);
+      return new InterpolateLinear()
+        .interpolate(this.a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d)
+        .getResult(t);
     } else {
       return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
     }
@@ -73,15 +70,6 @@ export class InterpolateColor {
   constructor(public gamma: number = 1) {
   }
 
-  private noGamma(t) {
-    const d = this.b - this.a;
-    if (d) {
-      return new InterpolateLinear(this.a, d).getResult(t);
-    } else {
-      return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
-    }
-  }
-
   public interpolate(a, b) {
     this.a = a;
     this.b = b;
@@ -90,12 +78,25 @@ export class InterpolateColor {
 
   public getResult(t) {
     if (this.gamma === 1) {
-      return this.noGamma(t);
+      const d = this.b - this.a;
+      if (d) {
+        return new InterpolateLinear()
+          .interpolate(this.a, d)
+          .getResult(t);
+      } else {
+        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a)
+          .interpolate()
+          .getResult(t);
+      }
     } else {
       if (this.b - this.a) {
-        return new InterpolateExponential(this.gamma).interpolate(this.a, this.b).getResult(t);
+        return new InterpolateExponential(this.gamma)
+          .interpolate(this.a, this.b)
+          .getResult(t);
       } else {
-        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
+        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a)
+          .interpolate()
+          .getResult(t);
       }
     }
   }

@@ -8,12 +8,13 @@
  */
 
 export class InterpolateNumber {
-  private a: any;
-  private b: any;
+  public a: any;
+  public b: any;
 
   public interpolate(a, b) {
     this.a = a;
     this.b = b;
+    return this;
   }
 
   public getResult(t) {

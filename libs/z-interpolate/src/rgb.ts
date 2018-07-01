@@ -13,7 +13,7 @@ import {InterpolateBSplineClosed} from './b-spline-closed';
 import {InterpolateColor} from './color';
 
 export class RgbGamma {
-  private color;
+  public color;
 
   public r;
   public g;
@@ -25,10 +25,14 @@ export class RgbGamma {
   }
 
   public interpolate(start, end) {
-    this.r = new InterpolateColor(this._gamma).interpolate((start = colorRgb(start)).r, (end = colorRgb(end)).r);
-    this.g = new InterpolateColor(this._gamma).interpolate(start.g, end.g);
-    this.b = new InterpolateColor(this._gamma).interpolate(start.b, end.b);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    const _start = colorRgb(start);
+    const _end = colorRgb(end);
+
+    this.r = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
+    this.g = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
+    this.b = new InterpolateColor(this._gamma).interpolate(_start.b, _end.b);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
+    return this;
   }
 
   public getResult(t) {
@@ -78,4 +82,4 @@ export class RgbSpline {
 
 export const interpolateRgb = RgbGamma.create(1).interpolate;
 export const interpolateRgbBasis = new RgbSpline(InterpolateBSpline).interpolate;
-export const interpolateRgbBasisClosed = RgbSpline.create(interpolateBasisClosed).interpolate;
+export const interpolateRgbBasisClosed = RgbSpline.create(InterpolateBasisClosed).interpolate;

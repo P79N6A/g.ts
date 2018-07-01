@@ -18,12 +18,21 @@ import {interpolateString} from './string';
 
 export function interpolateValue(a, b) {
   let t = typeof b, c;
-  return b == null || t === 'boolean' ? interpolateConstant(b)
-      : (t === 'number' ? interpolateNumber
-      : t === 'string' ? ((c = color(b)) ? (b = c, interpolateRgb) : interpolateString)
-      : b instanceof color ? interpolateRgb
-      : b instanceof Date ? interpolateDate
-      : Array.isArray(b) ? interpolateArray
-      : typeof b.valueOf !== 'function' && typeof b.toString !== 'function' || isNaN(b) ? interpolateObject
-      : interpolateNumber)(a, b);
+  if (b === null || t === 'boolean') {
+    return interpolateConstant(b);
+  } else if (t === 'number') {
+    return interpolateNumber(a, b);
+  } else if (t === 'string') {
+    return (c = color(b)) ? (b = c, interpolateRgb) : interpolateString;
+  } else if (b instanceof color) {
+    return interpolateRgb;
+  } else if (b instanceof Date) {
+    return interpolateDate;
+  } else if (Array.isArray(b)) {
+    return interpolateArray;
+  } else if (typeof b.valueOf !== 'function' && typeof b.toString !== 'function' || isNaN(b)) {
+    return interpolateObject;
+  } else {
+    return interpolateNumber(a, b);
+  }
 }

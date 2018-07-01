@@ -11,19 +11,20 @@ import {ColorHsl} from '@gradii/z-math/z-color';
 import {InterpolateColor, InterpolateHue} from './color';
 
 export class InterpolateHsl {
-  private h: any;
-  private s: any;
-  private l: any;
-  private opacity: any;
-
-  constructor(public hue: InterpolateHue | InterpolateColor | any = new InterpolateHue()) {
-  }
+  public h: any;
+  public s: any;
+  public l: any;
+  public opacity: any;
 
   public interpolate(start, end) {
-    this.h = this.hue.interpolate((start = ColorHsl.create(start)).h, (end = ColorHsl.create(end)).h);
+    const _start = ColorHsl.create(start);
+    const _end = ColorHsl.create(end);
+
+    this.h = new InterpolateHue().interpolate(_start.h, _end.h);
     this.s = new InterpolateColor().interpolate(start.s, end.s);
     this.l = new InterpolateColor().interpolate(start.l, end.l);
     this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    return this;
   }
 
   public getResult(t) {
@@ -37,7 +38,14 @@ export class InterpolateHsl {
 }
 
 export class InterpolateHslLong extends InterpolateHsl {
-  constructor(hue: InterpolateColor = new InterpolateColor()) {
-    super(hue);
+  public interpolate(start, end) {
+    const _start = ColorHsl.create(start);
+    const _end = ColorHsl.create(end);
+
+    this.h = new InterpolateColor().interpolate(_start.h, _end.h);
+    this.s = new InterpolateColor().interpolate(start.s, end.s);
+    this.l = new InterpolateColor().interpolate(start.l, end.l);
+    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    return this;
   }
 }

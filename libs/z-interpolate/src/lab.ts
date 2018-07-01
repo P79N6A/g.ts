@@ -11,16 +11,20 @@ import {ColorLab} from '@gradii/z-math/z-color';
 import {InterpolateColor} from './color';
 
 export class InterpolateLab {
-  private l: InterpolateColor;
-  private a: InterpolateColor;
-  private b: InterpolateColor;
-  private opacity: InterpolateColor;
+  public l: InterpolateColor;
+  public a: InterpolateColor;
+  public b: InterpolateColor;
+  public opacity: InterpolateColor;
 
-  public interpolate(start, end) {
-    this.l = new InterpolateColor().interpolate((start = ColorLab.create(start)).l, (end = ColorLab.create(end)).l);
-    this.a = new InterpolateColor().interpolate(start.a, end.a);
-    this.b = new InterpolateColor().interpolate(start.b, end.b);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+  public interpolate(start: string, end: string) {
+    const _start = ColorLab.create(start);
+    const _end = ColorLab.create(end);
+
+    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.a = new InterpolateColor().interpolate(_start.a, _end.a);
+    this.b = new InterpolateColor().interpolate(_start.b, _end.b);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
+    return this;
   }
 
   public getResult(t) {
