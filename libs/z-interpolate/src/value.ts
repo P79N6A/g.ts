@@ -7,32 +7,36 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {color} from 'd3-color';
-import {interpolateArray} from './array';
-import {interpolateConstant} from './constant';
-import {interpolateDate} from './date';
-import {interpolateNumber} from './number';
-import {interpolateObject} from './object';
-import {interpolateRgb} from './rgb';
-import {interpolateString} from './string';
+import {Color} from '@gradii/z-math/z-color';
+import {InterpolateArray} from './array';
+import {InterpolateConstant} from './constant';
+import {InterpolateDate} from './date';
+import {InterpolateNumber} from './number';
+import {InterpolateObject} from './object';
+import {InterpolateRgb} from './rgb';
+import {InterpolateString} from './string';
 
 export function interpolateValue(a, b) {
   let t = typeof b, c;
   if (b === null || t === 'boolean') {
-    return interpolateConstant(b);
+    return new InterpolateConstant(b);
   } else if (t === 'number') {
-    return interpolateNumber(a, b);
+    return new InterpolateNumber().interpolate(a, b);
   } else if (t === 'string') {
-    return (c = color(b)) ? (b = c, interpolateRgb) : interpolateString;
-  } else if (b instanceof color) {
-    return interpolateRgb;
+    if (c = Color.create(b)) {
+      return new InterpolateRgb().interpolate(a, c);
+    } else {
+      return new InterpolateString().interpolate(a, b);
+    }
+  } else if (b instanceof Color) {
+    return new InterpolateRgb().interpolate(a, b);
   } else if (b instanceof Date) {
-    return interpolateDate;
+    return new InterpolateDate().interpolate(a, b);
   } else if (Array.isArray(b)) {
-    return interpolateArray;
+    return new InterpolateArray().interpolate(a, b);
   } else if (typeof b.valueOf !== 'function' && typeof b.toString !== 'function' || isNaN(b)) {
-    return interpolateObject;
+    return new InterpolateObject().interpolate(a, b);
   } else {
-    return interpolateNumber(a, b);
+    return new InterpolateNumber().interpolate(a, b);
   }
 }

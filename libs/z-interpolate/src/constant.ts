@@ -8,7 +8,7 @@
  */
 
 export class InterpolateConstant {
-  constructor(protected x: any) {
+  constructor(public x?: any) {
   }
 
   public interpolate() {
@@ -17,9 +17,5 @@ export class InterpolateConstant {
 
   public getResult(t: number) {
     return this.x;
-  }
-
-  public static create(a) {
-    return new InterpolateConstant(a);
   }
 }

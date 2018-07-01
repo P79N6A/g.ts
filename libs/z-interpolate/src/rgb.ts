@@ -7,26 +7,23 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {rgb as colorRgb} from 'd3-color';
+import {Rgb} from '@gradii/z-math/z-color';
 import {InterpolateBSpline} from './b-spline';
 import {InterpolateBSplineClosed} from './b-spline-closed';
 import {InterpolateColor} from './color';
 
-export class RgbGamma {
-  public color;
-
+export class InterpolateRgb {
   public r;
   public g;
   public b;
   public opacity;
 
   constructor(private _gamma = 1) {
-    this.color = new InterpolateColor(_gamma);
   }
 
   public interpolate(start, end) {
-    const _start = colorRgb(start);
-    const _end = colorRgb(end);
+    const _start = Rgb.create(start);
+    const _end = Rgb.create(end);
 
     this.r = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
     this.g = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
@@ -36,23 +33,19 @@ export class RgbGamma {
   }
 
   public getResult(t) {
-    start.r = this.r(t);
-    start.g = this.g(t);
-    start.b = this.b(t);
-    start.opacity = this.opacity(t);
-    return start + '';
-  }
-
-  public static create(gamma) {
-    return new RgbGamma(gamma);
+    return new Rgb(
+      this.r(t),
+      this.g(t),
+      this.b(t),
+      this.opacity(t)
+    );
   }
 }
 
-export class RgbSpline {
-
-  constructor(private spline) {
-    this.spline = spline;
-  }
+export class InterpolateRgbBSpline {
+  public sR: any;
+  public sG: any;
+  public sB: any;
 
   public interpolate(colors) {
     const n = colors.length;
@@ -61,25 +54,43 @@ export class RgbSpline {
       b = new Array(n),
       i, color;
     for (i = 0; i < n; ++i) {
-      color = colorRgb(colors[i]);
+      color = Rgb.create(colors[i]);
       r[i] = color.r || 0;
       g[i] = color.g || 0;
       b[i] = color.b || 0;
     }
-    const sR = this.spline(r);
-    const sG = this.spline(g);
-    const sB = this.spline(b);
-    color.opacity = 1;
-    return (t) => {
-      color.r = sR(t);
-      color.g = sG(t);
-      color.b = sB(t);
-      return color + '';
-    };
+    this.sR = new InterpolateBSpline().interpolate(r);
+    this.sG = new InterpolateBSpline().interpolate(g);
+    this.sB = new InterpolateBSpline().interpolate(b);
+    return this;
   }
 
+  public getResult(t) {
+    return new Rgb(
+      this.sR.getResult(t),
+      this.sG.getResult(t),
+      this.sB.getResult(t),
+      1
+    );
+  }
 }
 
-export const interpolateRgb = RgbGamma.create(1).interpolate;
-export const interpolateRgbBasis = new RgbSpline(InterpolateBSpline).interpolate;
-export const interpolateRgbBasisClosed = RgbSpline.create(InterpolateBasisClosed).interpolate;
+export class InterpolateRgbBSplineClosed extends InterpolateRgbBSpline {
+  public interpolate(colors) {
+    const n = colors.length;
+    let r = new Array(n),
+      g = new Array(n),
+      b = new Array(n),
+      i, color;
+    for (i = 0; i < n; ++i) {
+      color = Rgb.create(colors[i]);
+      r[i] = color.r || 0;
+      g[i] = color.g || 0;
+      b[i] = color.b || 0;
+    }
+    this.sR = new InterpolateBSplineClosed().interpolate(r);
+    this.sG = new InterpolateBSplineClosed().interpolate(g);
+    this.sB = new InterpolateBSplineClosed().interpolate(b);
+    return this;
+  }
+}

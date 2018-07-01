@@ -52,6 +52,7 @@ export class InterpolateCubehelixLong extends InterpolateCubehelix {
     this.s = new InterpolateColor().interpolate(_start.s, _end.s);
     this.l = new InterpolateColor().interpolate(_start.l, _end.l);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
+    return this;
   }
 
 }
