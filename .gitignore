@@ -66,3 +66,5 @@ lib
 temp
 .DS_Store
 .idea
+
+/bazel-out

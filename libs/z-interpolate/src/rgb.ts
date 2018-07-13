@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Rgb} from '@gradii/z-math/z-color';
+import {Rgb} from '@gradii/z-color';
 import {InterpolateBSpline} from './b-spline';
 import {InterpolateBSplineClosed} from './b-spline-closed';
 import {InterpolateColor} from './color';

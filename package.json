@@ -10,14 +10,15 @@
   ],
   "private": true,
   "devDependencies": {
-    "@antv/g": "^2.0.7-beta.3",
     "@types/jasmine": "^2.8.8",
+    "@types/node": "^8",
+    "@types/shelljs": "^0.8.0",
     "chai": "~4.0.1",
     "event-simulate": "~1.0.0",
     "istanbul": "~0.4.5",
     "jasmine": "^3.1.0",
     "jquery": "~3.3.1",
-    "karma": "^2.0.2",
+    "karma": "^2.0.4",
     "karma-browserstack-launcher": "^1.3.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-coverage": "^1.1.2",
@@ -26,14 +27,13 @@
     "karma-mocha": "^1.3.0",
     "karma-sauce-launcher": "^1.2.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "shelljs": "~0.7.8",
+    "shelljs": "^0.8.2",
     "spm-sinon": "~1.6.0",
     "string-replace-loader": "~1.3.0",
     "systemjs": "^0.21.3",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3",
-    "uglify-js": "~3.0.15",
-    "webpack": "~3.4.1"
+    "webpack": "~4.15.1"
   },
   "scripts": {
     "build": "webpack",
@@ -51,6 +51,5 @@
     "test": "torch --compile --renderer --recursive ./test/unit",
     "test-live": "torch --compile --renderer --interactive --recursive ./test/"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
