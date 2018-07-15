@@ -10,11 +10,15 @@
   ],
   "private": true,
   "devDependencies": {
+    "@types/gulp": "^4.0.5",
     "@types/jasmine": "^2.8.8",
     "@types/node": "^8",
     "@types/shelljs": "^0.8.0",
     "chai": "~4.0.1",
     "event-simulate": "~1.0.0",
+    "gulp": "^4",
+    "gulp-rename": "^1.3.0",
+    "gulpfile": "^1.0.2",
     "istanbul": "~0.4.5",
     "jasmine": "^3.1.0",
     "jquery": "~3.3.1",
@@ -31,6 +35,7 @@
     "spm-sinon": "~1.6.0",
     "string-replace-loader": "~1.3.0",
     "systemjs": "^0.21.3",
+    "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3",
     "webpack": "~4.15.1"

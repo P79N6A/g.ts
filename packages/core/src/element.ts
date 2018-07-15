@@ -9,8 +9,8 @@
 
 import {d3Ease} from '@gradii/g/z-ease';
 
-import {interpolate, interpolateArray} from '@gradii/g/z-interpolate'; // 目前整体动画只需要数值和数组的差值计算
-import {d3Timer} from '@gradii/g/z-timer';
+import {interpolate, interpolateArray} from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
+import {d3Timer} from '@gradii/g/timer-engine';
 
 import MatrixUtil from '../../util/matrix';
 
