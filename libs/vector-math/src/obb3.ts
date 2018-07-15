@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Triangle} from '@gradii/z-math/z-geometry';
+import {Triangle} from '@gradii/z-math/geometry';
 import {Aabb3} from './aabb3';
 import {clamp, EPSILON} from './common';
 import {Matrix3} from './matrix3';
@@ -46,17 +46,17 @@ export class Obb3 {
               axis0: Vector3, axis1: Vector3, axis2: Vector3);
   constructor() {
     if (arguments.length === 5) {
-      this._center      = arguments[0];
+      this._center = arguments[0];
       this._halfExtents = arguments[1];
-      this._axis0       = arguments[2];
-      this._axis1       = arguments[3];
-      this._axis2       = arguments[4];
+      this._axis0 = arguments[2];
+      this._axis1 = arguments[3];
+      this._axis2 = arguments[4];
     } else {
-      this._center      = Vector3.zero();
+      this._center = Vector3.zero();
       this._halfExtents = Vector3.zero();
-      this._axis0       = new Vector3(1, 0, 0);
-      this._axis1       = new Vector3(0, 1, 0);
-      this._axis2       = new Vector3(0, 0, 1);
+      this._axis0 = new Vector3(1, 0, 0);
+      this._axis1 = new Vector3(0, 1, 0);
+      this._axis2 = new Vector3(0, 0, 1);
     }
   }
 
@@ -104,9 +104,9 @@ export class Obb3 {
     m.transformVector3(this._axis2.scale(this._halfExtents.z)).normalize();
 
     this._halfExtents.setValues(
-      this._axis0.length(),
-      this._axis1.length(),
-      this._axis2.length()
+      this._axis0.length,
+      this._axis1.length,
+      this._axis2.length
     );
 
     return this;
@@ -119,9 +119,9 @@ export class Obb3 {
     m.rotate3(this._axis2.scale(this._halfExtents.z)).normalize();
 
     this._halfExtents.setValues(
-      this._axis0.length(),
-      this._axis1.length(),
-      this._axis2.length()
+      this._axis0.length,
+      this._axis1.length,
+      this._axis2.length
     );
 
     return this;
@@ -194,9 +194,9 @@ export class Obb3 {
     return this;
   }
 
-  private static _r: Matrix3    = new Matrix3(); // tslint:disable-line
+  private static _r: Matrix3 = new Matrix3(); // tslint:disable-line
   private static _absR: Matrix3 = new Matrix3(); // tslint:disable-line
-  private static _t: Vector3    = new Vector3(); // tslint:disable-line
+  private static _t: Vector3 = new Vector3(); // tslint:disable-line
 
   public intersectsWithObb3(other: Obb3, epsilon = EPSILON) {
     Obb3._r.setValues(
@@ -335,7 +335,7 @@ export class Obb3 {
 
   private static _triangle: Triangle = new Triangle(); //tslint:disable-line
   private static _aabb3: Aabb3 = new Aabb3(); //tslint:disable-line
-  private static _zeroVector: Vector3 = new Vector3.zero(); //tslint:disable-line
+  private static _zeroVector: Vector3 = Vector3.zero(); //tslint:disable-line
 
   // public intersectsWithTriangle(other: Triangle, result: IntersectionResult) {
   //   Obb3._triangle.copyFrom(other);

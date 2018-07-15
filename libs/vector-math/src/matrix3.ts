@@ -237,8 +237,8 @@ export class Matrix3 {
    */
   public transpose(): Matrix3 {
     const temp01 = this.values[1],
-          temp02 = this.values[2],
-          temp12 = this.values[5];
+      temp02 = this.values[2],
+      temp12 = this.values[5];
 
     this.values[1] = this.values[3];
     this.values[2] = this.values[6];
@@ -264,8 +264,8 @@ export class Matrix3 {
     const a20 = this.values[6], a21 = this.values[7], a22 = this.values[8];
 
     const det01 = a22 * a11 - a12 * a21,
-          det11 = -a22 * a10 + a12 * a20,
-          det21 = a21 * a10 - a11 * a20;
+      det11 = -a22 * a10 + a12 * a20,
+      det21 = a21 * a10 - a11 * a20;
 
     let det = a00 * det01 + a01 * det11 + a02 * det21;
 
@@ -289,8 +289,8 @@ export class Matrix3 {
   }
 
   public setRotationX(radians: number) {
-    const c        = Math.cos(radians);
-    const s        = Math.sin(radians);
+    const c = Math.cos(radians);
+    const s = Math.sin(radians);
     this.values[0] = 1;
     this.values[1] = 0;
     this.values[2] = 0;
@@ -303,8 +303,8 @@ export class Matrix3 {
   }
 
   public setRotationY(radians: number) {
-    const c        = Math.cos(radians);
-    const s        = Math.sin(radians);
+    const c = Math.cos(radians);
+    const s = Math.sin(radians);
     this.values[0] = c;
     this.values[1] = 0;
     this.values[2] = -s;
@@ -317,8 +317,8 @@ export class Matrix3 {
   }
 
   public setRotationZ(radians: number) {
-    const c        = Math.cos(radians);
-    const s        = Math.sin(radians);
+    const c = Math.cos(radians);
+    const s = Math.sin(radians);
     this.values[0] = c;
     this.values[1] = -s;
     this.values[2] = 0;
@@ -356,7 +356,7 @@ export class Matrix3 {
     v.setValues(
       v.x * this.values[0] + v.y * this.values[1] + v.z * this.values[2],
       v.x * this.values[3] + v.y * this.values[4] + v.z * this.values[5],
-      v.x * this.values[6] + v.y * this.values[7] + v.z * this.values[8],
+      v.x * this.values[6] + v.y * this.values[7] + v.z * this.values[8]
     );
     return v;
   }
@@ -365,6 +365,14 @@ export class Matrix3 {
     v.setValues(
       v.x * this.values[0] + v.y * this.values[1],
       v.x * this.values[3] + v.y * this.values[4]
+    );
+    return v;
+  }
+
+  public absoluteRotate2(v: Vector2) {
+    v.setValues(
+      v.x * Math.abs(this.values[0]) + v.y * Math.abs(this.values[1]),
+      v.x * Math.abs(this.values[3]) + v.y * Math.abs(this.values[4])
     );
     return v;
   }
@@ -382,7 +390,7 @@ export class Matrix3 {
     v.setValues(
       v.x + this.values[0] + v.y * this.values[1] + this.values[2],
       v.x + this.values[3] + v.y * this.values[4] + this.values[5],
-      v.x + this.values[6] + v.y * this.values[7] + this.values[8],
+      v.x + this.values[6] + v.y * this.values[7] + this.values[8]
     );
 
     return v;
@@ -522,21 +530,21 @@ export class Matrix3 {
 
     if (fourXSquaredMinus1 > fourBiggestSquaredMinus1) {
       fourBiggestSquaredMinus1 = fourXSquaredMinus1;
-      biggestIndex             = 1;
+      biggestIndex = 1;
     }
 
     if (fourYSquaredMinus1 > fourBiggestSquaredMinus1) {
       fourBiggestSquaredMinus1 = fourYSquaredMinus1;
-      biggestIndex             = 2;
+      biggestIndex = 2;
     }
 
     if (fourZSquaredMinus1 > fourBiggestSquaredMinus1) {
       fourBiggestSquaredMinus1 = fourZSquaredMinus1;
-      biggestIndex             = 3;
+      biggestIndex = 3;
     }
 
     const biggestVal = Math.sqrt(fourBiggestSquaredMinus1 + 1) * 0.5;
-    const mult       = 0.25 / biggestVal;
+    const mult = 0.25 / biggestVal;
 
     switch (biggestIndex) {
       case 0:
@@ -704,7 +712,7 @@ export class Matrix3 {
   }
 
   public static fromMatrix4(a: Matrix4) {
-    const out     = new Matrix3();
+    const out = new Matrix3();
     out.values[0] = a.at(0);
     out.values[1] = a.at(1);
     out.values[2] = a.at(2);

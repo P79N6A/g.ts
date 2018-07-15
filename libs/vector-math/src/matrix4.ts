@@ -495,7 +495,7 @@ export class Matrix4 {
   }
 
   // tslint:disable-next-line
-  public transform = this.transformVector4.bind(this);
+  public transform = this.transformVector4;
 
   public transformVector3(v: Vector3) {
     const x  = v.x,
@@ -510,7 +510,7 @@ export class Matrix4 {
   }
 
   // tslint:disable-next-line
-  public transform3 = this.transformVector3.bind(this);
+  public transform3 = this.transformVector3;
 
   public toMatrix3(): Matrix3 {
     return new Matrix3([
@@ -841,7 +841,7 @@ export class Matrix4 {
   }
 
   // tslint:disable-next-line
-  public rotate3 = this.rotateVector3.bind(this);
+  public rotate3 = this.rotateVector3;
 
   public rotated3(v: Vector3, out?: Vector3) {
     if (!out) {
@@ -937,6 +937,31 @@ export class Matrix4 {
     }
 
     return new Quaternion(out);
+  }
+
+  /// Rotates [arg] by the absolute rotation of [this]
+  /// Returns [arg].
+  /// Primarily used by AABB transformation code.
+  public absoluteRotate(v: Vector3): Vector3 {
+    const m00 = Math.abs(this.values[0]);
+    const m01 = Math.abs(this.values[1]);
+    const m02 = Math.abs(this.values[2]);
+    const m10 = Math.abs(this.values[4]);
+    const m11 = Math.abs(this.values[5]);
+    const m12 = Math.abs(this.values[6]);
+    const m20 = Math.abs(this.values[8]);
+    const m21 = Math.abs(this.values[9]);
+    const m22 = Math.abs(this.values[10]);
+
+    const x = v.x;
+    const y = v.y;
+    const z = v.z;
+    v.setValues(
+      x * m00 + y * m01 + z * m02,
+      x * m10 + y * m11 + z * m12,
+      x * m20 + y * m21 + z * m22
+    );
+    return v;
   }
 
   /**
@@ -1632,8 +1657,8 @@ export class Matrix4 {
 
     const z = Vector3.difference(position, target).normalize();
 
-    const x = Vector3.cross(up, z).normalize();
-    const y = Vector3.cross(z, x).normalize();
+    const x = up.clone().cross(z).normalize();
+    const y = z.clone().cross(x).normalize();
 
     return new Matrix4([
       x.x,

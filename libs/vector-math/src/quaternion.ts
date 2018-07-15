@@ -564,7 +564,7 @@ export class Quaternion {
     const d = Vector3.dot(a, b);
     if (d < -0.999999) {
       Vector3.cross(xUnitVec3, a, tmpvec3);
-      if (tmpvec3.length() < 0.000001) {
+      if (tmpvec3.length < 0.000001) {
         Vector3.cross(yUnitVec3, a, tmpvec3);
       }
       tmpvec3.normalize();

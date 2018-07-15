@@ -1,15 +1,16 @@
 /**
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ * Copyright (c) 2018 Google Inc. (https://github.com/google/vector_math.dart)
  *
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {Vector3} from '@gradii/z-math/z-matrix';
+import {Vector3} from './vector3';
 
 export class Sphere {
-  private _center;
-  private _radius;
+  private _center: Vector3;
+  private _radius: number;
 
   public get center() {
     return this._center;
@@ -35,7 +36,7 @@ export class Sphere {
   }
 
   public intersectsWithVector3(other: Vector3): boolean {
-    return other.distanceToSquared(center) <= this._radius * this._radius;
+    return other.distanceToSquared(this._center) <= this._radius * this._radius;
   }
 
   public intersectsWithSphere(other: Sphere): boolean {

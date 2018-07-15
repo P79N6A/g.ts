@@ -6,12 +6,14 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import {Vector3} from './vector3';
 
-export * from './src/common';
-export * from './src/mat2';
-export * from './src/mat3';
-export * from './src/mat4';
-export * from './src/quat';
-export * from './src/vec2';
-export * from './src/Vector3';
-export * from './src/vec4';
+/// Defines a result of an intersection test.
+
+export class IntersectionResult {
+  /// The penetration depth of the intersection.
+  public depth: number;
+
+  /// The [axis] of the intersection.
+  public axis = Vector3.zero();
+}

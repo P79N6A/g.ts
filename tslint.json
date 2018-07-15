@@ -45,7 +45,7 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "no-string-literal": false,
-    "triple-equals": true,
+    "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
     "variable-name": false,
     "one-variable-per-declaration": false,
     "prefer-const": false,
@@ -64,6 +64,7 @@
     "no-bitwise": false,
     "object-literal-sort-keys": false,
     "new-parens": false,
+    "align": [true, "statements"],
     "trailing-comma": [
       true,
       {

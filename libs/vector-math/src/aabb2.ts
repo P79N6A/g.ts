@@ -7,8 +7,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Matrix3} from "./matrix3";
-import {Vector2} from "./vector2";
+import {Matrix3} from './matrix3';
+import {Vector2} from './vector2';
 
 export class Aabb2 {
 

@@ -228,6 +228,17 @@ export class Vector2 {
 
   // endregion
 
+  public get length(): number {
+    return Math.sqrt(this.squaredLength);
+  }
+
+  public get squaredLength(): number {
+    let x = this.x,
+      y = this.y;
+
+    return (x * x + y * y);
+  }
+
   constructor(values?: number[]);
   constructor(x: number, y: number);
   constructor() {
@@ -305,17 +316,6 @@ export class Vector2 {
     }
 
     return true;
-  }
-
-  public length(): number {
-    return Math.sqrt(this.squaredLength());
-  }
-
-  public squaredLength(): number {
-    let x = this.x,
-        y = this.y;
-
-    return (x * x + y * y);
   }
 
   public add(vector: Vector2): Vector2 {
@@ -434,7 +434,7 @@ export class Vector2 {
       out = this;
     }
 
-    let length = this.length();
+    let length = this.length;
     if (length === 1) {
       return this;
     } else if (length === 0) {
@@ -496,7 +496,7 @@ export class Vector2 {
    * 相对误差
    */
   public relativeError(correct: Vector2) {
-    const correctNorm = correct.length();
+    const correctNorm = correct.length;
     const diffNorm    = (this.clone().sub(correct)).length();
     return diffNorm / correctNorm;
   }
@@ -684,7 +684,7 @@ export class Vector2 {
 
   public static angle(v1: Vector2, v2: Vector2) {
     if (v1.values[0] === v2.values[0] && v1.values[1] === v2.values[1]) { return 0; }
-    const theta = Vector2.dot(v1, v2) / (v1.length() * v2.length());
+    const theta = Vector2.dot(v1, v2) / (v1.length * v2.length);
     return Math.acos(Math.max(Math.min(theta, -1), 1));
   }
 
