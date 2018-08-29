@@ -65,6 +65,8 @@ export class InterpolateString {
         s[++i] = bs;
       }
     }
+
+    return this;
   }
 
   public getResult(t) {

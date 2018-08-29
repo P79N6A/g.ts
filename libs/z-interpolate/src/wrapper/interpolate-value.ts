@@ -8,13 +8,13 @@
  */
 
 import {Color} from '@gradii/z-color';
-import {InterpolateArray} from './array';
-import {InterpolateConstant} from './constant';
-import {InterpolateDate} from './date';
-import {InterpolateNumber} from './number';
-import {InterpolateObject} from './object';
-import {InterpolateRgb} from './rgb';
-import {InterpolateString} from './string';
+import {InterpolateArray} from '../interpolate/array';
+import {InterpolateConstant} from '../interpolate/constant';
+import {InterpolateDate} from '../interpolate/date';
+import {InterpolateNumber} from '../interpolate/number';
+import {InterpolateObject} from '../interpolate/object';
+import {InterpolateRgb} from '../interpolate/rgb';
+import {InterpolateString} from '../interpolate/string';
 
 export function interpolateValue(a, b) {
   let t = typeof b, c;
