@@ -1,88 +1,100 @@
-const Util = require('../../util/index');
-const Shape = require('../core/shape');
-const Inside = require('./util/inside');
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ * Copyright (c) 2017-2018 Alipay inc.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
 
-const Circle = function(cfg) {
-  Circle.superclass.constructor.call(this, cfg);
-};
+import {Inside, Shape} from '@gradii/g/core';
 
-Circle.ATTRS = {
-  x: 0,
-  y: 0,
-  r: 0,
-  lineWidth: 1
-};
+export class Circle extends Shape {
+  public static ATTRS = {
+    x        : 0,
+    y        : 0,
+    r        : 0,
+    lineWidth: 1,
+  };
 
-Util.extend(Circle, Shape);
+  private canFill   = true;
+  private canStroke = true;
+  private type      = 'circle';
 
-Util.augment(Circle, {
-  canFill: true,
-  canStroke: true,
-  type: 'circle',
-  getDefaultAttrs() {
+  protected __attrs: any;
+
+  constructor(cfg) {
+    super(cfg);
+  }
+
+
+
+  public getDefaultAttrs() {
     return {
-      lineWidth: 1
+      lineWidth: 1,
     };
-  },
-  calculateBox() {
-    const attrs = this.__attrs;
-    const cx = attrs.x;
-    const cy = attrs.y;
-    const r = attrs.r;
+  }
+
+  public calculateBox() {
+    const attrs     = this.__attrs;
+    const cx        = attrs.x;
+    const cy        = attrs.y;
+    const r         = attrs.r;
     const lineWidth = this.getHitLineWidth();
     const halfWidth = lineWidth / 2 + r;
     return {
       minX: cx - halfWidth,
       minY: cy - halfWidth,
       maxX: cx + halfWidth,
-      maxY: cy + halfWidth
+      maxY: cy + halfWidth,
     };
-  },
-  isPointInPath(x, y) {
-    const fill = this.hasFill();
+  }
+
+  public isPointInPath(x, y) {
+    const fill   = this.hasFill();
     const stroke = this.hasStroke();
     if (fill && stroke) {
-      return this._isPointInFill(x, y) || this._isPointInStroke(x, y);
+      return this.__isPointInFill(x, y) || this.__isPointInStroke(x, y);
     }
 
     if (fill) {
-      return this._isPointInFill(x, y);
+      return this.__isPointInFill(x, y);
     }
 
     if (stroke) {
-      return this._isPointInStroke(x, y);
+      return this.__isPointInStroke(x, y);
     }
 
     return false;
-  },
-  _isPointInFill(x, y) {
+  }
+
+  public __isPointInFill(x, y) {
     const attrs = this.__attrs;
-    const cx = attrs.x;
-    const cy = attrs.y;
-    const r = attrs.r;
+    const cx    = attrs.x;
+    const cy    = attrs.y;
+    const r     = attrs.r;
 
     return Inside.circle(cx, cy, r, x, y);
-  },
-  _isPointInStroke(x, y) {
-    const attrs = this.__attrs;
-    const cx = attrs.x;
-    const cy = attrs.y;
-    const r = attrs.r;
+  }
+
+  public __isPointInStroke(x, y) {
+    const attrs     = this.__attrs;
+    const cx        = attrs.x;
+    const cy        = attrs.y;
+    const r         = attrs.r;
     const lineWidth = this.getHitLineWidth();
 
     return Inside.arcline(cx, cy, r, 0, Math.PI * 2, false, lineWidth, x, y);
-  },
-  createPath(context) {
+  }
+
+  public createPath(context) {
     const attrs = this.__attrs;
-    const cx = attrs.x;
-    const cy = attrs.y;
-    const r = attrs.r;
-    context = context || self.get('context');
+    const cx    = attrs.x;
+    const cy    = attrs.y;
+    const r     = attrs.r;
+    context     = context || self.get('context');
 
     context.beginPath();
     context.arc(cx, cy, r, 0, Math.PI * 2, false);
-    context.closePath();
   }
-});
-
-module.exports = Circle;
+}

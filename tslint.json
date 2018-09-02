@@ -45,6 +45,8 @@
     "no-unused-expression": true,
     "no-var-keyword": true,
     "no-string-literal": false,
+    "no-trailing-whitespace": false,
+    "no-empty": false,
     "triple-equals": [
       true,
       "allow-null-check",
@@ -76,8 +78,8 @@
       true,
       {
         "multiline": {
-          "objects": "always",
-          "arrays": "always",
+          "objects": "never",
+          "arrays": "never",
           "functions": "never",
           "typeLiterals": "ignore"
         }

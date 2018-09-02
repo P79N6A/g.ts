@@ -94,13 +94,13 @@ export class Canvas extends Group {
   }
 
   public _getEventObj(type, e, point, target) {
-    const event = new Event(type, e, true, true);
-    event.x = point.x;
-    event.y = point.y;
-    event.clientX = e.clientX;
-    event.clientY = e.clientY;
+    const event         = new Event(type, e, true, true);
+    event.x             = point.x;
+    event.y             = point.y;
+    event.clientX       = e.clientX;
+    event.clientY       = e.clientY;
     event.currentTarget = target;
-    event.target = target;
+    event.target        = target;
     return event;
   }
 
@@ -112,13 +112,13 @@ export class Canvas extends Group {
       const preShape = this.get('preShape');
       if (preShape && preShape !== shape) {
         const mouseleave = this._getEventObj('mouseleave', e, point, preShape);
-        emitObj = this.getEmitter(preShape, e);
+        emitObj          = this.getEmitter(preShape, e);
         emitObj && emitObj.emit('mouseleave', mouseleave);
       }
 
       if (shape) {
         const mousemove = this._getEventObj('mousemove', e, point, shape);
-        emitObj = this.getEmitter(shape, e);
+        emitObj         = this.getEmitter(shape, e);
         emitObj && emitObj.emit('mousemove', mousemove);
 
         if (preShape !== shape) {
@@ -133,7 +133,7 @@ export class Canvas extends Group {
       this.set('preShape', shape);
     } else {
       const event = this._getEventObj(type, e, point, shape || this);
-      emitObj = this.getEmitter(shape, e);
+      emitObj     = this.getEmitter(shape, e);
       if (emitObj && emitObj !== this) {
         emitObj.emit(type, event);
       }
@@ -147,8 +147,8 @@ export class Canvas extends Group {
   }
 
   public _registEvents() {
-    const self = this;
-    const el = self.get('el');
+    const self   = this;
+    const el     = self.get('el');
     const events = [
       'mouseout',
       'mouseover',
@@ -164,10 +164,10 @@ export class Canvas extends Group {
       }, false);
     });
     // special cases
-    el.addEventListener('mouseout', function (e) {
+    el.addEventListener('mouseout', (e) => {
       self._triggerEvent('mouseleave', e);
     }, false);
-    el.addEventListener('mouseover', function (e) {
+    el.addEventListener('mouseover', (e) => {
       self._triggerEvent('mouseenter', e);
     }, false);
 
@@ -190,6 +190,10 @@ export class Canvas extends Group {
     }, false);
   }
 
+  public _unregisterEvents() {
+    
+  }
+
   public _scale() {
     const pixelRatio = this.get('pixelRatio');
     this.scale(pixelRatio, pixelRatio);
@@ -197,7 +201,7 @@ export class Canvas extends Group {
 
   public _setCanvas() {
     const canvasDOM = this.get('canvasDOM');
-    const timeline = new Timeline();
+    const timeline  = new Timeline();
     this.setSilent('el', canvasDOM);
     this.setSilent('timeline', timeline);
     this.setSilent('context', canvasDOM.getContext('2d'));
@@ -219,19 +223,19 @@ export class Canvas extends Group {
 
   public _setContainer() {
     const containerId = this.get('containerId');
-    let containerDOM = this.get('containerDOM');
+    let containerDOM  = this.get('containerDOM');
     if (!containerDOM) {
       containerDOM = document.getElementById(containerId);
       this.set('containerDOM', containerDOM);
     }
     modifyCSS(containerDOM, {
-      position: 'relative',
+      position: 'relative'
     });
   }
 
   public _setLayer() {
     const containerDOM = this.get('containerDOM');
-    const canvasId = uniqueId('canvas_');
+    const canvasId     = uniqueId('canvas_');
     if (containerDOM) {
       const canvasDOM = createDom('<canvas id="' + canvasId + '"></canvas>');
       containerDOM.appendChild(canvasDOM);
@@ -243,14 +247,14 @@ export class Canvas extends Group {
     this.changeSize(this.get('width'), this.get('height'));
   }
 
-  public _reSize() {
-    const canvasDOM = this.get('canvasDOM');
-    const widthCanvas = this.get('widthCanvas');
+  public _resize() {
+    const canvasDOM    = this.get('canvasDOM');
+    const widthCanvas  = this.get('widthCanvas');
     const heightCanvas = this.get('heightCanvas');
-    const widthStyle = this.get('widthStyle');
-    const heightStyle = this.get('heightStyle');
+    const widthStyle   = this.get('widthStyle');
+    const heightStyle  = this.get('heightStyle');
 
-    canvasDOM.style.width = widthStyle;
+    canvasDOM.style.width  = widthStyle;
     canvasDOM.style.height = heightStyle;
     canvasDOM.setAttribute('width', widthCanvas);
     canvasDOM.setAttribute('height', heightCanvas);
@@ -258,19 +262,19 @@ export class Canvas extends Group {
 
   public getWidth() {
     const pixelRatio = this.get('pixelRatio');
-    const width = this.get('width');
+    const width      = this.get('width');
     return width * pixelRatio;
   }
 
   public getHeight() {
     const pixelRatio = this.get('pixelRatio');
-    const height = this.get('height');
+    const height     = this.get('height');
     return height * pixelRatio;
   }
 
   public changeSize(width, height) {
-    const pixelRatio = this.get('pixelRatio');
-    const widthCanvas = width * pixelRatio;
+    const pixelRatio   = this.get('pixelRatio');
+    const widthCanvas  = width * pixelRatio;
     const heightCanvas = height * pixelRatio;
 
     this.set('widthCanvas', widthCanvas);
@@ -289,9 +293,9 @@ export class Canvas extends Group {
    * @return {Object} canvas坐标
    */
   public getPointByClient(clientX, clientY) {
-    const el = this.get('el');
-    const bbox = el.getBoundingClientRect();
-    const width = bbox.right - bbox.left;
+    const el     = this.get('el');
+    const bbox   = el.getBoundingClientRect();
+    const width  = bbox.right - bbox.left;
     const height = bbox.bottom - bbox.top;
     return {
       x: (clientX - bbox.left) * (el.width / width),
@@ -300,9 +304,9 @@ export class Canvas extends Group {
   }
 
   public getClientByPoint(x, y) {
-    const el = this.get('el');
-    const bbox = el.getBoundingClientRect();
-    const width = bbox.right - bbox.left;
+    const el     = this.get('el');
+    const bbox   = el.getBoundingClientRect();
+    const width  = bbox.right - bbox.left;
     const height = bbox.bottom - bbox.top;
     return {
       clientX: x / (el.width / width) + bbox.left,
@@ -312,8 +316,10 @@ export class Canvas extends Group {
 
   public beforeDraw() {
     const context = this.get('context');
-    const el = this.get('el');
-    context && context.clearRect(0, 0, el.width, el.height);
+    const el      = this.get('el');
+    if (context) {
+      context.clearRect(0, 0, el.width, el.height);
+    }
   }
 
   public _beginDraw() {
@@ -338,8 +344,7 @@ export class Canvas extends Group {
         super.draw(context);
         // this._drawCanvas();
       } catch (ev) { // 绘制时异常，中断重绘
-        console.warn('error in draw canvas, detail as:');
-        console.warn(ev);
+        console.warn('error in draw canvas, detail as:', ev);
         this._endDraw();
       }
       this._endDraw();
@@ -357,7 +362,7 @@ export class Canvas extends Group {
 
   public destroy() {
     const containerDOM = this.get('containerDOM');
-    const canvasDOM = this.get('canvasDOM');
+    const canvasDOM    = this.get('canvasDOM');
     if (canvasDOM && containerDOM) {
       containerDOM.removeChild(canvasDOM);
     }

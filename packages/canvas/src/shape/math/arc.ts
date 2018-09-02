@@ -1,5 +1,5 @@
-const Util = require('../../../util/index');
-const vec2 = require('../../../util/matrix').vec2;
+const Util = require('../../util/index');
+const vec2 = require('../../util/matrix').vec2;
 
 function circlePoint(cx, cy, r, angle) {
   return {

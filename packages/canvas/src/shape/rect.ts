@@ -1,4 +1,13 @@
-const Util = require('../../util/index');
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ * Copyright (c) 2017-2018 Alipay inc.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
+const Util = require('../util/index');
 const Shape = require('../core/shape');
 const Inside = require('./util/inside');
 
@@ -12,7 +21,7 @@ Rect.ATTRS = {
   width: 0,
   height: 0,
   radius: 0,
-  lineWidth: 1
+  lineWidth: 1,
 };
 
 Util.extend(Rect, Shape);
@@ -24,7 +33,7 @@ Util.augment(Rect, {
   getDefaultAttrs() {
     return {
       lineWidth: 1,
-      radius: 0
+      radius: 0,
     };
   },
   calculateBox() {
@@ -41,7 +50,7 @@ Util.augment(Rect, {
       minX: x - halfWidth,
       minY: y - halfWidth,
       maxX: x + width + halfWidth,
-      maxY: y + height + halfWidth
+      maxY: y + height + halfWidth,
     };
   },
   isPointInPath(x, y) {
@@ -50,27 +59,27 @@ Util.augment(Rect, {
     const stroke = self.hasStroke();
 
     if (fill && stroke) {
-      return self._isPointInFill(x, y) || self._isPointInStroke(x, y);
+      return self.__isPointInFill(x, y) || self.__isPointInStroke(x, y);
     }
 
     if (fill) {
-      return self._isPointInFill(x, y);
+      return self.__isPointInFill(x, y);
     }
 
     if (stroke) {
-      return self._isPointInStroke(x, y);
+      return self.__isPointInStroke(x, y);
     }
 
     return false;
   },
-  _isPointInFill(x, y) {
+  __isPointInFill(x, y) {
     const context = this.get('context');
 
-    if (!context) return false;
+    if (!context) { return false; }
     this.createPath();
     return context.isPointInPath(x, y);
   },
-  _isPointInStroke(x, y) {
+  __isPointInStroke(x, y) {
     const self = this;
     const attrs = self.__attrs;
     const rx = attrs.x;
@@ -123,7 +132,7 @@ Util.augment(Rect, {
       context.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2, false);
       context.closePath();
     }
-  }
+  },
 });
 
 module.exports = Rect;

@@ -1,4 +1,13 @@
-const Util = require('../../util/index');
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ * Copyright (c) 2017-2018 Alipay inc.
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
+const Util = require('../util/index');
 const Shape = require('../core/shape');
 const Inside = require('./util/inside');
 
@@ -18,7 +27,7 @@ CText.ATTRS = {
   textAlign: 'start',
   textBaseline: 'bottom',
   lineHeight: null,
-  textArr: null
+  textArr: null,
 };
 
 Util.extend(CText, Shape);
@@ -37,7 +46,7 @@ Util.augment(CText, {
       fontWeight: 'normal',
       fontVariant: 'normal',
       textAlign: 'start',
-      textBaseline: 'bottom'
+      textBaseline: 'bottom',
     };
   },
   initTransform() {
@@ -47,11 +56,11 @@ Util.augment(CText, {
       this.transform([
         [ 't', -1 * this.__attrs.x, -1 * this.__attrs.y ],
         [ 's', +fontSize / 12, +fontSize / 12 ],
-        [ 't', this.__attrs.x, this.__attrs.y ]
+        [ 't', this.__attrs.x, this.__attrs.y ],
       ]);
     }
   },
-  _assembleFont() {
+  __assembleFont() {
     // var self = this;
     const attrs = this.__attrs;
     const fontSize = attrs.fontSize;
@@ -62,28 +71,28 @@ Util.augment(CText, {
     // self.attr('font', [fontStyle, fontVariant, fontWeight, fontSize + 'px', fontFamily].join(' '));
     attrs.font = [ fontStyle, fontVariant, fontWeight, fontSize + 'px', fontFamily ].join(' ');
   },
-  _afterSetAttrFontSize() {
+  __afterSetAttrFontSize() {
     /* this.attr({
       height: this.__getTextHeight()
     }); */
-    this._assembleFont();
+    this.__assembleFont();
   },
-  _afterSetAttrFontFamily() {
-    this._assembleFont();
+  __afterSetAttrFontFamily() {
+    this.__assembleFont();
   },
-  _afterSetAttrFontWeight() {
-    this._assembleFont();
+  __afterSetAttrFontWeight() {
+    this.__assembleFont();
   },
-  _afterSetAttrFontStyle() {
-    this._assembleFont();
+  __afterSetAttrFontStyle() {
+    this.__assembleFont();
   },
-  _afterSetAttrFontVariant() {
-    this._assembleFont();
+  __afterSetAttrFontVariant() {
+    this.__assembleFont();
   },
-  _afterSetAttrFont() {
+  __afterSetAttrFont() {
     // this.attr('width', this.measureText());
   },
-  _afterSetAttrText() {
+  __afterSetAttrText() {
     const attrs = this.__attrs;
     const text = attrs.text;
     let textArr;
@@ -96,18 +105,18 @@ Util.augment(CText, {
     // attrs.height = this.__getTextHeight();
     // attrs.width = this.measureText();
   },
-  _getTextHeight() {
+  __getTextHeight() {
     const attrs = this.__attrs;
     const lineCount = attrs.lineCount;
     const fontSize = attrs.fontSize * 1;
     if (lineCount > 1) {
-      const spaceingY = this._getSpaceingY();
+      const spaceingY = this.__getSpaceingY();
       return fontSize * lineCount + spaceingY * (lineCount - 1);
     }
     return fontSize;
   },
   // 计算浪费，效率低，待优化
-  _afterSetAttrAll(objs) {
+  __afterSetAttrAll(objs) {
     const self = this;
     if (
       'fontSize' in objs ||
@@ -116,13 +125,13 @@ Util.augment(CText, {
       'fontVariant' in objs ||
       'fontFamily' in objs
     ) {
-      self._assembleFont();
+      self.__assembleFont();
     }
 
     if (
       'text' in objs
     ) {
-      self._afterSetAttrText(objs.text);
+      self.__afterSetAttrText(objs.text);
     }
   },
   isHitBox() {
@@ -140,16 +149,16 @@ Util.augment(CText, {
         minX: x,
         minY: y,
         maxX: x,
-        maxY: y
+        maxY: y,
       };
     }
-    const height = self._getTextHeight(); // attrs.height
+    const height = self.__getTextHeight(); // attrs.height
     const textAlign = attrs.textAlign;
     const textBaseline = attrs.textBaseline;
     const lineWidth = self.getHitLineWidth();
     const point = {
       x,
-      y: y - height
+      y: y - height,
     };
 
     if (textAlign) {
@@ -174,10 +183,10 @@ Util.augment(CText, {
       minX: point.x - halfWidth,
       minY: point.y - halfWidth,
       maxX: point.x + width + halfWidth,
-      maxY: point.y + height + halfWidth
+      maxY: point.y + height + halfWidth,
     };
   },
-  _getSpaceingY() {
+  __getSpaceingY() {
     const attrs = this.__attrs;
     const lineHeight = attrs.lineHeight;
     const fontSize = attrs.fontSize * 1;
@@ -204,7 +213,7 @@ Util.augment(CText, {
     context.beginPath();
     if (self.hasStroke()) {
       if (textArr) {
-        self._drawTextArr(context, false);
+        self.__drawTextArr(context, false);
       } else {
         context.strokeText(text, x, y);
       }
@@ -215,17 +224,17 @@ Util.augment(CText, {
         context.globalAlpha = fillOpacity;
       }
       if (textArr) {
-        self._drawTextArr(context, true);
+        self.__drawTextArr(context, true);
       } else {
         context.fillText(text, x, y);
       }
     }
   },
-  _drawTextArr(context, fill) {
+  __drawTextArr(context, fill) {
     const textArr = this.__attrs.textArr;
     const textBaseline = this.__attrs.textBaseline;
     const fontSize = this.__attrs.fontSize * 1;
-    const spaceingY = this._getSpaceingY();
+    const spaceingY = this.__getSpaceingY();
     const x = this.__attrs.x;
     const y = this.__attrs.y;
     const box = this.getBBox();
@@ -234,8 +243,8 @@ Util.augment(CText, {
 
     Util.each(textArr, (subText, index) => {
       subY = y + index * (spaceingY + fontSize) - height + fontSize; // bottom;
-      if (textBaseline === 'middle') subY += height - fontSize - (height - fontSize) / 2;
-      if (textBaseline === 'top') subY += height - fontSize;
+      if (textBaseline === 'middle') { subY += height - fontSize - (height - fontSize) / 2; }
+      if (textBaseline === 'top') { subY += height - fontSize; }
       if (fill) {
         context.fillText(subText, x, subY);
       } else {
@@ -252,12 +261,12 @@ Util.augment(CText, {
     let measureWidth;
     let width = 0;
 
-    if (Util.isNil(text)) return undefined;
+    if (Util.isNil(text)) { return undefined; }
     const context = document.createElement('canvas').getContext('2d');
     context.save();
     context.font = font;
     if (textArr) {
-      Util.each(textArr, subText => {
+      Util.each(textArr, (subText) => {
         measureWidth = context.measureText(subText).width;
         if (width < measureWidth) {
           width = measureWidth;
@@ -269,7 +278,7 @@ Util.augment(CText, {
       context.restore();
     }
     return width;
-  }
+  },
 });
 
 module.exports = CText;

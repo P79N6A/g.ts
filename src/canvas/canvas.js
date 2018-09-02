@@ -243,7 +243,7 @@ export class Canvas extends Group {
     this.changeSize(this.get('width'), this.get('height'));
   }
 
-  public _reSize() {
+  public _resize() {
     const canvasDOM = this.get('canvasDOM');
     const widthCanvas = this.get('widthCanvas');
     const heightCanvas = this.get('heightCanvas');
