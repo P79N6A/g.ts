@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Color} from '@gradii/z-color';
+import {Color} from '@gradii/color';
 import {InterpolateArray} from '../interpolate/array';
 import {InterpolateConstant} from '../interpolate/constant';
 import {InterpolateDate} from '../interpolate/date';
