@@ -28,6 +28,7 @@ export class InterpolateObject {
         this.c[k] = b[k];
       }
     }
+    return this;
   }
 
   public getResult(t) {

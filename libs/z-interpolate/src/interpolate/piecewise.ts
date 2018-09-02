@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export class InterplolatePiecewise {
+export class InterpolatePiecewise {
   protected I;
 
   public values: any[];
