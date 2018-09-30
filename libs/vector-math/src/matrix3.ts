@@ -711,7 +711,7 @@ export class Matrix3 {
     return result;
   }
 
-  public static fromMatrix4(a: Matrix4) {
+  public static fromMatrix4(a: Matrix4): Matrix3 {
     const out = new Matrix3();
     out.values[0] = a.at(0);
     out.values[1] = a.at(1);
