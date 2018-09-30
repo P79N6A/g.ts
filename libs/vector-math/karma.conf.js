@@ -1,38 +1,39 @@
+const { join } = require('path');
+const { constants } = require('karma');
+
 module.exports = (config) => {
   config.set({
-    basePath: '',
     frameworks: ['jasmine'],
-    // ... normal karma configuration
-    files: [
-      // all files ending in "_test"
-      { pattern: 'test/*.spec.ts', watched: false },
-      { pattern: 'test/**/*.spec.ts', watched: false }
-      // each file acts as entry point for the webpack configuration
+    files: [{ pattern: 'test.ts', watched: false }],
+    preprocessors: { 'test.ts': ['webpack'] },
+    webpack: [
+      {
+        devtool: 'inline-source-map',
+        resolve: {
+          extensions: ['.js', '.ts', '.tsx']
+        },
+        module: {
+          rules: [
+            {
+              test: /\.tsx?$/,
+              exclude: [/node_modules/],
+              loader: "ts-loader",
+              options: {
+                context: __dirname,
+                configFile: join(__dirname, "tsconfig.spec.json")
+              }
+            }
+          ]
+        },
+
+        stats: {
+          colors: true,
+          modules: true,
+          reasons: true,
+          errorDetails: true
+        },
+      }
     ],
-
-    preprocessors: {
-      // add webpack as preprocessor
-      'test/*.spec.ts': ['webpack', 'sourcemap'],
-      'test/**/*.spec.ts': ['webpack', 'sourcemap']
-    },
-
-    webpack: {
-      resolve: {
-        extensions: ['*', '.js', '.ts', '.tsx']
-      },
-      module: {
-        rules: [
-          { test: /\.tsx?$/, loader: 'ts-loader' }
-        ]
-      },
-      stats: {
-        colors: true,
-        modules: true,
-        reasons: true,
-        errorDetails: true
-      },
-      devtool: 'inline-source-map',
-    },
 
     webpackMiddleware: {
       // webpack-dev-middleware configuration
@@ -43,7 +44,7 @@ module.exports = (config) => {
     reporters: ['progress'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: constants.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false,

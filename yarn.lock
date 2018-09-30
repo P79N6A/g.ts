@@ -98,6 +98,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/webpack-env@^1.13.6":
+  version "1.13.6"
+  resolved "http://registry.npm.alibaba-inc.com/@types/webpack-env/download/@types/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
+  integrity sha1-Eo0WhafDTTHtFwEPyH1qEsHeaXY=
+
 "@webassemblyjs/ast@1.7.8":
   version "1.7.8"
   resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/ast/download/@webassemblyjs/ast-1.7.8.tgz#f31f480debeef957f01b623f27eabc695fa4fe8f"
@@ -3626,6 +3631,11 @@ lodash@4.17.10, lodash@^4, lodash@^4.0.0, lodash@^4.15.0, lodash@^4.16.6, lodash
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha1-G3eTz3JZ6jj7NmHU04syYK+K5Oc=
 
+lodash@^4.17.5:
+  version "4.17.11"
+  resolved "http://registry.npm.alibaba-inc.com/lodash/download/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+  integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
+
 log-symbols@^2.1.0:
   version "2.2.0"
   resolved "http://registry.npm.alibaba-inc.com/log-symbols/download/log-symbols-2.2.0.tgz#5740e1c5d6f0dfda4ad9323b5332107ef6b4c40a"
@@ -6348,6 +6358,13 @@ webpack-log@^1.0.1:
     log-symbols "^2.1.0"
     loglevelnext "^1.0.1"
     uuid "^3.1.0"
+
+webpack-merge@^4.1.4:
+  version "4.1.4"
+  resolved "http://registry.npm.alibaba-inc.com/webpack-merge/download/webpack-merge-4.1.4.tgz#0fde38eabf2d5fd85251c24a5a8c48f8a3f4eb7b"
+  integrity sha1-D9446r8tX9hSUcJKWoxI+KP063s=
+  dependencies:
+    lodash "^4.17.5"
 
 webpack-sources@^1.1.0:
   version "1.1.0"

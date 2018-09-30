@@ -2,7 +2,6 @@
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
  * Copyright (c) 2018 Google Inc. (https://github.com/google/vector_math.dart)
- * Copyright (c) 2017-2018 Alipay inc.
  *
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
@@ -11,7 +10,7 @@
 /*
 * common.js unit test
 */
-import {equals, toRadian} from '../src/common';
+import {EPSILON, equals, toRadian} from '../src/common';
 
 describe('matrix', () => {
     let result: any;
@@ -21,7 +20,7 @@ describe('matrix', () => {
             result = toRadian(180);
         });
         it('should return a value of 3.141592654(Math.PI)', () => {
-            expect(result).toBeEqualish(Math.PI);
+            expect(result).toBeCloseTo(Math.PI);
         });
     });
 
