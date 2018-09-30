@@ -5,7 +5,7 @@ module.exports = (config) => {
   config.set({
     frameworks: ['jasmine'],
     files: [{ pattern: 'test.ts', watched: false }],
-    preprocessors: { 'test.ts': ['webpack'] },
+    preprocessors: { 'test.ts': ['webpack', 'sourcemap'] },
     webpack: [
       {
         devtool: 'inline-source-map',
@@ -41,7 +41,7 @@ module.exports = (config) => {
       stats: 'errors-only'
     },
 
-    reporters: ['progress'],
+    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: constants.LOG_INFO,
