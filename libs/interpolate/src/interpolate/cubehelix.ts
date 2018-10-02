@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Cubehelix} from '@gradii/z-color';
+import {Cubehelix} from '@gradii/color';
 import {InterpolateColor, InterpolateHue} from './color';
 
 export class InterpolateCubehelix {

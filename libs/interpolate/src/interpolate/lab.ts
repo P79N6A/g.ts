@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Lab} from '@gradii/z-color';
+import {Lab} from '@gradii/color';
 import {InterpolateColor} from './color';
 
 export class InterpolateLab {

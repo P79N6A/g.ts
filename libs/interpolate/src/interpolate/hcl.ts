@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Hcl} from '@gradii/z-color';
+import {Hcl} from '@gradii/color';
 import {InterpolateColor, InterpolateHue} from './color';
 
 export class InterpolateHcl {
