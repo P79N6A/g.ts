@@ -20,13 +20,13 @@ export function $v4(x: number, y: number, z: number, w: number) {
 
 export function relativeTest(output, expectedOutput) {
   const errorThreshold = 0.0005;
-  let error = Math.abs(relativeError(output, expectedOutput));
+  let error            = Math.abs(relativeError(output, expectedOutput));
   expect(error >= errorThreshold).toBe(false);
 }
 
 export function absoluteTest(output, expectedOutput) {
   const errorThreshold = 0.0005;
-  let error = Math.abs(absoluteError(output, expectedOutput));
+  let error            = Math.abs(absoluteError(output, expectedOutput));
   expect(error >= errorThreshold).toBe(false);
 }
 
@@ -45,7 +45,7 @@ export function makeMatrix(rows: number, cols: number) {
   }
 }
 
-export function parseMatrix(input: string) {
+export function parseMatrix(input: string){
   input        = input.trim();
   let rows     = input.split('\n');
   let values   = [];

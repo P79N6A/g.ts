@@ -81,6 +81,30 @@ export class Matrix2 {
     return data;
   }
 
+  public copyInverse(arg: Matrix2) {
+    const det = arg.determinant();
+    if (det == 0) {
+      this.setFrom(arg);
+      return 0;
+    }
+
+    const invDet   = 1 / det;
+    const m2       = arg.values;
+    this.values[0] = m2[3] * invDet;
+    this.values[1] = -m2[1] * invDet;
+    this.values[2] = -m2[2] * invDet;
+    this.values[3] = m2[0] * invDet;
+
+    return det;
+  }
+
+  public setFrom(arg: Matrix2) {
+    this.values[3] = arg.values[3];
+    this.values[2] = arg.values[2];
+    this.values[1] = arg.values[1];
+    this.values[0] = arg.values[0];
+  }
+
   public row(index: number): number[] {
     return [
       this.values[index * 2],
@@ -135,6 +159,14 @@ export class Matrix2 {
     return this.values[0] * this.values[3] - this.values[2] * this.values[1];
   }
 
+  public dotRow(i: number, v: Vector2) {
+    return this.values[2 * i] * v.x + this.values[ (2 * i) + 1] * v.y;
+  }
+
+  public dotColumn(i: number, v: Vector2) {
+    return this.values[i] * v.x + this.values[2 + i] * v.y;
+  }
+
   public setZero() {
     this.values[0] = 0;
     this.values[1] = 0;
@@ -185,28 +217,28 @@ export class Matrix2 {
       let row_norm = 0;
       row_norm += Math.abs(this.values[0]);
       row_norm += Math.abs(this.values[2]);
-      norm = row_norm > norm ? row_norm : norm;
+      norm         = row_norm > norm ? row_norm : norm;
     }
     {
       let row_norm = 0;
       row_norm += Math.abs(this.values[1]);
       row_norm += Math.abs(this.values[3]);
-      norm = row_norm > norm ? row_norm : norm;
+      norm         = row_norm > norm ? row_norm : norm;
     }
     return norm;
   }
 
   public relativeError(correct: Matrix2) {
-    const diff = correct.clone().sub(this);
+    const diff         = correct.clone().sub(this);
     const correct_norm = correct.infinityNorm();
-    const diff_norm = diff.infinityNorm();
+    const diff_norm    = diff.infinityNorm();
     return diff_norm / correct_norm;
   }
 
   public absoluteError(correct: Matrix2) {
-    const this_norm = this.infinityNorm();
+    const this_norm    = this.infinityNorm();
     const correct_norm = correct.infinityNorm();
-    const diff_norm = Math.abs(this_norm - correct_norm);
+    const diff_norm    = Math.abs(this_norm - correct_norm);
     return diff_norm;
   }
 
@@ -238,14 +270,18 @@ export class Matrix2 {
     this.values[1] = -s;
     this.values[2] = s;
     this.values[3] = c;
+
+    return this;
   }
 
   public scaleAdjoint(scale) {
     const temp     = this.values[0];
     this.values[0] = this.values[3] * scale;
-    this.values[1] = - this.values[1] * scale;
-    this.values[2] = - this.values[2] * scale;
+    this.values[1] = -this.values[1] * scale;
+    this.values[2] = -this.values[2] * scale;
     this.values[3] = temp * scale;
+
+    return this;
   }
 
   public rotate(radians: number): Matrix2 {
@@ -367,6 +403,10 @@ export class Matrix2 {
       0, 0,
       0, 0
     );
+  }
+
+  public static rotation(radians): Matrix2 {
+    return Matrix2.zero().setRotation(radians);
   }
 
   public static product(m1: Matrix2, m2: Matrix2, result: Matrix2 = null): Matrix2 {

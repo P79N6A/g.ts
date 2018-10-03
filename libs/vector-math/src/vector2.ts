@@ -497,7 +497,7 @@ export class Vector2 {
    */
   public relativeError(correct: Vector2) {
     const correctNorm = correct.length;
-    const diffNorm    = (this.clone().sub(correct)).length();
+    const diffNorm    = (this.clone().sub(correct)).length;
     return diffNorm / correctNorm;
   }
 
@@ -505,7 +505,7 @@ export class Vector2 {
    * 绝对误差
    */
   public absoluteError(correct: Vector2) {
-    return (this.clone().sub(correct)).length();
+    return (this.clone().sub(correct)).length;
   }
 
   public vertical(flag, out?: Vector2) {
