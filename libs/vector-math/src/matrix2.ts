@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Vector2} from './vector2';
+import { Vector2 } from './vector2';
 
 /**
  * use row-major, because such matrix can represent as
@@ -179,6 +179,37 @@ export class Matrix2 {
     return this.clone().transpose();
   }
 
+  public infinityNorm() {
+    let norm = 0;
+    {
+      let row_norm = 0;
+      row_norm += Math.abs(this.values[0]);
+      row_norm += Math.abs(this.values[2]);
+      norm = row_norm > norm ? row_norm : norm;
+    }
+    {
+      let row_norm = 0;
+      row_norm += Math.abs(this.values[1]);
+      row_norm += Math.abs(this.values[3]);
+      norm = row_norm > norm ? row_norm : norm;
+    }
+    return norm;
+  }
+
+  public relativeError(correct: Matrix2) {
+    const diff = correct.clone().sub(this);
+    const correct_norm = correct.infinityNorm();
+    const diff_norm = diff.infinityNorm();
+    return diff_norm / correct_norm;
+  }
+
+  public absoluteError(correct: Matrix2) {
+    const this_norm = this.infinityNorm();
+    const correct_norm = correct.infinityNorm();
+    const diff_norm = Math.abs(this_norm - correct_norm);
+    return diff_norm;
+  }
+
   /**
    * 计算矩阵的逆矩阵
    * @returns {Matrix2}
@@ -207,6 +238,14 @@ export class Matrix2 {
     this.values[1] = -s;
     this.values[2] = s;
     this.values[3] = c;
+  }
+
+  public scaleAdjoint(scale) {
+    const temp     = this.values[0];
+    this.values[0] = this.values[3] * scale;
+    this.values[1] = - this.values[1] * scale;
+    this.values[2] = - this.values[2] * scale;
+    this.values[3] = temp * scale;
   }
 
   public rotate(radians: number): Matrix2 {
@@ -250,9 +289,9 @@ export class Matrix2 {
 
   public sub(m: Matrix2) {
     this.values[0] = this.values[0] - m.at(0);
-    this.values[1] = this.values[0] - m.at(1);
-    this.values[2] = this.values[0] - m.at(2);
-    this.values[3] = this.values[0] - m.at(3);
+    this.values[1] = this.values[1] - m.at(1);
+    this.values[2] = this.values[2] - m.at(2);
+    this.values[3] = this.values[3] - m.at(3);
 
     return this;
   }
@@ -321,6 +360,13 @@ export class Matrix2 {
 
   public clone() {
     return this.copy();
+  }
+
+  public static zero() {
+    return new Matrix2(
+      0, 0,
+      0, 0
+    );
   }
 
   public static product(m1: Matrix2, m2: Matrix2, result: Matrix2 = null): Matrix2 {

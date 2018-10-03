@@ -10,7 +10,7 @@
 /*
 * common.js unit test
 */
-import {EPSILON, equals, toRadian} from '../src/common';
+import {EPSILON, equals, toRadian} from '../../src/common';
 
 describe('matrix', () => {
   let result: any;

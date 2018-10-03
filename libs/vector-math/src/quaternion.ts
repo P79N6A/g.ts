@@ -541,50 +541,50 @@ export class Quaternion {
     return this.copy();
   }
 
-  /**
-   * Sets a Quaternion to represent the shortest rotation from one
-   * vector to another.
-   *
-   * Both vectors are assumed to be unit length.
-   *
-   * @param {quat} out the receiving Quaternion.
-   * @param {vec3} a the initial vector
-   * @param {vec3} b the outination vector
-   * @returns {quat} out
-   */
-  public static rotationTo(a: Vector3, b: Vector3, out: Quaternion = null) {
-    if (!out) {
-      out = new Quaternion();
-    }
-
-    const tmpvec3   = new Vector3();
-    const xUnitVec3 = new Vector3([1, 0, 0]);
-    const yUnitVec3 = new Vector3([0, 1, 0]);
-
-    const d = Vector3.dot(a, b);
-    if (d < -0.999999) {
-      Vector3.cross(xUnitVec3, a, tmpvec3);
-      if (tmpvec3.length < 0.000001) {
-        Vector3.cross(yUnitVec3, a, tmpvec3);
-      }
-      tmpvec3.normalize();
-      out.setAxisAngle(tmpvec3, Math.PI);
-      return out;
-    } else if (d > 0.999999) {
-      out[0] = 0;
-      out[1] = 0;
-      out[2] = 0;
-      out[3] = 1;
-      return out;
-    } else {
-      Vector3.cross(a, b, tmpvec3);
-      out[0] = tmpvec3[0];
-      out[1] = tmpvec3[1];
-      out[2] = tmpvec3[2];
-      out[3] = 1 + d;
-      return out.normalize();
-    }
-  }
+  // /**
+  //  * Sets a Quaternion to represent the shortest rotation from one
+  //  * vector to another.
+  //  *
+  //  * Both vectors are assumed to be unit length.
+  //  *
+  //  * @param {quat} out the receiving Quaternion.
+  //  * @param {vec3} a the initial vector
+  //  * @param {vec3} b the outination vector
+  //  * @returns {quat} out
+  //  */
+  // public static rotationTo(a: Vector3, b: Vector3, out: Quaternion = null) {
+  //   if (!out) {
+  //     out = new Quaternion();
+  //   }
+  //
+  //   const tmpvec3   = new Vector3();
+  //   const xUnitVec3 = new Vector3([1, 0, 0]);
+  //   const yUnitVec3 = new Vector3([0, 1, 0]);
+  //
+  //   const d = Vector3.dot(a, b);
+  //   if (d < -0.999999) {
+  //     Vector3.cross(xUnitVec3, a, tmpvec3);
+  //     if (tmpvec3.length < 0.000001) {
+  //       Vector3.cross(yUnitVec3, a, tmpvec3);
+  //     }
+  //     tmpvec3.normalize();
+  //     out.setAxisAngle(tmpvec3, Math.PI);
+  //     return out;
+  //   } else if (d > 0.999999) {
+  //     out[0] = 0;
+  //     out[1] = 0;
+  //     out[2] = 0;
+  //     out[3] = 1;
+  //     return out;
+  //   } else {
+  //     Vector3.cross(a, b, tmpvec3);
+  //     out[0] = tmpvec3[0];
+  //     out[1] = tmpvec3[1];
+  //     out[2] = tmpvec3[2];
+  //     out[3] = 1 + d;
+  //     return out.normalize();
+  //   }
+  // }
 
   public static sum(q1: Quaternion, q2: Quaternion, out: Quaternion = null): Quaternion {
     if (!out) {

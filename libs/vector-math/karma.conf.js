@@ -3,6 +3,7 @@ const { constants } = require('karma');
 
 module.exports = (config) => {
   config.set({
+    // basePath: join(__dirname, '..'),
     frameworks: ['jasmine'],
     files: [{ pattern: 'test.ts', watched: false }],
     preprocessors: { 'test.ts': ['webpack', 'sourcemap'] },
@@ -35,6 +36,10 @@ module.exports = (config) => {
       }
     ],
 
+    client: {
+      clearContext: false
+    },
+
     webpackMiddleware: {
       // webpack-dev-middleware configuration
       // i. e.
@@ -50,4 +55,4 @@ module.exports = (config) => {
     singleRun: false,
     concurrency: Infinity
   })
-}
+};

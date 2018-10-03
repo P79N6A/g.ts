@@ -47,14 +47,11 @@
     "no-string-literal": false,
     "no-trailing-whitespace": false,
     "no-empty": false,
-    "triple-equals": [
-      true,
-      "allow-null-check",
-      "allow-undefined-check"
-    ],
+    "triple-equals": false,
     "variable-name": false,
     "one-variable-per-declaration": false,
     "prefer-const": false,
+    "prefer-for-of": false,
     "adjacent-overload-signatures": false,
     "max-classes-per-file": [
       false
