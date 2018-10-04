@@ -58,8 +58,7 @@
     "prepublishOnly": "npm run build-lib && npm run dist",
     "tslint": "tslint packages",
     "tslint-fix": "tslint --fix packages/**/*.ts",
-    "test": "torch --compile --renderer --recursive ./test/unit",
-    "test-live": "torch --compile --renderer --interactive --recursive ./test/"
+    "test:vector-match": "karma start libs/vector-math/karma.conf.js"
   },
   "dependencies": {}
 }

@@ -80,7 +80,7 @@ export function parseMatrix(input: string){
 
 export function parseVector(v: string) {
   v             = v.trim();
-  const pattern = new RegExp('[\s]+', 'mgi');
+  const pattern = new RegExp('[\\s]+', 'mgi');
   let rows      = v.split(pattern);
   let values    = [];
   for (let i = 0; i < rows.length; i++) {

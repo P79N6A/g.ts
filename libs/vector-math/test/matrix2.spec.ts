@@ -8,7 +8,7 @@ import { Vector2 } from '../src/vector2';
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import { parseMatrix, relativeTest } from '../testing/test-utils';
+import { parseMatrix, parseVector, relativeTest } from '../testing/test-utils';
 
 describe('matrix2', () => {
   it('adjoint', () => {
@@ -167,6 +167,49 @@ describe('matrix2', () => {
 
     for (let i = 0; i < input.length; i++) {
       const output = input[i].sub(m);
+      relativeTest(output, expectedOutput[i]);
+    }
+  });
+
+  it('multiply', () => {
+    let input          = [];
+    let expectedOutput = [];
+
+    const m = parseMatrix(`7   8
+                                 9   10`);
+
+    input
+      .push(parseMatrix(`2   4
+                               5   6`));
+    expectedOutput
+      .push(parseMatrix(`50   56
+                               89  100`));
+
+    expect(input.length == expectedOutput.length);
+
+    for (let i = 0; i < input.length; i++) {
+      const output = input[i].multiply(m);
+      relativeTest(output, expectedOutput[i]);
+    }
+  });
+
+  it('transform', () => {
+    let input          = [];
+    let expectedOutput = [];
+
+    const v = parseVector(`7   8`);
+
+    input
+      .push(parseMatrix(`2   4
+                               5   6`));
+    expectedOutput
+      .push(parseVector(`46  83`));
+
+    expect(input.length == expectedOutput.length);
+
+    for (let i = 0; i < input.length; i++) {
+      const output = input[i].transform(v);
+      relativeTest(output, input[i]);
       relativeTest(output, expectedOutput[i]);
     }
   });
