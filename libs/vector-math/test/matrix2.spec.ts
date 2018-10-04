@@ -108,8 +108,67 @@ describe('matrix2', () => {
   //   expect(false).toBe(false)
   // })
 
-  it('equals', () => {
-      // expect(false).toMatch()
+  // it('equals', () => {
+  // expect(false).toMatch()
+  // });
+
+  it('absolute', () => {
+    const m        = parseMatrix(`-1  -2
+                                         3  -4`) as Matrix2;
+    const expected = parseMatrix(`1  2
+                                        3  4`) as Matrix2;
+    let out        = Matrix2.zero();
+    let result     = Matrix2.absolute(m, out);
+
+    expect(result instanceof Matrix2).toBe(true);
+
+    relativeTest(out, result);
+
+    relativeTest(out, expected);
+  });
+
+  it('add', () => {
+    let input          = [];
+    let expectedOutput = [];
+
+    const m = parseMatrix(`1   1
+                                 1   1`);
+
+    input
+      .push(parseMatrix(`1   3
+                               4   5`));
+    expectedOutput
+      .push(parseMatrix(`2   4
+                               5   6`));
+
+    expect(input.length == expectedOutput.length);
+
+    for (let i = 0; i < input.length; i++) {
+      const output = input[i].add(m);
+      relativeTest(output, expectedOutput[i]);
+    }
+  });
+
+  it('sub', () => {
+    let input          = [];
+    let expectedOutput = [];
+
+    const m = parseMatrix(`1   1
+                                 1   1`);
+
+    input
+      .push(parseMatrix(`2   4
+                               5   6`));
+    expectedOutput
+      .push(parseMatrix(`1   3
+                               4   5`));
+
+    expect(input.length == expectedOutput.length);
+
+    for (let i = 0; i < input.length; i++) {
+      const output = input[i].sub(m);
+      relativeTest(output, expectedOutput[i]);
+    }
   });
 
 });

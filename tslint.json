@@ -74,6 +74,14 @@
     "trailing-comma": [
       true,
       {
+        "singleline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      },
+      {
         "multiline": {
           "objects": "never",
           "arrays": "never",

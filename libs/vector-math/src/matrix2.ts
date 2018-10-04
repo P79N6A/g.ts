@@ -316,9 +316,9 @@ export class Matrix2 {
 
   public add(m: Matrix2) {
     this.values[0] = this.values[0] + m.at(0);
-    this.values[1] = this.values[0] + m.at(1);
-    this.values[2] = this.values[0] + m.at(2);
-    this.values[3] = this.values[0] + m.at(3);
+    this.values[1] = this.values[1] + m.at(1);
+    this.values[2] = this.values[2] + m.at(2);
+    this.values[3] = this.values[3] + m.at(3);
 
     return this;
   }
@@ -409,23 +409,23 @@ export class Matrix2 {
     return Matrix2.zero().setRotation(radians);
   }
 
-  public static product(m1: Matrix2, m2: Matrix2, result: Matrix2 = null): Matrix2 {
+  public static product(m1: Matrix2, m2: Matrix2, out: Matrix2 = null): Matrix2 {
     let a11 = m1.at(0),
         a12 = m1.at(1),
         a21 = m1.at(2),
         a22 = m1.at(3);
 
-    if (!result) {
-      result = new Matrix2();
+    if (!out) {
+      out = new Matrix2();
     }
-    result.init([
+    out.init([
       a11 * m2.at(0) + a12 * m2.at(2),
       a11 * m2.at(1) + a12 * m2.at(3),
       a21 * m2.at(0) + a22 * m2.at(2),
       a21 * m2.at(1) + a22 * m2.at(3),
     ]);
 
-    return result;
+    return out;
   }
 
   public static absolute(m: Matrix2, out?: Matrix2) {
