@@ -654,24 +654,6 @@ export class Matrix3 {
   //   return this;
   // }
 
-  public scaleVector2(v: Vector2) {
-    const x = v[0];
-    const y = v[1];
-
-    this.values[0] = x * this.values[0];
-    this.values[1] = x * this.values[1];
-    this.values[2] = x * this.values[2];
-
-    this.values[3] = y * this.values[3];
-    this.values[4] = y * this.values[4];
-    this.values[5] = y * this.values[5];
-
-    this.values[6] = this.values[6];
-    this.values[7] = this.values[7];
-    this.values[8] = this.values[8];
-    return this;
-  }
-
   /**
    * Clone
    *

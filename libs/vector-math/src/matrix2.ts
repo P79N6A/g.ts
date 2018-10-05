@@ -332,6 +332,7 @@ export class Matrix2 {
     return this;
   }
 
+  // dot
   public multiply(m: Matrix2): Matrix2 {
     const a11 = this.values[0],
           a12 = this.values[1],
@@ -375,23 +376,6 @@ export class Matrix2 {
     }
 
     return this.transform(out);
-  }
-
-  public scaleVector2(vector: Vector2): Matrix2 {
-    let a11 = this.values[0],
-        a12 = this.values[1],
-        a21 = this.values[2],
-        a22 = this.values[3];
-
-    let x = vector.x,
-        y = vector.y;
-
-    this.values[0] = a11 * x;
-    this.values[1] = a12 * y;
-    this.values[2] = a21 * x;
-    this.values[3] = a22 * y;
-
-    return this;
   }
 
   public clone() {

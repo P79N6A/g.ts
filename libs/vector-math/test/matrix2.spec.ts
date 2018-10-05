@@ -214,4 +214,32 @@ describe('matrix2', () => {
     }
   });
 
+  it('rotate', () => {
+    let input          = [];
+    let expectedOutput = [];
+
+    const r = Math.PI / 1.2;
+
+    input
+      .push(parseMatrix(`2   4
+                               5   6`));
+    expectedOutput
+      .push(parseMatrix(`0.267949  -4.4641
+                              -1.33013	 -7.69615`));
+
+    expect(input.length == expectedOutput.length);
+
+    const m = parseMatrix(`1  1
+                                 1  1`) as Matrix2;
+    relativeTest(m.clone().rotate(Math.PI / 2), new Matrix2(1, -1, 1, -1));
+    relativeTest(m.clone().rotate(Math.PI / 4), new Matrix2(Math.SQRT2, 0, Math.SQRT2, 0));
+    relativeTest(m.clone().rotate(Math.PI),            new Matrix2(-1, -1, -1, -1));
+
+    for (let i = 0; i < input.length; i++) {
+      const output = input[i].rotate(r);
+      relativeTest(output, input[i]);
+      relativeTest(output, expectedOutput[i]);
+    }
+  });
+
 });
