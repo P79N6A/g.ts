@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingSin} from '..';
-import {genericInOut, genericOut} from './generic';
+import { EasingSin } from '..';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing sin test suit', () => {
   it('easeSinIn(t) returns the expected results', () => {
@@ -24,7 +24,7 @@ describe('easing sin test suit', () => {
   });
 
   it('easeSinOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingSin.easeIn.getRatio);
+    const genericEaseOut = genericOut(t => EasingSin.easeIn.getRatio(t));
     expect(EasingSin.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
     expect(EasingSin.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
     expect(EasingSin.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
@@ -39,7 +39,7 @@ describe('easing sin test suit', () => {
   });
 
   it('easeSinInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingSin.easeIn.getRatio);
+    const genericEaseInOut = genericInOut(t => EasingSin.easeIn.getRatio(t));
     expect(EasingSin.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(EasingSin.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(EasingSin.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

@@ -12,7 +12,7 @@
 export class ExpIn {
 
   public getRatio(p: number): number {
-    return Math.pow(2, 10 * (p - 1)) - 0.001;
+    return p === 0.0 ? p : Math.pow(2.0, 10.0 * (p - 1.0));
   }
 }
 
@@ -22,7 +22,7 @@ export class ExpIn {
 export class ExpOut {
 
   public getRatio(p: number): number {
-    return 1 - Math.pow(2, -10 * p);
+    return p === 1.0 ? 1 : 1 - Math.pow(2, -10 * p);
   }
 }
 
@@ -32,7 +32,11 @@ export class ExpOut {
 export class ExpInOut {
 
   public getRatio(p: number): number {
-    return ((p *= 2) < 1) ? 0.5 * Math.pow(2, 10 * (p - 1)) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
+    return (p === 0.0 || p === 1.0)
+      ? p
+      : ((p *= 2) < 1)
+        ? 0.5 * Math.pow(2, 10 * (p - 1))
+        : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
   }
 }
 

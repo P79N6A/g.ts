@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingCubic} from '..';
-import {genericInOut, genericOut} from './generic';
+import { EasingCubic } from '..';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing cubic test suit', () => {
 
@@ -25,7 +25,7 @@ describe('easing cubic test suit', () => {
   });
 
   it('easeCubicOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingCubic.easeIn.getRatio);
+    const genericEaseOut = genericOut(t => EasingCubic.easeIn.getRatio(t));
     expect(EasingCubic.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
     expect(EasingCubic.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
     expect(EasingCubic.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
@@ -40,7 +40,7 @@ describe('easing cubic test suit', () => {
   });
 
   it('easeCubicInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingCubic.easeIn.getRatio);
+    const genericEaseInOut = genericInOut(t => EasingCubic.easeIn.getRatio(t));
     expect(EasingCubic.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(EasingCubic.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(EasingCubic.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

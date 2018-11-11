@@ -24,7 +24,7 @@ describe('easing bounce test suit', () => {
   });
 
   it('easeBounceOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingBounce.easeIn.getRatio);
+    const genericEaseOut = genericOut(t => EasingBounce.easeIn.getRatio(t));
     expect(EasingBounce.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0));
     expect(EasingBounce.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1));
     expect(EasingBounce.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2));
@@ -39,7 +39,7 @@ describe('easing bounce test suit', () => {
   });
 
   it('easeBounceInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingBounce.easeIn.getRatio);
+    const genericEaseInOut = genericInOut(t => EasingBounce.easeIn.getRatio(t));
     expect(EasingBounce.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(EasingBounce.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(EasingBounce.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

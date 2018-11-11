@@ -14,7 +14,7 @@ const Tau       = 2 * Math.PI,
  * @private
  */
 export class ElasticIn {
-  private _p3: number;
+  private readonly _p3: number;
 
   constructor(protected amplitude: number = Amplitude, protected period: number = Period) {
     this._p3 = Math.asin(1 / (amplitude = Math.max(1, amplitude))) * (period /= Tau);
@@ -40,7 +40,7 @@ export class ElasticOut {
   }
 
   public getRatio(p: number): number {
-    return this.amplitude * Math.pow(2, 10 * p) * Math.sin((p - this._p3) * Tau / this.period) + 1;
+    return this.amplitude * Math.pow(2, -10 * p) * Math.sin((p - this._p3) * Tau / this.period) + 1;
   }
 
   public static create(amplitude: number, period: number): ElasticOut {
@@ -59,7 +59,7 @@ export class ElasticInOut {
   }
 
   public getRatio(p: number): number {
-    if ((p = p * 2) < 0) {
+    if ((p *= 2) < 1) {
       return -(this.amplitude * Math.pow(2, 10 * (p -= 1)) * Math.sin((p - this._p3) * Tau / this.period)) / 2;
     } else {
       return (this.amplitude * Math.pow(2, -10 * (p -= 1)) * Math.sin((p - this._p3) * Tau / this.period) + 2) / 2;

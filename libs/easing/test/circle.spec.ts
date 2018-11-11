@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingCircle} from '..';
-import {genericInOut, genericOut} from './generic';
+import { EasingCircle } from '..';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing circle test suit', () => {
 
@@ -25,7 +25,7 @@ describe('easing circle test suit', () => {
   });
 
   it('easeCircleOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingCircle.easeIn);
+    const genericEaseOut = genericOut(t => EasingCircle.easeIn.getRatio(t));
     expect(EasingCircle.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
     expect(EasingCircle.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
     expect(EasingCircle.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
@@ -40,7 +40,7 @@ describe('easing circle test suit', () => {
   });
 
   it('easeCircleInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingCircle.easeIn);
+    const genericEaseInOut = genericInOut(t => EasingCircle.easeIn.getRatio(t));
     expect(EasingCircle.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(EasingCircle.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(EasingCircle.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

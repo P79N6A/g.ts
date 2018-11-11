@@ -5,9 +5,9 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingPoly} from '..';
-import {PolyIn, PolyInOut, PolyOut} from '../src/poly';
-import {genericInOut, genericOut} from './generic';
+import { EasingPoly } from '..';
+import { PolyIn, PolyInOut, PolyOut } from '../src/poly';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing poly test suit', () => {
   it('easePolyIn(t) returns the expected results', () => {
@@ -57,7 +57,7 @@ describe('easing poly test suit', () => {
   });
 
   it('easePolyOut.exponent(2.5)(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(new PolyIn(2.5).getRatio);
+    const genericEaseOut = genericOut(t => new PolyIn(2.5).getRatio(t));
     expect(new PolyOut(2.5).getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
     expect(new PolyOut(2.5).getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
     expect(new PolyOut(2.5).getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
@@ -78,7 +78,7 @@ describe('easing poly test suit', () => {
   });
 
   it('easePolyInOut.exponent(2.5)(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(new PolyIn(2.5).getRatio);
+    const genericEaseInOut = genericInOut(t => new PolyIn(2.5).getRatio(t));
     expect(new PolyInOut(2.5).getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(new PolyInOut(2.5).getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(new PolyInOut(2.5).getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

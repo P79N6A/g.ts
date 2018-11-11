@@ -26,7 +26,7 @@ describe('easing back test suit', () => {
   });
 
   it('easeBackOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingBack.easeIn.getRatio);
+    const genericEaseOut = genericOut(t => EasingBack.easeIn.getRatio(t));
     expect(EasingBack.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0), 6);
     expect(EasingBack.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1), 6);
     expect(EasingBack.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2), 6);
@@ -41,7 +41,7 @@ describe('easing back test suit', () => {
   });
 
   it('easeBackInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingBack.easeIn.getRatio);
+    const genericEaseInOut = genericInOut(t => EasingBack.easeIn.getRatio(t));
     expect(EasingBack.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0), 6);
     expect(EasingBack.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1), 6);
     expect(EasingBack.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2), 6);

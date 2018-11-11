@@ -10,7 +10,7 @@ import {genericInOut, genericOut} from './generic';
 
 describe('easing exp test suit', () => {
   it('easeExpIn(t) returns the expected results', () => {
-    expect(EasingExp.easeIn.getRatio(0.0)).toBeCloseTo(0.000976, 6);
+    expect(EasingExp.easeIn.getRatio(0.0)).toBeCloseTo(0.000000, 6);
     expect(EasingExp.easeIn.getRatio(0.1)).toBeCloseTo(0.001953, 6);
     expect(EasingExp.easeIn.getRatio(0.2)).toBeCloseTo(0.003906, 6);
     expect(EasingExp.easeIn.getRatio(0.3)).toBeCloseTo(0.007813, 6);
@@ -24,7 +24,7 @@ describe('easing exp test suit', () => {
   });
 
   it('easeExpOut(t) returns the expected results', () => {
-    const genericEaseOut = genericOut(EasingExp.easeIn.getRatio);
+    const genericEaseOut = genericOut(t => EasingExp.easeIn.getRatio(t));
     expect(EasingExp.easeOut.getRatio(0.0)).toBeCloseTo(genericEaseOut(0.0));
     expect(EasingExp.easeOut.getRatio(0.1)).toBeCloseTo(genericEaseOut(0.1));
     expect(EasingExp.easeOut.getRatio(0.2)).toBeCloseTo(genericEaseOut(0.2));
@@ -39,7 +39,7 @@ describe('easing exp test suit', () => {
   });
 
   it('easeExpInOut(t) returns the expected results', () => {
-    const genericEaseInOut = genericInOut(EasingExp.easeInOut.getRatio);
+    const genericEaseInOut = genericInOut(t => EasingExp.easeIn.getRatio(t));
     expect(EasingExp.easeInOut.getRatio(0.0)).toBeCloseTo(genericEaseInOut(0.0));
     expect(EasingExp.easeInOut.getRatio(0.1)).toBeCloseTo(genericEaseInOut(0.1));
     expect(EasingExp.easeInOut.getRatio(0.2)).toBeCloseTo(genericEaseInOut(0.2));

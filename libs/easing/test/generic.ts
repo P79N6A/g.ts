@@ -6,6 +6,11 @@
  * See LICENSE file in the project root for full license information.
  */
 
+/**
+ * This is a test file for test easy function, whether is correct.
+ * the formal easy function is a optimistic algorithm.
+ */
+
 export function genericOut(easeIn) {
   return (t) => {
     return 1 - easeIn(1 - t);
@@ -17,3 +22,40 @@ export function genericInOut(easeIn) {
     return (t < 0.5 ? easeIn(t * 2) : (2 - easeIn((1 - t) * 2))) / 2;
   };
 }
+
+/**
+ * following function is used for create a convenient easeIn Function
+ */
+
+export function generateEasing(dummyCls, ...args) {
+  return (t) => {
+    const ins = dummyCls.constructor.apply(null, args);
+    return ins.getRatio(t);
+  };
+}
+
+//
+// /**
+//  * example for use generic easy in factory
+//  * ```
+//  * const easyFn = genericOut(genericEasyInFactory(e, r)));
+//  * easyFn.getRatio(0.2)
+//  * ```
+//  * @param exponent
+//  * @param ratio
+//  */
+// export function genericEasyInFactory(exponent, ratio) {
+//   return new PolyIn(exponent).getRatio(ratio);
+// }
+//
+// /**
+//  * example for use generic easy out factory
+//  * ```
+//  * const easyOut = generic
+//  * ```
+//  * @param exponent
+//  * @param ratio
+//  */
+// export function genericEasyOutFactory(exponent, ratio) {
+//   return new PolyOut(exponent).getRatio(ratio)
+// }
