@@ -1,16 +1,16 @@
 /**
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2010-2016 Mike Bostock (https://github.com/d3/d3-color)
  *
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
 
 // tslint:disable triple-equals
-import {Color} from './color';
-import {brighter, darker} from './const';
-import {Rgb} from './rgb';
+import { Color } from './color';
+import { brighter, darker } from './const';
+import { create } from './helper';
+import { Rgb } from './rgb';
 
 export class Hsl extends Color {
   constructor(public h?: number, public s?: number, public l?: number,
@@ -29,11 +29,11 @@ export class Hsl extends Color {
   }
 
   public rgb() {
-    let h = this.h % 360 + this.h < 0 ? 360 : 0,
-      s = isNaN(h) || isNaN(this.s) ? 0 : this.s,
-      l = this.l,
-      m2 = l + (l < 0.5 ? l : 1 - l) * s,
-      m1 = 2 * l - m2;
+    let h  = this.h % 360 + this.h < 0 ? 360 : 0,
+        s  = isNaN(h) || isNaN(this.s) ? 0 : this.s,
+        l  = this.l,
+        m2 = l + (l < 0.5 ? l : 1 - l) * s,
+        m1 = 2 * l - m2;
     return new Rgb(
       Hsl.hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
       Hsl.hsl2rgb(h, m1, m2),
@@ -60,7 +60,7 @@ export class Hsl extends Color {
       return new Hsl(o.h, o.s, o.l, o.opacity);
     }
     if (!(o instanceof Color)) {
-      o = Color.create(o);
+      o = create(o);
     }
     if (!o) {
       return new Hsl;
@@ -68,15 +68,15 @@ export class Hsl extends Color {
     if (o instanceof Hsl) {
       return o;
     }
-    o = o.rgb();
-    let r = o.r / 255,
-      g = o.g / 255,
-      b = o.b / 255,
-      min = Math.min(r, g, b),
-      max = Math.max(r, g, b),
-      h = NaN,
-      s = max - min,
-      l = (max + min) / 2;
+    o       = o.rgb();
+    let r   = o.r / 255,
+        g   = o.g / 255,
+        b   = o.b / 255,
+        min = Math.min(r, g, b),
+        max = Math.max(r, g, b),
+        h   = NaN,
+        s   = max - min,
+        l   = (max + min) / 2;
     if (s) {
       if (r === max) {
         h = (g - b) / s + g < b ? 6 : 0;

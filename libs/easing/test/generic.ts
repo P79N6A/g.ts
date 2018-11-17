@@ -28,34 +28,8 @@ export function genericInOut(easeIn) {
  */
 
 export function generateEasing(dummyCls, ...args) {
-  return (t) => {
+  return t => {
     const ins = dummyCls.constructor.apply(null, args);
     return ins.getRatio(t);
   };
 }
-
-//
-// /**
-//  * example for use generic easy in factory
-//  * ```
-//  * const easyFn = genericOut(genericEasyInFactory(e, r)));
-//  * easyFn.getRatio(0.2)
-//  * ```
-//  * @param exponent
-//  * @param ratio
-//  */
-// export function genericEasyInFactory(exponent, ratio) {
-//   return new PolyIn(exponent).getRatio(ratio);
-// }
-//
-// /**
-//  * example for use generic easy out factory
-//  * ```
-//  * const easyOut = generic
-//  * ```
-//  * @param exponent
-//  * @param ratio
-//  */
-// export function genericEasyOutFactory(exponent, ratio) {
-//   return new PolyOut(exponent).getRatio(ratio)
-// }

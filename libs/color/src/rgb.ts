@@ -1,15 +1,15 @@
 /**
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- * Copyright (c) 2010-2016 Mike Bostock (https://github.com/d3/d3-color)
  *
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
 
 // tslint:disable triple-equals
-import {Color, hex} from './color';
+import {Color} from './color';
 import {brighter, darker} from './const';
+import { create, hex } from './helper';
 
 export class Rgb {
   constructor(public r?, public g?, public b?, public opacity = 1) {
@@ -52,7 +52,7 @@ export class Rgb {
 
   public static create(o) {
     if (!(o instanceof Color)) {
-      o = Color.create(o);
+      o = create(o);
     }
     if (!o) {
       return new Rgb;
