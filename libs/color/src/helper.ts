@@ -41,7 +41,7 @@ export function hsla(h, s, l, a) {
 
 export function hex(value) {
   value = Math.max(0, Math.min(255, Math.round(value) || 0));
-  return (value < 16 ? '0' : '') + value.toString(16);
+  return value.toString(16).padStart(2, '0');
 }
 
 export function create(format: string) {
@@ -71,3 +71,8 @@ export function create(format: string) {
   }
   return null;
 }
+
+export function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
