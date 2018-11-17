@@ -6,8 +6,11 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {RenderStrategy} from './render-strategy';
+import { RenderStrategy } from './render-strategy';
 
 export class CanvasRenderStategy extends RenderStrategy {
 
+  renderShape() {
+
+  }
 }

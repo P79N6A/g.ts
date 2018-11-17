@@ -10,4 +10,7 @@ import {RenderStrategy} from './render-strategy';
 
 export class SvgRenderStategy extends RenderStrategy {
 
+  renderShape() {
+
+  }
 }
