@@ -1,0 +1,12 @@
+[submodule "applications/g2"]
+	path = applications/g2
+	url = git@github.com:antvis/g2.git
+[submodule "applications/f2"]
+	path = applications/f2
+	url = git@github.com:antvis/f2.git
+[submodule "applications/g6"]
+	path = applications/g6
+	url = git@github.com:antvis/g6.git
+[submodule "applications/data-set"]
+	path = applications/data-set
+	url = git@github.com:antvis/data-set.git
