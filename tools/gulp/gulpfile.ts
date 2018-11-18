@@ -1,0 +1,2 @@
+
+import './tasks/sync-update';

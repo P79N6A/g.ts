@@ -1,0 +1,94 @@
+{
+  "extends": "tslint:recommended",
+  "rulesDirectory": [],
+  "rules": {
+    "class-name": true,
+    "deprecation": true,
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "private-instance-field",
+          "protected-instance-field",
+          "public-instance-field",
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          "private-instance-method",
+          "protected-instance-method",
+          "public-instance-method",
+          "private-static-method",
+          "protected-static-method",
+          "public-static-method"
+        ]
+      }
+    ],
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ],
+    "curly": [
+      true,
+      "ignore-same-line"
+    ],
+    "object-literal-key-quotes": [
+      true,
+      "consistent"
+    ],
+    "no-arg": true,
+    "no-construct": true,
+    "no-duplicate-variable": true,
+    "no-eval": true,
+    "no-unused-expression": true,
+    "no-var-keyword": true,
+    "no-string-literal": false,
+    "no-trailing-whitespace": false,
+    "no-empty": false,
+    "triple-equals": false,
+    "variable-name": false,
+    "one-variable-per-declaration": false,
+    "prefer-const": false,
+    "prefer-for-of": false,
+    "adjacent-overload-signatures": false,
+    "max-classes-per-file": [
+      false
+    ],
+    "max-line-length": [
+      false
+    ],
+    "quotemark": [
+      true,
+      "single"
+    ],
+    "no-conditional-assignment": false,
+    "no-bitwise": false,
+    "object-literal-sort-keys": false,
+    "new-parens": false,
+    "align": [
+      true,
+      "statements"
+    ],
+    "trailing-comma": [
+      true,
+      {
+        "singleline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      },
+      {
+        "multiline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        }
+      }
+    ]
+  }
+}
