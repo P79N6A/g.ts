@@ -38,7 +38,7 @@ export class Rgb {
     this.opacity = opacity;
   }
 
-  public brighter(k) {
+  public brighter(k?) {
     k = k == null ? brighter : Math.pow(brighter, k);
     return new Rgb(this._r * k, this._g * k, this._b * k, this.opacity);
   }
