@@ -17,22 +17,20 @@ export class Rgb {
   private _b;
   private _opacity;
 
-  get r() { return this._r; }
+  // @formatter:off
+  public get r() { return this._r; }
+  public set r(value) { this._r = clamp(value, 0, 255); }
 
-  set r(value) { this._r = clamp(value, 0, 255); }
+  public get g() { return this._g; }
+  public set g(value) { this._g = clamp(value, 0, 255); }
 
-  get g() { return this._g; }
+  public get b() { return this._b; }
+  public set b(value) { this._b = clamp(value, 0, 255); }
 
-  set g(value) { this._g = clamp(value, 0, 255); }
+  public get opacity() { return this._opacity; }
+  public set opacity(value) { this._opacity = clamp(value, 0, 1); }
 
-  get b() { return this._b; }
-
-  set b(value) { this._b = clamp(value, 0, 255); }
-
-  get opacity() { return this._opacity; }
-
-  set opacity(value) { this._opacity = clamp(value, 0, 1); }
-
+  // @formatter:on
   constructor(r?, g?, b?, opacity = 1) {
     this.r       = r;
     this.g       = g;
@@ -62,7 +60,7 @@ export class Rgb {
   }
 
   public hex() {
-    return '#' + hex(this._r) + hex(this._g) + hex(this._b);
+    return `#${hex(this._r)}${hex(this._g)}${hex(this._b)}`;
   }
 
   public toString() {

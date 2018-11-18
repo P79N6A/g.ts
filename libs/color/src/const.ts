@@ -9,17 +9,17 @@
 export const darker   = 0.7;
 export const brighter = 1 / darker;
 
-export const reI           = '\\s*([+-]?\\d+)\\s*',
-             reN           = '\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*',
-             reP           = '\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*',
+export const reI           = `\\s*([+-]?\\d+)\\s*`,
+             reN           = `\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)\\s*`,
+             reP           = `\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)%\\s*`,
              reHex3        = /^#([0-9a-f]{3})$/,
              reHex6        = /^#([0-9a-f]{6})$/,
-             reRgbInteger  = new RegExp('^rgb\\(' + [reI, reI, reI] + '\\)$'),
-             reRgbPercent  = new RegExp('^rgb\\(' + [reP, reP, reP] + '\\)$'),
-             reRgbaInteger = new RegExp('^rgba\\(' + [reI, reI, reI, reN] + '\\)$'),
-             reRgbaPercent = new RegExp('^rgba\\(' + [reP, reP, reP, reN] + '\\)$'),
-             reHslPercent  = new RegExp('^hsl\\(' + [reN, reP, reP] + '\\)$'),
-             reHslaPercent = new RegExp('^hsla\\(' + [reN, reP, reP, reN] + '\\)$');
+             reRgbInteger  = new RegExp(`^rgb\\(${reI},${reI},${reI}\\)$`),
+             reRgbPercent  = new RegExp(`^rgb\\(${reP},${reP},${reP}\\)$`),
+             reRgbaInteger = new RegExp(`^rgba\\(${reI},${reI},${reI},${reN}\\)$`),
+             reRgbaPercent = new RegExp(`^rgba\\(${reP},${reP},${reP},${reN}\\)$`),
+             reHslPercent  = new RegExp(`^hsl\\(${reN},${reP},${reP}\\)$`),
+             reHslaPercent = new RegExp(`^hsla\\(${reN},${reP},${reP},${reN}\\)$`);
 
 export const named = {
   aliceblue: 0xf0f8ff,
