@@ -23,5 +23,5 @@ install:
 script:
   - |
     if [ "$TEST_TYPE" = ci ]; then
-      npm run karma start libs/karma.conf.js
+      npm run test
     fi
