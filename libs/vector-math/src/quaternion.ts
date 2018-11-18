@@ -7,10 +7,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Matrix3} from './matrix3';
-import {Matrix4} from './matrix4';
-import {Vector3} from './vector3';
-import {Vector4} from './vector4';
+import { Matrix3 } from './matrix3';
+import { Matrix4 } from './matrix4';
+import { Vector3 } from './vector3';
+import { Vector4 } from './vector4';
 
 export class Quaternion {
   private values = new Float32Array(4);

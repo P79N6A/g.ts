@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {interpolateValue} from '../wrapper/interpolate-value';
+import { interpolateValue } from '../wrapper/interpolate-value';
 
 export class InterpolateObject {
   public c: any = {};

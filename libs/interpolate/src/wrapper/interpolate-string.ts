@@ -1,4 +1,4 @@
-import {InterpolateString} from '../interpolate/string';
+import { InterpolateString } from '../interpolate/string';
 
 export function interpolateString(a, b) {
   return t => {

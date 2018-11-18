@@ -6,14 +6,14 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Color} from '@gradii/color';
-import {InterpolateArray} from '../interpolate/array';
-import {InterpolateConstant} from '../interpolate/constant';
-import {InterpolateDate} from '../interpolate/date';
-import {InterpolateNumber} from '../interpolate/number';
-import {InterpolateObject} from '../interpolate/object';
-import {InterpolateRgb} from '../interpolate/rgb';
-import {InterpolateString} from '../interpolate/string';
+import { Color } from '@gradii/color';
+import { InterpolateArray } from '../interpolate/array';
+import { InterpolateConstant } from '../interpolate/constant';
+import { InterpolateDate } from '../interpolate/date';
+import { InterpolateNumber } from '../interpolate/number';
+import { InterpolateObject } from '../interpolate/object';
+import { InterpolateRgb } from '../interpolate/rgb';
+import { InterpolateString } from '../interpolate/string';
 
 export function interpolateValue(a, b) {
   let t = typeof b, c;

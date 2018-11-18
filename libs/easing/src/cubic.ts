@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {PolyIn, PolyInOut, PolyOut} from './poly';
+import { PolyIn, PolyInOut, PolyOut } from './poly';
 
 export class EasingCubic {
   public static easeIn: PolyIn = PolyIn.create(3);

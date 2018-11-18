@@ -7,10 +7,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {clamp, EPSILON} from './common';
-import {Matrix2} from './matrix2';
-import {Vector3} from './vector3';
-import {Vector4} from './vector4';
+import { clamp, EPSILON } from './common';
+import { Matrix2 } from './matrix2';
+import { Vector3 } from './vector3';
+import { Vector4 } from './vector4';
 
 export class Vector2 {
   private values = new Float32Array(2);
@@ -234,7 +234,7 @@ export class Vector2 {
 
   public get squaredLength(): number {
     let x = this.x,
-      y = this.y;
+        y = this.y;
 
     return (x * x + y * y);
   }

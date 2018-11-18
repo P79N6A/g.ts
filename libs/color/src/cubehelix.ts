@@ -7,10 +7,10 @@
  */
 
 // tslint:disable triple-equals
-import {Color} from './color';
-import {deg2rad, rad2deg} from './common';
-import {brighter, darker} from './const';
-import {Rgb} from './rgb';
+import { Color } from './color';
+import { deg2rad, rad2deg } from './common';
+import { brighter, darker } from './const';
+import { Rgb } from './rgb';
 
 const A     = -0.14861,
       B     = +1.78277,
@@ -54,13 +54,13 @@ export class Cubehelix extends Color {
     if (color instanceof Cubehelix) { return new Cubehelix(color.h, color.s, color.l, color.opacity); }
     if (!(color instanceof Rgb)) { color = Rgb.create(color); }
     const r  = color.r / 255,
-      g  = color.g / 255,
-      b  = color.b / 255,
-      l  = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
-      bl = b - l,
-      k  = (E * (g - l) - C * bl) / D,
-      s  = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
-      h  = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
+          g  = color.g / 255,
+          b  = color.b / 255,
+          l  = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
+          bl = b - l,
+          k  = (E * (g - l) - C * bl) / D,
+          s  = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
+          h  = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
     return new Cubehelix(h < 0 ? h + 360 : h, s, l, color.opacity);
   }
 

@@ -16,10 +16,10 @@ export class InterpolatePiecewise {
 
   public interpolate(values: any[]): this {
     this.values = values;
-    let i = 0,
-      n = values.length - 1,
-      v = values[0];
-    this.I = new Array(n < 0 ? 0 : n);
+    let i       = 0,
+        n       = values.length - 1,
+        v       = values[0];
+    this.I      = new Array(n < 0 ? 0 : n);
     while (i < n) {
       this.I[i] = this.interpolator(v, v = values[++i]);
     }

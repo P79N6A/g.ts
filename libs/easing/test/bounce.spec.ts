@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingBounce} from '..';
-import {genericInOut, genericOut} from './generic';
+import { EasingBounce } from '..';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing bounce test suit', () => {
   it('easeBounceIn(t) returns the expected results', () => {

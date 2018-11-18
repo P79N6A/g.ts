@@ -1,4 +1,4 @@
-import {InterpolatePiecewise} from '../interpolate/piecewise';
+import { InterpolatePiecewise } from '../interpolate/piecewise';
 
 export function interpolateObject(values, interpolate) {
   return t => {

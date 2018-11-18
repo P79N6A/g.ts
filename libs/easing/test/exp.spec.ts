@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingExp} from '../src/exp';
-import {genericInOut, genericOut} from './generic';
+import { EasingExp } from '../src/exp';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing exp test suit', () => {
   it('easeExpIn(t) returns the expected results', () => {

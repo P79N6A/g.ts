@@ -1,12 +1,12 @@
-const { join } = require('path');
-const { constants } = require('karma');
+const {join} = require('path');
+const {constants} = require('karma');
 
 module.exports = (config) => {
   config.set({
     // basePath: join(__dirname, '..'),
     frameworks: ['jasmine'],
-    files: [{ pattern: 'test.ts', watched: false }],
-    preprocessors: { 'test.ts': ['webpack', 'sourcemap'] },
+    files: [{pattern: 'test.ts', watched: false}],
+    preprocessors: {'test.ts': ['webpack', 'sourcemap']},
     webpack: [
       {
         devtool: 'inline-source-map',

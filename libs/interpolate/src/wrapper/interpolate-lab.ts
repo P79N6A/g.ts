@@ -1,4 +1,4 @@
-import {InterpolateLab} from '../interpolate/lab';
+import { InterpolateLab } from '../interpolate/lab';
 
 export function interpolateLab(start, end) {
   return t => {

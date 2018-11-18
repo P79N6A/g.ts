@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {InterpolateNumber} from '../number';
-import {parseCss, parseSvg} from './parse';
+import { InterpolateNumber } from '../number';
+import { parseCss, parseSvg } from './parse';
 
 function interpolateTransform(parse, pxComma, pxParen, degParen) {
 
@@ -56,7 +56,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
 
   return function (a, b) {
     let s = [], // string constants and placeholders
-      q = []; // number interpolators
+        q = []; // number interpolators
     a = parse(a), b = parse(b);
     translate(a.translateX, a.translateY, b.translateX, b.translateY, s, q);
     rotate(a.rotate, b.rotate, s, q);

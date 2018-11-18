@@ -1,4 +1,4 @@
-import {InterpolateBSplineClosed} from '../interpolate/b-spline-closed';
+import { InterpolateBSplineClosed } from '../interpolate/b-spline-closed';
 
 export function interpolateBSplineClosed(values) {
   return t => {

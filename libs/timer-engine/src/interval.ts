@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {now, Timer} from './timer';
+import { now, Timer } from './timer';
 
 export function zInterval(callback, delay, time) {
   let t = new Timer, total = delay;

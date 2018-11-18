@@ -6,10 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {InterpolateNumber} from './number';
+import { InterpolateNumber } from './number';
 
 let reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
-  reB = new RegExp(reA.source, 'g');
+    reB = new RegExp(reA.source, 'g');
 
 function zero(b) {
   return () => b;
@@ -22,12 +22,12 @@ function one(b) {
 export class InterpolateString {
   public interpolate(a, b) {
     let bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
-      am, // current match in a
-      bm, // current match in b
-      bs, // string preceding current number in b, if any
-      i = -1, // index in s
-      s = [], // string constants and placeholders
-      q = []; // number interpolators
+        am, // current match in a
+        bm, // current match in b
+        bs, // string preceding current number in b, if any
+        i = -1, // index in s
+        s = [], // string constants and placeholders
+        q = []; // number interpolators
 
     // Coerce inputs to strings.
     a = a + '', b = b + '';

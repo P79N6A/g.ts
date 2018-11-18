@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {EasingBack} from '../src/back';
-import {genericInOut, genericOut} from './generic';
+import { EasingBack } from '../src/back';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing back test suit', () => {
 

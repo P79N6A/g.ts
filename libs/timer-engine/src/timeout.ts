@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Timer} from './timer';
+import { Timer } from './timer';
 
 export function zTimeout(callback, delay, time) {
   let t = new Timer;

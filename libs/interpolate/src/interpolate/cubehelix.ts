@@ -6,8 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Cubehelix} from '@gradii/color';
-import {InterpolateColor, InterpolateHue} from './color';
+import { Cubehelix } from '@gradii/color';
+import { InterpolateColor } from './color';
+import { InterpolateHue } from './hue';
 
 export class InterpolateCubehelix {
   public h: any;
@@ -20,11 +21,11 @@ export class InterpolateCubehelix {
 
   public interpolate(start: string, end: string) {
     const _start = Cubehelix.create(start);
-    const _end = Cubehelix.create(end);
+    const _end   = Cubehelix.create(end);
 
-    this.h = new InterpolateHue().interpolate(_start.h, _end.h);
-    this.s = new InterpolateColor().interpolate(_start.s, _end.s);
-    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.h       = new InterpolateHue().interpolate(_start.h, _end.h);
+    this.s       = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
@@ -46,11 +47,11 @@ export class InterpolateCubehelixLong extends InterpolateCubehelix {
 
   public interpolate(start: string, end: string) {
     const _start = Cubehelix.create(start);
-    const _end = Cubehelix.create(end);
+    const _end   = Cubehelix.create(end);
 
-    this.h = new InterpolateColor().interpolate(_start.h, _end.h);
-    this.s = new InterpolateColor().interpolate(_start.s, _end.s);
-    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.h       = new InterpolateColor().interpolate(_start.h, _end.h);
+    this.s       = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }

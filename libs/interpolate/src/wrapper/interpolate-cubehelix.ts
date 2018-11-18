@@ -1,4 +1,4 @@
-import {InterpolateCubehelix} from '../interpolate/cubehelix';
+import { InterpolateCubehelix } from '../interpolate/cubehelix';
 
 export function interpolateCubehelix(start, end, gramma?) {
   return t => {

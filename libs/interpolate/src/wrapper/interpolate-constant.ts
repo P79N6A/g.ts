@@ -1,4 +1,4 @@
-import {InterpolateConstant} from '../interpolate/constant';
+import { InterpolateConstant } from '../interpolate/constant';
 
 export function interpolateConstant(x) {
   return t => {

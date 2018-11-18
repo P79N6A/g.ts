@@ -1,4 +1,4 @@
-import {InterpolateRgb} from '../interpolate/rgb';
+import { InterpolateRgb } from '../interpolate/rgb';
 
 export function interpolateRgb(start, end, gamma) {
   return t => {

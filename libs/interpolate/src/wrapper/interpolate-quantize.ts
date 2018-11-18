@@ -1,4 +1,4 @@
-import {InterpolateQuantize} from '../interpolate/quantize';
+import { InterpolateQuantize } from '../interpolate/quantize';
 
 export function interpolateQuantize(n, interpolate) {
   return t => {

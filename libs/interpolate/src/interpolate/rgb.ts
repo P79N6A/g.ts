@@ -6,10 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Rgb} from '@gradii/z-color';
-import {InterpolateBSpline} from './b-spline';
-import {InterpolateBSplineClosed} from './b-spline-closed';
-import {InterpolateColor} from './color';
+import { Rgb } from '@gradii/z-color';
+import { InterpolateBSpline } from './b-spline';
+import { InterpolateBSplineClosed } from './b-spline-closed';
+import { InterpolateColor } from './color';
 
 export class InterpolateRgb {
   public r;
@@ -22,11 +22,11 @@ export class InterpolateRgb {
 
   public interpolate(start, end) {
     const _start = Rgb.create(start);
-    const _end = Rgb.create(end);
+    const _end   = Rgb.create(end);
 
-    this.r = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
-    this.g = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
-    this.b = new InterpolateColor(this._gamma).interpolate(_start.b, _end.b);
+    this.r       = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
+    this.g       = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
+    this.b       = new InterpolateColor(this._gamma).interpolate(_start.b, _end.b);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
@@ -48,15 +48,15 @@ export class InterpolateRgbBSpline {
 
   public interpolate(colors) {
     const n = colors.length;
-    let r = new Array(n),
-      g = new Array(n),
-      b = new Array(n),
-      i, color;
+    let r   = new Array(n),
+          g = new Array(n),
+          b = new Array(n),
+          i, color;
     for (i = 0; i < n; ++i) {
       color = Rgb.create(colors[i]);
-      r[i] = color.r || 0;
-      g[i] = color.g || 0;
-      b[i] = color.b || 0;
+      r[i]  = color.r || 0;
+      g[i]  = color.g || 0;
+      b[i]  = color.b || 0;
     }
     this.sR = new InterpolateBSpline().interpolate(r);
     this.sG = new InterpolateBSpline().interpolate(g);
@@ -77,15 +77,15 @@ export class InterpolateRgbBSpline {
 export class InterpolateRgbBSplineClosed extends InterpolateRgbBSpline {
   public interpolate(colors) {
     const n = colors.length;
-    let r = new Array(n),
-      g = new Array(n),
-      b = new Array(n),
-      i, color;
+    let r   = new Array(n),
+          g = new Array(n),
+          b = new Array(n),
+          i, color;
     for (i = 0; i < n; ++i) {
       color = Rgb.create(colors[i]);
-      r[i] = color.r || 0;
-      g[i] = color.g || 0;
-      b[i] = color.b || 0;
+      r[i]  = color.r || 0;
+      g[i]  = color.g || 0;
+      b[i]  = color.b || 0;
     }
     this.sR = new InterpolateBSplineClosed().interpolate(r);
     this.sG = new InterpolateBSplineClosed().interpolate(g);

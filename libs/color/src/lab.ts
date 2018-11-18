@@ -6,12 +6,11 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Color} from './color';
-import {deg2rad} from './common';
-import {Hcl} from './hcl';
-import {Rgb} from './rgb';
+import { Color } from './color';
+import { deg2rad } from './common';
+import { Hcl } from './hcl';
+import { Rgb } from './rgb';
 
-// https://beta.observablehq.com/@mbostock/lab-and-rgb
 const K  = 18,
       Xn = 0.96422,
       Yn = 1,
@@ -53,7 +52,7 @@ export class Lab extends Color {
     );
   }
 
-  public static create(o) {
+  public static create(o: Lab | Hcl | Rgb) {
     if (o instanceof Lab) { return new Lab(o.l, o.a, o.b, o.opacity); }
     if (o instanceof Hcl) {
       if (isNaN(o.h)) { return new Lab(o.l, 0, 0, o.opacity); }

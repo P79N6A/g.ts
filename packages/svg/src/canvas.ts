@@ -1,14 +1,10 @@
-const Util = require('../util/index');
-const Event = require('./event');
-const Group = require('./core/group');
-const Defs = require('./core/defs');
-const Timeline = require('../util/mixin/timeline');
+import * as Util from '../util/index';
+import * as Event from './event';
+import * as Group from './core/group';
+import * as Defs from './core/defs';
+import * as Timeline from '../util/mixin/timeline';
 
-const Canvas = function(cfg) {
-  Canvas.superclass.constructor.call(this, cfg);
-};
-
-Canvas.CFG = {
+@CFG({
   eventEnable: true,
   /**
    * 像素宽度
@@ -56,20 +52,17 @@ Canvas.CFG = {
    * @type {Number}
    */
   pixelRatio: Util.getRatio()
-};
-
-Util.extend(Canvas, Group);
-
-Util.augment(Canvas, {
+})
+export class Canvas extends Group {
   init() {
-    Canvas.superclass.init.call(this);
+    super.init();
     this._setDOM();
     this._setInitSize();
     // this._scale();
     if (this.get('eventEnable')) {
       this._registEvents();
     }
-  },
+  }
   getEmitter(element, event) {
     if (element) {
       if (Util.isEmpty(element._getEvents())) {
@@ -81,7 +74,7 @@ Util.augment(Canvas, {
         return element;
       }
     }
-  },
+  }
   _getEventObj(type, e, point, target) {
     const event = new Event(type, e, true, true);
     event.x = point.x;
@@ -91,7 +84,7 @@ Util.augment(Canvas, {
     event.currentTarget = target;
     event.target = target;
     return event;
-  },
+  }
   _triggerEvent(type, e) {
     const point = this.getPointByClient(e.clientX, e.clientY);
     const shape = this.findShape(e.srcElement);
@@ -131,7 +124,7 @@ Util.augment(Canvas, {
     if (shape && !shape.get('destroyed')) {
       el.style.cursor = shape.attr('cursor') || 'default';
     }
-  },
+  }
   _registEvents() {
     const self = this;
     const el = self.get('el');
@@ -166,11 +159,11 @@ Util.augment(Canvas, {
         self._triggerEvent('touchend', e.changedTouches[0]);
       }
     }, false);
-  },
+  }
   _setDOM() {
     this._setContainer();
     this._setLayer();
-  },
+  }
   _setContainer() {
     const containerId = this.get('containerId');
     let containerDOM = this.get('containerDOM');
@@ -181,7 +174,7 @@ Util.augment(Canvas, {
     Util.modifyCSS(containerDOM, {
       position: 'relative'
     });
-  },
+  }
   _setLayer() {
     const containerDOM = this.get('containerDOM');
     const canvasId = Util.uniqueId('svg_');
@@ -200,11 +193,11 @@ Util.augment(Canvas, {
     this.setSilent('timeline', timeline);
     this.set('context', canvasDOM);
 
-  },
+  }
   _setInitSize() {
     this.changeSize(this.get('width'), this.get('height'));
     this.set('pixelRatio', 1);
-  },
+  }
   _resize() {
     const canvasDOM = this.get('canvasDOM');
     const widthCanvas = this.get('widthCanvas');
@@ -216,13 +209,13 @@ Util.augment(Canvas, {
     canvasDOM.style.height = heightStyle;
     canvasDOM.setAttribute('width', widthCanvas);
     canvasDOM.setAttribute('height', heightCanvas);
-  },
+  }
   getWidth() {
     return this.get('width');
-  },
+  }
   getHeight() {
     return this.get('height');
-  },
+  }
   changeSize(width, height) {
     this.set('widthCanvas', width);
     this.set('heightCanvas', height);
@@ -231,7 +224,7 @@ Util.augment(Canvas, {
     this.set('width', width);
     this.set('height', height);
     this._resize();
-  },
+  }
   /**
    * 将窗口坐标转变成 canvas 坐标
    * @param  {Number} clientX 窗口x坐标
@@ -245,7 +238,7 @@ Util.augment(Canvas, {
       x: clientX - bbox.left,
       y: clientY - bbox.top
     };
-  },
+  }
   getClientByPoint(x, y) {
     const el = this.get('el');
     const bbox = el.getBoundingClientRect();
@@ -253,28 +246,26 @@ Util.augment(Canvas, {
       clientX: x + bbox.left,
       clientY: y + bbox.top
     };
-  },
+  }
   beforeDraw() {
     const el = this.get('el');
     // canvas版本用盖一个canvas大小的矩阵清空画布，svg换成清空html
     el.innerHTML = '';
-  },
+  }
   _beginDraw() {
     this.setSilent('toDraw', true);
-  },
+  }
   _endDraw() {
     this.setSilent('toDraw', false);
-  },
+  }
   // svg实时渲染，兼容canvas版本留个空接口
-  draw() { },
+  draw() { }
   destroy() {
     const containerDOM = this.get('containerDOM');
     const canvasDOM = this.get('canvasDOM');
     if (canvasDOM && containerDOM) {
       containerDOM.removeChild(canvasDOM);
     }
-    Canvas.superclass.destroy.call(this);
+    super.destroy();
   }
-});
-
-module.exports = Canvas;
+}

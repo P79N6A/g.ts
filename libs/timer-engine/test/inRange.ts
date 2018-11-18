@@ -9,7 +9,7 @@
 
 let tape = require('tape');
 
-tape.Test.prototype.inRange = function(actual, expectedMin, expectedMax) {
+tape.Test.prototype.inRange = function (actual, expectedMin, expectedMax) {
   this._assert(expectedMin <= actual && actual <= expectedMax, {
     message: 'should be in range',
     operator: 'inRange',

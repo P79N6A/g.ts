@@ -6,12 +6,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
-let tape = require('tape'),
+let tape        = require('tape'),
     interpolate = require('../');
 
 require('./inDelta');
 
-tape('interpolateNumber(a, b) interpolates between two numbers a and b', function(test) {
+tape('interpolateNumber(a, b) interpolates between two numbers a and b', function (test) {
   let i = interpolate.interpolateNumber(10, 42);
   test.inDelta(i(0.0), 10.0);
   test.inDelta(i(0.1), 13.2);

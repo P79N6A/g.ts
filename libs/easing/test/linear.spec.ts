@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingLinear} from '..';
+import { EasingLinear } from '..';
 
 describe('easing linear test suit', () => {
   it('easeLinear(t) returns the expected results', () => {

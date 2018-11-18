@@ -1,4 +1,4 @@
-import {InterpolateHsl, InterpolateHslLong} from '../interpolate/hsl';
+import { InterpolateHsl, InterpolateHslLong } from '../interpolate/hsl';
 
 export function interpolateHsl(start, end) {
   return t => {

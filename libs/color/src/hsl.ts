@@ -9,7 +9,7 @@
 // tslint:disable triple-equals
 import { Color } from './color';
 import { brighter, darker } from './const';
-import { create } from './helper';
+import { create, hsl2rgb } from './helper';
 import { Rgb } from './rgb';
 
 export class Hsl extends Color {
@@ -35,9 +35,9 @@ export class Hsl extends Color {
         m2 = l + (l < 0.5 ? l : 1 - l) * s,
         m1 = 2 * l - m2;
     return new Rgb(
-      Hsl.hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
-      Hsl.hsl2rgb(h, m1, m2),
-      Hsl.hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
+      hsl2rgb(h >= 240 ? h - 240 : h + 120, m1, m2),
+      hsl2rgb(h, m1, m2),
+      hsl2rgb(h < 120 ? h + 240 : h - 120, m1, m2),
       this.opacity
     );
   }
@@ -46,13 +46,6 @@ export class Hsl extends Color {
     return (0 <= this.s && this.s <= 1 || isNaN(this.s))
       && (0 <= this.l && this.l <= 1)
       && (0 <= this.opacity && this.opacity <= 1);
-  }
-
-  private static hsl2rgb(h, m1, m2) {
-    return (h < 60 ? m1 + (m2 - m1) * h / 60
-      : h < 180 ? m2
-        : h < 240 ? m1 + (m2 - m1) * (240 - h) / 60
-          : m1) * 255;
   }
 
   public static create(o) {

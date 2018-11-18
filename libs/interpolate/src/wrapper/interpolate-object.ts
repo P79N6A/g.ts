@@ -1,4 +1,4 @@
-import {InterpolateObject} from '../interpolate/object';
+import { InterpolateObject } from '../interpolate/object';
 
 export function interpolateObject(start, end) {
   return t => {

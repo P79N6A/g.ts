@@ -7,15 +7,15 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {IntersectionResult} from './intersection_result';
-import {Matrix4} from './matrix4';
-import {Obb3} from './obb3';
-import {Plane} from './plane';
-import {Quad} from './quad';
-import {Ray} from './ray';
-import {Sphere} from './sphere';
-import {Triangle} from './triangle';
-import {Vector3} from './vector3';
+import { IntersectionResult } from './intersection_result';
+import { Matrix4 } from './matrix4';
+import { Obb3 } from './obb3';
+import { Plane } from './plane';
+import { Quad } from './quad';
+import { Ray } from './ray';
+import { Sphere } from './sphere';
+import { Triangle } from './triangle';
+import { Vector3 } from './vector3';
 
 export class Aabb3 {
 

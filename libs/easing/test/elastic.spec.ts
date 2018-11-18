@@ -5,9 +5,9 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {EasingElastic} from '..';
-import {ElasticIn} from '../src/elastic';
-import {genericInOut, genericOut} from './generic';
+import { EasingElastic } from '..';
+import { ElasticIn } from '../src/elastic';
+import { genericInOut, genericOut } from './generic';
 
 describe('easing elastic test suit', () => {
   it('easeElasticIn(t) returns the expected results', () => {

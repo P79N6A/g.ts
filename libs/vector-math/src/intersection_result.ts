@@ -6,7 +6,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import {Vector3} from './vector3';
+import { Vector3 } from './vector3';
 
 /// Defines a result of an intersection test.
 

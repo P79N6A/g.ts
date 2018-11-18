@@ -233,7 +233,7 @@ describe('matrix2', () => {
                                  1  1`) as Matrix2;
     relativeTest(m.clone().rotate(Math.PI / 2), new Matrix2(1, -1, 1, -1));
     relativeTest(m.clone().rotate(Math.PI / 4), new Matrix2(Math.SQRT2, 0, Math.SQRT2, 0));
-    relativeTest(m.clone().rotate(Math.PI),            new Matrix2(-1, -1, -1, -1));
+    relativeTest(m.clone().rotate(Math.PI), new Matrix2(-1, -1, -1, -1));
 
     for (let i = 0; i < input.length; i++) {
       const output = input[i].rotate(r);

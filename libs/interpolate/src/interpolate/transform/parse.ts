@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {decompose, identity} from './decompose';
+import { decompose, identity } from './decompose';
 
 let cssNode,
     cssRoot,

@@ -45,7 +45,7 @@ export function makeMatrix(rows: number, cols: number) {
   }
 }
 
-export function parseMatrix(input: string){
+export function parseMatrix(input: string) {
   input        = input.trim();
   let rows     = input.split('\n');
   let values   = [];

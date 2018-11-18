@@ -7,10 +7,10 @@
  */
 
 // tslint:disable triple-equals
-import {Color} from './color';
-import {rad2deg} from './common';
-import {Lab} from './lab';
-import {Rgb} from './rgb';
+import { Color } from './color';
+import { rad2deg } from './common';
+import { Lab } from './lab';
+import { Rgb } from './rgb';
 
 const K = 18;
 

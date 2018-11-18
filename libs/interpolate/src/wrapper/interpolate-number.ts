@@ -1,4 +1,4 @@
-import {InterpolateNumber} from '../interpolate/number';
+import { InterpolateNumber } from '../interpolate/number';
 
 export function interpolateNumber(start, end) {
   return t => {

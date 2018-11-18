@@ -6,8 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Hsl} from '@gradii/color';
-import {InterpolateColor, InterpolateHue} from './color';
+import { Hsl } from '@gradii/color';
+import { InterpolateColor } from './color';
+import { InterpolateHue } from './hue';
 
 export class InterpolateHsl {
   public h: any;
@@ -17,11 +18,11 @@ export class InterpolateHsl {
 
   public interpolate(start, end) {
     const _start = Hsl.create(start);
-    const _end = Hsl.create(end);
+    const _end   = Hsl.create(end);
 
-    this.h = new InterpolateHue().interpolate(_start.h, _end.h);
-    this.s = new InterpolateColor().interpolate(start.s, end.s);
-    this.l = new InterpolateColor().interpolate(start.l, end.l);
+    this.h       = new InterpolateHue().interpolate(_start.h, _end.h);
+    this.s       = new InterpolateColor().interpolate(start.s, end.s);
+    this.l       = new InterpolateColor().interpolate(start.l, end.l);
     this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
     return this;
   }
@@ -39,11 +40,11 @@ export class InterpolateHsl {
 export class InterpolateHslLong extends InterpolateHsl {
   public interpolate(start, end) {
     const _start = Hsl.create(start);
-    const _end = Hsl.create(end);
+    const _end   = Hsl.create(end);
 
-    this.h = new InterpolateColor().interpolate(_start.h, _end.h);
-    this.s = new InterpolateColor().interpolate(start.s, end.s);
-    this.l = new InterpolateColor().interpolate(start.l, end.l);
+    this.h       = new InterpolateColor().interpolate(_start.h, _end.h);
+    this.s       = new InterpolateColor().interpolate(start.s, end.s);
+    this.l       = new InterpolateColor().interpolate(start.l, end.l);
     this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
     return this;
   }

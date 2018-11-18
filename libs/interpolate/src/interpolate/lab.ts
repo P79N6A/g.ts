@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Lab} from '@gradii/color';
-import {InterpolateColor} from './color';
+import { Lab } from '@gradii/color';
+import { InterpolateColor } from './color';
 
 export class InterpolateLab {
   public l: InterpolateColor;
@@ -17,11 +17,11 @@ export class InterpolateLab {
 
   public interpolate(start: string, end: string) {
     const _start = Lab.create(start);
-    const _end = Lab.create(end);
+    const _end   = Lab.create(end);
 
-    this.l = new InterpolateColor().interpolate(_start.l, _end.l);
-    this.a = new InterpolateColor().interpolate(_start.a, _end.a);
-    this.b = new InterpolateColor().interpolate(_start.b, _end.b);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.a       = new InterpolateColor().interpolate(_start.a, _end.a);
+    this.b       = new InterpolateColor().interpolate(_start.b, _end.b);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }

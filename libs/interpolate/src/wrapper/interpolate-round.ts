@@ -1,4 +1,4 @@
-import {InterpolateRound} from '../interpolate/round';
+import { InterpolateRound } from '../interpolate/round';
 
 export function interpolateRound(a, b) {
   return t => {

@@ -84,7 +84,7 @@ describe('test color', () => {
       expectEqualRgb(hsl_1, new Rgb(0, 0, 0));
 
       const hsl_2 = create('hsl(23%, 43%, 35%)') as Rgb;
-      expectEqualRgb(hsl_2, new Rgb(0x80, 0x33, 0x33);
+      expectEqualRgb(hsl_2, new Rgb(0x80, 0x33, 0x33));
     });
 
     it('create color with hsla(number, *%, *%) should return right color', () => {
@@ -96,7 +96,7 @@ describe('test color', () => {
     });
 
     it('create color with hsla(number, *%, *%, number) should return right color', () => {
-      const hsl_1 = create('hsl(0, 0%, 0%, 0)') as Hsl;
+      const hsl_1 = create('hsla(0, 0%, 0%, 0)') as Hsl;
       expect(hsl_1).toBe(new Hsl(0, 0, 0, 0));
     });
   }

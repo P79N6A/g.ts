@@ -1,4 +1,4 @@
-import {InterpolateBSpline} from '../interpolate/b-spline';
+import { InterpolateBSpline } from '../interpolate/b-spline';
 
 export function interpolateBSpline(values) {
   return t => {

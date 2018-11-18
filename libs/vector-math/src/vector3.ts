@@ -7,8 +7,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {clamp} from './common';
-import {Vector2} from './vector2';
+import { clamp } from './common';
+import { Vector2 } from './vector2';
 
 export class Vector3 {
   public static up      = new Vector3([0, 1, 0]);

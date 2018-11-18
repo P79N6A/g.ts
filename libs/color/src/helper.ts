@@ -28,7 +28,7 @@ import { Rgb } from './rgb';
  *
  * @internal
  */
-export function hsla(h, s, l, a) {
+export function hsla(h: number, s: number, l: number, a: number) {
   if (a <= 0) {
     h = s = l = NaN;
   } else if (l <= 0 || l >= 1) {
@@ -45,7 +45,7 @@ export function hex(value) {
 }
 
 export function create(format: string) {
-  let m;
+  let m: any;
   format = (`${format}`).trim().toLowerCase();
   if (m = reHex3.exec(format)) {
     m = parseInt(m[1], 16);
@@ -61,9 +61,9 @@ export function create(format: string) {
   } else if (m = reRgbaPercent.exec(format)) {
     return Rgb.rgba(m[1] * 255 / 100, m[2] * 255 / 100, m[3] * 255 / 100, m[4]);
   } else if (m = reHslPercent.exec(format)) {
-    return hsla(m[1], m[2] / 100, m[3] / 100, 1);
+    return hsla(+m[1], m[2] / 100, m[3] / 100, 1);
   } else if (m = reHslaPercent.exec(format)) {
-    return hsla(m[1], m[2] / 100, m[3] / 100, m[4]);
+    return hsla(+m[1], m[2] / 100, m[3] / 100, +m[4]);
   } else if (named.hasOwnProperty(format)) {
     return Rgb.rgbn(named[format]);
   } else if (format === 'transparent') {
@@ -76,3 +76,13 @@ export function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
+export function hsl2rgb(h, m1, m2) {
+  return (h < 60
+      ? m1 + (m2 - m1) * h / 60
+      : h < 180
+        ? m2
+        : h < 240
+          ? m1 + (m2 - m1) * (240 - h) / 60
+          : m1
+  ) * 255;
+}

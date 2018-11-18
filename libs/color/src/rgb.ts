@@ -18,15 +18,19 @@ export class Rgb {
   private _opacity;
 
   get r() { return this._r; }
+
   set r(value) { this._r = clamp(value, 0, 255); }
 
   get g() { return this._g; }
+
   set g(value) { this._g = clamp(value, 0, 255); }
 
   get b() { return this._b; }
+
   set b(value) { this._b = clamp(value, 0, 255); }
 
   get opacity() { return this._opacity; }
+
   set opacity(value) { this._opacity = clamp(value, 0, 1); }
 
   constructor(r?, g?, b?, opacity = 1) {

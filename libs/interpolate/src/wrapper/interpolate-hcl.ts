@@ -1,4 +1,4 @@
-import {InterpolateHcl, InterpolateHclLong} from '../interpolate/hcl';
+import { InterpolateHcl, InterpolateHclLong } from '../interpolate/hcl';
 
 export function interpolateHcl(start, end) {
   return t => {

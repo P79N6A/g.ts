@@ -1,4 +1,4 @@
-import {InterpolateColor} from '../interpolate/color';
+import { InterpolateColor } from '../interpolate/color';
 
 export function interpolateColor(a, b) {
   return t => {

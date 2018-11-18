@@ -160,7 +160,7 @@ export class Matrix2 {
   }
 
   public dotRow(i: number, v: Vector2) {
-    return this.values[2 * i] * v.x + this.values[ (2 * i) + 1] * v.y;
+    return this.values[2 * i] * v.x + this.values[(2 * i) + 1] * v.y;
   }
 
   public dotColumn(i: number, v: Vector2) {

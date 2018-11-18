@@ -6,12 +6,17 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export abstract class RenderStrategy {
-  public renderShape() {
+export class InterpolateLinear {
+  public a;
+  public d;
 
+  public interpolate(a, d) {
+    this.a = a;
+    this.d = d;
+    return this;
   }
-}
 
-export abstract class RenderContainer {
-
+  public getResult(t) {
+    return this.a + t * this.d;
+  }
 }

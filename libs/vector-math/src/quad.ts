@@ -1,6 +1,6 @@
-import {Matrix4} from './matrix4';
-import {Triangle} from './triangle';
-import {Vector3} from './vector3';
+import { Matrix4 } from './matrix4';
+import { Triangle } from './triangle';
+import { Vector3 } from './vector3';
 
 export class Quad {
   public get point0() {

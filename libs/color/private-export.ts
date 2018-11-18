@@ -7,4 +7,4 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export {hex as ɵhex } from './src/color';
+export { hex as ɵhex } from './src/color';

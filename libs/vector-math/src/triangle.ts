@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Matrix4} from './matrix4';
-import {Vector3} from './vector3';
+import { Matrix4 } from './matrix4';
+import { Vector3 } from './vector3';
 
 export class Triangle {
   public _point0: Vector3;
