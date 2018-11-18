@@ -8,7 +8,7 @@ import { Vector2 } from '../src/vector2';
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import { parseMatrix, parseVector, relativeTest } from '../testing/test-utils';
+import { parseMatrix, parseVector, relativeTest } from './test-utils';
 
 describe('matrix2', () => {
   it('adjoint', () => {
