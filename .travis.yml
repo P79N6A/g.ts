@@ -6,6 +6,9 @@ node_js:
 env:
   matrix:
     - TEST_TYPE=ci
+git:
+  submodules:
+    false
 
 addons:
   apt:
