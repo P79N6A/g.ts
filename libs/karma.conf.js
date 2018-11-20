@@ -9,6 +9,7 @@ module.exports = (config) => {
     preprocessors: {'test.ts': ['webpack', 'sourcemap']},
     webpack: [
       {
+        mode: 'development',
         devtool: 'inline-source-map',
         resolve: {
           extensions: ['.js', '.ts', '.tsx']
@@ -26,6 +27,21 @@ module.exports = (config) => {
             }
           ]
         },
+
+        plugins: [
+          {
+            apply(compiler) {
+              compiler.hooks.done.tap("ExitOnErrorWebpackPlugin", stats => {
+                if (stats && stats.hasErrors()) {
+                  stats.toJson().errors.forEach(err => {
+                    console.error(err);
+                  });
+                  process.exit(1);
+                }
+              });
+            }
+          }
+        ],
 
         optimization: {
           // We no not want to minimize our code.
@@ -51,6 +67,7 @@ module.exports = (config) => {
       stats: 'errors-only'
     },
 
+    failOnEmptyTestSuite:false,
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

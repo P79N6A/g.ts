@@ -48,7 +48,7 @@
   "scripts": {
     "build": "webpack",
     "build-lib": "babel src --out-dir lib",
-    "test": "karma start libs/karma.conf.js",
+    "test": "karma start libs/karma.conf.js --single-run --no-auto-watch",
     "compress": "uglifyjs --compress --mangle --output dist/g-$npm_package_version.min.js -- build/g.js",
     "coverage": "npm run coverage-generator && npm run coverage-viewer",
     "coverage-viewer": "torch-coverage",
