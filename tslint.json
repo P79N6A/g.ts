@@ -3,6 +3,7 @@
   "rulesDirectory": [],
   "rules": {
     "class-name": true,
+    "comment-format": false,
     "deprecation": true,
     "member-ordering": [
       true,
