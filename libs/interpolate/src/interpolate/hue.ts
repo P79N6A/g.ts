@@ -15,6 +15,7 @@ export class InterpolateHue {
   public interpolate(a, b) {
     this.a = a;
     this.b = b;
+    return this;
   }
 
   public getResult(t) {

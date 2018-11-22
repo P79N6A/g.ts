@@ -17,8 +17,8 @@ describe('test interpolate date', () => {
     expect(i(0.0) instanceof Date).toBe(true);
     expect(i(0.5) instanceof Date).toBe(true);
     expect(i(1.0) instanceof Date).toBe(true);
-    expect(+i(0.2)).toBe( +new Date(2000, 0, 1, 4, 48));
-    expect(+i(0.4)).toBe( +new Date(2000, 0, 1, 9, 36));
+    expect(+i(0.2)).toBe(+new Date(2000, 0, 1, 4, 48));
+    expect(+i(0.4)).toBe(+new Date(2000, 0, 1, 9, 36));
   });
 
   // it('interpolateDate(a, b) reuses the output datea', () => {

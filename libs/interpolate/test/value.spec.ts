@@ -5,8 +5,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import { Rgb } from '@gradii/color';
-import { Hsl } from '@gradii/color';
+import { Hsl, Rgb } from '@gradii/color';
 import { interpolate } from '../public-api';
 
 

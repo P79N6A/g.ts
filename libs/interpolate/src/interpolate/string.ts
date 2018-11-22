@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { InterpolateNumber } from './number';
+import { interpolateNumber } from '../../public-api';
 
 let reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
     reB = new RegExp(reA.source, 'g');
@@ -44,7 +44,7 @@ export class InterpolateString {
         }
       } else { // interpolate non-matching numbers
         s[++i] = null;
-        q.push({i, x: new InterpolateNumber().interpolate(am, bm)});
+        q.push({i, x: interpolateNumber(+am, +bm)});
       }
       bi = reB.lastIndex;
     }
@@ -69,7 +69,7 @@ export class InterpolateString {
 
   public getResult(t) {
     if (this.s.length < 2) {
-      return this.q[0] ? this.q[0].x(t) : this.b;
+      return this.q[0] ? `${this.q[0].x(t)}` : this.b;
     }
     for (let o of this.q) {
       this.s[o.i] = o.x(t);
