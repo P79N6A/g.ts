@@ -6,21 +6,21 @@
  * See LICENSE file in the project root for full license information.
  */
 
-let tape        = require('tape'),
+let it = require('tape'),
     interpolate = require('../');
 
-tape('interpolateDate(a, b) interpolates between two dates a and b', function (test) {
+it('interpolateDate(a, b) interpolates between two dates a and b', function (test) {
   let i = interpolate.interpolateDate(new Date(2000, 0, 1), new Date(2000, 0, 2));
-  test.equal(i(0.0) instanceof Date, true);
-  test.equal(i(0.5) instanceof Date, true);
-  test.equal(i(1.0) instanceof Date, true);
+  expect(i(0.0) instanceof Date).toBe( true);
+  expect(i(0.5) instanceof Date).toBe( true);
+  expect(i(1.0) instanceof Date).toBe( true);
   test.strictEqual(+i(0.2), +new Date(2000, 0, 1, 4, 48));
   test.strictEqual(+i(0.4), +new Date(2000, 0, 1, 9, 36));
-  test.end();
+
 });
 
-tape('interpolateDate(a, b) reuses the output datea', function (test) {
+it('interpolateDate(a, b) reuses the output datea', function (test) {
   let i = interpolate.interpolateDate(new Date(2000, 0, 1), new Date(2000, 0, 2));
   test.strictEqual(i(0.2), i(0.4));
-  test.end();
+
 });

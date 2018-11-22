@@ -6,13 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-let tape = require('tape');
-
-tape.Test.prototype.inDelta = function (actual, expected) {
-  this._assert(expected - 1e-6 < actual && actual < expected + 1e-6, {
-    message: 'should be in delta',
-    operator: 'inDelta',
-    actual,
-    expected,
-  });
-};
+// let tape = require('tape');
+//
+// tape.Test.prototype.inDelta = function (actual, expected) {
+//   this._assert(expected - 1e-6 < actual && actual < expected + 1e-6, {
+//     message: 'should be in delta',
+//     operator: 'inDelta',
+//     actual,
+//     expected,
+//   });
+// };

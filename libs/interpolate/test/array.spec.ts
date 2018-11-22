@@ -7,39 +7,39 @@
  */
 
 describe('interpolateArray(a, b) interpolates defined elements in a and b', () => {
-  test.deepEqual(interpolate.interpolateArray([2, 12], [4, 24])(0.5), [3, 18]);
+  expect(interpolate.interpolateArray([2, 12], [4, 24])(0.5)).toBeDeepEqual( [3, 18]);
 
 });
 
 describe('interpolateArray(a, b) interpolates nested objects and arrays', () => {
-  test.deepEqual(interpolate.interpolateArray([[2, 12]], [[4, 24]])(0.5), [[3, 18]]);
-  test.deepEqual(interpolate.interpolateArray([{foo: [2, 12]}], [{foo: [4, 24]}])(0.5), [{foo: [3, 18]}]);
+  expect(interpolate.interpolateArray([[2, 12]], [[4, 24]])(0.5)).toBeDeepEqual( [[3, 18]]);
+  expect(interpolate.interpolateArray([{ foo: [2, 12] }], [{ foo: [4, 24] }])(0.5)).toBeDeepEqual( [{ foo: [3, 18] }]);
 
 });
 
 describe('interpolateArray(a, b) ignores elements in a that are not in b', () => {
-  test.deepEqual(interpolate.interpolateArray([2, 12, 12], [4, 24])(0.5), [3, 18]);
+  expect(interpolate.interpolateArray([2, 12, 12], [4, 24])(0.5)).toBeDeepEqual( [3, 18]);
 
 });
 
 describe('interpolateArray(a, b) uses constant elements in b that are not in a', () => {
-  test.deepEqual(interpolate.interpolateArray([2, 12], [4, 24, 12])(0.5), [3, 18, 12]);
+  expect(interpolate.interpolateArray([2, 12], [4, 24, 12])(0.5)).toBeDeepEqual( [3, 18, 12]);
 
 });
 
 describe('interpolateArray(a, b) treats undefined as an empty array', () => {
-  test.deepEqual(interpolate.interpolateArray(undefined, [2, 12])(0.5), [2, 12]);
-  test.deepEqual(interpolate.interpolateArray([2, 12], undefined)(0.5), []);
-  test.deepEqual(interpolate.interpolateArray(undefined, undefined)(0.5), []);
+  expect(interpolate.interpolateArray(undefined, [2, 12])(0.5)).toBeDeepEqual( [2, 12]);
+  expect(interpolate.interpolateArray([2, 12], undefined)(0.5)).toBeDeepEqual( []);
+  expect(interpolate.interpolateArray(undefined, undefined)(0.5)).toBeDeepEqual( []);
 
 });
 
 describe('interpolateArray(a, b) interpolates array-like objects', () => {
   let array = new Float64Array(2),
-      args  = (function () { return arguments; })(2, 12);
-  array[0]  = 2;
-  array[1]  = 12;
-  test.deepEqual(interpolate.interpolateArray(array, [4, 24])(0.5), [3, 18]);
-  test.deepEqual(interpolate.interpolateArray(args, [4, 24])(0.5), [3, 18]);
+      args = function () {return arguments;}(2, 12);
+  array[0] = 2;
+  array[1] = 12;
+  expect(interpolate.interpolateArray(array, [4, 24])(0.5)).toBeDeepEqual( [3, 18]);
+  expect(interpolate.interpolateArray(args, [4, 24])(0.5)).toBeDeepEqual( [3, 18]);
 
 });
