@@ -21,7 +21,7 @@ const K  = 18,
       t2 = 3 * t1 * t1,
       t3 = t1 * t1 * t1;
 
-export function gray(l, opacity) {
+function gray(l, opacity) {
   return new Lab(l, 0, 0, opacity === null ? 1 : opacity);
 }
 
