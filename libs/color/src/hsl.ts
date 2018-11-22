@@ -9,8 +9,20 @@
 // tslint:disable triple-equals
 import { Color } from './color';
 import { brighter, darker } from './const';
-import { create, hsl2rgb } from './helper';
+import { create } from './helper';
 import { Rgb } from './rgb';
+
+function hsl2rgb(h, m1, m2) {
+  return (h < 60
+      ? m1 + (m2 - m1) * h / 60
+      : h < 180
+        ? m2
+        : h < 240
+          ? m1 + (m2 - m1) * (240 - h) / 60
+          : m1
+  ) * 255;
+}
+
 
 export class Hsl extends Color {
   constructor(public h?: number, public s?: number, public l?: number,
@@ -48,7 +60,7 @@ export class Hsl extends Color {
       && (0 <= this.opacity && this.opacity <= 1);
   }
 
-  public static create(o) {
+  public static create(o): Hsl {
     if (o instanceof Hsl) {
       return new Hsl(o.h, o.s, o.l, o.opacity);
     }
@@ -86,4 +98,33 @@ export class Hsl extends Color {
     return new Hsl(h, s, l, o.opacity);
   }
 
+}
+
+
+/**
+ * @param h
+ * @param s
+ * @param l
+ * @param a
+ *
+ * @internal
+ */
+export function hsla(h: number, s: number, l: number, a: number) {
+  if (a <= 0) {
+    h = s = l = NaN;
+  } else if (l <= 0 || l >= 1) {
+    h = s = NaN;
+  } else if (s <= 0) {
+    h = NaN;
+  }
+  return new Hsl(h, s, l, a);
+}
+
+export function hsl(color): Hsl ;
+export function hsl(h: number, s: number, l: number, a?: number): Hsl ;
+export function hsl(h: number, s?: number, l?: number, a?: number) {
+  if (arguments.length === 1) {
+    return Hsl.create(h);
+  }
+  return new Hsl(h, s, l, a)
 }

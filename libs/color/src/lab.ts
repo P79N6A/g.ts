@@ -25,19 +25,19 @@ export function gray(l, opacity) {
   return new Lab(l, 0, 0, opacity === null ? 1 : opacity);
 }
 
-export function xyz2lab(t) {
+function xyz2lab(t) {
   return t > t3 ? Math.pow(t, 1 / 3) : t / t2 + t0;
 }
 
-export function lab2xyz(t) {
+function lab2xyz(t) {
   return t > t1 ? t * t * t : t2 * (t - t0);
 }
 
-export function lrgb2rgb(x) {
+function lrgb2rgb(x) {
   return 255 * (x <= 0.0031308 ? 12.92 * x : 1.055 * Math.pow(x, 1 / 2.4) - 0.055);
 }
 
-export function rgb2lrgb(x) {
+function rgb2lrgb(x) {
   return (x /= 255) <= 0.04045 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
 }
 
@@ -48,10 +48,17 @@ export class Lab extends Color {
   private _opacity;
 
   //@formatter:off
-  public get l() { return this._l; } public set l(value) { this._l = clamp(value, 0, 100); }
-  public get a() { return this._a; } public set a(value ) { this._a = clamp(value, 0, 128); }
-  public get b() { return this._b; } public set b(value) { this._b = clamp(value, 0, 128); }
-  public get opacity() { return this._opacity; } public set opacity(value) { this._opacity = clamp(value, 0, 1); }
+  public get l() { return this._l; }
+  public set l(value) { this._l = clamp(value, 0, 100); }
+
+  public get a() { return this._a; }
+  public set a(value) { this._a = clamp(value, 0, 128); }
+
+  public get b() { return this._b; }
+  public set b(value) { this._b = clamp(value, 0, 128); }
+
+  public get opacity() { return this._opacity; }
+  public set opacity(value) { this._opacity = clamp(value, 0, 1); }
 
   //@formatter:on
   constructor(l, a, b, opacity = 1) {
@@ -91,7 +98,7 @@ export class Lab extends Color {
     // );
   }
 
-  public static create(o: Lab | Hcl | Rgb) {
+  public static create(o: Lab | Hcl | Rgb | Color | string) {
     if (o instanceof Lab) { return new Lab(o.l, o.a, o.b, o.opacity); }
     if (o instanceof Hcl) {
       if (isNaN(o.h)) { return new Lab(o.l, 0, 0, o.opacity); }
@@ -99,14 +106,23 @@ export class Lab extends Color {
       return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
     }
     if (!(o instanceof Rgb)) { o = Rgb.create(o); }
-    let r = rgb2lrgb(o.r),
-        g = rgb2lrgb(o.g),
-        b = rgb2lrgb(o.b),
+    let r = rgb2lrgb((o as Rgb).r),
+        g = rgb2lrgb((o as Rgb).g),
+        b = rgb2lrgb((o as Rgb).b),
         y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
     if (r === g && g === b) { x = z = y; } else {
       x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
       z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
     }
-    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), o.opacity);
+    return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), (o as Rgb).opacity);
   }
+}
+
+export function lab(color): Lab;
+export function lab(l, a, b, o?): Lab;
+export function lab(l, a?, b?, o?): Lab {
+  if (arguments.length === 1) {
+    return Lab.create(l);
+  }
+  return new Lab(l, a, b, o);
 }

@@ -69,6 +69,7 @@
     "no-bitwise": false,
     "object-literal-sort-keys": false,
     "new-parens": false,
+    "semicolon": false,
     "align": [
       true,
       "statements"

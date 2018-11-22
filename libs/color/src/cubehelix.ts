@@ -10,6 +10,7 @@
 import { Color } from './color';
 import { deg2rad, rad2deg } from './common';
 import { brighter, darker } from './const';
+import { Hsl } from './hsl';
 import { Rgb } from './rgb';
 
 const A     = -0.14861,
@@ -22,7 +23,7 @@ const A     = -0.14861,
       BC_DA = B * C - D * A;
 
 export class Cubehelix extends Color {
-  constructor(public h, public s, public l, public opacity) {
+  constructor(public h, public s, public l, public opacity = 1) {
     super();
   }
 
@@ -64,4 +65,9 @@ export class Cubehelix extends Color {
     return new Cubehelix(h < 0 ? h + 360 : h, s, l, color.opacity);
   }
 
+}
+
+
+export function cubehelix(h, s, l, opacity?) {
+  return new Hsl(h, s, l, opacity);
 }

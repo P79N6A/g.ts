@@ -6,8 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { InterpolateLinear } from './color';
-import { InterpolateConstant } from './constant';
+import { InterpolateLinear } from './linear';
 
 export class InterpolateHue {
   public a;
@@ -25,7 +24,7 @@ export class InterpolateHue {
         .interpolate(this.a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d)
         .getResult(t);
     } else {
-      return new InterpolateConstant(isNaN(this.a) ? this.b : this.a).getResult(t);
+      return isNaN(this.a) ? this.b : this.a
     }
   }
 }

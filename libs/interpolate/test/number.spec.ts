@@ -5,24 +5,24 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import { interpolateNumber } from '../public-api';
 
-let it = require('tape'),
-    interpolate = require('../');
 
-require('./inDelta');
+describe('test interpolate number', () => {
+  it('interpolateNumber(a, b) interpolates between two numbers a and b', () => {
+    let i = interpolateNumber(10, 42);
+    expect(i(0.0)).toBeCloseTo(10.0);
+    expect(i(0.1)).toBeCloseTo(13.2);
+    expect(i(0.2)).toBeCloseTo(16.4);
+    expect(i(0.3)).toBeCloseTo(19.6);
+    expect(i(0.4)).toBeCloseTo(22.8);
+    expect(i(0.5)).toBeCloseTo(26.0);
+    expect(i(0.6)).toBeCloseTo(29.2);
+    expect(i(0.7)).toBeCloseTo(32.4);
+    expect(i(0.8)).toBeCloseTo(35.6);
+    expect(i(0.9)).toBeCloseTo(38.8);
+    expect(i(1.0)).toBeCloseTo(42.0);
 
-it('interpolateNumber(a, b) interpolates between two numbers a and b', function (test) {
-  let i = interpolate.interpolateNumber(10, 42);
-  expect(i(0.0)).toBeInDelta( 10.0);
-  expect(i(0.1)).toBeInDelta( 13.2);
-  expect(i(0.2)).toBeInDelta( 16.4);
-  expect(i(0.3)).toBeInDelta( 19.6);
-  expect(i(0.4)).toBeInDelta( 22.8);
-  expect(i(0.5)).toBeInDelta( 26.0);
-  expect(i(0.6)).toBeInDelta( 29.2);
-  expect(i(0.7)).toBeInDelta( 32.4);
-  expect(i(0.8)).toBeInDelta( 35.6);
-  expect(i(0.9)).toBeInDelta( 38.8);
-  expect(i(1.0)).toBeInDelta( 42.0);
+  });
+})
 
-});

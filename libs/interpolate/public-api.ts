@@ -6,23 +6,21 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export { default as interpolate } from './src/value';
-export { default as interpolateArray } from './src/array';
-export { default as interpolateBasis } from './src/b-spline';
-export { default as interpolateBasisClosed } from './src/b-spline-closed';
-export { default as interpolateDate } from './src/date';
-export { default as interpolateNumber } from './src/number';
-export { default as interpolateObject } from './src/object';
-export { default as interpolateRound } from './src/round';
-export { default as interpolateString } from './src/string';
-export { interpolateTransformCss, interpolateTransformSvg } from './src/transform/index';
-export { default as interpolateZoom } from './src/zoom';
-export {
-  default as interpolateRgb, rgbBasis as interpolateRgbBasis, rgbBasisClosed as interpolateRgbBasisClosed
-}from './src/rgb';
-export { default as interpolateHsl, hslLong as interpolateHslLong } from './src/hsl';
-export { default as interpolateLab } from './src/lab';
-export { default as interpolateHcl, hclLong as interpolateHclLong } from './src/hcl';
-export { default as interpolateCubehelix, cubehelixLong as interpolateCubehelixLong } from './src/cubehelix';
-export { default as piecewise } from './src/piecewise';
-export { default as quantize } from './src/quantize';
+export { interpolateValue as interpolate } from './src/wrapper/interpolate-value';
+export { interpolateArray } from './src/wrapper/interpolate-array';
+export { interpolateBSpline } from './src/wrapper/interpolate-b-spline';
+export { interpolateBSplineClosed } from './src/wrapper/interpolate-b-spline-closed';
+export { interpolateDate } from './src/wrapper/interpolate-date';
+export { interpolateNumber } from './src/wrapper/interpolate-number';
+export { interpolateObject } from './src/wrapper/interpolate-object';
+export { interpolateRound } from './src/wrapper/interpolate-round';
+export { interpolateString } from './src/wrapper/interpolate-string';
+// export { interpolateTransformCss, interpolateTransformSvg } from './src/interpolate/transform/index';
+export { interpolateZoom } from './src/wrapper/interpolate-zoom';
+export { interpolateRgb, interpolateRgbBSpline, interpolateRgbBSplineClosed }from './src/wrapper/interpolate-rgb';
+export { interpolateHsl, interpolateHslLong } from './src/wrapper/interpolate-hsl';
+export { interpolateLab } from './src/wrapper/interpolate-lab';
+export { interpolateHcl, interpolateHclLong } from './src/wrapper/interpolate-hcl';
+export { interpolateCubehelix, interpolateCubehelixLong, interpolateCubehelixFactory, interpolateCubehelixLongFactory } from './src/wrapper/interpolate-cubehelix';
+export { interpolatePiecewise } from './src/wrapper/interpolate-piecewise';
+export { interpolateQuantize } from './src/wrapper/interpolate-quantize';

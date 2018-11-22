@@ -1,18 +1,40 @@
-const {join} = require('path');
-const {constants} = require('karma');
+const { join, resolve } = require('path');
+const { constants } = require('karma');
+
+const PLUGINS = [];
+
+if (process.env.TRAVIS) {
+  PLUGINS.push(
+    {
+      apply(compiler) {
+        compiler.hooks.done.tap("ExitOnErrorWebpackPlugin", stats => {
+          if (stats && stats.hasErrors()) {
+            stats.toJson().errors.forEach(err => {
+              console.error(err);
+            });
+            process.exit(1);
+          }
+        });
+      }
+    }
+  )
+}
 
 module.exports = (config) => {
   config.set({
     // basePath: join(__dirname, '..'),
     frameworks: ['jasmine'],
-    files: [{pattern: 'test.ts', watched: false}],
-    preprocessors: {'test.ts': ['webpack', 'sourcemap']},
+    files: [{ pattern: 'test.ts', watched: false }],
+    preprocessors: { 'test.ts': ['webpack', 'sourcemap'] },
     webpack: [
       {
         mode: 'development',
         devtool: 'inline-source-map',
         resolve: {
-          extensions: ['.js', '.ts', '.tsx']
+          extensions: ['.js', '.ts', '.tsx'],
+          alias: {
+            "@gradii": resolve(__dirname, "./"),
+          }
         },
         module: {
           rules: [
@@ -28,20 +50,7 @@ module.exports = (config) => {
           ]
         },
 
-        plugins: [
-          {
-            apply(compiler) {
-              compiler.hooks.done.tap("ExitOnErrorWebpackPlugin", stats => {
-                if (stats && stats.hasErrors()) {
-                  stats.toJson().errors.forEach(err => {
-                    console.error(err);
-                  });
-                  process.exit(1);
-                }
-              });
-            }
-          }
-        ],
+        plugins: PLUGINS,
 
         optimization: {
           // We no not want to minimize our code.
@@ -67,7 +76,7 @@ module.exports = (config) => {
       stats: 'errors-only'
     },
 
-    failOnEmptyTestSuite:false,
+    failOnEmptyTestSuite: false,
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

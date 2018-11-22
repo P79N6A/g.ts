@@ -6,7 +6,6 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { InterpolateConstant } from './constant';
 import { InterpolateExponential } from './exponential';
 import { InterpolateLinear } from './linear';
 
@@ -31,9 +30,7 @@ export class InterpolateColor {
           .interpolate(this.a, d)
           .getResult(t);
       } else {
-        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a)
-          .interpolate()
-          .getResult(t);
+        return isNaN(this.a) ? this.b : this.a
       }
     } else {
       if (this.b - this.a) {
@@ -41,9 +38,7 @@ export class InterpolateColor {
           .interpolate(this.a, this.b)
           .getResult(t);
       } else {
-        return new InterpolateConstant(isNaN(this.a) ? this.b : this.a)
-          .interpolate()
-          .getResult(t);
+        return isNaN(this.a) ? this.b : this.a
       }
     }
   }

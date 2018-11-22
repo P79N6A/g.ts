@@ -10,7 +10,8 @@ export class InterpolateConstant {
   constructor(public x?: any) {
   }
 
-  public interpolate() {
+  public interpolate(x) {
+    this.x = x;
     return this;
   }
 

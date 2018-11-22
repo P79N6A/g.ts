@@ -11,16 +11,13 @@ import { InterpolateNumber } from './number';
 let reA = /[-+]?(?:\d+\.?\d*|\.?\d+)(?:[eE][-+]?\d+)?/g,
     reB = new RegExp(reA.source, 'g');
 
-function zero(b) {
-  return () => b;
-}
-
-function one(b) {
-  return t => b(t) + '';
-}
-
 export class InterpolateString {
-  public interpolate(a, b) {
+  private s;
+  private q;
+  private a;
+  private b;
+
+  public interpolate(a: string, b: string) {
     let bi = reA.lastIndex = reB.lastIndex = 0, // scan index for next number in b
         am, // current match in a
         bm, // current match in b
@@ -28,9 +25,6 @@ export class InterpolateString {
         i = -1, // index in s
         s = [], // string constants and placeholders
         q = []; // number interpolators
-
-    // Coerce inputs to strings.
-    a = a + '', b = b + '';
 
     // Interpolate pairs of numbers in a & b.
     while ((am = reA.exec(a)) && (bm = reB.exec(b))) {
@@ -50,7 +44,7 @@ export class InterpolateString {
         }
       } else { // interpolate non-matching numbers
         s[++i] = null;
-        q.push({i, x: InterpolateNumber(am, bm)});
+        q.push({i, x: new InterpolateNumber().interpolate(am, bm)});
       }
       bi = reB.lastIndex;
     }
@@ -65,21 +59,21 @@ export class InterpolateString {
       }
     }
 
+    this.s = s;
+    this.q = q;
+    this.a = a;
+    this.b = b;
+
     return this;
   }
 
   public getResult(t) {
-
-    // Special optimization for only a single match.
-    // Otherwise, interpolate each of the numbers and rejoin the string.
-    return (s.length < 2 ? (q[0]
-      ? one(q[0].x)
-      : zero(b))
-      : (b = q.length, (t => {
-        for (let i = 0, o; i < b; ++i) {
-          s[(o = q[i]).i] = o.x(t);
-        }
-        return s.join('');
-      })))(t);
+    if (this.s.length < 2) {
+      return this.q[0] ? this.q[0].x(t) : this.b;
+    }
+    for (let o of this.q) {
+      this.s[o.i] = o.x(t);
+    }
+    return this.s.join('');
   }
 }

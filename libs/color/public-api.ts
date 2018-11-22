@@ -15,4 +15,4 @@ export * from './src/hsl';
 export * from './src/lab';
 export * from './src/rgb';
 
-export * from './private-export';
+export { create as createColor }from './src/helper'

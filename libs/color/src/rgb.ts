@@ -73,7 +73,7 @@ export class Rgb {
       + (a === 1 ? ')' : ', ' + a + ')');
   }
 
-  public static create(o) {
+  public static create(o): Rgb {
     if (!(o instanceof Color)) {
       o = create(o);
     }
@@ -83,15 +83,25 @@ export class Rgb {
     o = o.rgb();
     return new Rgb(o.r, o._g, o.b, o.opacity);
   }
+}
 
-  public static rgbn(n) {
-    return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
-  }
 
-  public static rgba(r, g, b, a) {
-    if (a <= 0) {
-      r = g = b = NaN;
-    }
-    return new Rgb(r, g, b, a);
+export function rgbn(n) {
+  return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
+}
+
+export function rgba(r, g, b, a: number) {
+  if (a <= 0) {
+    r = g = b = NaN;
   }
+  return new Rgb(r, g, b, a);
+}
+
+export function rgb(color): Rgb;
+export function rgb(r, g, b, a?): Rgb;
+export function rgb(r, g?, b?, a?): Rgb {
+  if (arguments.length === 1) {
+    return Rgb.create(r);
+  }
+  return new Rgb(r, g, b, a);
 }

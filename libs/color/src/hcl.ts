@@ -46,3 +46,13 @@ export class Hcl extends Color {
     return new Hcl(h < 0 ? h + 360 : h, Math.sqrt(o.a * o.a + o.b * o.b), o.l, o.opacity);
   }
 }
+
+
+export function hcl(color): Hcl;
+export function hcl(h, c, l, opacity?);
+export function hcl(h, c?, l?, opacity?) {
+  if (arguments.length === 1) {
+    return Hcl.create(h);
+  }
+  return new Hcl(h, c, l, opacity);
+}
