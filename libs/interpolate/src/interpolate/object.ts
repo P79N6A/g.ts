@@ -9,8 +9,8 @@
 import { interpolateValue } from '../wrapper/interpolate-value';
 
 export class InterpolateObject {
-  public c: any = {};
-  public i: any = {};
+  public c: any                         = {};
+  public i: { [key: string]: Function } = {};
 
   public interpolate(a, b) {
     if (a === null || typeof a !== 'object') {
@@ -31,9 +31,10 @@ export class InterpolateObject {
   }
 
   public getResult(t) {
-    this.i.forEach((_i, k) => {
-      this.c[k] = _i(t);
-    });
+    for (let [key, val] of Object.entries(this.i)) {
+      this.c[key] = val(t);
+    }
+    ;
     return this.c;
   }
 }

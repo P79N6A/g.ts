@@ -21,9 +21,9 @@ export class InterpolateHsl {
     const _end   = Hsl.create(end);
 
     this.h       = new InterpolateHue().interpolate(_start.h, _end.h);
-    this.s       = new InterpolateColor().interpolate(start.s, end.s);
-    this.l       = new InterpolateColor().interpolate(start.l, end.l);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    this.s       = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
 
@@ -43,9 +43,9 @@ export class InterpolateHslLong extends InterpolateHsl {
     const _end   = Hsl.create(end);
 
     this.h       = new InterpolateColor().interpolate(_start.h, _end.h);
-    this.s       = new InterpolateColor().interpolate(start.s, end.s);
-    this.l       = new InterpolateColor().interpolate(start.l, end.l);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    this.s       = new InterpolateColor().interpolate(_start.s, _end.s);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
 }

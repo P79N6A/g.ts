@@ -37,7 +37,7 @@ export function interpolateValue(a, b) {
     } else if (typeof b.valueOf !== 'function' && typeof b.toString !== 'function' || isNaN(b)) {
       return new InterpolateObject().interpolate(a, b).getResult(i);
     } else {
-      return new InterpolateNumber().interpolate(a, b).getResult(i);
+      return new InterpolateNumber().interpolate(+a, +b).getResult(i);
     }
   }
 }

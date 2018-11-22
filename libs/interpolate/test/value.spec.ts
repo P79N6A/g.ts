@@ -121,14 +121,11 @@ describe('test interpolate value', () => {
       foo    : 'baz',
       valueOf: {}
     });
-
-
   });
 
   it('interpolate(a, b) interpolates objects with toString as numbers if toString result is coercible to number', () => {
     let proto = {toString: fooString};
     expect(interpolate(noproto({foo: 0}, proto), noproto({foo: 2}, proto))(0.5)).toBe(1);
-
   });
 
 // toString appears here as object because:

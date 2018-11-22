@@ -20,9 +20,9 @@ export class InterpolateHcl {
     const _start = Hcl.create(start);
     const _end   = Hcl.create(end);
     this.h       = new InterpolateHue().interpolate(_start.h, _end.h);
-    this.c       = new InterpolateColor().interpolate(start.c, end.c);
-    this.l       = new InterpolateColor().interpolate(start.l, end.l);
-    this.opacity = new InterpolateColor().interpolate(start.opacity, end.opacity);
+    this.c       = new InterpolateColor().interpolate(_start.c, _end.c);
+    this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
+    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
 
@@ -40,7 +40,7 @@ export class InterpolateHclLong extends InterpolateHcl {
   public interpolate(start: string, end: string) {
     const _start = Hcl.create(start);
     const _end   = Hcl.create(end);
-    this.h       = new InterpolateHue().interpolate(_start.h, _end.h);
+    this.h       = new InterpolateColor().interpolate(_start.h, _end.h);
     this.c       = new InterpolateColor().interpolate(_start.c, _end.c);
     this.l       = new InterpolateColor().interpolate(_start.l, _end.l);
     this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
