@@ -18,11 +18,11 @@ describe('test rgb', () => {
 
   it('set r g b property should return right rgb', () => {
     const rgb_1 = new Rgb();
-    rgb_1.r     = 23;
+    rgb_1.iR    = 23;
     expect(rgb_1.toString()).toBe('rgb(23, 0, 0)');
-    rgb_1.g = 24;
+    rgb_1.iG = 24;
     expect(rgb_1.toString()).toBe('rgb(23, 24, 0)');
-    rgb_1.b = 25;
+    rgb_1.iB = 25;
     expect(rgb_1.toString()).toBe('rgb(23, 24, 25)');
 
     const rgb_2 = new Rgb(23, 24, 25, 1);

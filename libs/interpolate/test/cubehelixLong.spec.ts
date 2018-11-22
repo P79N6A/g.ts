@@ -32,12 +32,12 @@ describe('test interpolate cubehelix long', () => {
   it('interpolateCubehelixLong(a, b) is equivalent to interpolateCubehelixLong.gamma(1)(a, b)', () => {
     let i0 = interpolateCubehelixLongFactory(1)('purple', 'orange'),
         i1 = interpolateCubehelixLong('purple', 'orange');
-    expect(i1(0.0)).toBe(i0(0.0));
-    expect(i1(0.2)).toBe(i0(0.2));
-    expect(i1(0.4)).toBe(i0(0.4));
-    expect(i1(0.6)).toBe(i0(0.6));
-    expect(i1(0.8)).toBe(i0(0.8));
-    expect(i1(1.0)).toBe(i0(1.0));
+    expect(i1(0.0).toString()).toBe(i0(0.0).toString());
+    expect(i1(0.2).toString()).toBe(i0(0.2).toString());
+    expect(i1(0.4).toString()).toBe(i0(0.4).toString());
+    expect(i1(0.6).toString()).toBe(i0(0.6).toString());
+    expect(i1(0.8).toString()).toBe(i0(0.8).toString());
+    expect(i1(1.0).toString()).toBe(i0(1.0).toString());
   });
 
   it('interpolateCubehelixLong(a, b) uses the longest path when interpolating hue difference greater than 180°', () => {

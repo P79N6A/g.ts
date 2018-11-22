@@ -12,10 +12,10 @@ import { InterpolateBSplineClosed } from './b-spline-closed';
 import { InterpolateColor } from './color';
 
 export class InterpolateRgb {
-  public r;
-  public g;
-  public b;
-  public opacity;
+  public iR;
+  public iG;
+  public iB;
+  public iOpacity;
 
   constructor(private _gamma = 1) {
   }
@@ -24,19 +24,19 @@ export class InterpolateRgb {
     const _start = Rgb.create(start);
     const _end   = Rgb.create(end);
 
-    this.r       = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
-    this.g       = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
-    this.b       = new InterpolateColor(this._gamma).interpolate(_start.b, _end.b);
-    this.opacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
+    this.iR       = new InterpolateColor(this._gamma).interpolate(_start.r, _end.r);
+    this.iG       = new InterpolateColor(this._gamma).interpolate(_start.g, _end.g);
+    this.iB       = new InterpolateColor(this._gamma).interpolate(_start.b, _end.b);
+    this.iOpacity = new InterpolateColor().interpolate(_start.opacity, _end.opacity);
     return this;
   }
 
   public getResult(t) {
     return new Rgb(
-      this.r(t),
-      this.g(t),
-      this.b(t),
-      this.opacity(t)
+      this.iR.getResult(t),
+      this.iG.getResult(t),
+      this.iB.getResult(t),
+      this.iOpacity.getResult(t)
     );
   }
 }

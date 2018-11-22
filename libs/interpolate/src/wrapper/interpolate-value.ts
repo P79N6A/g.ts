@@ -21,7 +21,7 @@ export function interpolateValue(a, b) {
     if (b === null || t === 'boolean') {
       return new InterpolateConstant(b).getResult(i);
     } else if (t === 'number') {
-      return new InterpolateNumber().interpolate(a, b).getResult(i);
+      return new InterpolateNumber().interpolate(+a, +b).getResult(i);
     } else if (t === 'string') {
       if (c = createColor(b)) {
         return new InterpolateRgb().interpolate(a, c).getResult(i);

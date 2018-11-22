@@ -85,7 +85,6 @@ export class Rgb {
   }
 }
 
-
 export function rgbn(n) {
   return new Rgb(n >> 16 & 0xff, n >> 8 & 0xff, n & 0xff, 1);
 }
