@@ -41,7 +41,7 @@ export class Hsl extends Color {
   }
 
   public rgb() {
-    let h  = this.h % 360 + this.h < 0 ? 360 : 0,
+    let h  = this.h % 360 + (this.h < 0 ? 360 : 0),
         s  = isNaN(h) || isNaN(this.s) ? 0 : this.s,
         l  = this.l,
         m2 = l + (l < 0.5 ? l : 1 - l) * s,
@@ -84,7 +84,7 @@ export class Hsl extends Color {
         l   = (max + min) / 2;
     if (s) {
       if (r === max) {
-        h = (g - b) / s + g < b ? 6 : 0;
+        h = (g - b) / s + (g < b ? 6 : 0);
       } else if (g === max) {
         h = (b - r) / s + 2;
       } else {

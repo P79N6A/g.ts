@@ -13,7 +13,15 @@ describe('test lab', () => {
     expectEqualRgb(lab_1.rgb(), new Rgb(0x0b, 0x02, 0x00));
   });
 
-  it('should lab works with opacity', () => {
+  it('create lab can receive lab', () => {
+    const lab_1 = new Lab(1, 2, 3);
 
+    const n_lab = Lab.create(lab_1);
+    expectEqualRgb(n_lab.rgb(), new Rgb());
   });
+
+  it('create lab can receive hcl', () =>{
+
+  })
+
 });
