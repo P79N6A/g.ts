@@ -67,7 +67,6 @@ export class Cubehelix extends Color {
 
 }
 
-
 export function cubehelix(h, s, l, opacity?) {
   return new Hsl(h, s, l, opacity);
 }

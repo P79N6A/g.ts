@@ -23,7 +23,6 @@ function hsl2rgb(h, m1, m2) {
   ) * 255;
 }
 
-
 export class Hsl extends Color {
   constructor(public h?: number, public s?: number, public l?: number,
               public opacity: number = 1) {
@@ -99,7 +98,6 @@ export class Hsl extends Color {
   }
 
 }
-
 
 /**
  * @param h

@@ -9,7 +9,6 @@
 import { Color } from './color';
 import { deg2rad } from './common';
 import { Hcl } from './hcl';
-import { clamp } from './helper';
 import { Rgb } from './rgb';
 
 const K  = 18,
@@ -42,32 +41,9 @@ function rgb2lrgb(x) {
 }
 
 export class Lab extends Color {
-  private _l;
-  private _a;
-  private _b;
-  private _opacity;
-
-  //@formatter:off
-  public get l() { return this._l; }
-  public set l(value) { this._l = clamp(value, 0, 100); }
-
-  public get a() { return this._a; }
-  public set a(value) { this._a = clamp(value, 0, 128); }
-
-  public get b() { return this._b; }
-  public set b(value) { this._b = clamp(value, 0, 128); }
-
-  public get opacity() { return this._opacity; }
-  public set opacity(value) { this._opacity = clamp(value, 0, 1); }
-
   //@formatter:on
-  constructor(l, a, b, opacity = 1) {
+  constructor(public l, public a, public b, public opacity = 1) {
     super();
-
-    this.l       = l;
-    this.a       = a;
-    this.b       = b;
-    this.opacity = opacity;
   }
 
   public brighter(k) {
@@ -109,11 +85,16 @@ export class Lab extends Color {
     let r = rgb2lrgb((o as Rgb).r),
         g = rgb2lrgb((o as Rgb).g),
         b = rgb2lrgb((o as Rgb).b),
-        y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z;
+        y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z; // D50
     if (r === g && g === b) { x = z = y; } else {
       x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
       z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
     }
+    //     y = xyz2lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / Yn), x, z; // D65
+    // if (r === g && g === b) { x = z = y; } else {
+    //   x = xyz2lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / Xn);
+    //   z = xyz2lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / Zn);
+    // }
     return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), (o as Rgb).opacity);
   }
 }
