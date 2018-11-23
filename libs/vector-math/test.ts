@@ -4,7 +4,7 @@
 declare var __karma__: any;
 declare var require: any;
 
-__karma__.loaded = function () {};
+__karma__.loaded = () => {};
 
 (() => {
   const testsContext = require.context('.', true, /.spec.ts$/)

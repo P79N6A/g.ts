@@ -1,0 +1,9 @@
+{
+  "name": "@gradii/blend",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/gradii/g.ts/blob/master/LICENSE"
+    }
+  ]
+}
