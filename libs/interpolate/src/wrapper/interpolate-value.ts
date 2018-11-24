@@ -18,7 +18,7 @@ import { InterpolateString } from '../interpolate/string';
 export function interpolateValue(a, b) {
   return (i) => {
     let t = typeof b, c;
-    if (b === null || t === 'boolean') {
+    if (b == null || t === 'boolean') {
       return new InterpolateConstant(b).getResult(i);
     } else if (t === 'number') {
       return new InterpolateNumber().interpolate(+a, +b).getResult(i);

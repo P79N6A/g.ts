@@ -12,9 +12,6 @@ import { Hcl } from './hcl';
 import { Rgb } from './rgb';
 
 const K  = 18,
-      Xn = 0.96422,
-      Yn = 1,
-      Zn = 0.82521,
       t0 = 16 / 116,
       t1 = 6 / 29,
       t2 = 3 * t1 * t1,
@@ -58,20 +55,25 @@ export class Lab extends Color {
     let y = (this.l + 16) / 116,
         x = isNaN(this.a) ? y : y + this.a / 500,
         z = isNaN(this.b) ? y : y - this.b / 200;
-    x     = Xn * lab2xyz(x);
-    y     = Yn * lab2xyz(y);
-    z     = Zn * lab2xyz(z);
-    return new Rgb(// use D50
-      lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
-      lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.0334540 * z),
-      lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
-    );
-    // return new Rgb(// use D65
-    //   lrgb2rgb(3.2404542 * x - 1.5371385 * y - 0.4985314 * z),
-    //   lrgb2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
-    //   lrgb2rgb(0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
-    //   this.opacity
+    // use D50
+    // x     = 0.96422 * lab2xyz(x);
+    // y     = 1 * lab2xyz(y);
+    // z     = 0.82521 * lab2xyz(z);
+    // return new Rgb(
+    //   lrgb2rgb(3.1338561 * x - 1.6168667 * y - 0.4906146 * z),
+    //   lrgb2rgb(-0.9787684 * x + 1.9161415 * y + 0.0334540 * z),
+    //   lrgb2rgb(0.0719453 * x - 0.2289914 * y + 1.4052427 * z),
     // );
+    // use D65
+    x = 0.95047 * lab2xyz(x);
+    y = 1.00000 * lab2xyz(y);
+    z = 1.08883 * lab2xyz(z);
+    return new Rgb(
+      lrgb2rgb(3.2404542 * x - 1.5371385 * y - 0.4985314 * z),
+      lrgb2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
+      lrgb2rgb(0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
+      this.opacity
+    );
   }
 
   public static create(o: Lab | Hcl | Rgb | Color | string) {
@@ -81,20 +83,24 @@ export class Lab extends Color {
       let h = o.h * deg2rad;
       return new Lab(o.l, Math.cos(h) * o.c, Math.sin(h) * o.c, o.opacity);
     }
+    if (o instanceof Color) { o = o.rgb()}
     if (!(o instanceof Rgb)) { o = Rgb.create(o); }
+    // let r = rgb2lrgb((o as Rgb).r),
+    //     g = rgb2lrgb((o as Rgb).g),
+    //     b = rgb2lrgb((o as Rgb).b),
+    //     y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / 1.00000), x, z; // D50
+    // if (r === g && g === b) { x = z = y; } else {
+    //   x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / 0.96422);
+    //   z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / 0.82521);
+    // }
     let r = rgb2lrgb((o as Rgb).r),
         g = rgb2lrgb((o as Rgb).g),
         b = rgb2lrgb((o as Rgb).b),
-        y = xyz2lab((0.2225045 * r + 0.7168786 * g + 0.0606169 * b) / Yn), x, z; // D50
+        y = xyz2lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / 1.00000), x, z; // D65
     if (r === g && g === b) { x = z = y; } else {
-      x = xyz2lab((0.4360747 * r + 0.3850649 * g + 0.1430804 * b) / Xn);
-      z = xyz2lab((0.0139322 * r + 0.0971045 * g + 0.7141733 * b) / Zn);
+      x = xyz2lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / 0.95047);
+      z = xyz2lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / 1.08883);
     }
-    //     y = xyz2lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / Yn), x, z; // D65
-    // if (r === g && g === b) { x = z = y; } else {
-    //   x = xyz2lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / Xn);
-    //   z = xyz2lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / Zn);
-    // }
     return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), (o as Rgb).opacity);
   }
 }

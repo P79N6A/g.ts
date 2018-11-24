@@ -8,15 +8,15 @@
 
 export class InterpolateLinear {
   public a;
-  public d;
+  public b;
 
-  public interpolate(a, d) {
+  public interpolate(a, b) {
     this.a = a;
-    this.d = d;
+    this.b = b;
     return this;
   }
 
   public getResult(t) {
-    return this.a + t * this.d;
+    return this.a + t * (this.b - this.a);
   }
 }

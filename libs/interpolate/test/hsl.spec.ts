@@ -16,17 +16,27 @@ describe('test interpolate hsl', () => {
   });
 
   it('interpolateHsl(a, b) interpolates in HSL and returns an RGB string', () => {
-    expect(interpolateHsl('steelblue', '#f00')(0.2) + '').toBe('rgb(56, 61, 195)');
-    expect(interpolateHsl('rgba(70, 130, 180, 1)', 'rgba(255, 0, 0, 0.2)')(0.2) + '').toBe('rgba(56, 61, 195, 0.84)');
+    expect(interpolateHsl('steelblue', '#f00')(0.2) + '').toBe('rgb(56, 195, 162)');
+    expect(interpolateHsl('rgba(70, 130, 180, 1)', 'rgba(255, 0, 0, 0.2)')(0.2) + '').toBe('rgba(56, 195, 162, 0.84)');
   });
 
-  it('interpolateHsl(a, b) uses the shortest path when interpolating hue', () => {
-    let i = interpolateHsl('hsl(10,50%,50%)', 'hsl(350,50%,50%)');
+  it('interpolateHsl(a, b) uses the negative path when interpolating hue', () => {
+    let i = interpolateHsl('hsl(10,50%,50%)', 'hsl(-10,50%,50%)');
     expect(i(0.0) + '').toBe('rgb(191, 85, 64)');
     expect(i(0.2) + '').toBe('rgb(191, 77, 64)');
     expect(i(0.4) + '').toBe('rgb(191, 68, 64)');
     expect(i(0.6) + '').toBe('rgb(191, 64, 68)');
     expect(i(0.8) + '').toBe('rgb(191, 64, 77)');
+    expect(i(1.0) + '').toBe('rgb(191, 64, 85)');
+  });
+
+  it('interpolateHsl(a, b) uses the linear path when interpolating hue', () => {
+    let i = interpolateHsl('hsl(10,50%,50%)', 'hsl(350,50%,50%)');
+    expect(i(0.0) + '').toBe('rgb(191, 85, 64)');
+    expect(i(0.2) + '').toBe('rgb(153, 191, 64)');
+    expect(i(0.4) + '').toBe('rgb(64, 191, 119)');
+    expect(i(0.6) + '').toBe('rgb(64, 119, 191)');
+    expect(i(0.8) + '').toBe('rgb(153, 64, 191)');
     expect(i(1.0) + '').toBe('rgb(191, 64, 85)');
   });
 

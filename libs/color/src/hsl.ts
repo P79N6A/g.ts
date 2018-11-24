@@ -72,7 +72,7 @@ export class Hsl extends Color {
     if (o instanceof Hsl) {
       return o;
     }
-    o       = o.rgb();
+    if (o instanceof Color) { o = o.rgb()}
     let r   = o.r / 255,
         g   = o.g / 255,
         b   = o.b / 255,

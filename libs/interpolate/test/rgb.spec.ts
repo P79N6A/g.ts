@@ -35,11 +35,11 @@ describe('test interpolate rgb', () => {
     expect(interpolateRgb(rgb(60, 80, 100), rgb(20, 40, NaN))(0.5) + '').toBe(rgb(40, 60, 100) + '');
   });
 
-  it('interpolateRgb.gamma(3)(a, b) returns the expected values', () => {
+  it('interpolateRgbFactory(3)(a, b) returns the expected values', () => {
     expect(interpolateRgbFactory(3)('steelblue', '#f00')(0.2) + '').toBe('rgb(153, 121, 167)');
   });
 
-  it('interpolateRgb.gamma(3)(a, b) uses linear interpolation for opacity', () => {
+  it('interpolateRgbFactory(3)(a, b) uses linear interpolation for opacity', () => {
     expect(interpolateRgbFactory(3)('transparent', '#f00')(0.2) + '').toBe('rgba(255, 0, 0, 0.2)');
   });
 

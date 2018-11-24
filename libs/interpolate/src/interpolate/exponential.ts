@@ -20,6 +20,8 @@ export class InterpolateExponential {
   }
 
   public getResult(t) {
-    return Math.pow(this.a + t * this.b, this.y);
+    const a = Math.pow(this.a, this.y);
+    const b = Math.pow(this.b, this.y);
+    return Math.pow(a + t * (b - a), 1 / this.y);
   }
 }

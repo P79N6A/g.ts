@@ -1,4 +1,4 @@
-describe('test hsl', () => {
+describe('test color hsl', () => {
   it('should works', () => {
 
   });

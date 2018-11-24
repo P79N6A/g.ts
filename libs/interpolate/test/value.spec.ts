@@ -7,6 +7,7 @@
  */
 import { Hsl, Rgb } from '@gradii/color';
 import { interpolate } from '../public-api';
+import { expectObjectEqual } from './test-helper';
 
 function noproto(properties, proto = null) {
   return Object.assign(Object.create(proto), properties);
@@ -51,7 +52,7 @@ describe('test interpolate value', () => {
   });
 
   it('interpolate(a, b) interpolates arrays if b is an array', () => {
-    expect(interpolate(['red'], ['blue'])(0.5)).toEqual(['rgb(128, 0, 128)']);
+    expect(interpolate(['red'], ['blue'])(0.5).map(_ => `${_}`)).toEqual(['rgb(128, 0, 128)']);
 
   });
 
@@ -63,12 +64,10 @@ describe('test interpolate value', () => {
   it('interpolate(a, b) interpolates numbers if b is a number', () => {
     expect(interpolate(1, 2)(0.5)).toEqual(1.5);
     expect(isNaN(interpolate(1, NaN)(0.5))).toBe(true);
-
   });
 
   it('interpolate(a, b) interpolates objects if b is an object that is not coercible to a number', () => {
-    expect(interpolate({color: 'red'}, {color: 'blue'})(0.5)).toEqual({color: 'rgb(128, 0, 128)'});
-
+    expectObjectEqual(interpolate({color: 'red'}, {color: 'blue'})(0.5), {color: 'rgb(128, 0, 128)'});
   });
 
   it('interpolate(a, b) interpolates numbers if b is an object that is coercible to a number', () => {

@@ -18,12 +18,12 @@ describe('test interpolate hcl', () => {
   });
 
   it('interpolateHcl(a, b) interpolates in HCL and returns an RGB string', () => {
-    expect(interpolateHcl('steelblue', '#f00')(0.2) + '').toBe('rgb(105, 120, 201)');
-    expect(interpolateHcl('rgba(70, 130, 180, 1)', 'rgba(255, 0, 0, 0.2)')(0.2) + '').toBe('rgba(105, 120, 201, 0.84)');
+    expect(interpolateHcl('steelblue', '#f00')(0.2) + '').toBe('rgb(0, 144, 174)');
+    expect(interpolateHcl('rgba(70, 130, 180, 1)', 'rgba(255, 0, 0, 0.2)')(0.2) + '').toBe('rgba(0, 144, 174, 0.84)');
   });
 
-  it('interpolateHcl(a, b) uses the shortest path when interpolating hue difference greater than 180°', () => {
-    let i = interpolateHcl(hcl(10, 50, 50), hcl(350, 50, 50));
+  it('interpolateHcl(a, b) uses the negative path direction', () => {
+    let i = interpolateHcl(hcl(10, 50, 50), hcl(-10, 50, 50));
     expect(i(0.0) + '').toBe('rgb(196, 79, 106)');
     expect(i(0.2) + '').toBe('rgb(196, 79, 112)');
     expect(i(0.4) + '').toBe('rgb(195, 79, 118)');
@@ -32,7 +32,7 @@ describe('test interpolate hcl', () => {
     expect(i(1.0) + '').toBe('rgb(189, 81, 135)');
   });
 
-  it('interpolateHcl(a, b) uses the shortest path when interpolating hue difference greater than 360°', () => {
+  it('interpolateHcl(a, b) uses the right path when interpolating hue difference greater than 360°', () => {
     let i = interpolateHcl(hcl(10, 50, 50), hcl(380, 50, 50));
     expect(i(0.0) + '').toBe('rgb(196, 79, 106)');
     expect(i(0.2) + '').toBe('rgb(196, 79, 104)');
@@ -42,8 +42,8 @@ describe('test interpolate hcl', () => {
     expect(i(1.0) + '').toBe('rgb(196, 81, 92)');
   });
 
-  it('interpolateHcl(a, b) uses the shortest path when interpolating hue difference greater than 540°', () => {
-    let i = interpolateHcl(hcl(10, 50, 50), hcl(710, 50, 50));
+  it('interpolateHcl(a, b) uses the negative path direction', () => {
+    let i = interpolateHcl(hcl(10, 50, 50), hcl(-370, 50, 50));
     expect(i(0.0) + '').toBe('rgb(196, 79, 106)');
     expect(i(0.2) + '').toBe('rgb(196, 79, 112)');
     expect(i(0.4) + '').toBe('rgb(195, 79, 118)');
@@ -52,7 +52,7 @@ describe('test interpolate hcl', () => {
     expect(i(1.0) + '').toBe('rgb(189, 81, 135)');
   });
 
-  it('interpolateHcl(a, b) uses the shortest path when interpolating hue difference greater than 720°', () => {
+  it('interpolateHcl(a, b) uses the right path when interpolating hue difference greater than 720°', () => {
     let i = interpolateHcl(hcl(10, 50, 50), hcl(740, 50, 50));
     expect(i(0.0) + '').toBe('rgb(196, 79, 106)');
     expect(i(0.2) + '').toBe('rgb(196, 79, 104)');

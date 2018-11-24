@@ -41,7 +41,7 @@ export class InterpolateCubehelix {
 }
 
 export class InterpolateCubehelixLong extends InterpolateCubehelix {
-  constructor(gamma) {
+  constructor(gamma?) {
     super(gamma);
   }
 

@@ -13,16 +13,15 @@ export class InterpolateHue {
   public b;
 
   public interpolate(a, b) {
-    this.a = a;
-    this.b = b;
+    this.a = a % 360;
+    this.b = b % 360;
     return this;
   }
 
   public getResult(t) {
-    const d = this.b - this.a;
-    if (d) {
+    if (this.b - this.a) {
       return new InterpolateLinear()
-        .interpolate(this.a, d > 180 || d < -180 ? d - 360 * Math.round(d / 360) : d)
+        .interpolate(this.a, this.b)
         .getResult(t);
     } else {
       return isNaN(this.a) ? this.b : this.a

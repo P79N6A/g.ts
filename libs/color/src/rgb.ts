@@ -11,7 +11,7 @@ import { Color } from './color';
 import { brighter, darker } from './const';
 import { clamp, create, hex } from './helper';
 
-export class Rgb {
+export class Rgb extends Color {
   private _r;
   private _g;
   private _b;
@@ -32,6 +32,7 @@ export class Rgb {
 
   // @formatter:on
   constructor(r?, g?, b?, opacity = 1) {
+    super();
     this.r       = r;
     this.g       = g;
     this.b       = b;

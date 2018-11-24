@@ -23,4 +23,5 @@ export { interpolateLab } from './src/wrapper/interpolate-lab';
 export { interpolateHcl, interpolateHclLong } from './src/wrapper/interpolate-hcl';
 export { interpolateCubehelix, interpolateCubehelixLong, interpolateCubehelixFactory, interpolateCubehelixLongFactory } from './src/wrapper/interpolate-cubehelix';
 export { interpolatePiecewise } from './src/wrapper/interpolate-piecewise';
-export { interpolateQuantize } from './src/wrapper/interpolate-quantize';
+
+export { quantize } from './src/fn/quantize';

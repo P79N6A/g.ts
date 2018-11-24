@@ -28,7 +28,7 @@ describe('test interpolate cubehelix', () => {
   });
 
   it('interpolateCubehelix.gamma(g) coerces the specified gamma to a number', () => {
-    expect(interpolateCubehelixFactory(+{valueOf() {return 3;}})('steelblue', '#f00')(0.2) + '').toBe('rgb(96, 107, 228)');
+    expect(interpolateCubehelixFactory(+{valueOf() { return 3; }})('steelblue', '#f00')(0.2) + '').toBe('rgb(96, 107, 228)');
   });
 
   it('interpolateCubehelix(a, b) is equivalent to interpolateCubehelix.gamma(1)(a, b)', () => {
@@ -42,13 +42,13 @@ describe('test interpolate cubehelix', () => {
     expect(i1(1.0)).toEqual(i0(1.0));
   });
 
-  it('interpolateCubehelix(a, b) uses the shortest path when interpolating hue difference greater than 180°', () => {
+  it('interpolateCubehelix(a, b) uses the right path when interpolating hue difference greater than 180°', () => {
     let i = interpolateCubehelix('purple', 'orange');
     expect(i(0.0) + '').toBe('rgb(128, 0, 128)');
-    expect(i(0.2) + '').toBe('rgb(208, 1, 127)');
-    expect(i(0.4) + '').toBe('rgb(255, 17, 93)');
-    expect(i(0.6) + '').toBe('rgb(255, 52, 43)');
-    expect(i(0.8) + '').toBe('rgb(255, 105, 5)');
+    expect(i(0.2) + '').toBe('rgb(63, 54, 234)');
+    expect(i(0.4) + '').toBe('rgb(0, 151, 217)');
+    expect(i(0.6) + '').toBe('rgb(0, 223, 83)');
+    expect(i(0.8) + '').toBe('rgb(79, 219, 0)');
     expect(i(1.0) + '').toBe('rgb(255, 165, 0)');
   });
 

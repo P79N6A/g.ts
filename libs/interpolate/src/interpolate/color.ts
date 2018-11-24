@@ -24,10 +24,9 @@ export class InterpolateColor {
 
   public getResult(t) {
     if (this.gamma === 1) {
-      const d = this.b - this.a;
-      if (d) {
+      if (this.b - this.a) {
         return new InterpolateLinear()
-          .interpolate(this.a, d)
+          .interpolate(this.a, this.b)
           .getResult(t);
       } else {
         return isNaN(this.a) ? this.b : this.a

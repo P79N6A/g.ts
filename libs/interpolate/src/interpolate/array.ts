@@ -42,11 +42,9 @@ export class InterpolateArray {
   }
 
   public getResult(t) {
-    let rst    = [];
-    const mLen = Math.min(this.a.length, this.b.length);
-    for (let i = 0; i < mLen; ++i) {
-      rst[i] = this._x[i](t);
+    for (let i = 0; i < this._x.length; ++i) {
+      this._c[i] = this._x[i](t);
     }
-    return [...rst, ...this._c];
+    return this._c;
   }
 }

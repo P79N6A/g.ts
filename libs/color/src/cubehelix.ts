@@ -10,7 +10,6 @@
 import { Color } from './color';
 import { deg2rad, rad2deg } from './common';
 import { brighter, darker } from './const';
-import { Hsl } from './hsl';
 import { Rgb } from './rgb';
 
 const A     = -0.14861,
@@ -51,22 +50,28 @@ export class Cubehelix extends Color {
     );
   }
 
-  public static create(color) {
-    if (color instanceof Cubehelix) { return new Cubehelix(color.h, color.s, color.l, color.opacity); }
-    if (!(color instanceof Rgb)) { color = Rgb.create(color); }
-    const r  = color.r / 255,
-          g  = color.g / 255,
-          b  = color.b / 255,
+  public static create(o) {
+    if (o instanceof Cubehelix) { return new Cubehelix(o.h, o.s, o.l, o.opacity); }
+    if (o instanceof Color) { o = o.rgb()}
+    if (!(o instanceof Rgb)) { o = Rgb.create(o); }
+    const r  = o.r / 255,
+          g  = o.g / 255,
+          b  = o.b / 255,
           l  = (BC_DA * b + ED * r - EB * g) / (BC_DA + ED - EB),
           bl = b - l,
           k  = (E * (g - l) - C * bl) / D,
           s  = Math.sqrt(k * k + bl * bl) / (E * l * (1 - l)), // NaN if l=0 or l=1
           h  = s ? Math.atan2(k, bl) * rad2deg - 120 : NaN;
-    return new Cubehelix(h < 0 ? h + 360 : h, s, l, color.opacity);
+    return new Cubehelix(h < 0 ? h + 360 : h, s, l, o.opacity);
   }
 
 }
 
-export function cubehelix(h, s, l, opacity?) {
-  return new Hsl(h, s, l, opacity);
+export function cubehelix(color): Cubehelix;
+export function cubehelix(h, c, l, opacity?);
+export function cubehelix(h, s?, l?, opacity?) {
+  if (arguments.length === 1) {
+    return Cubehelix.create(h);
+  }
+  return new Cubehelix(h, s, l, opacity);
 }
