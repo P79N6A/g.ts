@@ -29,12 +29,12 @@ export class Hsl extends Color {
     super();
   }
 
-  public brighter(k) {
+  public brighter(k?) {
     k = k == null ? brighter : Math.pow(brighter, k);
     return new Hsl(this.h, this.s, this.l * k, this.opacity);
   }
 
-  public darker(k) {
+  public darker(k?) {
     k = k == null ? darker : Math.pow(darker, k);
     return new Hsl(this.h, this.s, this.l * k, this.opacity);
   }

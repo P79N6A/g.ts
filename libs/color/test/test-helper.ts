@@ -26,21 +26,30 @@ export function rgbEqual(actual, r, g, b, opacity) {
 }
 
 export function rgbStrictEqual(actual, r, g, b, opacity) {
-  expect(actual instanceof Rgb
-    && (isNaN(r) ? isNaN(actual.r) && actual.r !== actual.r : actual.r === r)
-    && (isNaN(g) ? isNaN(actual.g) && actual.g !== actual.g : actual.g === g)
-    && (isNaN(b) ? isNaN(actual.b) && actual.b !== actual.b : actual.b === b)
-    && (isNaN(opacity) ? isNaN(actual.opacity) && actual.opacity !== actual.opacity : actual.opacity === opacity)).toBe(true);
+  const equal = actual instanceof Rgb
+    && (isNaN(r) ? isNaN(actual.r) /*&& actual.r !== actual.r*/ : actual.r === r)
+    && (isNaN(g) ? isNaN(actual.g) /*&& actual.g !== actual.g*/ : actual.g === g)
+    && (isNaN(b) ? isNaN(actual.b) /*&& actual.b !== actual.b*/ : actual.b === b)
+    && (isNaN(opacity) ? isNaN(actual.opacity) /*&& actual.opacity !== actual.opacity*/ : actual.opacity === opacity);
 
-  expect([actual.r, actual.g, actual.b, actual.opacity]).toEqual([r, g, b, opacity]);
+  expect(equal).toBe(true);
+  if (!equal) {
+    expect([actual.r, actual.g, actual.b, actual.opacity]).toEqual([r, g, b, opacity]);
+  }
 }
 
 export function hslEqual(actual, h, s, l, opacity) {
-  expect(actual instanceof Hsl
-    && (isNaN(h) ? isNaN(actual.h) && actual.h !== actual.h : h - 1e-6 <= actual.h && actual.h <= h + 1e-6)
-    && (isNaN(s) ? isNaN(actual.s) && actual.s !== actual.s : s - 1e-6 <= actual.s && actual.s <= s + 1e-6)
-    && (isNaN(l) ? isNaN(actual.l) && actual.l !== actual.l : l - 1e-6 <= actual.l && actual.l <= l + 1e-6)
-    && (isNaN(opacity) ? isNaN(actual.opacity) && actual.opacity !== actual.opacity : actual.opacity === opacity)).toBe(true);
 
-  expect([actual.h, actual.s, actual.l, actual.opacity]).toEqual([h, s, l, opacity]);
+  const equal = actual instanceof Hsl
+    && (isNaN(h) ? isNaN(actual.h) /*&& actual.h !== actual.h*/ : h - 1e-6 <= actual.h && actual.h <= h + 1e-6)
+    && (isNaN(s) ? isNaN(actual.s) /*&& actual.s !== actual.s*/ : s - 1e-6 <= actual.s && actual.s <= s + 1e-6)
+    && (isNaN(l) ? isNaN(actual.l) /*&& actual.l !== actual.l*/ : l - 1e-6 <= actual.l && actual.l <= l + 1e-6)
+    && (isNaN(opacity) ? isNaN(actual.opacity) /*&& actual.opacity !== actual.opacity*/ : actual.opacity === opacity);
+
+  expect(equal).toBe(true);
+
+  if (!equal) {
+    expect([actual.h, actual.s, actual.l, actual.opacity]).toEqual([h, s, l, opacity]);
+  }
+
 }
