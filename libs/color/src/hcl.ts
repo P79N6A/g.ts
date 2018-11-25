@@ -19,12 +19,12 @@ export class Hcl extends Color {
     super()
   }
 
-  public brighter(k) {
-    return new Hcl(this.h, this.c, this.l + K * (k == null ? 1 : k), this.opacity);
+  public brighter(k = 1) {
+    return new Hcl(this.h, this.c, this.l + K * k, this.opacity);
   }
 
-  public darker(k) {
-    return new Hcl(this.h, this.c, this.l - K * (k == null ? 1 : k), this.opacity);
+  public darker(k = 1) {
+    return new Hcl(this.h, this.c, this.l - K * k, this.opacity);
   }
 
   public rgb(): Rgb {

@@ -1,3 +1,4 @@
+import { Hcl } from '../src/hcl';
 import { Hsl } from '../src/hsl';
 import { Rgb } from '../src/rgb';
 
@@ -52,4 +53,19 @@ export function hslEqual(actual, h, s, l, opacity) {
     expect([actual.h, actual.s, actual.l, actual.opacity]).toEqual([h, s, l, opacity]);
   }
 
+}
+
+export function hclEqual(actual, h, c, l, opacity) {
+
+  const equal = actual instanceof Hcl
+    && (isNaN(h) ? isNaN(actual.h) /*&& actual.h !== actual.h*/ : h - 1e-6 <= actual.h && actual.h <= h + 1e-6)
+    && (isNaN(c) ? isNaN(actual.c) /*&& actual.c !== actual.c*/ : c - 1e-6 <= actual.c && actual.c <= c + 1e-6)
+    && (isNaN(l) ? isNaN(actual.l) /*&& actual.l !== actual.l*/ : l - 1e-6 <= actual.l && actual.l <= l + 1e-6)
+    && (isNaN(opacity) ? isNaN(actual.opacity) /*&& actual.opacity !== actual.opacity*/ : actual.opacity === opacity);
+
+  expect(equal).toBe(true);
+
+  if (!equal) {
+    expect([actual.h, actual.c, actual.l, actual.opacity]).toEqual([h, c, l, opacity]);
+  }
 }

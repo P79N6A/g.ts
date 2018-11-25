@@ -43,12 +43,12 @@ export class Lab extends Color {
     super();
   }
 
-  public brighter(k) {
-    return new Lab(this.l + K * (k === null ? 1 : k), this.a, this.b, this.opacity);
+  public brighter(k = 1) {
+    return new Lab(this.l + K * k, this.a, this.b, this.opacity);
   }
 
-  public darker(k) {
-    return new Lab(this.l - K * (k === null ? 1 : k), this.a, this.b, this.opacity);
+  public darker(k = 1) {
+    return new Lab(this.l - K * k, this.a, this.b, this.opacity);
   }
 
   public rgb(): Rgb {
@@ -69,9 +69,9 @@ export class Lab extends Color {
     y = 1.00000 * lab2xyz(y);
     z = 1.08883 * lab2xyz(z);
     return new Rgb(
-      lrgb2rgb(3.2404542 * x - 1.5371385 * y - 0.4985314 * z),
-      lrgb2rgb(-0.9692660 * x + 1.8760108 * y + 0.0415560 * z),
-      lrgb2rgb(0.0556434 * x - 0.2040259 * y + 1.0572252 * z),
+      lrgb2rgb( 3.2406 * x - 1.5372 * y - 0.4986 * z),
+      lrgb2rgb(-0.9689 * x + 1.8758 * y + 0.0415 * z),
+      lrgb2rgb( 0.0557 * x - 0.2040 * y + 1.0570 * z),
       this.opacity
     );
   }
@@ -96,10 +96,10 @@ export class Lab extends Color {
     let r = rgb2lrgb((o as Rgb).r),
         g = rgb2lrgb((o as Rgb).g),
         b = rgb2lrgb((o as Rgb).b),
-        y = xyz2lab((0.2126729 * r + 0.7151522 * g + 0.0721750 * b) / 1.00000), x, z; // D65
+        y = xyz2lab((0.2126 * r + 0.7152 * g + 0.0722 * b) / 1.00000), x, z; // D65
     if (r === g && g === b) { x = z = y; } else {
-      x = xyz2lab((0.4124564 * r + 0.3575761 * g + 0.1804375 * b) / 0.95047);
-      z = xyz2lab((0.0193339 * r + 0.1191920 * g + 0.9503041 * b) / 1.08883);
+      x = xyz2lab((0.4124 * r + 0.3576 * g + 0.1805 * b) / 0.95047);
+      z = xyz2lab((0.0193 * r + 0.1192 * g + 0.9505 * b) / 1.08883);
     }
     return new Lab(116 * y - 16, 500 * (x - y), 200 * (y - z), (o as Rgb).opacity);
   }
