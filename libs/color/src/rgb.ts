@@ -44,7 +44,7 @@ export class Rgb extends Color {
     return new Rgb(this._r * k, this._g * k, this._b * k, this.opacity);
   }
 
-  public darker(k) {
+  public darker(k?) {
     k = k == null ? darker : Math.pow(darker, k);
     return new Rgb(this._r * k, this._g * k, this._b * k, this.opacity);
   }
@@ -53,12 +53,12 @@ export class Rgb extends Color {
     return this;
   }
 
-  public displayable() {
-    return (0 <= this._r && this._r <= 255)
-      && (0 <= this._g && this._g <= 255)
-      && (0 <= this._b && this._b <= 255)
-      && (0 <= this.opacity && this.opacity <= 1);
-  }
+  // public displayable() {
+  //   return (0 <= this._r && this._r <= 255)
+  //     && (0 <= this._g && this._g <= 255)
+  //     && (0 <= this._b && this._b <= 255)
+  //     && (0 <= this.opacity && this.opacity <= 1);
+  // }
 
   public hex() {
     return `#${hex(this._r)}${hex(this._g)}${hex(this._b)}`;
