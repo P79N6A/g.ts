@@ -120,7 +120,7 @@ export function hsla(h: number, s: number, l: number, a: number) {
 
 export function hsl(color): Hsl ;
 export function hsl(h: number, s: number, l: number, a?: number): Hsl ;
-export function hsl(h: number, s?: number, l?: number, a?: number) {
+export function hsl(h: number, s?: number, l?: number, a?: number): Hsl {
   if (arguments.length === 1) {
     return Hsl.create(h);
   }

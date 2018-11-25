@@ -47,8 +47,8 @@ export class Hcl extends Color {
 }
 
 export function hcl(color): Hcl;
-export function hcl(h, c, l, opacity?);
-export function hcl(h, c?, l?, opacity?) {
+export function hcl(h, c, l, opacity?): Hcl;
+export function hcl(h, c?, l?, opacity?): Hcl {
   if (arguments.length === 1) {
     return Hcl.create(h);
   }

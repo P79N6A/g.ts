@@ -68,8 +68,8 @@ export class Cubehelix extends Color {
 }
 
 export function cubehelix(color): Cubehelix;
-export function cubehelix(h, c, l, opacity?);
-export function cubehelix(h, s?, l?, opacity?) {
+export function cubehelix(h, c, l, opacity?): Cubehelix;
+export function cubehelix(h, s?, l?, opacity?): Cubehelix {
   if (arguments.length === 1) {
     return Cubehelix.create(h);
   }
