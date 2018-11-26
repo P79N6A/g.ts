@@ -14,9 +14,9 @@ export {
 } from './src/timer';
 
 export {
-  default as timeout,
+  zTimeout as timeout,
 } from './src/timeout';
 
 export {
-  default as interval,
+  zInterval as interval,
 } from './src/interval';

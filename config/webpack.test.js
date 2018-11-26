@@ -16,7 +16,7 @@ module.exports = function (options) {
       extensions: ['.ts', '.js'],
       modules: [helpers.root('libs'), 'node_modules'],
       plugins: [
-        new TsConfigPathsPlugin({ configFileName: helpers.root('tsconfig-spec.json') })
+        new TsConfigPathsPlugin({ configFile: helpers.root('tsconfig-spec.json') })
       ]
     },
     module: {
