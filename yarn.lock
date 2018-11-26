@@ -43,7 +43,7 @@
 
 "@types/jasmine@^3.3.0":
   version "3.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/@types/jasmine/download/@types/jasmine-3.3.0.tgz#6b0e4b0192367d77e438ff660ccc4487c9602e7b"
+  resolved "http://registry.npm.taobao.org/@types/jasmine/download/@types/jasmine-3.3.0.tgz#6b0e4b0192367d77e438ff660ccc4487c9602e7b"
   integrity sha1-aw5LAZI2fXfkOP9mDMxEh8lgLns=
 
 "@types/minimatch@*":
@@ -58,7 +58,7 @@
 
 "@types/node@^10":
   version "10.12.10"
-  resolved "http://registry.npm.alibaba-inc.com/@types/node/download/@types/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
+  resolved "http://registry.npm.taobao.org/@types/node/download/@types/node-10.12.10.tgz#4fa76e6598b7de3f0cb6ec3abacc4f59e5b3a2ce"
   integrity sha1-T6duZZi33j8Mtuw6usxPWeWzos4=
 
 "@types/shelljs@^0.8.0":
@@ -106,7 +106,7 @@
 
 "@webassemblyjs/ast@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/ast/download/@webassemblyjs/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/ast/download/@webassemblyjs/ast-1.7.11.tgz#b988582cafbb2b095e8b556526f30c90d057cace"
   integrity sha1-uYhYLK+7Kwlei1VlJvMMkNBXys4=
   dependencies:
     "@webassemblyjs/helper-module-context" "1.7.11"
@@ -115,44 +115,44 @@
 
 "@webassemblyjs/floating-point-hex-parser@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/floating-point-hex-parser/download/@webassemblyjs/floating-point-hex-parser-1.7.11.tgz#a69f0af6502eb9a3c045555b1a6129d3d3f2e313"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/floating-point-hex-parser/download/@webassemblyjs/floating-point-hex-parser-1.7.11.tgz#a69f0af6502eb9a3c045555b1a6129d3d3f2e313"
   integrity sha1-pp8K9lAuuaPARVVbGmEp09Py4xM=
 
 "@webassemblyjs/helper-api-error@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-api-error/download/@webassemblyjs/helper-api-error-1.7.11.tgz#c7b6bb8105f84039511a2b39ce494f193818a32a"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-api-error/download/@webassemblyjs/helper-api-error-1.7.11.tgz#c7b6bb8105f84039511a2b39ce494f193818a32a"
   integrity sha1-x7a7gQX4QDlRGis5zklPGTgYoyo=
 
 "@webassemblyjs/helper-buffer@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-buffer/download/@webassemblyjs/helper-buffer-1.7.11.tgz#3122d48dcc6c9456ed982debe16c8f37101df39b"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-buffer/download/@webassemblyjs/helper-buffer-1.7.11.tgz#3122d48dcc6c9456ed982debe16c8f37101df39b"
   integrity sha1-MSLUjcxslFbtmC3r4WyPNxAd85s=
 
 "@webassemblyjs/helper-code-frame@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-code-frame/download/@webassemblyjs/helper-code-frame-1.7.11.tgz#cf8f106e746662a0da29bdef635fcd3d1248364b"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-code-frame/download/@webassemblyjs/helper-code-frame-1.7.11.tgz#cf8f106e746662a0da29bdef635fcd3d1248364b"
   integrity sha1-z48QbnRmYqDaKb3vY1/NPRJINks=
   dependencies:
     "@webassemblyjs/wast-printer" "1.7.11"
 
 "@webassemblyjs/helper-fsm@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-fsm/download/@webassemblyjs/helper-fsm-1.7.11.tgz#df38882a624080d03f7503f93e3f17ac5ac01181"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-fsm/download/@webassemblyjs/helper-fsm-1.7.11.tgz#df38882a624080d03f7503f93e3f17ac5ac01181"
   integrity sha1-3ziIKmJAgNA/dQP5Pj8XrFrAEYE=
 
 "@webassemblyjs/helper-module-context@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-module-context/download/@webassemblyjs/helper-module-context-1.7.11.tgz#d874d722e51e62ac202476935d649c802fa0e209"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-module-context/download/@webassemblyjs/helper-module-context-1.7.11.tgz#d874d722e51e62ac202476935d649c802fa0e209"
   integrity sha1-2HTXIuUeYqwgJHaTXWScgC+g4gk=
 
 "@webassemblyjs/helper-wasm-bytecode@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-wasm-bytecode/download/@webassemblyjs/helper-wasm-bytecode-1.7.11.tgz#dd9a1e817f1c2eb105b4cf1013093cb9f3c9cb06"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-wasm-bytecode/download/@webassemblyjs/helper-wasm-bytecode-1.7.11.tgz#dd9a1e817f1c2eb105b4cf1013093cb9f3c9cb06"
   integrity sha1-3ZoegX8cLrEFtM8QEwk8ufPJywY=
 
 "@webassemblyjs/helper-wasm-section@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/helper-wasm-section/download/@webassemblyjs/helper-wasm-section-1.7.11.tgz#9c9ac41ecf9fbcfffc96f6d2675e2de33811e68a"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/helper-wasm-section/download/@webassemblyjs/helper-wasm-section-1.7.11.tgz#9c9ac41ecf9fbcfffc96f6d2675e2de33811e68a"
   integrity sha1-nJrEHs+fvP/8lvbSZ14t4zgR5oo=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -162,26 +162,26 @@
 
 "@webassemblyjs/ieee754@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/ieee754/download/@webassemblyjs/ieee754-1.7.11.tgz#c95839eb63757a31880aaec7b6512d4191ac640b"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/ieee754/download/@webassemblyjs/ieee754-1.7.11.tgz#c95839eb63757a31880aaec7b6512d4191ac640b"
   integrity sha1-yVg562N1ejGICq7HtlEtQZGsZAs=
   dependencies:
     "@xtuc/ieee754" "^1.2.0"
 
 "@webassemblyjs/leb128@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/leb128/download/@webassemblyjs/leb128-1.7.11.tgz#d7267a1ee9c4594fd3f7e37298818ec65687db63"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/leb128/download/@webassemblyjs/leb128-1.7.11.tgz#d7267a1ee9c4594fd3f7e37298818ec65687db63"
   integrity sha1-1yZ6HunEWU/T9+NymIGOxlaH22M=
   dependencies:
     "@xtuc/long" "4.2.1"
 
 "@webassemblyjs/utf8@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/utf8/download/@webassemblyjs/utf8-1.7.11.tgz#06d7218ea9fdc94a6793aa92208160db3d26ee82"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/utf8/download/@webassemblyjs/utf8-1.7.11.tgz#06d7218ea9fdc94a6793aa92208160db3d26ee82"
   integrity sha1-Btchjqn9yUpnk6qSIIFg2z0m7oI=
 
 "@webassemblyjs/wasm-edit@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wasm-edit/download/@webassemblyjs/wasm-edit-1.7.11.tgz#8c74ca474d4f951d01dbae9bd70814ee22a82005"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wasm-edit/download/@webassemblyjs/wasm-edit-1.7.11.tgz#8c74ca474d4f951d01dbae9bd70814ee22a82005"
   integrity sha1-jHTKR01PlR0B266b1wgU7iKoIAU=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -195,7 +195,7 @@
 
 "@webassemblyjs/wasm-gen@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wasm-gen/download/@webassemblyjs/wasm-gen-1.7.11.tgz#9bbba942f22375686a6fb759afcd7ac9c45da1a8"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wasm-gen/download/@webassemblyjs/wasm-gen-1.7.11.tgz#9bbba942f22375686a6fb759afcd7ac9c45da1a8"
   integrity sha1-m7upQvIjdWhqb7dZr816ycRdoag=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -206,7 +206,7 @@
 
 "@webassemblyjs/wasm-opt@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wasm-opt/download/@webassemblyjs/wasm-opt-1.7.11.tgz#b331e8e7cef8f8e2f007d42c3a36a0580a7d6ca7"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wasm-opt/download/@webassemblyjs/wasm-opt-1.7.11.tgz#b331e8e7cef8f8e2f007d42c3a36a0580a7d6ca7"
   integrity sha1-szHo5874+OLwB9QsOjagWAp9bKc=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -216,7 +216,7 @@
 
 "@webassemblyjs/wasm-parser@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wasm-parser/download/@webassemblyjs/wasm-parser-1.7.11.tgz#6e3d20fa6a3519f6b084ef9391ad58211efb0a1a"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wasm-parser/download/@webassemblyjs/wasm-parser-1.7.11.tgz#6e3d20fa6a3519f6b084ef9391ad58211efb0a1a"
   integrity sha1-bj0g+mo1GfawhO+Tka1YIR77Cho=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -228,7 +228,7 @@
 
 "@webassemblyjs/wast-parser@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wast-parser/download/@webassemblyjs/wast-parser-1.7.11.tgz#25bd117562ca8c002720ff8116ef9072d9ca869c"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wast-parser/download/@webassemblyjs/wast-parser-1.7.11.tgz#25bd117562ca8c002720ff8116ef9072d9ca869c"
   integrity sha1-Jb0RdWLKjAAnIP+BFu+QctnKhpw=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -240,7 +240,7 @@
 
 "@webassemblyjs/wast-printer@1.7.11":
   version "1.7.11"
-  resolved "http://registry.npm.alibaba-inc.com/@webassemblyjs/wast-printer/download/@webassemblyjs/wast-printer-1.7.11.tgz#c4245b6de242cb50a2cc950174fdbf65c78d7813"
+  resolved "http://registry.npm.taobao.org/@webassemblyjs/wast-printer/download/@webassemblyjs/wast-printer-1.7.11.tgz#c4245b6de242cb50a2cc950174fdbf65c78d7813"
   integrity sha1-xCRbbeJCy1CizJUBdP2/ZceNeBM=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -314,7 +314,7 @@ agent-base@^4.1.0:
 
 ajv-errors@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/ajv-errors/download/ajv-errors-1.0.0.tgz#ecf021fa108fd17dfb5e6b383f2dd233e31ffc59"
+  resolved "http://registry.npm.taobao.org/ajv-errors/download/ajv-errors-1.0.0.tgz#ecf021fa108fd17dfb5e6b383f2dd233e31ffc59"
   integrity sha1-7PAh+hCP0X37Xms4Py3SM+Mf/Fk=
 
 ajv-keywords@^3.1.0:
@@ -344,7 +344,7 @@ ajv@^6.1.0:
 
 ajv@^6.5.5:
   version "6.5.5"
-  resolved "http://registry.npm.alibaba-inc.com/ajv/download/ajv-6.5.5.tgz#cf97cdade71c6399a92c6d6c4177381291b781a1"
+  resolved "http://registry.npm.taobao.org/ajv/download/ajv-6.5.5.tgz#cf97cdade71c6399a92c6d6c4177381291b781a1"
   integrity sha1-z5fNreccY5mpLG1sQXc4EpG3gaE=
   dependencies:
     fast-deep-equal "^2.0.1"
@@ -366,7 +366,7 @@ ansi-colors@^1.0.1:
 
 ansi-cyan@^0.1.1:
   version "0.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/ansi-cyan/download/ansi-cyan-0.1.1.tgz#538ae528af8982f28ae30d86f2f17456d2609873"
+  resolved "http://registry.npm.taobao.org/ansi-cyan/download/ansi-cyan-0.1.1.tgz#538ae528af8982f28ae30d86f2f17456d2609873"
   integrity sha1-U4rlKK+JgvKK4w2G8vF0VtJgmHM=
   dependencies:
     ansi-wrap "0.1.0"
@@ -380,7 +380,7 @@ ansi-gray@^0.1.1:
 
 ansi-red@^0.1.1:
   version "0.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/ansi-red/download/ansi-red-0.1.1.tgz#8c638f9d1080800a353c9c28c8a81ca4705d946c"
+  resolved "http://registry.npm.taobao.org/ansi-red/download/ansi-red-0.1.1.tgz#8c638f9d1080800a353c9c28c8a81ca4705d946c"
   integrity sha1-jGOPnRCAgAo1PJwoyKgcpHBdlGw=
   dependencies:
     ansi-wrap "0.1.0"
@@ -480,12 +480,12 @@ argparse@^1.0.7:
 
 argv@^0.0.2:
   version "0.0.2"
-  resolved "http://registry.npm.alibaba-inc.com/argv/download/argv-0.0.2.tgz#ecbd16f8949b157183711b1bda334f37840185ab"
+  resolved "http://registry.npm.taobao.org/argv/download/argv-0.0.2.tgz#ecbd16f8949b157183711b1bda334f37840185ab"
   integrity sha1-7L0W+JSbFXGDcRsb2jNPN4QBhas=
 
 arr-diff@^1.0.1:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/arr-diff/download/arr-diff-1.1.0.tgz#687c32758163588fef7de7b36fabe495eb1a399a"
+  resolved "http://registry.npm.taobao.org/arr-diff/download/arr-diff-1.1.0.tgz#687c32758163588fef7de7b36fabe495eb1a399a"
   integrity sha1-aHwydYFjWI/vfeezb6vklesaOZo=
   dependencies:
     arr-flatten "^1.0.1"
@@ -517,7 +517,7 @@ arr-map@^2.0.0, arr-map@^2.0.2:
 
 arr-union@^2.0.1:
   version "2.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/arr-union/download/arr-union-2.1.0.tgz#20f9eab5ec70f5c7d215b1077b1c39161d292c7d"
+  resolved "http://registry.npm.taobao.org/arr-union/download/arr-union-2.1.0.tgz#20f9eab5ec70f5c7d215b1077b1c39161d292c7d"
   integrity sha1-IPnqtexw9cfSFbEHexw5Fh0pLH0=
 
 arr-union@^3.1.0:
@@ -619,7 +619,7 @@ assert@^1.1.1:
 
 assertion-error@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/assertion-error/download/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
+  resolved "http://registry.npm.taobao.org/assertion-error/download/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
   integrity sha1-5gtrDo8wG9l+U3UhW9pAbIURjAs=
 
 assign-symbols@^1.0.0:
@@ -685,7 +685,7 @@ atob@^2.1.1:
 
 awesome-typescript-loader@^5.2.1:
   version "5.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/awesome-typescript-loader/download/awesome-typescript-loader-5.2.1.tgz#a41daf7847515f4925cdbaa3075d61f289e913fc"
+  resolved "http://registry.npm.taobao.org/awesome-typescript-loader/download/awesome-typescript-loader-5.2.1.tgz#a41daf7847515f4925cdbaa3075d61f289e913fc"
   integrity sha1-pB2veEdRX0klzbqjB11h8onpE/w=
   dependencies:
     chalk "^2.4.1"
@@ -718,7 +718,7 @@ babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
 
 babel-generator@^6.18.0:
   version "6.26.1"
-  resolved "http://registry.npm.alibaba-inc.com/babel-generator/download/babel-generator-6.26.1.tgz#1844408d3b8f0d35a404ea7ac180f087a601bd90"
+  resolved "http://registry.npm.taobao.org/babel-generator/download/babel-generator-6.26.1.tgz#1844408d3b8f0d35a404ea7ac180f087a601bd90"
   integrity sha1-GERAjTuPDTWkBOp6wYDwh6YBvZA=
   dependencies:
     babel-messages "^6.23.0"
@@ -732,7 +732,7 @@ babel-generator@^6.18.0:
 
 babel-messages@^6.23.0:
   version "6.23.0"
-  resolved "http://registry.npm.alibaba-inc.com/babel-messages/download/babel-messages-6.23.0.tgz#f3cdf4703858035b2a2951c6ec5edf6c62f2630e"
+  resolved "http://registry.npm.taobao.org/babel-messages/download/babel-messages-6.23.0.tgz#f3cdf4703858035b2a2951c6ec5edf6c62f2630e"
   integrity sha1-8830cDhYA1sqKVHG7F7fbGLyYw4=
   dependencies:
     babel-runtime "^6.22.0"
@@ -747,7 +747,7 @@ babel-runtime@^6.0.0, babel-runtime@^6.22.0, babel-runtime@^6.26.0:
 
 babel-template@^6.16.0:
   version "6.26.0"
-  resolved "http://registry.npm.alibaba-inc.com/babel-template/download/babel-template-6.26.0.tgz#de03e2d16396b069f46dd9fff8521fb1a0e35e02"
+  resolved "http://registry.npm.taobao.org/babel-template/download/babel-template-6.26.0.tgz#de03e2d16396b069f46dd9fff8521fb1a0e35e02"
   integrity sha1-3gPi0WOWsGn0bdn/+FIfsaDjXgI=
   dependencies:
     babel-runtime "^6.26.0"
@@ -758,7 +758,7 @@ babel-template@^6.16.0:
 
 babel-traverse@^6.18.0, babel-traverse@^6.26.0:
   version "6.26.0"
-  resolved "http://registry.npm.alibaba-inc.com/babel-traverse/download/babel-traverse-6.26.0.tgz#46a9cbd7edcc62c8e5c064e2d2d8d0f4035766ee"
+  resolved "http://registry.npm.taobao.org/babel-traverse/download/babel-traverse-6.26.0.tgz#46a9cbd7edcc62c8e5c064e2d2d8d0f4035766ee"
   integrity sha1-RqnL1+3MYsjlwGTi0tjQ9ANXZu4=
   dependencies:
     babel-code-frame "^6.26.0"
@@ -773,7 +773,7 @@ babel-traverse@^6.18.0, babel-traverse@^6.26.0:
 
 babel-types@^6.18.0, babel-types@^6.26.0:
   version "6.26.0"
-  resolved "http://registry.npm.alibaba-inc.com/babel-types/download/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
+  resolved "http://registry.npm.taobao.org/babel-types/download/babel-types-6.26.0.tgz#a3b073f94ab49eb6fa55cd65227a334380632497"
   integrity sha1-o7Bz+Uq0nrb6Vc1lInozQ4BjJJc=
   dependencies:
     babel-runtime "^6.26.0"
@@ -783,7 +783,7 @@ babel-types@^6.18.0, babel-types@^6.26.0:
 
 babylon@^6.18.0:
   version "6.18.0"
-  resolved "http://registry.npm.alibaba-inc.com/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
+  resolved "http://registry.npm.taobao.org/babylon/download/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
   integrity sha1-ry87iPpvXB5MY00aD46sT1WzleM=
 
 bach@^1.0.0:
@@ -1111,7 +1111,7 @@ bytes@3.0.0:
 
 cacache@^11.0.2:
   version "11.3.1"
-  resolved "http://registry.npm.alibaba-inc.com/cacache/download/cacache-11.3.1.tgz#d09d25f6c4aca7a6d305d141ae332613aa1d515f"
+  resolved "http://registry.npm.taobao.org/cacache/download/cacache-11.3.1.tgz#d09d25f6c4aca7a6d305d141ae332613aa1d515f"
   integrity sha1-0J0l9sSsp6bTBdFBrjMmE6odUV8=
   dependencies:
     bluebird "^3.5.1"
@@ -1169,7 +1169,7 @@ camelcase@^3.0.0:
 
 camelcase@^5.0.0:
   version "5.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/camelcase/download/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
+  resolved "http://registry.npm.taobao.org/camelcase/download/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
   integrity sha1-AylVJ9WL081Kp1Nj81sujZe+L0I=
 
 caseless@~0.12.0:
@@ -1179,7 +1179,7 @@ caseless@~0.12.0:
 
 chai@~4.2.0:
   version "4.2.0"
-  resolved "http://registry.npm.alibaba-inc.com/chai/download/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
+  resolved "http://registry.npm.taobao.org/chai/download/chai-4.2.0.tgz#760aa72cf20e3795e84b12877ce0e83737aa29e5"
   integrity sha1-dgqnLPION5XoSxKHfODoNzeqKeU=
   dependencies:
     assertion-error "^1.1.0"
@@ -1218,7 +1218,7 @@ chalk@^2.0.1, chalk@^2.1.0, chalk@^2.3.0, chalk@^2.4.1:
 
 check-error@^1.0.2:
   version "1.0.2"
-  resolved "http://registry.npm.alibaba-inc.com/check-error/download/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
+  resolved "http://registry.npm.taobao.org/check-error/download/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
 
 chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.3:
@@ -1263,7 +1263,7 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
 
 circular-json@^0.5.5:
   version "0.5.9"
-  resolved "http://registry.npm.alibaba-inc.com/circular-json/download/circular-json-0.5.9.tgz#932763ae88f4f7dead7a0d09c8a51a4743a53b1d"
+  resolved "http://registry.npm.taobao.org/circular-json/download/circular-json-0.5.9.tgz#932763ae88f4f7dead7a0d09c8a51a4743a53b1d"
   integrity sha1-kydjroj0996teg0JyKUaR0OlOx0=
 
 class-utils@^0.3.5:
@@ -1287,7 +1287,7 @@ cliui@^3.2.0:
 
 cliui@^4.0.0:
   version "4.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/cliui/download/cliui-4.1.0.tgz#348422dbe82d800b3022eef4f6ac10bf2e4d1b49"
+  resolved "http://registry.npm.taobao.org/cliui/download/cliui-4.1.0.tgz#348422dbe82d800b3022eef4f6ac10bf2e4d1b49"
   integrity sha1-NIQi2+gtgAswIu709qwQvy5NG0k=
   dependencies:
     string-width "^2.1.1"
@@ -1330,7 +1330,7 @@ code-point-at@^1.0.0:
 
 codecov@^3.1.0:
   version "3.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/codecov/download/codecov-3.1.0.tgz#340bd968d361f256976b5af782dd8ba9f82bc849"
+  resolved "http://registry.npm.taobao.org/codecov/download/codecov-3.1.0.tgz#340bd968d361f256976b5af782dd8ba9f82bc849"
   integrity sha1-NAvZaNNh8laXa1r3gt2LqfgryEk=
   dependencies:
     argv "^0.0.2"
@@ -1581,7 +1581,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
 
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
-  resolved "http://registry.npm.alibaba-inc.com/cross-spawn/download/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
+  resolved "http://registry.npm.taobao.org/cross-spawn/download/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
   integrity sha1-Sl7Hxk364iw6FBJNus3uhG2Ay8Q=
   dependencies:
     nice-try "^1.0.4"
@@ -1696,7 +1696,7 @@ decode-uri-component@^0.2.0:
 
 deep-eql@^3.0.1:
   version "3.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/deep-eql/download/deep-eql-3.0.1.tgz#dfc9404400ad1c8fe023e7da1df1c147c4b444df"
+  resolved "http://registry.npm.taobao.org/deep-eql/download/deep-eql-3.0.1.tgz#dfc9404400ad1c8fe023e7da1df1c147c4b444df"
   integrity sha1-38lARACtHI/gI+faHfHBR8S0RN8=
   dependencies:
     type-detect "^4.0.0"
@@ -1782,7 +1782,7 @@ detect-file@^1.0.0:
 
 detect-indent@^4.0.0:
   version "4.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/detect-indent/download/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
+  resolved "http://registry.npm.taobao.org/detect-indent/download/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
   integrity sha1-920GQ1LN9Docts5hnE7jqUdd4gg=
   dependencies:
     repeating "^2.0.0"
@@ -1823,7 +1823,7 @@ dom-serialize@^2.2.0:
 
 dom-walk@^0.1.0:
   version "0.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/dom-walk/download/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
+  resolved "http://registry.npm.taobao.org/dom-walk/download/dom-walk-0.1.1.tgz#672226dc74c8f799ad35307df936aba11acd6018"
   integrity sha1-ZyIm3HTI95mtNTB9+TaroRrNYBg=
 
 domain-browser@^1.1.1:
@@ -1894,7 +1894,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
 
 engine.io-client@~3.2.0:
   version "3.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/engine.io-client/download/engine.io-client-3.2.1.tgz#6f54c0475de487158a1a7c77d10178708b6add36"
+  resolved "http://registry.npm.taobao.org/engine.io-client/download/engine.io-client-3.2.1.tgz#6f54c0475de487158a1a7c77d10178708b6add36"
   integrity sha1-b1TAR13khxWKGnx30QF4cItq3TY=
   dependencies:
     component-emitter "1.2.1"
@@ -1922,7 +1922,7 @@ engine.io-parser@~2.1.0, engine.io-parser@~2.1.1:
 
 engine.io@~3.2.0:
   version "3.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/engine.io/download/engine.io-3.2.1.tgz#b60281c35484a70ee0351ea0ebff83ec8c9522a2"
+  resolved "http://registry.npm.taobao.org/engine.io/download/engine.io-3.2.1.tgz#b60281c35484a70ee0351ea0ebff83ec8c9522a2"
   integrity sha1-tgKBw1SEpw7gNR6g6/+D7IyVIqI=
   dependencies:
     accepts "~1.3.4"
@@ -2097,7 +2097,7 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
 
 execa@^0.10.0:
   version "0.10.0"
-  resolved "http://registry.npm.alibaba-inc.com/execa/download/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
+  resolved "http://registry.npm.taobao.org/execa/download/execa-0.10.0.tgz#ff456a8f53f90f8eccc71a96d11bdfc7f082cb50"
   integrity sha1-/0Vqj1P5D47MxxqW0Rvfx/CCy1A=
   dependencies:
     cross-spawn "^6.0.0"
@@ -2147,7 +2147,7 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
 
 extend-shallow@^1.1.2:
   version "1.1.4"
-  resolved "http://registry.npm.alibaba-inc.com/extend-shallow/download/extend-shallow-1.1.4.tgz#19d6bf94dfc09d76ba711f39b872d21ff4dd9071"
+  resolved "http://registry.npm.taobao.org/extend-shallow/download/extend-shallow-1.1.4.tgz#19d6bf94dfc09d76ba711f39b872d21ff4dd9071"
   integrity sha1-Gda/lN/AnXa6cR85uHLSH/TdkHE=
   dependencies:
     kind-of "^1.1.0"
@@ -2227,7 +2227,7 @@ fast-levenshtein@~2.0.4:
 
 figgy-pudding@^3.1.0, figgy-pudding@^3.5.1:
   version "3.5.1"
-  resolved "http://registry.npm.alibaba-inc.com/figgy-pudding/download/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
+  resolved "http://registry.npm.taobao.org/figgy-pudding/download/figgy-pudding-3.5.1.tgz#862470112901c727a0e495a80744bd5baa1d6790"
   integrity sha1-hiRwESkBxyeg5JWoB0S9W6odZ5A=
 
 fill-range@^4.0.0:
@@ -2255,7 +2255,7 @@ finalhandler@1.1.0:
 
 find-cache-dir@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/find-cache-dir/download/find-cache-dir-2.0.0.tgz#4c1faed59f45184530fb9d7fa123a4d04a98472d"
+  resolved "http://registry.npm.taobao.org/find-cache-dir/download/find-cache-dir-2.0.0.tgz#4c1faed59f45184530fb9d7fa123a4d04a98472d"
   integrity sha1-TB+u1Z9FGEUw+51/oSOk0EqYRy0=
   dependencies:
     commondir "^1.0.1"
@@ -2272,7 +2272,7 @@ find-up@^1.0.0:
 
 find-up@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/find-up/download/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
+  resolved "http://registry.npm.taobao.org/find-up/download/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
   integrity sha1-SRafHXmTQwZG2mHsxa41XCHJe3M=
   dependencies:
     locate-path "^3.0.0"
@@ -2346,7 +2346,7 @@ form-data@~2.3.1:
 
 form-data@~2.3.2:
   version "2.3.3"
-  resolved "http://registry.npm.alibaba-inc.com/form-data/download/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
+  resolved "http://registry.npm.taobao.org/form-data/download/form-data-2.3.3.tgz#dcce52c05f644f298c6a7ab936bd724ceffbf3a6"
   integrity sha1-3M5SwF9kTymManq5Nr1yTO/786Y=
   dependencies:
     asynckit "^0.4.0"
@@ -2464,7 +2464,7 @@ get-stdin@^4.0.1:
 
 get-stream@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/get-stream/download/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
+  resolved "http://registry.npm.taobao.org/get-stream/download/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   integrity sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=
 
 get-value@^2.0.3, get-value@^2.0.6:
@@ -2538,7 +2538,7 @@ glob@^7.0.0, glob@^7.0.5, glob@^7.0.6, glob@^7.1.1, glob@^7.1.2:
 
 global-modules-path@^2.3.0:
   version "2.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/global-modules-path/download/global-modules-path-2.3.0.tgz#b0e2bac6beac39745f7db5c59d26a36a0b94f7dc"
+  resolved "http://registry.npm.taobao.org/global-modules-path/download/global-modules-path-2.3.0.tgz#b0e2bac6beac39745f7db5c59d26a36a0b94f7dc"
   integrity sha1-sOK6xr6sOXRffbXFnSajaguU99w=
 
 global-modules@^1.0.0:
@@ -2563,7 +2563,7 @@ global-prefix@^1.0.1:
 
 global@^4.3.2:
   version "4.3.2"
-  resolved "http://registry.npm.alibaba-inc.com/global/download/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
+  resolved "http://registry.npm.taobao.org/global/download/global-4.3.2.tgz#e76989268a6c74c38908b1305b10fc0e394e9d0f"
   integrity sha1-52mJJopsdMOJCLEwWxD8DjlOnQ8=
   dependencies:
     min-document "^2.19.0"
@@ -2571,7 +2571,7 @@ global@^4.3.2:
 
 globals@^9.18.0:
   version "9.18.0"
-  resolved "http://registry.npm.alibaba-inc.com/globals/download/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
+  resolved "http://registry.npm.taobao.org/globals/download/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
   integrity sha1-qjiWs+abSH8X4x7SFD1pqOMMLYo=
 
 glogg@^1.0.0:
@@ -2619,7 +2619,7 @@ gulp-cli@^2.0.0:
 
 gulp-rename@^1.4.0:
   version "1.4.0"
-  resolved "http://registry.npm.alibaba-inc.com/gulp-rename/download/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
+  resolved "http://registry.npm.taobao.org/gulp-rename/download/gulp-rename-1.4.0.tgz#de1c718e7c4095ae861f7296ef4f3248648240bd"
   integrity sha1-3hxxjnxAla6GH3KW708ySGSCQL0=
 
 gulp@^4:
@@ -2673,7 +2673,7 @@ har-validator@~5.0.3:
 
 har-validator@~5.1.0:
   version "5.1.3"
-  resolved "http://registry.npm.alibaba-inc.com/har-validator/download/har-validator-5.1.3.tgz#1ef89ebd3e4996557675eed9893110dc350fa080"
+  resolved "http://registry.npm.taobao.org/har-validator/download/har-validator-5.1.3.tgz#1ef89ebd3e4996557675eed9893110dc350fa080"
   integrity sha1-HvievT5JllV2de7ZiTEQ3DUPoIA=
   dependencies:
     ajv "^6.5.5"
@@ -2884,7 +2884,7 @@ ignore-walk@^3.0.1:
 
 import-local@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/import-local/download/import-local-2.0.0.tgz#55070be38a5993cf18ef6db7e961f5bee5c5a09d"
+  resolved "http://registry.npm.taobao.org/import-local/download/import-local-2.0.0.tgz#55070be38a5993cf18ef6db7e961f5bee5c5a09d"
   integrity sha1-VQcL44pZk88Y72236WH1vuXFoJ0=
   dependencies:
     pkg-dir "^3.0.0"
@@ -2937,7 +2937,7 @@ interpret@^1.0.0, interpret@^1.1.0:
 
 invariant@^2.2.2:
   version "2.2.4"
-  resolved "http://registry.npm.alibaba-inc.com/invariant/download/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
+  resolved "http://registry.npm.taobao.org/invariant/download/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha1-YQ88ksk1nOHbYW5TgAjSP/NRWOY=
   dependencies:
     loose-envify "^1.0.0"
@@ -2949,7 +2949,7 @@ invert-kv@^1.0.0:
 
 invert-kv@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/invert-kv/download/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
+  resolved "http://registry.npm.taobao.org/invert-kv/download/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
   integrity sha1-c5P1r6Weyf9fZ6J2INEcIm4+7AI=
 
 is-absolute@^1.0.0:
@@ -3194,7 +3194,7 @@ isstream@~0.1.2:
 
 istanbul-instrumenter-loader@^3.0.1:
   version "3.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/istanbul-instrumenter-loader/download/istanbul-instrumenter-loader-3.0.1.tgz#9957bd59252b373fae5c52b7b5188e6fde2a0949"
+  resolved "http://registry.npm.taobao.org/istanbul-instrumenter-loader/download/istanbul-instrumenter-loader-3.0.1.tgz#9957bd59252b373fae5c52b7b5188e6fde2a0949"
   integrity sha1-mVe9WSUrNz+uXFK3tRiOb94qCUk=
   dependencies:
     convert-source-map "^1.5.0"
@@ -3204,12 +3204,12 @@ istanbul-instrumenter-loader@^3.0.1:
 
 istanbul-lib-coverage@^1.2.1:
   version "1.2.1"
-  resolved "http://registry.npm.alibaba-inc.com/istanbul-lib-coverage/download/istanbul-lib-coverage-1.2.1.tgz#ccf7edcd0a0bb9b8f729feeb0930470f9af664f0"
+  resolved "http://registry.npm.taobao.org/istanbul-lib-coverage/download/istanbul-lib-coverage-1.2.1.tgz#ccf7edcd0a0bb9b8f729feeb0930470f9af664f0"
   integrity sha1-zPftzQoLubj3Kf7rCTBHD5r2ZPA=
 
 istanbul-lib-instrument@^1.7.3:
   version "1.10.2"
-  resolved "http://registry.npm.alibaba-inc.com/istanbul-lib-instrument/download/istanbul-lib-instrument-1.10.2.tgz#1f55ed10ac3c47f2bdddd5307935126754d0a9ca"
+  resolved "http://registry.npm.taobao.org/istanbul-lib-instrument/download/istanbul-lib-instrument-1.10.2.tgz#1f55ed10ac3c47f2bdddd5307935126754d0a9ca"
   integrity sha1-H1XtEKw8R/K93dUweTUSZ1TQqco=
   dependencies:
     babel-generator "^6.18.0"
@@ -3242,12 +3242,12 @@ istanbul@0.4.5, istanbul@^0.4.0, istanbul@~0.4.5:
 
 jasmine-core@^3.3, jasmine-core@~3.3.0:
   version "3.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/jasmine-core/download/jasmine-core-3.3.0.tgz#dea1cdc634bc93c7e0d4ad27185df30fa971b10e"
+  resolved "http://registry.npm.taobao.org/jasmine-core/download/jasmine-core-3.3.0.tgz#dea1cdc634bc93c7e0d4ad27185df30fa971b10e"
   integrity sha1-3qHNxjS8k8fg1K0nGF3zD6lxsQ4=
 
 jasmine@^3.3.0:
   version "3.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/jasmine/download/jasmine-3.3.0.tgz#4f64e4aba2f9cbd30418957468c024c3b4c82551"
+  resolved "http://registry.npm.taobao.org/jasmine/download/jasmine-3.3.0.tgz#4f64e4aba2f9cbd30418957468c024c3b4c82551"
   integrity sha1-T2Tkq6L5y9MEGJV0aMAkw7TIJVE=
   dependencies:
     glob "^7.0.6"
@@ -3260,7 +3260,7 @@ jquery@~3.3.1:
 
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+  resolved "http://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
 
 js-tokens@^3.0.2:
@@ -3283,7 +3283,7 @@ jsbn@~0.1.0:
 
 jsesc@^1.3.0:
   version "1.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/jsesc/download/jsesc-1.3.0.tgz#46c3fec8c1892b12b0833db9bc7622176dbab34b"
+  resolved "http://registry.npm.taobao.org/jsesc/download/jsesc-1.3.0.tgz#46c3fec8c1892b12b0833db9bc7622176dbab34b"
   integrity sha1-RsP+yMGJKxKwgz25vHYiF226s0s=
 
 json-parse-better-errors@^1.0.2:
@@ -3378,19 +3378,19 @@ karma-firefox-launcher@^1.1.0:
 
 karma-jasmine-html-reporter@^1.4.0:
   version "1.4.0"
-  resolved "http://registry.npm.alibaba-inc.com/karma-jasmine-html-reporter/download/karma-jasmine-html-reporter-1.4.0.tgz#1abbd30d4509a8c82b96707ae7d2fa4da459ca19"
+  resolved "http://registry.npm.taobao.org/karma-jasmine-html-reporter/download/karma-jasmine-html-reporter-1.4.0.tgz#1abbd30d4509a8c82b96707ae7d2fa4da459ca19"
   integrity sha1-GrvTDUUJqMgrlnB659L6TaRZyhk=
 
 karma-jasmine@^2.0.1:
   version "2.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/karma-jasmine/download/karma-jasmine-2.0.1.tgz#26e3e31f2faf272dd80ebb0e1898914cc3a19763"
+  resolved "http://registry.npm.taobao.org/karma-jasmine/download/karma-jasmine-2.0.1.tgz#26e3e31f2faf272dd80ebb0e1898914cc3a19763"
   integrity sha1-JuPjHy+vJy3YDrsOGJiRTMOhl2M=
   dependencies:
     jasmine-core "^3.3"
 
 karma-mocha-reporter@^2.2.5:
   version "2.2.5"
-  resolved "http://registry.npm.alibaba-inc.com/karma-mocha-reporter/download/karma-mocha-reporter-2.2.5.tgz#15120095e8ed819186e47a0b012f3cd741895560"
+  resolved "http://registry.npm.taobao.org/karma-mocha-reporter/download/karma-mocha-reporter-2.2.5.tgz#15120095e8ed819186e47a0b012f3cd741895560"
   integrity sha1-FRIAlejtgZGG5HoLAS8810GJVWA=
   dependencies:
     chalk "^2.1.0"
@@ -3406,7 +3406,7 @@ karma-mocha@^1.3.0:
 
 karma-remap-coverage@^0.1.5:
   version "0.1.5"
-  resolved "http://registry.npm.alibaba-inc.com/karma-remap-coverage/download/karma-remap-coverage-0.1.5.tgz#d2e3bb2dd00adcd256603a702b08c371370fbc12"
+  resolved "http://registry.npm.taobao.org/karma-remap-coverage/download/karma-remap-coverage-0.1.5.tgz#d2e3bb2dd00adcd256603a702b08c371370fbc12"
   integrity sha1-0uO7LdAK3NJWYDpwKwjDcTcPvBI=
   dependencies:
     remap-istanbul "^0.10"
@@ -3442,7 +3442,7 @@ karma-webpack@^3.0.5:
 
 karma@^3.1.1:
   version "3.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/karma/download/karma-3.1.1.tgz#94c8edd20fb9597ccde343326da009737fb0423a"
+  resolved "http://registry.npm.taobao.org/karma/download/karma-3.1.1.tgz#94c8edd20fb9597ccde343326da009737fb0423a"
   integrity sha1-lMjt0g+5WXzN40MybaAJc3+wQjo=
   dependencies:
     bluebird "^3.3.0"
@@ -3475,7 +3475,7 @@ karma@^3.1.1:
 
 kind-of@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/kind-of/download/kind-of-1.1.0.tgz#140a3d2d41a36d2efcfa9377b62c24f8495a5c44"
+  resolved "http://registry.npm.taobao.org/kind-of/download/kind-of-1.1.0.tgz#140a3d2d41a36d2efcfa9377b62c24f8495a5c44"
   integrity sha1-FAo9LUGjbS78+pN3tiwk+ElaXEQ=
 
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
@@ -3526,7 +3526,7 @@ lcid@^1.0.0:
 
 lcid@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/lcid/download/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
+  resolved "http://registry.npm.taobao.org/lcid/download/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
   integrity sha1-bvXS32DlL4LrIopMNz6NHzlyU88=
   dependencies:
     invert-kv "^2.0.0"
@@ -3587,7 +3587,7 @@ loader-utils@^1.0.0, loader-utils@^1.0.2, loader-utils@^1.1.0:
 
 locate-path@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/locate-path/download/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
+  resolved "http://registry.npm.taobao.org/locate-path/download/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
   integrity sha1-2+w7OrdZdYBxtY/ln8QYca8hQA4=
   dependencies:
     p-locate "^3.0.0"
@@ -3617,7 +3617,7 @@ log-symbols@^2.1.0:
 
 log4js@^3.0.0:
   version "3.0.6"
-  resolved "http://registry.npm.alibaba-inc.com/log4js/download/log4js-3.0.6.tgz#e6caced94967eeeb9ce399f9f8682a4b2b28c8ff"
+  resolved "http://registry.npm.taobao.org/log4js/download/log4js-3.0.6.tgz#e6caced94967eeeb9ce399f9f8682a4b2b28c8ff"
   integrity sha1-5srO2Uln7uuc45n5+GgqSysoyP8=
   dependencies:
     circular-json "^0.5.5"
@@ -3636,7 +3636,7 @@ loglevelnext@^1.0.1:
 
 loose-envify@^1.0.0:
   version "1.4.0"
-  resolved "http://registry.npm.alibaba-inc.com/loose-envify/download/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
+  resolved "http://registry.npm.taobao.org/loose-envify/download/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
@@ -3656,7 +3656,7 @@ lru-cache@2.2.x:
 
 lru-cache@^4.1.3:
   version "4.1.4"
-  resolved "http://registry.npm.alibaba-inc.com/lru-cache/download/lru-cache-4.1.4.tgz#51cc46e8e6d9530771c857e24ccc720ecdbcc031"
+  resolved "http://registry.npm.taobao.org/lru-cache/download/lru-cache-4.1.4.tgz#51cc46e8e6d9530771c857e24ccc720ecdbcc031"
   integrity sha1-UcxG6ObZUwdxyFfiTMxyDs28wDE=
   dependencies:
     pseudomap "^1.0.2"
@@ -3683,7 +3683,7 @@ make-iterator@^1.0.0:
 
 map-age-cleaner@^0.1.1:
   version "0.1.3"
-  resolved "http://registry.npm.alibaba-inc.com/map-age-cleaner/download/map-age-cleaner-0.1.3.tgz#7d583a7306434c055fe474b0f45078e6e1b4b92a"
+  resolved "http://registry.npm.taobao.org/map-age-cleaner/download/map-age-cleaner-0.1.3.tgz#7d583a7306434c055fe474b0f45078e6e1b4b92a"
   integrity sha1-fVg6cwZDTAVf5HSw9FB45uG0uSo=
   dependencies:
     p-defer "^1.0.0"
@@ -3738,7 +3738,7 @@ media-typer@0.3.0:
 
 mem@^4.0.0:
   version "4.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/mem/download/mem-4.0.0.tgz#6437690d9471678f6cc83659c00cbafcd6b0cdaf"
+  resolved "http://registry.npm.taobao.org/mem/download/mem-4.0.0.tgz#6437690d9471678f6cc83659c00cbafcd6b0cdaf"
   integrity sha1-ZDdpDZRxZ49syDZZwAy6/Nawza8=
   dependencies:
     map-age-cleaner "^0.1.1"
@@ -3803,7 +3803,7 @@ mime-db@~1.36.0:
 
 mime-db@~1.37.0:
   version "1.37.0"
-  resolved "http://registry.npm.alibaba-inc.com/mime-db/download/mime-db-1.37.0.tgz#0b6a0ce6fdbe9576e25f1f2d2fde8830dc0ad0d8"
+  resolved "http://registry.npm.taobao.org/mime-db/download/mime-db-1.37.0.tgz#0b6a0ce6fdbe9576e25f1f2d2fde8830dc0ad0d8"
   integrity sha1-C2oM5v2+lXbiXx8tL96IMNwK0Ng=
 
 mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18:
@@ -3815,24 +3815,24 @@ mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18:
 
 mime-types@~2.1.19:
   version "2.1.21"
-  resolved "http://registry.npm.alibaba-inc.com/mime-types/download/mime-types-2.1.21.tgz#28995aa1ecb770742fe6ae7e58f9181c744b3f96"
+  resolved "http://registry.npm.taobao.org/mime-types/download/mime-types-2.1.21.tgz#28995aa1ecb770742fe6ae7e58f9181c744b3f96"
   integrity sha1-KJlaoey3cHQv5q5+WPkYHHRLP5Y=
   dependencies:
     mime-db "~1.37.0"
 
 mime@^2.1.0, mime@^2.3.1:
   version "2.3.1"
-  resolved "http://registry.npm.alibaba-inc.com/mime/download/mime-2.3.1.tgz#b1621c54d63b97c47d3cfe7f7215f7d64517c369"
+  resolved "http://registry.npm.taobao.org/mime/download/mime-2.3.1.tgz#b1621c54d63b97c47d3cfe7f7215f7d64517c369"
   integrity sha1-sWIcVNY7l8R9PP5/chX31kUXw2k=
 
 mimic-fn@^1.0.0:
   version "1.2.0"
-  resolved "http://registry.npm.alibaba-inc.com/mimic-fn/download/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
+  resolved "http://registry.npm.taobao.org/mimic-fn/download/mimic-fn-1.2.0.tgz#820c86a39334640e99516928bd03fca88057d022"
   integrity sha1-ggyGo5M0ZA6ZUWkovQP8qIBX0CI=
 
 min-document@^2.19.0:
   version "2.19.0"
-  resolved "http://registry.npm.alibaba-inc.com/min-document/download/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
+  resolved "http://registry.npm.taobao.org/min-document/download/min-document-2.19.0.tgz#7bd282e3f5842ed295bb748cdd9f1ffa2c824685"
   integrity sha1-e9KC4/WELtKVu3SM3Z8f+iyCRoU=
   dependencies:
     dom-walk "^0.1.0"
@@ -3886,7 +3886,7 @@ minizlib@^1.1.0:
 
 mississippi@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/mississippi/download/mississippi-3.0.0.tgz#ea0a3291f97e0b5e8776b363d5f0a12d94c67022"
+  resolved "http://registry.npm.taobao.org/mississippi/download/mississippi-3.0.0.tgz#ea0a3291f97e0b5e8776b363d5f0a12d94c67022"
   integrity sha1-6goykfl+C16HdrNj1fChLZTGcCI=
   dependencies:
     concat-stream "^1.5.0"
@@ -3995,7 +3995,7 @@ next-tick@1:
 
 nice-try@^1.0.4:
   version "1.0.5"
-  resolved "http://registry.npm.alibaba-inc.com/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
+  resolved "http://registry.npm.taobao.org/nice-try/download/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha1-ozeKdpbOfSI+iPybdkvX7xCJ42Y=
 
 node-libs-browser@^2.0.0:
@@ -4097,7 +4097,7 @@ npm-packlist@^1.1.6:
 
 npm-run-path@^2.0.0:
   version "2.0.2"
-  resolved "http://registry.npm.alibaba-inc.com/npm-run-path/download/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
+  resolved "http://registry.npm.taobao.org/npm-run-path/download/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
   integrity sha1-NakjLfo11wZ7TLLd8jV7GHFTbF8=
   dependencies:
     path-key "^2.0.0"
@@ -4129,7 +4129,7 @@ oauth-sign@~0.8.2:
 
 oauth-sign@~0.9.0:
   version "0.9.0"
-  resolved "http://registry.npm.alibaba-inc.com/oauth-sign/download/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
+  resolved "http://registry.npm.taobao.org/oauth-sign/download/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
   integrity sha1-R6ewFrqmi1+g7PPe4IqFxnmsZFU=
 
 object-assign@^4.0.1, object-assign@^4.1.0:
@@ -4266,7 +4266,7 @@ os-locale@^1.4.0:
 
 os-locale@^3.0.0:
   version "3.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/os-locale/download/os-locale-3.0.1.tgz#3b014fbf01d87f60a1e5348d80fe870dc82c4620"
+  resolved "http://registry.npm.taobao.org/os-locale/download/os-locale-3.0.1.tgz#3b014fbf01d87f60a1e5348d80fe870dc82c4620"
   integrity sha1-OwFPvwHYf2Ch5TSNgP6HDcgsRiA=
   dependencies:
     execa "^0.10.0"
@@ -4293,36 +4293,36 @@ osenv@^0.1.4:
 
 p-defer@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-defer/download/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
+  resolved "http://registry.npm.taobao.org/p-defer/download/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
   integrity sha1-n26xgvbJqozXQwBKfU+WsZaw+ww=
 
 p-finally@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-finally/download/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
+  resolved "http://registry.npm.taobao.org/p-finally/download/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
   integrity sha1-P7z7FbiZpEEjs0ttzBi3JDNqLK4=
 
 p-is-promise@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-is-promise/download/p-is-promise-1.1.0.tgz#9c9456989e9f6588017b0434d56097675c3da05e"
+  resolved "http://registry.npm.taobao.org/p-is-promise/download/p-is-promise-1.1.0.tgz#9c9456989e9f6588017b0434d56097675c3da05e"
   integrity sha1-nJRWmJ6fZYgBewQ01WCXZ1w9oF4=
 
 p-limit@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-limit/download/p-limit-2.0.0.tgz#e624ed54ee8c460a778b3c9f3670496ff8a57aec"
+  resolved "http://registry.npm.taobao.org/p-limit/download/p-limit-2.0.0.tgz#e624ed54ee8c460a778b3c9f3670496ff8a57aec"
   integrity sha1-5iTtVO6MRgp3izyfNnBJb/ileuw=
   dependencies:
     p-try "^2.0.0"
 
 p-locate@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-locate/download/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
+  resolved "http://registry.npm.taobao.org/p-locate/download/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
   integrity sha1-Mi1poFwCZLJZl9n0DNiokasAZKQ=
   dependencies:
     p-limit "^2.0.0"
 
 p-try@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/p-try/download/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
+  resolved "http://registry.npm.taobao.org/p-try/download/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
   integrity sha1-hQgLuHxkaI+keZb+j3376CEXYLE=
 
 pako@~1.0.5:
@@ -4424,7 +4424,7 @@ path-is-absolute@^1.0.0:
 
 path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/path-key/download/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
+  resolved "http://registry.npm.taobao.org/path-key/download/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 path-parse@^1.0.5:
@@ -4455,7 +4455,7 @@ path-type@^1.0.0:
 
 pathval@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/pathval/download/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
+  resolved "http://registry.npm.taobao.org/pathval/download/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
   integrity sha1-uULm1L3mUwBe9rcTYd74cn0GReA=
 
 pbkdf2@^3.0.3:
@@ -4498,14 +4498,14 @@ pinkie@^2.0.0:
 
 pkg-dir@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/pkg-dir/download/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
+  resolved "http://registry.npm.taobao.org/pkg-dir/download/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
   integrity sha1-J0kCDyOe2ZCIGx9xIQ1R62UjvqM=
   dependencies:
     find-up "^3.0.0"
 
 plugin-error@^0.1.2:
   version "0.1.2"
-  resolved "http://registry.npm.alibaba-inc.com/plugin-error/download/plugin-error-0.1.2.tgz#3b9bb3335ccf00f425e07437e19276967da47ace"
+  resolved "http://registry.npm.taobao.org/plugin-error/download/plugin-error-0.1.2.tgz#3b9bb3335ccf00f425e07437e19276967da47ace"
   integrity sha1-O5uzM1zPAPQl4HQ34ZJ2ln2kes4=
   dependencies:
     ansi-cyan "^0.1.1"
@@ -4546,7 +4546,7 @@ process@^0.11.10:
 
 process@~0.5.1:
   version "0.5.2"
-  resolved "http://registry.npm.alibaba-inc.com/process/download/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
+  resolved "http://registry.npm.taobao.org/process/download/process-0.5.2.tgz#1638d8a8e34c2f440a91db95ab9aeb677fc185cf"
   integrity sha1-FjjYqONML0QKkduVq5rrZ3/Bhc8=
 
 promise-inflight@^1.0.1:
@@ -4566,7 +4566,7 @@ pseudomap@^1.0.2:
 
 psl@^1.1.24:
   version "1.1.29"
-  resolved "http://registry.npm.alibaba-inc.com/psl/download/psl-1.1.29.tgz#60f580d360170bb722a797cc704411e6da850c67"
+  resolved "http://registry.npm.taobao.org/psl/download/psl-1.1.29.tgz#60f580d360170bb722a797cc704411e6da850c67"
   integrity sha1-YPWA02AXC7cip5fMcEQR5tqFDGc=
 
 public-encrypt@^4.0.0:
@@ -4601,7 +4601,7 @@ pump@^2.0.0:
 
 pump@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/pump/download/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
+  resolved "http://registry.npm.taobao.org/pump/download/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
   integrity sha1-tKIRaBW94vTh6mAjVOjHVWUQemQ=
   dependencies:
     end-of-stream "^1.1.0"
@@ -4792,7 +4792,7 @@ regex-not@^1.0.0, regex-not@^1.0.2:
 
 remap-istanbul@^0.10:
   version "0.10.1"
-  resolved "http://registry.npm.alibaba-inc.com/remap-istanbul/download/remap-istanbul-0.10.1.tgz#3aa58dd5021d499f336d3ba5bf3bbb91c1b88e37"
+  resolved "http://registry.npm.taobao.org/remap-istanbul/download/remap-istanbul-0.10.1.tgz#3aa58dd5021d499f336d3ba5bf3bbb91c1b88e37"
   integrity sha1-OqWN1QIdSZ8zbTulvzu7kcG4jjc=
   dependencies:
     amdefine "^1.0.0"
@@ -4890,7 +4890,7 @@ request@2.85.0:
 
 request@^2.87.0:
   version "2.88.0"
-  resolved "http://registry.npm.alibaba-inc.com/request/download/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
+  resolved "http://registry.npm.taobao.org/request/download/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha1-nC/KT301tZLv5Xx/ClXoEFIST+8=
   dependencies:
     aws-sign2 "~0.7.0"
@@ -4931,7 +4931,7 @@ requires-port@^1.0.0:
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/resolve-cwd/download/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
+  resolved "http://registry.npm.taobao.org/resolve-cwd/download/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
   integrity sha1-AKn3OHVW4nA46uIyyqNypqWbZlo=
   dependencies:
     resolve-from "^3.0.0"
@@ -4946,7 +4946,7 @@ resolve-dir@^1.0.0, resolve-dir@^1.0.1:
 
 resolve-from@^3.0.0:
   version "3.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/resolve-from/download/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
+  resolved "http://registry.npm.taobao.org/resolve-from/download/resolve-from-3.0.0.tgz#b22c7af7d9d6881bc8b6e653335eebcb0a188748"
   integrity sha1-six699nWiBvItuZTM17rywoYh0g=
 
 resolve-options@^1.1.0:
@@ -4980,7 +4980,7 @@ ret@~0.1.10:
 
 rfdc@^1.1.2:
   version "1.1.2"
-  resolved "http://registry.npm.alibaba-inc.com/rfdc/download/rfdc-1.1.2.tgz#e6e72d74f5dc39de8f538f65e00c36c18018e349"
+  resolved "http://registry.npm.taobao.org/rfdc/download/rfdc-1.1.2.tgz#e6e72d74f5dc39de8f538f65e00c36c18018e349"
   integrity sha1-5uctdPXcOd6PU49l4Aw2wYAY40k=
 
 rimraf@2, rimraf@^2.5.4, rimraf@^2.6.0, rimraf@^2.6.1, rimraf@^2.6.2:
@@ -5047,7 +5047,7 @@ sax@^1.2.4:
 
 schema-utils@^0.3.0:
   version "0.3.0"
-  resolved "http://registry.npm.alibaba-inc.com/schema-utils/download/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
+  resolved "http://registry.npm.taobao.org/schema-utils/download/schema-utils-0.3.0.tgz#f5877222ce3e931edae039f17eb3716e7137f8cf"
   integrity sha1-9YdyIs4+kx7a4DnxfrNxbnE3+M8=
   dependencies:
     ajv "^5.0.0"
@@ -5062,7 +5062,7 @@ schema-utils@^0.4.4:
 
 schema-utils@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/schema-utils/download/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
+  resolved "http://registry.npm.taobao.org/schema-utils/download/schema-utils-1.0.0.tgz#0b79a93204d7b600d4b2850d1f66c2a34951c770"
   integrity sha1-C3mpMgTXtgDUsoUNH2bCo0lRx3A=
   dependencies:
     ajv "^6.1.0"
@@ -5136,19 +5136,19 @@ sha.js@^2.4.0, sha.js@^2.4.8:
 
 shebang-command@^1.2.0:
   version "1.2.0"
-  resolved "http://registry.npm.alibaba-inc.com/shebang-command/download/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
+  resolved "http://registry.npm.taobao.org/shebang-command/download/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
   integrity sha1-RKrGW2lbAzmJaMOfNj/uXer98eo=
   dependencies:
     shebang-regex "^1.0.0"
 
 shebang-regex@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/shebang-regex/download/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+  resolved "http://registry.npm.taobao.org/shebang-regex/download/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
 shelljs@^0.8.3:
   version "0.8.3"
-  resolved "http://registry.npm.alibaba-inc.com/shelljs/download/shelljs-0.8.3.tgz#a7f3319520ebf09ee81275b2368adb286659b097"
+  resolved "http://registry.npm.taobao.org/shelljs/download/shelljs-0.8.3.tgz#a7f3319520ebf09ee81275b2368adb286659b097"
   integrity sha1-p/MxlSDr8J7oEnWyNorbKGZZsJc=
   dependencies:
     glob "^7.0.0"
@@ -5211,7 +5211,7 @@ socket.io-adapter@~1.1.0:
 
 socket.io-client@2.1.1:
   version "2.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/socket.io-client/download/socket.io-client-2.1.1.tgz#dcb38103436ab4578ddb026638ae2f21b623671f"
+  resolved "http://registry.npm.taobao.org/socket.io-client/download/socket.io-client-2.1.1.tgz#dcb38103436ab4578ddb026638ae2f21b623671f"
   integrity sha1-3LOBA0NqtFeN2wJmOK4vIbYjZx8=
   dependencies:
     backo2 "1.0.2"
@@ -5231,7 +5231,7 @@ socket.io-client@2.1.1:
 
 socket.io-parser@~3.2.0:
   version "3.2.0"
-  resolved "http://registry.npm.alibaba-inc.com/socket.io-parser/download/socket.io-parser-3.2.0.tgz#e7c6228b6aa1f814e6148aea325b51aa9499e077"
+  resolved "http://registry.npm.taobao.org/socket.io-parser/download/socket.io-parser-3.2.0.tgz#e7c6228b6aa1f814e6148aea325b51aa9499e077"
   integrity sha1-58Yii2qh+BTmFIrqMltRqpSZ4Hc=
   dependencies:
     component-emitter "1.2.1"
@@ -5240,7 +5240,7 @@ socket.io-parser@~3.2.0:
 
 socket.io@2.1.1:
   version "2.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/socket.io/download/socket.io-2.1.1.tgz#a069c5feabee3e6b214a75b40ce0652e1cfb9980"
+  resolved "http://registry.npm.taobao.org/socket.io/download/socket.io-2.1.1.tgz#a069c5feabee3e6b214a75b40ce0652e1cfb9980"
   integrity sha1-oGnF/qvuPmshSnW0DOBlLhz7mYA=
   dependencies:
     debug "~3.1.0"
@@ -5257,7 +5257,7 @@ source-list-map@^2.0.0:
 
 source-map-loader@^0.2.4:
   version "0.2.4"
-  resolved "http://registry.npm.alibaba-inc.com/source-map-loader/download/source-map-loader-0.2.4.tgz#c18b0dc6e23bf66f6792437557c569a11e072271"
+  resolved "http://registry.npm.taobao.org/source-map-loader/download/source-map-loader-0.2.4.tgz#c18b0dc6e23bf66f6792437557c569a11e072271"
   integrity sha1-wYsNxuI79m9nkkN1V8VpoR4HInE=
   dependencies:
     async "^2.5.0"
@@ -5370,7 +5370,7 @@ sshpk@^1.7.0:
 
 ssri@^6.0.0:
   version "6.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/ssri/download/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
+  resolved "http://registry.npm.taobao.org/ssri/download/ssri-6.0.1.tgz#2a3c41b28dd45b62b63676ecb74001265ae9edd8"
   integrity sha1-KjxBso3UW2K2Nnbst0ABJlrp7dg=
   dependencies:
     figgy-pudding "^3.5.1"
@@ -5502,7 +5502,7 @@ strip-bom@^2.0.0:
 
 strip-eof@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/strip-eof/download/strip-eof-1.0.0.tgz#bb43ff5598a6eb05d89b59fcd129c983313606bf"
+  resolved "http://registry.npm.taobao.org/strip-eof/download/strip-eof-1.0.0.tgz#bb43ff5598a6eb05d89b59fcd129c983313606bf"
   integrity sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=
 
 strip-indent@^1.0.1:
@@ -5577,7 +5577,7 @@ tar@^4:
 
 terser-webpack-plugin@^1.1.0:
   version "1.1.0"
-  resolved "http://registry.npm.alibaba-inc.com/terser-webpack-plugin/download/terser-webpack-plugin-1.1.0.tgz#cf7c25a1eee25bf121f4a587bb9e004e3f80e528"
+  resolved "http://registry.npm.taobao.org/terser-webpack-plugin/download/terser-webpack-plugin-1.1.0.tgz#cf7c25a1eee25bf121f4a587bb9e004e3f80e528"
   integrity sha1-z3wloe7iW/Eh9KWHu54ATj+A5Sg=
   dependencies:
     cacache "^11.0.2"
@@ -5591,7 +5591,7 @@ terser-webpack-plugin@^1.1.0:
 
 terser@^3.8.1:
   version "3.10.12"
-  resolved "http://registry.npm.alibaba-inc.com/terser/download/terser-3.10.12.tgz#06d40765e40b33fd97977c0896c75b2b5d42142d"
+  resolved "http://registry.npm.taobao.org/terser/download/terser-3.10.12.tgz#06d40765e40b33fd97977c0896c75b2b5d42142d"
   integrity sha1-BtQHZeQLM/2Xl3wIlsdbK11CFC0=
   dependencies:
     commander "~2.17.1"
@@ -5608,7 +5608,7 @@ through2-filter@^2.0.0:
 
 through2@2.0.1:
   version "2.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/through2/download/through2-2.0.1.tgz#384e75314d49f32de12eebb8136b8eb6b5d59da9"
+  resolved "http://registry.npm.taobao.org/through2/download/through2-2.0.1.tgz#384e75314d49f32de12eebb8136b8eb6b5d59da9"
   integrity sha1-OE51MU1J8y3hLuu4E2uOtrXVnak=
   dependencies:
     readable-stream "~2.0.0"
@@ -5666,7 +5666,7 @@ to-buffer@^1.1.1:
 
 to-fast-properties@^1.0.3:
   version "1.0.3"
-  resolved "http://registry.npm.alibaba-inc.com/to-fast-properties/download/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
+  resolved "http://registry.npm.taobao.org/to-fast-properties/download/to-fast-properties-1.0.3.tgz#b83571fa4d8c25b82e231b06e3a3055de4ca1a47"
   integrity sha1-uDVx+k2MJbguIxsG46MFXeTKGkc=
 
 to-object-path@^0.3.0:
@@ -5710,7 +5710,7 @@ tough-cookie@~2.3.3:
 
 tough-cookie@~2.4.3:
   version "2.4.3"
-  resolved "http://registry.npm.alibaba-inc.com/tough-cookie/download/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
+  resolved "http://registry.npm.taobao.org/tough-cookie/download/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
   integrity sha1-U/Nto/R3g7CSWvoG/587FlKA94E=
   dependencies:
     psl "^1.1.24"
@@ -5728,7 +5728,7 @@ trim-newlines@^1.0.0:
 
 trim-right@^1.0.1:
   version "1.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/trim-right/download/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+  resolved "http://registry.npm.taobao.org/trim-right/download/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
 ts-loader@^5.3.0:
@@ -5744,7 +5744,7 @@ ts-loader@^5.3.0:
 
 ts-node@^7.0.1:
   version "7.0.1"
-  resolved "http://registry.npm.alibaba-inc.com/ts-node/download/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"
+  resolved "http://registry.npm.taobao.org/ts-node/download/ts-node-7.0.1.tgz#9562dc2d1e6d248d24bc55f773e3f614337d9baf"
   integrity sha1-lWLcLR5tJI0kvFX3c+P2FDN9m68=
   dependencies:
     arrify "^1.0.0"
@@ -5763,7 +5763,7 @@ tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:
 
 tslint@^5.11.0:
   version "5.11.0"
-  resolved "http://registry.npm.alibaba-inc.com/tslint/download/tslint-5.11.0.tgz#98f30c02eae3cde7006201e4c33cb08b48581eed"
+  resolved "http://registry.npm.taobao.org/tslint/download/tslint-5.11.0.tgz#98f30c02eae3cde7006201e4c33cb08b48581eed"
   integrity sha1-mPMMAurjzecAYgHkwzywi0hYHu0=
   dependencies:
     babel-code-frame "^6.22.0"
@@ -5830,7 +5830,7 @@ typedarray@^0.0.6:
 
 typescript@^3.1.6:
   version "3.1.6"
-  resolved "http://registry.npm.alibaba-inc.com/typescript/download/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+  resolved "http://registry.npm.taobao.org/typescript/download/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
   integrity sha1-tlQ6g8/Iwr77P0yPumiW9bDJvmg=
 
 uglify-js@^3.1.4:
@@ -5960,7 +5960,7 @@ url@^0.11.0:
 
 urlgrey@^0.4.4:
   version "0.4.4"
-  resolved "http://registry.npm.alibaba-inc.com/urlgrey/download/urlgrey-0.4.4.tgz#892fe95960805e85519f1cd4389f2cb4cbb7652f"
+  resolved "http://registry.npm.taobao.org/urlgrey/download/urlgrey-0.4.4.tgz#892fe95960805e85519f1cd4389f2cb4cbb7652f"
   integrity sha1-iS/pWWCAXoVRnxzUOJ8stMu3ZS8=
 
 use@^3.1.0:
@@ -6007,7 +6007,7 @@ uuid@^3.1.0, uuid@^3.3.2:
 
 v8-compile-cache@^2.0.2:
   version "2.0.2"
-  resolved "http://registry.npm.alibaba-inc.com/v8-compile-cache/download/v8-compile-cache-2.0.2.tgz#a428b28bb26790734c4fc8bc9fa106fccebf6a6c"
+  resolved "http://registry.npm.taobao.org/v8-compile-cache/download/v8-compile-cache-2.0.2.tgz#a428b28bb26790734c4fc8bc9fa106fccebf6a6c"
   integrity sha1-pCiyi7JnkHNMT8i8n6EG/M6/amw=
 
 v8flags@^3.0.1:
@@ -6128,7 +6128,7 @@ wd@^1.4.0:
 
 webpack-cli@^3.1.2:
   version "3.1.2"
-  resolved "http://registry.npm.alibaba-inc.com/webpack-cli/download/webpack-cli-3.1.2.tgz#17d7e01b77f89f884a2bbf9db545f0f6a648e746"
+  resolved "http://registry.npm.taobao.org/webpack-cli/download/webpack-cli-3.1.2.tgz#17d7e01b77f89f884a2bbf9db545f0f6a648e746"
   integrity sha1-F9fgG3f4n4hKK7+dtUXw9qZI50Y=
   dependencies:
     chalk "^2.4.1"
@@ -6182,7 +6182,7 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
 
 webpack@^4.26.1:
   version "4.26.1"
-  resolved "http://registry.npm.alibaba-inc.com/webpack/download/webpack-4.26.1.tgz#ff3a9283d363c07b3494dfa702d08f4f2ef6cb39"
+  resolved "http://registry.npm.taobao.org/webpack/download/webpack-4.26.1.tgz#ff3a9283d363c07b3494dfa702d08f4f2ef6cb39"
   integrity sha1-/zqSg9NjwHs0lN+nAtCPTy72yzk=
   dependencies:
     "@webassemblyjs/ast" "1.7.11"
@@ -6217,7 +6217,7 @@ which-module@^1.0.0:
 
 which-module@^2.0.0:
   version "2.0.0"
-  resolved "http://registry.npm.alibaba-inc.com/which-module/download/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
+  resolved "http://registry.npm.taobao.org/which-module/download/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
   integrity sha1-2e8H3Od7mQK4o6j6SzHD4/fm6Ho=
 
 which@^1.1.1, which@^1.2.1, which@^1.2.14, which@^1.2.9:
@@ -6300,7 +6300,7 @@ yallist@^3.0.0, yallist@^3.0.2:
 
 yargs-parser@^11.1.1:
   version "11.1.1"
-  resolved "http://registry.npm.alibaba-inc.com/yargs-parser/download/yargs-parser-11.1.1.tgz#879a0865973bca9f6bab5cbdf3b1c67ec7d3bcf4"
+  resolved "http://registry.npm.taobao.org/yargs-parser/download/yargs-parser-11.1.1.tgz#879a0865973bca9f6bab5cbdf3b1c67ec7d3bcf4"
   integrity sha1-h5oIZZc7yp9rq1y987HGfsfTvPQ=
   dependencies:
     camelcase "^5.0.0"
@@ -6315,7 +6315,7 @@ yargs-parser@^5.0.0:
 
 yargs@^12.0.2:
   version "12.0.5"
-  resolved "http://registry.npm.alibaba-inc.com/yargs/download/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
+  resolved "http://registry.npm.taobao.org/yargs/download/yargs-12.0.5.tgz#05f5997b609647b64f66b81e3b4b10a368e7ad13"
   integrity sha1-BfWZe2CWR7ZPZrgeO0sQo2jnrRM=
   dependencies:
     cliui "^4.0.0"
