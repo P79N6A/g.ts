@@ -69,3 +69,4 @@ temp
 
 /bazel-out
 /.tmp/
+/coverage/

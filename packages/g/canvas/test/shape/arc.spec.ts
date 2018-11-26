@@ -14,7 +14,7 @@ const div = document.createElement('div');
 div.id = 'canvas-arc';
 document.body.appendChild(div);
 const ratio = Util.getRatio();
-describe('Arc line', function() {
+describe('Arc line', () => {
 
   const canvas = new Canvas({
     containerId: 'canvas-arc',
@@ -22,11 +22,11 @@ describe('Arc line', function() {
     height: 200
   });
 
-  canvas.on('canvas-click', function(ev) {
+  canvas.on('canvas-click', ev => {
     console.log(ev);
   });
   const arc = new G.Arc();
-  it('init attrs', function() {
+  it('init attrs', () => {
     expect(arc.attr('x')).to.equal(0);
     expect(arc.attr('y')).to.equal(0);
     expect(arc.attr('r')).to.equal(0);
@@ -43,7 +43,7 @@ describe('Arc line', function() {
     expect(box.maxY).to.equal(0.5);
   });
 
-  it('x', function() {
+  it('x', () => {
     arc.attr('x', 10);
     expect(arc.attr('x')).to.equal(10);
     const box = arc.getBBox();
@@ -51,7 +51,7 @@ describe('Arc line', function() {
     expect(box.maxX).to.equal(10.5);
   });
 
-  it('y', function() {
+  it('y', () => {
     arc.attr('y', 20);
     expect(arc.attr('y')).to.equal(20);
     const box = arc.getBBox();
@@ -59,7 +59,7 @@ describe('Arc line', function() {
     expect(box.maxY).to.equal(20.5);
   });
 
-  it('r', function() {
+  it('r', () => {
     arc.attr('r', 30);
     const box = arc.getBBox();
     expect(box.minX).to.equal(39.5);
@@ -68,7 +68,7 @@ describe('Arc line', function() {
     expect(box.maxY).to.equal(20.5);
   });
 
-  it('startAngle', function() {
+  it('startAngle', () => {
     arc.attr('startAngle', 1 / 3 * Math.PI);
     expect(Util.isNumberEqual(arc.attr('startAngle'), 1 / 3 * Math.PI)).to.be.true;
     const box = arc.getBBox();
@@ -78,7 +78,7 @@ describe('Arc line', function() {
     expect(box.maxY).to.equal(50.5);
   });
 
-  it('endAngle', function() {
+  it('endAngle', () => {
     arc.attr('endAngle', 120 / 180 * Math.PI);
     expect(Util.isNumberEqual(arc.attr('endAngle'), 120 / 180 * Math.PI)).to.be.true;
     const box = arc.getBBox();
@@ -88,7 +88,7 @@ describe('Arc line', function() {
     expect(Util.isNumberEqual(box.maxY, 50.5)).to.be.true;
   });
 
-  it('clockwise', function() {
+  it('clockwise', () => {
     expect(arc.attr('clockwise')).to.be.false;
     arc.attr('clockwise', true);
     expect(arc.attr('clockwise')).to.be.true;
@@ -99,7 +99,7 @@ describe('Arc line', function() {
     expect(Util.isNumberEqual(box.maxY, 46.48076211353316)).to.be.true;
   });
 
-  it('lineWidth', function() {
+  it('lineWidth', () => {
     expect(arc.attr('lineWidth')).to.equal(1);
     arc.attr('lineWidth', 2);
     expect(arc.attr('lineWidth')).to.equal(2);
@@ -110,7 +110,7 @@ describe('Arc line', function() {
     expect(Util.isNumberEqual(box.maxY, 46.98076211353316)).to.be.true;
   });
 
-  it('stroke', function() {
+  it('stroke', () => {
     arc.attr({
       startAngle: -Math.PI,
       endAngle: Math.PI / 2,
@@ -125,7 +125,7 @@ describe('Arc line', function() {
     canvas.draw();
   });
 
-  it('arrow', function() {
+  it('arrow', () => {
     arc.attr('startArrow', true);
     arc.attr('endArrow', true);
     arc.attr('arrowLength', 5);
@@ -138,11 +138,11 @@ describe('Arc line', function() {
     canvas.draw();
   });
 
-  it('isHit', function() {
+  it('isHit', () => {
     expect(arc.isHit(60 * ratio, 80 * ratio)).to.be.true;
   });
 
-  it('normal', function() {
+  it('normal', () => {
     const arc = new G.Arc({
       attrs: {
         x: 50,

@@ -13,55 +13,55 @@ import {Event, Group} from '@gradii/g/core';
 const Timeline = require('../util/mixin/timeline');
 import {createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId} from '@gradii/g/util';
 
+@CFG({
+  eventEnable: true,
+  /**
+   * 像素宽度
+   * @type {Number}
+   */
+  width: null,
+  /**
+   * 像素高度
+   * @type {Number}
+   */
+  height: null,
+  /**
+   * 画布宽度
+   * @type {Number}
+   */
+  widthCanvas: null,
+  /**
+   * 画布高度
+   * @type {Number}
+   */
+  heightCanvas: null,
+  /**
+   * CSS宽
+   * @type {String}
+   */
+  widthStyle: null,
+  /**
+   * CSS高
+   * @type {String}
+   */
+  heightStyle: null,
+  /**
+   * 容器DOM
+   * @type {Object}
+   */
+  containerDOM: null,
+  /**
+   * 当前Canvas的DOM
+   * @type {Object}
+   */
+  canvasDOM: null,
+  /**
+   * 屏幕像素比
+   * @type {Number}
+   */
+  pixelRatio: null,
+})
 export class Canvas extends Group {
-  public static CFG = {
-    eventEnable: true,
-    /**
-     * 像素宽度
-     * @type {Number}
-     */
-    width: null,
-    /**
-     * 像素高度
-     * @type {Number}
-     */
-    height: null,
-    /**
-     * 画布宽度
-     * @type {Number}
-     */
-    widthCanvas: null,
-    /**
-     * 画布高度
-     * @type {Number}
-     */
-    heightCanvas: null,
-    /**
-     * CSS宽
-     * @type {String}
-     */
-    widthStyle: null,
-    /**
-     * CSS高
-     * @type {String}
-     */
-    heightStyle: null,
-    /**
-     * 容器DOM
-     * @type {Object}
-     */
-    containerDOM: null,
-    /**
-     * 当前Canvas的DOM
-     * @type {Object}
-     */
-    canvasDOM: null,
-    /**
-     * 屏幕像素比
-     * @type {Number}
-     */
-    pixelRatio: null,
-  };
 
   constructor(cfg) {
     super(cfg);
