@@ -48,27 +48,6 @@ export class Timer {
   private _time = null;
   private _next = null;
 
-  restart(callback, delay, time) {
-    if (typeof callback !== 'function') { throw new TypeError('callback is not a function'); }
-    time = (time == null ? now() : +time) + (delay == null ? 0 : +delay);
-    if (!this._next && taskTail !== this) {
-      if (taskTail) { taskTail._next = this; }
-      else { taskHead = this; }
-      taskTail = this;
-    }
-    this._call = callback;
-    this._time = time;
-    this.sleep();
-  }
-
-  stop() {
-    if (this._call) {
-      this._call = null;
-      this._time = Infinity;
-      this.sleep();
-    }
-  }
-
   private wake() {
     clockNow = (clockLast = clock.now()) + clockSkew;
     frame    = timeout = 0;
@@ -101,16 +80,42 @@ export class Timer {
     this.sleep(time);
   }
 
-  private sleep(time) {
+  private sleep(time?) {
     if (frame) { return; } // Soonest alarm already set, or will be.
-    if (timeout) { timeout = clearTimeout(timeout); }
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
     let delay = time - clockNow; // Strictly less than if we recomputed clockNow.
     if (delay > 24) {
-      if (time < Infinity) { timeout = setTimeout(this.wake.bind(this), time - clock.now() - clockSkew); }
-      if (interval) { interval = clearInterval(interval); }
+      if (time < Infinity) { timeout = +setTimeout(this.wake.bind(this), time - clock.now() - clockSkew); }
+      if (interval) {
+        clearInterval(interval);
+        interval = null;
+      }
     } else {
-      if (!interval) { clockLast = clock.now(), interval = setInterval(this.poke.bind(this), pokeDelay); }
+      if (!interval) { clockLast = clock.now(), interval = +setInterval(this.poke.bind(this), pokeDelay); }
       frame = 1, setFrame(this.wake);
+    }
+  }
+
+  restart(callback, delay, time) {
+    if (typeof callback !== 'function') { throw new TypeError('callback is not a function'); }
+    time = (time == null ? now() : +time) + (delay == null ? 0 : +delay);
+    if (!this._next && taskTail !== this) {
+      if (taskTail) { taskTail._next = this; } else { taskHead = this; }
+      taskTail = this;
+    }
+    this._call = callback;
+    this._time = time;
+    this.sleep();
+  }
+
+  stop() {
+    if (this._call) {
+      this._call = null;
+      this._time = Infinity;
+      this.sleep();
     }
   }
 

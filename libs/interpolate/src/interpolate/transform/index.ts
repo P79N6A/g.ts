@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { InterpolateNumber } from '../number';
+import { interpolateNumber } from '../../wrapper/interpolate-number';
 import { parseCss, parseSvg } from './parse';
 
 function interpolateTransform(parse, pxComma, pxParen, degParen) {
@@ -18,7 +18,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
   function translate(xa, ya, xb, yb, s, q) {
     if (xa !== xb || ya !== yb) {
       let i = s.push('translate(', null, pxComma, null, pxParen);
-      q.push({i: i - 4, x: new InterpolateNumber(xa, xb)}, {i: i - 2, x: new InterpolateNumber(ya, yb)});
+      q.push({i: i - 4, x: interpolateNumber(xa, xb)}, {i: i - 2, x: interpolateNumber(ya, yb)});
     } else if (xb || yb) {
       s.push('translate(' + xb + pxComma + yb + pxParen);
     }
@@ -31,7 +31,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
       } else if (b - a > 180) {
         a += 360;
       } // shortest path
-      q.push({i: s.push(pop(s) + 'rotate(', null, degParen) - 2, x: new InterpolateNumber(a, b)});
+      q.push({i: s.push(pop(s) + 'rotate(', null, degParen) - 2, x: interpolateNumber(a, b)});
     } else if (b) {
       s.push(pop(s) + 'rotate(' + b + degParen);
     }
@@ -54,7 +54,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
     }
   }
 
-  return function (a, b) {
+  return (a, b) => {
     let s = [], // string constants and placeholders
         q = []; // number interpolators
     a = parse(a), b = parse(b);
@@ -63,7 +63,7 @@ function interpolateTransform(parse, pxComma, pxParen, degParen) {
     skewX(a.skewX, b.skewX, s, q);
     scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
     a = b = null; // gc
-    return (t) => {
+    return t => {
       let i = -1, n = q.length, o;
       while (++i < n) {
         s[(o = q[i]).i] = o.x(t);

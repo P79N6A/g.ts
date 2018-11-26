@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Triangle } from '@gradii/z-math/geometry';
+import { Triangle } from '@gradii/vector-math';
 import { Aabb3 } from './aabb3';
 import { clamp, EPSILON } from './common';
 import { Matrix3 } from './matrix3';

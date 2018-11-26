@@ -52,6 +52,7 @@ export class Aabb3 {
   }
 
   constructor(min: Vector3, max: Vector3);
+  constructor();
   constructor() {
     if (arguments.length === 2) {
       this._min = arguments[0].clone();
