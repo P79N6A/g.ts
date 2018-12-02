@@ -17,14 +17,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@gradii/g": [
-        "packages/index"
-      ],
-      "@gradii/g/*": [
-        "packages/*/index"
-      ],
       "@gradii/*": [
-        "libs/*/public-api"
+        "libs/*/public-api",
+        "packages/*/public-api"
       ]
     }
   },

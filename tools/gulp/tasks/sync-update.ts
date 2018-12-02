@@ -1,6 +1,6 @@
 //tslint:disable
-import {src, task} from 'gulp';
-import {dest} from 'vinyl-fs';
+import { src, task } from 'gulp';
+import { dest } from 'vinyl-fs';
 
 const rename = require('gulp-rename');
 

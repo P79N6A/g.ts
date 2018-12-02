@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "outDir": "../../dist/tools/gulp",
     "strictNullChecks": true,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "noImplicitAny": false,
     "sourceMap": true,
     "target": "es5",
@@ -20,6 +20,9 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "gradii-g-lzeix": [
+        "../lzeix"
+      ]
     }
   },
   "files": [
