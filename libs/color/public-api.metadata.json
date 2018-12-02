@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{},"exports":[{"from":"./src/color"},{"from":"./src/const"},{"from":"./src/cubehelix"},{"from":"./src/hcl"},{"from":"./src/hsl"},{"from":"./src/lab"},{"from":"./src/rgb"},{"from":"./src/helper","export":[{"name":"create","as":"createColor"}]}]}]

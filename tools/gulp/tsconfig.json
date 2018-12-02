@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "noUnusedParameters": true,
     "lib": [
       "es2015",
       "dom",
@@ -13,6 +12,8 @@
     "strictNullChecks": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "sourceMap": true,
     "target": "es5",
     "types": [
@@ -20,9 +21,6 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "gradii-g-lzeix": [
-        "../lzeix"
-      ]
     }
   },
   "files": [

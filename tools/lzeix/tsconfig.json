@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "commonjs",
+    "target": "es2015",
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "outDir": "../../dist/all/lzeix",
+    "noImplicitAny": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@lzeix/*": [
+        "./*"
+      ]
+    },
+    "rootDir": ".",
+    "inlineSourceMap": true,
+    "lib": [
+      "es5",
+      "dom",
+      "es2015"
+    ],
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "noEmitHelpers": true
+  }
+}

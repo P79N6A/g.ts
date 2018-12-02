@@ -1,0 +1,1 @@
+{"version":3,"file":"interpolate-object.js","sourceRoot":"","sources":["interpolate-object.ts"],"names":[],"mappings":";;AAAA,gDAA0D;AAE1D,SAAgB,iBAAiB,CAAC,KAAK,EAAE,GAAG;IAC1C,OAAO,UAAA,CAAC;QACN,OAAO,IAAI,0BAAiB,EAAE,CAAC,WAAW,CAAC,KAAK,EAAE,GAAG,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC;IACtE,CAAC,CAAC;AACJ,CAAC;AAJD,8CAIC"}

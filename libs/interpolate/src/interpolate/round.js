@@ -1,0 +1,24 @@
+"use strict";
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+var InterpolateRound = /** @class */ (function () {
+    function InterpolateRound() {
+    }
+    InterpolateRound.prototype.interpolate = function (a, b) {
+        this.a = a;
+        this.b = b;
+        return this;
+    };
+    InterpolateRound.prototype.getResult = function (t) {
+        return Math.round(this.a + (this.b - this.a) * t);
+    };
+    return InterpolateRound;
+}());
+exports.InterpolateRound = InterpolateRound;
+//# sourceMappingURL=round.js.map

@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "esnext",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "es2015",
+      "dom"
+    ],
+    "baseUrl": ".",
+    "outDir": "../dist/applications"
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
+}

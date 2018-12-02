@@ -1,0 +1,1 @@
+[{"__symbolic":"module","version":4,"metadata":{"Sphere":{"__symbolic":"class","members":{"copyFrom":[{"__symbolic":"method"}],"containsVector3":[{"__symbolic":"method"}],"intersectsWithVector3":[{"__symbolic":"method"}],"intersectsWithSphere":[{"__symbolic":"method"}]}}}}]

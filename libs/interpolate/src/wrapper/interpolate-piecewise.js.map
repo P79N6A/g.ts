@@ -1,0 +1,1 @@
+{"version":3,"file":"interpolate-piecewise.js","sourceRoot":"","sources":["interpolate-piecewise.ts"],"names":[],"mappings":";;AAAA,sDAAgE;AAEhE,SAAgB,oBAAoB,CAAC,MAAM,EAAE,WAAW;IACtD,OAAO,UAAA,CAAC;QACN,OAAO,IAAI,gCAAoB,CAAC,WAAW,CAAC,CAAC,WAAW,CAAC,MAAM,CAAC,CAAC,SAAS,CAAC,CAAC,CAAC,CAAC;IAChF,CAAC,CAAC;AACJ,CAAC;AAJD,oDAIC"}
