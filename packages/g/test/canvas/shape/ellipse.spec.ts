@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
-const G = require('../../../src/index');
+
+
 const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
 div.id = 'canvas-ellipse';
@@ -33,84 +33,84 @@ describe('Ellipse', function() {
   });
 
   it('init attr', function() {
-    expect(ellipse.attr('x')).to.equal(0);
-    expect(ellipse.attr('y')).to.equal(0);
-    expect(ellipse.attr('rx')).to.equal(1);
-    expect(ellipse.attr('ry')).to.equal(1);
-    expect(ellipse.attr('lineWidth')).to.equal(1);
-    expect(ellipse.attr('stroke')).to.be.undefined;
-    expect(ellipse.attr('fill')).to.be.undefined;
+    expect(ellipse.attr('x')).toBe(0);
+    expect(ellipse.attr('y')).toBe(0);
+    expect(ellipse.attr('rx')).toBe(1);
+    expect(ellipse.attr('ry')).toBe(1);
+    expect(ellipse.attr('lineWidth')).toBe(1);
+    expect(ellipse.attr('stroke')).toBeUndefined();
+    expect(ellipse.attr('fill')).toBeUndefined();
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(-1.5);
-    expect(box.maxX).to.equal(1.5);
-    expect(box.minY).to.equal(-1.5);
-    expect(box.maxY).to.equal(1.5);
+    expect(box.minX).toBe(-1.5);
+    expect(box.maxX).toBe(1.5);
+    expect(box.minY).toBe(-1.5);
+    expect(box.maxY).toBe(1.5);
   });
 
   it('x', function() {
     ellipse.attr('x', 20);
-    expect(ellipse.attr('x')).to.equal(20);
+    expect(ellipse.attr('x')).toBe(20);
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(18.5);
-    expect(box.maxX).to.equal(21.5);
-    expect(box.minY).to.equal(-1.5);
-    expect(box.maxY).to.equal(1.5);
+    expect(box.minX).toBe(18.5);
+    expect(box.maxX).toBe(21.5);
+    expect(box.minY).toBe(-1.5);
+    expect(box.maxY).toBe(1.5);
   });
 
   it('y', function() {
     ellipse.attr('y', 30);
-    expect(ellipse.attr('y')).to.equal(30);
+    expect(ellipse.attr('y')).toBe(30);
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(18.5);
-    expect(box.maxX).to.equal(21.5);
-    expect(box.minY).to.equal(28.5);
-    expect(box.maxY).to.equal(31.5);
+    expect(box.minX).toBe(18.5);
+    expect(box.maxX).toBe(21.5);
+    expect(box.minY).toBe(28.5);
+    expect(box.maxY).toBe(31.5);
   });
 
   it('rx', function() {
-    expect(ellipse.attr('rx')).to.equal(1);
+    expect(ellipse.attr('rx')).toBe(1);
     ellipse.attr('rx', 5);
-    expect(ellipse.attr('rx')).to.equal(5);
+    expect(ellipse.attr('rx')).toBe(5);
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(14.5);
-    expect(box.maxX).to.equal(25.5);
-    expect(box.minY).to.equal(28.5);
-    expect(box.maxY).to.equal(31.5);
+    expect(box.minX).toBe(14.5);
+    expect(box.maxX).toBe(25.5);
+    expect(box.minY).toBe(28.5);
+    expect(box.maxY).toBe(31.5);
   });
 
   it('ry', function() {
-    expect(ellipse.attr('ry')).to.equal(1);
+    expect(ellipse.attr('ry')).toBe(1);
     ellipse.attr('ry', 10);
-    expect(ellipse.attr('ry')).to.equal(10);
+    expect(ellipse.attr('ry')).toBe(10);
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(14.5);
-    expect(box.maxX).to.equal(25.5);
-    expect(box.minY).to.equal(19.5);
-    expect(box.maxY).to.equal(40.5);
+    expect(box.minX).toBe(14.5);
+    expect(box.maxX).toBe(25.5);
+    expect(box.minY).toBe(19.5);
+    expect(box.maxY).toBe(40.5);
   });
 
 
   it('lineWidth', function() {
-    expect(ellipse.attr('lineWidth')).to.equal(1);
+    expect(ellipse.attr('lineWidth')).toBe(1);
     ellipse.attr('lineWidth', 2);
-    expect(ellipse.attr('lineWidth')).to.equal(2);
+    expect(ellipse.attr('lineWidth')).toBe(2);
     const box = ellipse.getBBox();
-    expect(box.minX).to.equal(14);
-    expect(box.maxX).to.equal(26);
-    expect(box.minY).to.equal(19);
-    expect(box.maxY).to.equal(41);
+    expect(box.minX).toBe(14);
+    expect(box.maxX).toBe(26);
+    expect(box.minY).toBe(19);
+    expect(box.maxY).toBe(41);
   });
 
   it('stroke', function() {
     ellipse.attr('stroke', 'l (0) 0:#959231 1:#00cd54');
-    expect(ellipse.attr('stroke')).to.equal('l (0) 0:#959231 1:#00cd54');
+    expect(ellipse.attr('stroke')).toBe('l (0) 0:#959231 1:#00cd54');
     canvas.add(ellipse);
     canvas.draw();
   });
 
   it('fill', function() {
     ellipse.attr('fill', 'l (90) 0:#959231 1:#00cd54');
-    expect(ellipse.attr('fill')).to.equal('l (90) 0:#959231 1:#00cd54');
+    expect(ellipse.attr('fill')).toBe('l (90) 0:#959231 1:#00cd54');
     canvas.draw();
   });
 
@@ -125,16 +125,16 @@ describe('Ellipse', function() {
       }
     });
 
-    expect(ellipse1.isHit(-150, 50)).to.be.false;
-    expect(ellipse1.isHit(50, -50)).to.be.false;
-    expect(ellipse1.isHit(250, 50)).to.be.false;
-    expect(ellipse1.isHit(50, 150)).to.be.false;
+    expect(ellipse1.isHit(-150, 50)).toBe(false);
+    expect(ellipse1.isHit(50, -50)).toBe(false);
+    expect(ellipse1.isHit(250, 50)).toBe(false);
+    expect(ellipse1.isHit(50, 150)).toBe(false);
 
     ellipse1.attr('stroke', 'red');
-    expect(ellipse1.isHit(-150, 50)).to.be.true;
-    expect(ellipse1.isHit(50, -50)).to.be.true;
-    expect(ellipse1.isHit(250, 50)).to.be.true;
-    expect(ellipse1.isHit(50, 150)).to.be.true;
+    expect(ellipse1.isHit(-150, 50)).toBe(true);
+    expect(ellipse1.isHit(50, -50)).toBe(true);
+    expect(ellipse1.isHit(250, 50)).toBe(true);
+    expect(ellipse1.isHit(50, 150)).toBe(true);
 
     const ellipse2 = new G.Ellipse({
       attrs: {
@@ -145,17 +145,17 @@ describe('Ellipse', function() {
       }
     });
 
-    expect(ellipse2.isHit(70, 200)).to.be.false;
-    expect(ellipse2.isHit(100, 150)).to.be.false;
-    expect(ellipse2.isHit(130, 200)).to.be.false;
-    expect(ellipse2.isHit(100, 230)).to.be.false;
+    expect(ellipse2.isHit(70, 200)).toBe(false);
+    expect(ellipse2.isHit(100, 150)).toBe(false);
+    expect(ellipse2.isHit(130, 200)).toBe(false);
+    expect(ellipse2.isHit(100, 230)).toBe(false);
 
     ellipse2.attr('fill', 'green');
 
-    expect(ellipse2.isHit(70, 200)).to.be.true;
-    expect(ellipse2.isHit(100, 150)).to.be.true;
-    expect(ellipse2.isHit(130, 200)).to.be.true;
-    expect(ellipse2.isHit(100, 230)).to.be.true;
+    expect(ellipse2.isHit(70, 200)).toBe(true);
+    expect(ellipse2.isHit(100, 150)).toBe(true);
+    expect(ellipse2.isHit(130, 200)).toBe(true);
+    expect(ellipse2.isHit(100, 230)).toBe(true);
 
     const ellipse3 = new G.Ellipse({
       attrs: {
@@ -166,19 +166,19 @@ describe('Ellipse', function() {
       }
     });
 
-    expect(ellipse3.isHit(150, 200)).to.be.false;
-    expect(ellipse3.isHit(250, 200)).to.be.false;
-    expect(ellipse3.isHit(200, 100)).to.be.false;
-    expect(ellipse3.isHit(200, 300)).to.be.false;
-    expect(ellipse3.isHit(170, 200)).to.be.false;
+    expect(ellipse3.isHit(150, 200)).toBe(false);
+    expect(ellipse3.isHit(250, 200)).toBe(false);
+    expect(ellipse3.isHit(200, 100)).toBe(false);
+    expect(ellipse3.isHit(200, 300)).toBe(false);
+    expect(ellipse3.isHit(170, 200)).toBe(false);
     ellipse3.attr({
       fill: 'green',
       stroke: 'red'
     });
-    expect(ellipse3.isHit(150, 200)).to.be.true;
-    expect(ellipse3.isHit(250, 200)).to.be.true;
-    expect(ellipse3.isHit(200, 100)).to.be.true;
-    expect(ellipse3.isHit(200, 300)).to.be.true;
-    expect(ellipse3.isHit(170, 200)).to.be.true;
+    expect(ellipse3.isHit(150, 200)).toBe(true);
+    expect(ellipse3.isHit(250, 200)).toBe(true);
+    expect(ellipse3.isHit(200, 100)).toBe(true);
+    expect(ellipse3.isHit(200, 300)).toBe(true);
+    expect(ellipse3.isHit(170, 200)).toBe(true);
   });
 });

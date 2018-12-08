@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
+
 const Canvas = require('../../../src/canvas');
 
 describe('Marker', function() {
@@ -29,8 +29,8 @@ describe('Marker', function() {
         symbol: 'circle'
       }
     });
-    expect(marker.attr('x')).to.equal(10);
-    expect(marker.attr('y')).to.equal(10);
+    expect(marker.attr('x')).toBe(10);
+    expect(marker.attr('y')).toBe(10);
   });
 
   it('hit', function() {
@@ -43,8 +43,8 @@ describe('Marker', function() {
         symbol: 'circle'
       }
     });
-    expect(marker.isHit(20, 20)).to.be.true;
-    expect(marker.isHit(10, 10)).to.be.false;
+    expect(marker.isHit(20, 20)).toBe(true);
+    expect(marker.isHit(10, 10)).toBe(false);
   });
 
   it('hit with lineWidth', function() {
@@ -58,9 +58,9 @@ describe('Marker', function() {
         symbol: 'circle'
       }
     });
-    expect(marker.isHit(100, 100)).to.be.true;
-    expect(marker.isHit(95, 95)).to.be.true;
+    expect(marker.isHit(100, 100)).toBe(true);
+    expect(marker.isHit(95, 95)).toBe(true);
     marker.attr('lineAppendWidth', 6);
-    expect(marker.isHit(94, 94)).to.be.true;
+    expect(marker.isHit(94, 94)).toBe(true);
   });
 });

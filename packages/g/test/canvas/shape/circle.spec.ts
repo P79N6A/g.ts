@@ -6,12 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
-const G = require('../../../src/index');
-const Canvas = require('../../../src/canvas');
+
+import {Circle} from '../../../src/shapes/circle';
+
 const div = document.createElement('div');
 div.id = 'canvas-circle';
 document.body.appendChild(div);
+
 describe('Circle', function() {
   const canvas = new Canvas({
     containerId: 'canvas-circle',
@@ -20,7 +21,7 @@ describe('Circle', function() {
     pixelRatio: 1
   });
 
-  const circle = new G.Circle({
+  const circle = new Circle({
     attrs: {
       x: 0,
       y: 0,
@@ -29,73 +30,73 @@ describe('Circle', function() {
   });
 
   it('init attr', function() {
-    expect(circle.attr('lineWidth')).to.equal(1);
-    expect(circle.attr('stroke')).to.be.undefined;
-    expect(circle.attr('fill')).to.be.undefined;
+    expect(circle.attr('lineWidth')).toBe(1);
+    expect(circle.attr('stroke')).toBeUndefined();
+    expect(circle.attr('fill')).toBeUndefined();
     const box = circle.getBBox();
-    expect(box.minX).to.equal(-0.5);
-    expect(box.maxX).to.equal(0.5);
-    expect(box.minY).to.equal(-0.5);
-    expect(box.maxY).to.equal(0.5);
+    expect(box.minX).toBe(-0.5);
+    expect(box.maxX).toBe(0.5);
+    expect(box.minY).toBe(-0.5);
+    expect(box.maxY).toBe(0.5);
   });
 
   it('x', function() {
     circle.attr('x', 10);
-    expect(circle.attr('x')).to.equal(10);
+    expect(circle.attr('x')).toBe(10);
     const box = circle.getBBox();
-    expect(box.minX).to.equal(9.5);
-    expect(box.maxX).to.equal(10.5);
-    expect(box.minY).to.equal(-0.5);
-    expect(box.maxY).to.equal(0.5);
+    expect(box.minX).toBe(9.5);
+    expect(box.maxX).toBe(10.5);
+    expect(box.minY).toBe(-0.5);
+    expect(box.maxY).toBe(0.5);
   });
 
   it('y', function() {
     circle.attr('y', 20);
-    expect(circle.attr('y')).to.equal(20);
+    expect(circle.attr('y')).toBe(20);
     const box = circle.getBBox();
-    expect(box.minX).to.equal(9.5);
-    expect(box.maxX).to.equal(10.5);
-    expect(box.minY).to.equal(19.5);
-    expect(box.maxY).to.equal(20.5);
+    expect(box.minX).toBe(9.5);
+    expect(box.maxX).toBe(10.5);
+    expect(box.minY).toBe(19.5);
+    expect(box.maxY).toBe(20.5);
   });
 
   it('r', function() {
-    expect(circle.attr('r')).to.equal(0);
+    expect(circle.attr('r')).toBe(0);
     circle.attr('r', 10);
-    expect(circle.attr('r')).to.equal(10);
+    expect(circle.attr('r')).toBe(10);
     const box = circle.getBBox();
-    expect(box.minX).to.equal(-0.5);
-    expect(box.maxX).to.equal(20.5);
-    expect(box.minY).to.equal(9.5);
-    expect(box.maxY).to.equal(30.5);
+    expect(box.minX).toBe(-0.5);
+    expect(box.maxX).toBe(20.5);
+    expect(box.minY).toBe(9.5);
+    expect(box.maxY).toBe(30.5);
   });
 
   it('lineWidth', function() {
-    expect(circle.attr('lineWidth')).to.equal(1);
+    expect(circle.attr('lineWidth')).toBe(1);
     circle.attr('lineWidth', 2);
-    expect(circle.attr('lineWidth')).to.equal(2);
+    expect(circle.attr('lineWidth')).toBe(2);
     const box = circle.getBBox();
-    expect(box.minX).to.equal(-1);
-    expect(box.maxX).to.equal(21);
-    expect(box.minY).to.equal(9);
-    expect(box.maxY).to.equal(31);
+    expect(box.minX).toBe(-1);
+    expect(box.maxX).toBe(21);
+    expect(box.minY).toBe(9);
+    expect(box.maxY).toBe(31);
   });
 
   it('stroke', function() {
     circle.attr('stroke', 'l (30) 0:#00ffff 1:#ff00ff');
-    expect(circle.attr('stroke')).to.equal('l (30) 0:#00ffff 1:#ff00ff');
+    expect(circle.attr('stroke')).toBe('l (30) 0:#00ffff 1:#ff00ff');
     canvas.add(circle);
     canvas.draw(circle);
   });
 
   it('fill', function() {
     circle.attr('fill', 'r (0.5, 0.5, 0) 0:#00ffff 1:#ffff00');
-    expect(circle.attr('fill')).to.equal('r (0.5, 0.5, 0) 0:#00ffff 1:#ffff00');
+    expect(circle.attr('fill')).toBe('r (0.5, 0.5, 0) 0:#00ffff 1:#ffff00');
     canvas.draw(circle);
   });
 
   it('isHit', function() {
-    const circle1 = new G.Circle({
+    const circle1 = new Circle({
       attrs: {
         x: 50,
         y: 50,
@@ -103,22 +104,22 @@ describe('Circle', function() {
       }
     });
 
-    expect(circle1.isHit(0, 50)).to.be.false;
-    expect(circle1.isHit(50, 0)).to.be.false;
-    expect(circle1.isHit(100, 50)).to.be.false;
-    expect(circle1.isHit(50, 100)).to.be.false;
+    expect(circle1.isHit(0, 50)).toBe(false);
+    expect(circle1.isHit(50, 0)).toBe(false);
+    expect(circle1.isHit(100, 50)).toBe(false);
+    expect(circle1.isHit(50, 100)).toBe(false);
     circle1.attr('stroke', 'red');
 
-    expect(circle1.isHit(0, 50)).to.be.true;
-    expect(circle1.isHit(50, 0)).to.be.true;
-    expect(circle1.isHit(100, 50)).to.be.true;
-    expect(circle1.isHit(50, 100)).to.be.true;
-    expect(circle1.isHit(20, 50)).to.be.false;
-    expect(circle1.isHit(50, 20)).to.be.false;
-    expect(circle1.isHit(80, 50)).to.be.false;
-    expect(circle1.isHit(50, 80)).to.be.false;
+    expect(circle1.isHit(0, 50)).toBe(true);
+    expect(circle1.isHit(50, 0)).toBe(true);
+    expect(circle1.isHit(100, 50)).toBe(true);
+    expect(circle1.isHit(50, 100)).toBe(true);
+    expect(circle1.isHit(20, 50)).toBe(false);
+    expect(circle1.isHit(50, 20)).toBe(false);
+    expect(circle1.isHit(80, 50)).toBe(false);
+    expect(circle1.isHit(50, 80)).toBe(false);
 
-    const circle2 = new G.Circle({
+    const circle2 = new Circle({
       attrs: {
         x: 50,
         y: 50,
@@ -126,29 +127,29 @@ describe('Circle', function() {
       }
     });
 
-    expect(circle2.isHit(20, 50)).to.be.false;
-    expect(circle2.isHit(50, 20)).to.be.false;
-    expect(circle2.isHit(80, 50)).to.be.false;
-    expect(circle2.isHit(50, 80)).to.be.false;
+    expect(circle2.isHit(20, 50)).toBe(false);
+    expect(circle2.isHit(50, 20)).toBe(false);
+    expect(circle2.isHit(80, 50)).toBe(false);
+    expect(circle2.isHit(50, 80)).toBe(false);
     circle2.attr('fill', 'green');
-    expect(circle2.isHit(20, 50)).to.be.true;
-    expect(circle2.isHit(50, 20)).to.be.true;
-    expect(circle2.isHit(80, 50)).to.be.true;
-    expect(circle2.isHit(50, 80)).to.be.true;
+    expect(circle2.isHit(20, 50)).toBe(true);
+    expect(circle2.isHit(50, 20)).toBe(true);
+    expect(circle2.isHit(80, 50)).toBe(true);
+    expect(circle2.isHit(50, 80)).toBe(true);
 
     circle2.attr('stroke', 'red');
-    expect(circle2.isHit(0, 50)).to.be.true;
-    expect(circle2.isHit(50, 0)).to.be.true;
-    expect(circle2.isHit(100, 50)).to.be.true;
-    expect(circle2.isHit(50, 100)).to.be.true;
-    expect(circle2.isHit(20, 50)).to.be.true;
-    expect(circle2.isHit(50, 20)).to.be.true;
-    expect(circle2.isHit(80, 50)).to.be.true;
-    expect(circle2.isHit(50, 80)).to.be.true;
+    expect(circle2.isHit(0, 50)).toBe(true);
+    expect(circle2.isHit(50, 0)).toBe(true);
+    expect(circle2.isHit(100, 50)).toBe(true);
+    expect(circle2.isHit(50, 100)).toBe(true);
+    expect(circle2.isHit(20, 50)).toBe(true);
+    expect(circle2.isHit(50, 20)).toBe(true);
+    expect(circle2.isHit(80, 50)).toBe(true);
+    expect(circle2.isHit(50, 80)).toBe(true);
   });
 
   it('strokeOpactiy', function() {
-    const circle = new G.Circle({
+    const circle = new Circle({
       attrs: {
         x: 150,
         y: 150,

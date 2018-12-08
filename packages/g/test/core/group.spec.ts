@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const G = require('../../../src/index');
+
+
 const Event = require('../../../src/event');
 const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
@@ -20,9 +20,9 @@ describe('Group', function() {
       id: 'g1'
     });
 
-    expect(g.isGroup).to.be.true;
-    expect(g.get('children')).not.to.be.undefined;
-    expect(g.get('children').length).to.equal(0);
+    expect(g.isGroup).toBe(true);
+    expect(g.get('children')).not.toBeUndefined();
+    expect(g.get('children').length).toBe(0);
   });
 
   it('add', function() {
@@ -39,45 +39,45 @@ describe('Group', function() {
 
     g2.add(e);
 
-    expect(e.get('parent')).to.eql(g2);
-    expect(g2.getCount()).to.equal(1);
+    expect(e.get('parent')).toEqual(g2);
+    expect(g2.getCount()).toBe(1);
     const g3 = new G.Group({
       id: 'g3'
     });
 
     g3.add(e);
 
-    expect(e.get('parent')).to.eql(g3);
-    expect(g3.getCount()).to.equal(1);
-    expect(g2.getCount()).to.equal(0);
+    expect(e.get('parent')).toEqual(g3);
+    expect(g3.getCount()).toBe(1);
+    expect(g2.getCount()).toBe(0);
 
     const g4 = new G.Group({
       id: 'g4'
     });
 
     g4.add(g3);
-    expect(g3.get('parent')).to.eql(g4);
-    expect(e.get('parent')).to.eql(g3);
-    expect(g4.getCount()).to.equal(1);
-    expect(g3.getCount()).to.equal(1);
+    expect(g3.get('parent')).toEqual(g4);
+    expect(e.get('parent')).toEqual(g3);
+    expect(g4.getCount()).toBe(1);
+    expect(g3.getCount()).toBe(1);
 
     g2.add(g3);
-    expect(g2.getCount()).to.equal(1);
-    expect(g3.getCount()).to.equal(1);
-    expect(g3.get('parent')).to.eql(g2);
-    expect(e.get('parent')).to.eql(g3);
+    expect(g2.getCount()).toBe(1);
+    expect(g3.getCount()).toBe(1);
+    expect(g3.get('parent')).toEqual(g2);
+    expect(e.get('parent')).toEqual(g3);
 
     g3.add(e2);
-    expect(g2.getCount()).to.equal(1);
-    expect(g3.getCount()).to.equal(2);
-    expect(e2.get('parent')).to.eql(g3);
-    expect(e.get('parent')).to.eql(g3);
+    expect(g2.getCount()).toBe(1);
+    expect(g3.getCount()).toBe(2);
+    expect(e2.get('parent')).toEqual(g3);
+    expect(e.get('parent')).toEqual(g3);
 
     g2.add(e2);
-    expect(g2.getCount()).to.equal(2);
-    expect(g3.getCount()).to.equal(1);
-    expect(e2.get('parent')).to.eql(g2);
-    expect(e.get('parent')).to.eql(g3);
+    expect(g2.getCount()).toBe(2);
+    expect(g3.getCount()).toBe(1);
+    expect(e2.get('parent')).toEqual(g2);
+    expect(e.get('parent')).toEqual(g3);
   });
 
   it('clear', function() {
@@ -99,10 +99,10 @@ describe('Group', function() {
     g.add(e2);
     g.add(e3);
 
-    expect(g.getCount()).to.equal(3);
+    expect(g.getCount()).toBe(3);
     g.clear();
-    expect(g.getCount()).to.equal(0);
-    expect(e1.get('destroyed')).to.be.true;
+    expect(g.getCount()).toBe(0);
+    expect(e1.get('destroyed')).toBe(true);
   });
 
   it('destroy', function() {
@@ -123,11 +123,11 @@ describe('Group', function() {
     g.add(e1);
     g.add(e2);
     g.add(e3);
-    expect(g.getCount()).to.equal(3);
+    expect(g.getCount()).toBe(3);
     g.destroy();
 
-    expect(g.get('children')).to.undefined;
-    expect(g.get('destroyed')).to.be.true;
+    expect(g.get('children')).toBeUndefined();
+    expect(g.get('destroyed')).toBe(true);
   });
 
   it('remove', function() {
@@ -163,26 +163,26 @@ describe('Group', function() {
 
     g2.add(g1);
 
-    expect(g2.getCount()).to.equal(1);
-    expect(g1.getCount()).to.equal(5);
+    expect(g2.getCount()).toBe(1);
+    expect(g1.getCount()).toBe(5);
     g1.removeChild(e1, true);
-    expect(g1.getCount()).to.equal(4);
-    expect(e1.get('destroyed')).to.be.true;
+    expect(g1.getCount()).toBe(4);
+    expect(e1.get('destroyed')).toBe(true);
     g1.removeChild(e2);
-    expect(g1.getCount()).to.equal(3);
-    expect(e2.get('destroyed')).to.be.true;
+    expect(g1.getCount()).toBe(3);
+    expect(e2.get('destroyed')).toBe(true);
     g1.removeChild(e3, false);
-    expect(g1.getCount()).to.equal(2);
-    expect(e3.get('destroyed')).to.be.false;
+    expect(g1.getCount()).toBe(2);
+    expect(e3.get('destroyed')).toBe(false);
     g1.removeChild(false);
-    expect(g1.getCount()).to.equal(2);
-    expect(g2.getCount()).to.equal(0);
-    expect(g1.get('destroyed')).to.be.false;
+    expect(g1.getCount()).toBe(2);
+    expect(g2.getCount()).toBe(0);
+    expect(g1.get('destroyed')).toBe(false);
     g2.add(g1);
-    expect(g2.getCount()).to.equal(1);
+    expect(g2.getCount()).toBe(1);
     g1.removeChild();
-    expect(g2.getCount()).to.equal(0);
-    expect(g1.get('destroyed')).to.be.true;
+    expect(g2.getCount()).toBe(0);
+    expect(g1.get('destroyed')).toBe(true);
   });
 
   it('zIndex', function() {
@@ -208,14 +208,14 @@ describe('Group', function() {
     g.add(e1);
     g.add(e3);
 
-    expect(g.get('children')[1]).to.eql(e3);
+    expect(g.get('children')[1]).toEqual(e3);
     g.add(e2);
     g.sort();
-    expect(g.get('children')[1]).to.eql(e2);
+    expect(g.get('children')[1]).toEqual(e2);
 
     e2.set('zIndex', 5);
-    expect(g.get('children')[1]).to.eql(e3);
-    expect(g.get('children')[2]).to.eql(e2);
+    expect(g.get('children')[1]).toEqual(e3);
+    expect(g.get('children')[2]).toEqual(e2);
   });
 
   it('find and findBy', function() {
@@ -250,9 +250,9 @@ describe('Group', function() {
 
     expect(g1.findBy(function(item) {
       return item.get('zIndex') === 3;
-    })).to.eql(e3);
+    })).toEqual(e3);
 
-    expect(g1.find('e1')).to.eql(e1);
+    expect(g1.find('e1')).toEqual(e1);
   });
 /*
   it('fill', function() {
@@ -324,14 +324,14 @@ describe('Group', function() {
       }
     });
     canvas.add(arc);
-    expect(canvas.getShape(0, 120)).to.be.undefined;
-    expect(canvas.getShape(100, 100)).not.to.be.undefined;
+    expect(canvas.getShape(0, 120)).toBeUndefined();
+    expect(canvas.getShape(100, 100)).not.toBeUndefined();
     canvas.draw();
 
     canvas.rotate(1 / 4 * Math.PI);
     canvas.draw();
-    expect(canvas.getShape(0, 120)).not.to.be.undefined;
-    expect(canvas.getShape(100, 100)).to.be.undefined;
+    expect(canvas.getShape(0, 120)).not.toBeUndefined();
+    expect(canvas.getShape(100, 100)).toBeUndefined();
 
   });
 
@@ -343,15 +343,15 @@ describe('Group', function() {
     e.currentTarget = circle;
     let aa = 0;
     const handler = function(e) {
-      expect(e.currentTarget).to.eql(circle);
+      expect(e.currentTarget).toEqual(circle);
       e.stopPropagation();
       aa++;
     };
     group.on('group', handler);
     circle.trigger(e);
-    expect(aa).to.equal(0);
+    expect(aa).toBe(0);
     group.trigger('group', [ e ]);
-    expect(aa).to.equal(1);
+    expect(aa).toBe(1);
   });
 
   it('add items & sort', function() {
@@ -365,11 +365,11 @@ describe('Group', function() {
     group.add([ circle1, circle2, circle3, text ]);
 
     const children = group.get('children');
-    expect(children.length).to.equal(4);
-    expect(children[1]).to.eql(circle2);
+    expect(children.length).toBe(4);
+    expect(children[1]).toEqual(circle2);
     group.sort();
-    expect(children[1]).to.eql(circle1);
-    expect(children[0]).to.eql(circle2);
+    expect(children[1]).toEqual(circle1);
+    expect(children[0]).toEqual(circle2);
     circle1.set('visible', true);
     // const box = group.getBBox();
   });
@@ -379,10 +379,10 @@ describe('Group', function() {
     const group2 = new G.Group();
     const r1 = new G.Rect();
     group1.add(r1);
-    expect(group1.contain(r1)).to.be.true;
+    expect(group1.contain(r1)).toBe(true);
     group2.removeChild(r1);
-    expect(r1.get('destroyed')).to.be.false;
+    expect(r1.get('destroyed')).toBe(false);
     group1.removeChild(r1);
-    expect(group1.contain(r1)).to.be.false;
+    expect(group1.contain(r1)).toBe(false);
   });
 });

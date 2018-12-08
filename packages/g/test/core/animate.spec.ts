@@ -1,5 +1,5 @@
-const expect = require('chai').expect;
-const G = require('../../../src/index');
+
+
 
 
 describe('animate', function() {
@@ -43,11 +43,11 @@ describe('animate', function() {
       called = true;
     });
 
-    expect(shape.attr('x')).equal(0);
+    expect(shape.attr('x')).toBe(0);
     setTimeout(function() {
-      expect(shape.attr('x')).equal(100);
-      expect(shape.attr('y')).equal(100);
-      expect(called).equal(true);
+      expect(shape.attr('x')).toBe(100);
+      expect(shape.attr('y')).toBe(100);
+      expect(called).toBe(true);
       done();
     }, 600);
   });
@@ -72,12 +72,12 @@ describe('animate', function() {
       called = true;
     }, 100);
     setTimeout(function() {
-      expect(shape.attr('x')).equal(10);
-      expect(called).equal(false);
+      expect(shape.attr('x')).toBe(10);
+      expect(called).toBe(false);
       shape.stopAnimate();
       setTimeout(function() {
-        expect(shape.attr('x')).equal(200);
-        expect(called).equal(true);
+        expect(shape.attr('x')).toBe(200);
+        expect(called).toBe(true);
         done();
       }, 80);
     }, 50);
@@ -100,9 +100,9 @@ describe('animate', function() {
 
     expect(() => {
       shape.destroy();
-    }).not.to.throw();
+    }).not.toThrowError();
     setTimeout(function() {
-      expect(called).equal(false);
+      expect(called).toBe(false);
       done();
     }, 350);
   });

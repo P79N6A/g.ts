@@ -7,7 +7,7 @@
  */
 
 const $ = require('jquery');
-const expect = require('chai').expect;
+
 const Canvas = require('../../src/canvas');
 const G = require('../../src/index');
 const Simulate = require('event-simulate');
@@ -21,7 +21,7 @@ describe('Canvas 容器操作', function() {
       width: 500,
       height: 500,
     });
-    expect(canvas).to.be.an.instanceof(Canvas);
+    expect(canvas).toEqual(jasmine.any(Canvas));
     canvas.destroy();
   });
 
@@ -32,8 +32,8 @@ describe('Canvas 容器操作', function() {
       height: 500,
     });
     canvas.changeSize(200, 200);
-    expect(canvas.get('widthStyle')).to.equal('200px');
-    expect(canvas.get('heightStyle')).to.equal('200px');
+    expect(canvas.get('widthStyle')).toBe('200px');
+    expect(canvas.get('heightStyle')).toBe('200px');
     canvas.destroy();
   });
 
@@ -44,7 +44,7 @@ describe('Canvas 容器操作', function() {
       height: 500,
     });
     canvas.clear();
-    expect(canvas.get('children')).to.be.an('array').that.is.empty;
+    expect(typeof canvas.get('children')).toBe('array').toBeDefined();
     canvas.destroy();
   });
 
@@ -175,23 +175,23 @@ describe('组拓展方法', function() {
         return false;
 
       });
-      expect(rect === rst[0]).to.be.true;
+      expect(rect === rst[0]).toBe(true);
     });
   });
 
   describe('判断是否是子元素', function() {
     it('非子元素', function() {
-      expect(canvas.contain(circle)).to.be.false;
+      expect(canvas.contain(circle)).toBe(false);
     });
     it('非元素', function() {
-      expect(canvas.contain(12)).to.be.false;
+      expect(canvas.contain(12)).toBe(false);
     });
     canvas.draw();
   });
   describe('查找子元素', function() {
     const children = canvas.get('children');
     it('第N个子元素', function() {
-      expect(canvas.getChildByIndex(2)).to.eql(children[2]);
+      expect(canvas.getChildByIndex(2)).toEqual(children[2]);
       canvas.destroy();
 
     });
@@ -225,10 +225,10 @@ describe('元素拓展方法', function() {
       },
     });
     const bbox = rect.getBBox();
-    expect(bbox.x).to.equal(0);
-    expect(bbox.y).to.equal(0);
-    expect(bbox.width).to.equal(100);
-    expect(bbox.height).to.equal(100);
+    expect(bbox.x).toBe(0);
+    expect(bbox.y).toBe(0);
+    expect(bbox.width).toBe(100);
+    expect(bbox.height).toBe(100);
   });
   it('测试BBox方法－无bbox', function() {
     const text = canvas.addShape('Text', {
@@ -239,10 +239,10 @@ describe('元素拓展方法', function() {
       },
     });
     const bbox = text.getBBox();
-    expect(bbox.x).to.equal(0);
-    expect(bbox.y).to.equal(0);
-    expect(bbox.width).to.equal(0);
-    expect(bbox.height).to.equal(0);
+    expect(bbox.x).toBe(0);
+    expect(bbox.y).toBe(0);
+    expect(bbox.width).toBe(0);
+    expect(bbox.height).toBe(0);
   });
 
   it('属性旋转', function() {
@@ -257,7 +257,7 @@ describe('元素拓展方法', function() {
       },
     });
     canvas.draw();
-    expect(rect.attr('rotate')).to.equal(45 / 180 * Math.PI);
+    expect(rect.attr('rotate')).toBe(45 / 180 * Math.PI);
     canvas.destroy();
 
   });
@@ -299,6 +299,6 @@ describe('canvas 事件', function() {
       clientY: 276,
     });
 
-    expect(target).not.to.be.undefined;
+    expect(target).not.toBeUndefined();
   });
 });

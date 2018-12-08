@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+
 const Element = require('../../../src/core/element');
 const mat3 = require('gl-matrix').mat3;
 
@@ -13,34 +13,34 @@ describe('Element', function() {
       }
     });
 
-    expect(e.__cfg).not.to.be.undefined;
-    expect(e.__cfg.id).to.equal('aaa');
-    expect(e.__attrs).not.to.be.undefined;
-    expect(e.__attrs.width).to.equal(20);
-    expect(e.__attrs.height).to.equal(30);
-    expect(e.attr('matrix')).not.to.be.undefined;
+    expect(e.__cfg).not.toBeUndefined();
+    expect(e.__cfg.id).toBe('aaa');
+    expect(e.__attrs).not.toBeUndefined();
+    expect(e.__attrs.width).toBe(20);
+    expect(e.__attrs.height).toBe(30);
+    expect(e.attr('matrix')).not.toBeUndefined();
     const m = mat3.create();
-    expect(mat3.exactEquals(e.attr('matrix'), m)).to.be.true;
+    expect(mat3.exactEquals(e.attr('matrix'), m)).toBe(true);
   });
 
   it('set and get', function() {
     const e = new Element();
     let a = 123;
-    expect(a).to.equal(123);
+    expect(a).toBe(123);
     e.__setTest = function(v) {
       a = 321;
       return v - 1;
     };
     e.set('test', 1111);
-    expect(e.get('test')).to.equal(1110);
-    expect(a).to.equal(321);
+    expect(e.get('test')).toBe(1110);
+    expect(a).toBe(321);
   });
 
   it('eventEmitter', function() {
     const ele = new Element();
-    expect(ele.on).to.be.a('function');
-    expect(ele.off).to.be.a('function');
-    expect(ele.trigger).to.be.a('function');
+    expect(typeof ele.on).toBe('function');
+    expect(typeof ele.off).toBe('function');
+    expect(typeof ele.trigger).toBe('function');
   });
 
   it('add event listener', function() {
@@ -50,10 +50,10 @@ describe('Element', function() {
       count += v;
     });
     ele.trigger('test', [ 12 ]);
-    expect(count).to.equal(13);
-    expect(ele._events).to.have.own.property('test');
+    expect(count).toBe(13);
+    expect(ele._events.hasOwnProperty('test')).toBeTruthy();
 
     ele.destroy();
-    expect(ele._events).to.be.undefined;
+    expect(ele._events).toBeUndefined();
   });
 });

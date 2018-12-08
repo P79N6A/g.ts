@@ -6,12 +6,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
+
 const G = require('../../src/index');
 
 describe('index', () => {
   it('G', () => {
-    expect('G').to.be.a('string');
-    expect(G).to.be.a('object');
+    expect(typeof 'G').toBe('string');
+    expect(typeof G).toBe('object');
   });
 });

@@ -1,4 +1,4 @@
-const expect = require('chai').expect;
+
 const Element = require('../../../src/core/element');
 const Util = require('../../../src/util/index');
 const mat3 = require('../../../src/util/matrix').mat3;
@@ -11,8 +11,8 @@ describe('Transform', function() {
     const point = vec3.fromValues(0, 0, 1);
     e.translate(10, 4);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 10)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 4)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 10)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 4)).toBe(true);
   });
 
   it('rotate', function() {
@@ -20,15 +20,15 @@ describe('Transform', function() {
     const point = vec3.fromValues(10, 0, 0);
     e.rotate(45 / 180 * Math.PI);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 5 * Math.sqrt(2))).to.be.true;
-    expect(Util.isNumberEqual(point[1], 5 * Math.sqrt(2))).to.be.true;
+    expect(Util.isNumberEqual(point[0], 5 * Math.sqrt(2))).toBe(true);
+    expect(Util.isNumberEqual(point[1], 5 * Math.sqrt(2))).toBe(true);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 0)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 10)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 0)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 10)).toBe(true);
     e.rotate(-135 / 180 * Math.PI);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 10)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 0)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 10)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 0)).toBe(true);
   });
 
   it('scale', function() {
@@ -36,12 +36,12 @@ describe('Transform', function() {
     const point = vec3.fromValues(10, 10, 1);
     e.scale(0.5, 0.5);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 5)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 5)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 5)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 5)).toBe(true);
     e.scale(4, 2);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 10)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 5)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 10)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 5)).toBe(true);
   });
 
   it('complex', function() {
@@ -53,8 +53,8 @@ describe('Transform', function() {
     e.scale(0.5, 0.5);
     e.apply(point1);
 
-    expect(Util.isNumberEqual(point1[0], -15)).to.be.true;
-    expect(Util.isNumberEqual(point1[1], 5)).to.be.true;
+    expect(Util.isNumberEqual(point1[0], -15)).toBe(true);
+    expect(Util.isNumberEqual(point1[1], 5)).toBe(true);
   });
 
   it('transform', function() {
@@ -62,8 +62,8 @@ describe('Transform', function() {
     e.transform([[ 'r', Math.PI / 2 ], [ 't', 10, 10 ], [ 'r', -Math.PI / 2 ]]);
     const point = vec3.fromValues(0, 0, 1);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 10)).to.be.true;
-    expect(Util.isNumberEqual(point[1], -10)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 10)).toBe(true);
+    expect(Util.isNumberEqual(point[1], -10)).toBe(true);
   });
 
   it('setTransform and invert', function() {
@@ -72,26 +72,26 @@ describe('Transform', function() {
     e.setTransform([[ 'r', Math.PI / 2 ], [ 't', 10, 10 ], [ 'r', -Math.PI / 2 ], [ 's', 0.5, 0.3 ]]);
     const point = vec3.fromValues(0, 0, 1);
     e.apply(point);
-    expect(Util.isNumberEqual(point[0], 5)).to.be.true;
-    expect(Util.isNumberEqual(point[1], -3)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 5)).toBe(true);
+    expect(Util.isNumberEqual(point[1], -3)).toBe(true);
     e.invert(point);
-    expect(Util.isNumberEqual(point[0], 0)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 0)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 0)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 0)).toBe(true);
     const e1 = new Element();
     e1.setTransform([[ 'm', e.attr('matrix') ]]);
     e1.apply(point);
-    expect(Util.isNumberEqual(point[0], 5)).to.be.true;
-    expect(Util.isNumberEqual(point[1], -3)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 5)).toBe(true);
+    expect(Util.isNumberEqual(point[1], -3)).toBe(true);
     e1.invert(point);
-    expect(Util.isNumberEqual(point[0], 0)).to.be.true;
-    expect(Util.isNumberEqual(point[1], 0)).to.be.true;
+    expect(Util.isNumberEqual(point[0], 0)).toBe(true);
+    expect(Util.isNumberEqual(point[1], 0)).toBe(true);
   });
 
   it('getMatrix', function() {
     const e = new Element();
     const m = e.getMatrix();
     const m1 = mat3.create();
-    expect(mat3.exactEquals(m, m1)).to.be.true;
+    expect(mat3.exactEquals(m, m1)).toBe(true);
   });
 });
 

@@ -6,9 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
 
-const G = require('../../../src/index');
+
+
 const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
 div.id = 'canvas-img';
@@ -37,36 +37,20 @@ describe('Image', function() {
     }
   });
   it('init attr', function() {
-    expect(image.attr('x'))
-      .to
-      .equal(0);
-    expect(image.attr('y'))
-      .to
-      .equal(0);
-    expect(image.attr('img')).to.be.undefined;
-    expect(image.attr('width'))
-      .to
-      .equal(0);
-    expect(image.attr('height'))
-      .to
-      .equal(0);
-    expect(image.attr('sx')).to.be.undefined;
-    expect(image.attr('sy')).to.be.undefined;
-    expect(image.attr('swidth')).to.be.undefined;
-    expect(image.attr('sheight')).to.be.undefined;
+    expect(image.attr('x')).toBe(0);
+    expect(image.attr('y')).toBe(0);
+    expect(image.attr('img')).toBeUndefined();
+    expect(image.attr('width')).toBe(0);
+    expect(image.attr('height')).toBe(0);
+    expect(image.attr('sx')).toBeUndefined();
+    expect(image.attr('sy')).toBeUndefined();
+    expect(image.attr('swidth')).toBeUndefined();
+    expect(image.attr('sheight')).toBeUndefined();
     const box = image.getBBox();
-    expect(box.minX)
-      .to
-      .equal(0);
-    expect(box.maxX)
-      .to
-      .equal(0);
-    expect(box.minY)
-      .to
-      .equal(0);
-    expect(box.maxY)
-      .to
-      .equal(0);
+    expect(box.minX).toBe(0);
+    expect(box.maxX).toBe(0);
+    expect(box.minY).toBe(0);
+    expect(box.maxY).toBe(0);
   });
 
   it('img', function(done) {
@@ -74,18 +58,10 @@ describe('Image', function() {
     img.onload = function() {
       image.attr('img', img);
       const box = image.getBBox();
-      expect(box.minX)
-        .to
-        .equal(0);
-      expect(box.minY)
-        .to
-        .equal(0);
-      expect(box.maxX)
-        .to
-        .equal(768);
-      expect(box.maxY)
-        .to
-        .equal(1024);
+      expect(box.minX).toBe(0);
+      expect(box.minY).toBe(0);
+      expect(box.maxX).toBe(768);
+      expect(box.maxY).toBe(1024);
       canvas.add(image);
       canvas.draw();
       done();
@@ -103,18 +79,10 @@ describe('Image', function() {
     const img = can1;
     image.attr('img', img);
     const box = image.getBBox();
-    expect(box.minX)
-      .to
-      .equal(0);
-    expect(box.minY)
-      .to
-      .equal(0);
-    expect(box.maxX)
-      .to
-      .equal(800);
-    expect(box.maxY)
-      .to
-      .equal(800);
+    expect(box.minX).toBe(0);
+    expect(box.minY).toBe(0);
+    expect(box.maxX).toBe(800);
+    expect(box.maxY).toBe(800);
     canvas.add(image);
     canvas.draw();
   });
@@ -130,86 +98,50 @@ describe('Image', function() {
       .getImageData(0, 0, 800, 800);
     image.attr('img', img);
     const box = image.getBBox();
-    expect(box.minX)
-      .to
-      .equal(0);
-    expect(box.minY)
-      .to
-      .equal(0);
-    expect(box.maxX)
-      .to
-      .equal(800);
-    expect(box.maxY)
-      .to
-      .equal(800);
+    expect(box.minX).toBe(0);
+    expect(box.minY).toBe(0);
+    expect(box.maxX).toBe(800);
+    expect(box.maxY).toBe(800);
     canvas.add(image);
     canvas.draw();
     done();
   });
 
   it('width', function() {
-    expect(image.attr('width'))
-      .to
-      .equal(768);
+    expect(image.attr('width')).toBe(768);
     image.attr('width', 200);
-    expect(image.attr('width'))
-      .to
-      .equal(200);
+    expect(image.attr('width')).toBe(200);
     const box = image.getBBox();
-    expect(box.minX)
-      .to
-      .equal(0);
-    expect(box.maxX)
-      .to
-      .equal(200);
+    expect(box.minX).toBe(0);
+    expect(box.maxX).toBe(200);
     canvas.draw();
   });
 
   it('height', function() {
-    expect(image.attr('height'))
-      .to
-      .equal(1024);
+    expect(image.attr('height')).toBe(1024);
     image.attr('height', 200);
-    expect(image.attr('height'))
-      .to
-      .equal(200);
+    expect(image.attr('height')).toBe(200);
     const box = image.getBBox();
-    expect(box.minY)
-      .to
-      .equal(0);
-    expect(box.maxY)
-      .to
-      .equal(200);
+    expect(box.minY).toBe(0);
+    expect(box.maxY).toBe(200);
     canvas.draw();
   });
 
   it('x', function() {
     image.attr('x', 10);
-    expect(image.attr('x'))
-      .to
-      .equal(10);
+    expect(image.attr('x')).toBe(10);
     const box = image.getBBox();
-    expect(box.minX)
-      .to
-      .equal(10);
-    expect(box.maxX)
-      .to
-      .equal(210);
+    expect(box.minX).toBe(10);
+    expect(box.maxX).toBe(210);
     canvas.draw();
   });
 
   it('y', function() {
     image.attr('y', 10);
-    expect(image.attr('y'))
-      .to
-      .equal(10);
+    expect(image.attr('y')).toBe(10);
     const box = image.getBBox();
-    expect(box.minY)
-      .to
-      .equal(10);
-    expect(box.maxY)
-      .to
-      .equal(210);
+    expect(box.minY).toBe(10);
+    expect(box.maxY).toBe(210);
     canvas.draw();
   });
 
@@ -240,11 +172,11 @@ describe('Image', function() {
   });
 
   it('isHit', function() {
-    expect(image.isHit(10, 10)).to.be.true;
-    expect(image.isHit(210, 210)).to.be.true;
-    expect(image.isHit(20, 20)).to.be.true;
-    expect(image.isHit(31, 43)).to.be.true;
-    expect(image.isHit(300, 300)).to.be.false;
+    expect(image.isHit(10, 10)).toBe(true);
+    expect(image.isHit(210, 210)).toBe(true);
+    expect(image.isHit(20, 20)).toBe(true);
+    expect(image.isHit(31, 43)).toBe(true);
+    expect(image.isHit(300, 300)).toBe(false);
   });
 
   // it('image onload && image.remove(true)', function() {

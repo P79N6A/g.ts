@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@gradii/g": [
-        "packages/index"
+        "packages/g/public-api"
       ],
       "@gradii/g/*": [
         "packages/*/index"

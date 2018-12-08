@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
+
 const Arc = require('../../../src/shape/math/arc');
 const Util = require('../../../src/util/index');
 
@@ -16,7 +16,7 @@ describe('Arc math', function() {
     const startAngle = Util.toRadian(0);
     const endAngle = Util.toRadian(90);
 
-    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 20)).to.be.true;
+    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 20)).toBe(true);
   });
 
   it('nearAngle1', function() {
@@ -24,7 +24,7 @@ describe('Arc math', function() {
     const startAngle = Util.toRadian(0);
     const endAngle = Util.toRadian(90);
 
-    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 0)).to.be.true;
+    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 0)).toBe(true);
   });
 
   it('nearAngle2', function() {
@@ -32,7 +32,7 @@ describe('Arc math', function() {
     const startAngle = Util.toRadian(90);
     const endAngle = Util.toRadian(-30);
 
-    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 110)).to.be.true;
+    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 110)).toBe(true);
   });
 
   it('nearAngle3', function() {
@@ -40,7 +40,7 @@ describe('Arc math', function() {
     const startAngle = Util.toRadian(90);
     const endAngle = Util.toRadian(-30);
 
-    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 110)).to.be.true;
+    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle)), 110)).toBe(true);
   });
 
   it('nearAngle4', function() {
@@ -48,7 +48,7 @@ describe('Arc math', function() {
     const startAngle = Util.toRadian(90);
     const endAngle = Util.toRadian(-30);
 
-    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle, true)), 90)).to.be.true;
+    expect(Util.isNumberEqual(Util.toDegree(Arc.nearAngle(angle, startAngle, endAngle, true)), 90)).toBe(true);
   });
 
   // it('nearAngle', function() {
@@ -62,6 +62,6 @@ describe('Arc math', function() {
     expect(Util.isNumberEqual(
       Arc.pointDistance(10, 10, 10, -Math.PI / 2, Math.PI / 2, false, 20, 0),
       Math.sqrt(2) * 10 - 10
-    )).to.be.true;
+    )).toBe(true);
   });
 });

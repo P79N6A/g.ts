@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const expect = require('chai').expect;
-const G = require('../../../src/index');
+
+
 const Canvas = require('../../../src/canvas');
 const Util = require('../../../src/util/index');
 const div = document.createElement('div');
@@ -24,15 +24,15 @@ describe('Cubic line', function() {
 
   const cubic = new G.Cubic();
   it('init cubic', function() {
-    expect(cubic.attr('p1')).to.be.undefined;
-    expect(cubic.attr('p2')).to.be.undefined;
-    expect(cubic.attr('p3')).to.be.undefined;
-    expect(cubic.attr('p4')).to.be.undefined;
-    expect(cubic.attr('lineWidth')).to.equal(1);
-    expect(cubic.attr('startArrow')).to.be.false;
-    expect(cubic.attr('endArrow')).to.be.false;
+    expect(cubic.attr('p1')).toBeUndefined();
+    expect(cubic.attr('p2')).toBeUndefined();
+    expect(cubic.attr('p3')).toBeUndefined();
+    expect(cubic.attr('p4')).toBeUndefined();
+    expect(cubic.attr('lineWidth')).toBe(1);
+    expect(cubic.attr('startArrow')).toBe(false);
+    expect(cubic.attr('endArrow')).toBe(false);
 
-    expect(cubic.getBBox()).to.be.null;
+    expect(cubic.getBBox()).toBeNull();
   });
 
   it('p1, p2, p3, p4', function() {
@@ -42,22 +42,22 @@ describe('Cubic line', function() {
       p3: [ 120, 150 ],
       p4: [ 150, 50 ]
     });
-    expect(cubic.attr('p1')[0]).to.equal(50);
-    expect(cubic.attr('p2')[1]).to.equal(12);
-    expect(cubic.attr('p3')[0]).to.equal(120);
-    expect(cubic.attr('p4')[0]).to.equal(150);
+    expect(cubic.attr('p1')[0]).toBe(50);
+    expect(cubic.attr('p2')[1]).toBe(12);
+    expect(cubic.attr('p3')[0]).toBe(120);
+    expect(cubic.attr('p4')[0]).toBe(150);
 
     const box = cubic.getBBox();
-    expect(Util.isNumberEqual(box.minX, 49.5)).to.be.true;
-    expect(Util.isNumberEqual(box.maxX, 150.5)).to.be.true;
-    expect(Util.isNumberEqual(box.minY, 42.690077140818396)).to.be.true;
-    expect(Util.isNumberEqual(box.maxY, 87.61466742731623)).to.be.true;
+    expect(Util.isNumberEqual(box.minX, 49.5)).toBe(true);
+    expect(Util.isNumberEqual(box.maxX, 150.5)).toBe(true);
+    expect(Util.isNumberEqual(box.minY, 42.690077140818396)).toBe(true);
+    expect(Util.isNumberEqual(box.maxY, 87.61466742731623)).toBe(true);
   });
 
   it('stroke', function() {
     cubic.attr('lineWidth', 5);
     cubic.attr('stroke', 'l (0) 0:#ff00ff 1:#00ffff');
-    expect(cubic.attr('stroke')).to.equal('l (0) 0:#ff00ff 1:#00ffff');
+    expect(cubic.attr('stroke')).toBe('l (0) 0:#ff00ff 1:#00ffff');
 
     canvas.add(cubic);
     canvas.draw();
@@ -65,45 +65,45 @@ describe('Cubic line', function() {
 
   it('p1', function() {
     cubic.attr('p1', [ 70, 39 ]);
-    expect(cubic.attr('p1')[0]).to.equal(70);
-    expect(cubic.attr('p1')[1]).to.equal(39);
+    expect(cubic.attr('p1')[0]).toBe(70);
+    expect(cubic.attr('p1')[1]).toBe(39);
     const box = cubic.getBBox();
-    expect(Util.isNumberEqual(box.minX, 67.5)).to.be.true;
-    expect(Util.isNumberEqual(box.maxX, 152.5)).to.be.true;
-    expect(Util.isNumberEqual(box.minY, 32.923853488303024)).to.be.true;
-    expect(Util.isNumberEqual(box.maxY, 89.38594461401888)).to.be.true;
+    expect(Util.isNumberEqual(box.minX, 67.5)).toBe(true);
+    expect(Util.isNumberEqual(box.maxX, 152.5)).toBe(true);
+    expect(Util.isNumberEqual(box.minY, 32.923853488303024)).toBe(true);
+    expect(Util.isNumberEqual(box.maxY, 89.38594461401888)).toBe(true);
     canvas.draw();
   });
 
   it('p2', function() {
     cubic.attr('p2', [ 90, 80 ]);
-    expect(cubic.attr('p2')[0]).to.equal(90);
-    expect(cubic.attr('p2')[1]).to.equal(80);
+    expect(cubic.attr('p2')[0]).toBe(90);
+    expect(cubic.attr('p2')[1]).toBe(80);
     const box = cubic.getBBox();
-    expect(Util.isNumberEqual(box.minX, 67.5)).to.be.true;
-    expect(Util.isNumberEqual(box.maxX, 152.5)).to.be.true;
-    expect(Util.isNumberEqual(box.minY, 36.5)).to.be.true;
-    expect(Util.isNumberEqual(box.maxY, 103.77723887000138)).to.be.true;
+    expect(Util.isNumberEqual(box.minX, 67.5)).toBe(true);
+    expect(Util.isNumberEqual(box.maxX, 152.5)).toBe(true);
+    expect(Util.isNumberEqual(box.minY, 36.5)).toBe(true);
+    expect(Util.isNumberEqual(box.maxY, 103.77723887000138)).toBe(true);
     canvas.draw();
   });
 
   it('p3', function() {
     cubic.attr('p3', [ 110, 0 ]);
-    expect(cubic.attr('p3')[0]).to.equal(110);
-    expect(cubic.attr('p3')[1]).to.equal(0);
+    expect(cubic.attr('p3')[0]).toBe(110);
+    expect(cubic.attr('p3')[1]).toBe(0);
     const box = cubic.getBBox();
-    expect(Util.isNumberEqual(box.minX, 67.5)).to.be.true;
-    expect(Util.isNumberEqual(box.maxX, 152.5)).to.be.true;
-    expect(Util.isNumberEqual(box.minY, 30.447819730085683)).to.be.true;
-    expect(Util.isNumberEqual(box.maxY, 53.66354358160779)).to.be.true;
+    expect(Util.isNumberEqual(box.minX, 67.5)).toBe(true);
+    expect(Util.isNumberEqual(box.maxX, 152.5)).toBe(true);
+    expect(Util.isNumberEqual(box.minY, 30.447819730085683)).toBe(true);
+    expect(Util.isNumberEqual(box.maxY, 53.66354358160779)).toBe(true);
     canvas.draw();
   });
 
   it('p4', function() {
     console.log(cubic.getBBox());
     cubic.attr('p4', [ 150, 90 ]);
-    expect(cubic.attr('p4')[0]).to.equal(150);
-    expect(cubic.attr('p4')[1]).to.equal(90);
+    expect(cubic.attr('p4')[0]).toBe(150);
+    expect(cubic.attr('p4')[1]).toBe(90);
     /* var box = cubic.getBBox();
     expect(Util.isNumberEqual(box.minX, 67.5)).to.be.true;
     expect(Util.isNumberEqual(box.maxX, 152.5)).to.be.true;
@@ -115,12 +115,12 @@ describe('Cubic line', function() {
 
   it('lineWidth', function() {
     cubic.attr('lineWidth', 2);
-    expect(cubic.attr('lineWidth')).to.equal(2);
+    expect(cubic.attr('lineWidth')).toBe(2);
     const box = cubic.getBBox();
-    expect(Util.isNumberEqual(box.minX, 69)).to.be.true;
-    expect(Util.isNumberEqual(box.maxX, 151)).to.be.true;
-    expect(Util.isNumberEqual(box.minY, 38)).to.be.true;
-    expect(Util.isNumberEqual(box.maxY, 91)).to.be.true;
+    expect(Util.isNumberEqual(box.minX, 69)).toBe(true);
+    expect(Util.isNumberEqual(box.maxX, 151)).toBe(true);
+    expect(Util.isNumberEqual(box.minY, 38)).toBe(true);
+    expect(Util.isNumberEqual(box.maxY, 91)).toBe(true);
     canvas.draw();
   });
 
@@ -136,17 +136,17 @@ describe('Cubic line', function() {
     cubic.attr('arrowLength', 5);
     cubic.attr('lineWidth', 1);
     cubic.attr('arrowAngle', 90);
-    expect(cubic.attr('startArrow')).to.be.true;
-    expect(cubic.attr('endArrow')).not.to.be.undefined;
-    expect(cubic.attr('arrowLength')).to.equal(5);
-    expect(cubic.attr('arrowAngle')).to.equal(90);
+    expect(cubic.attr('startArrow')).toBe(true);
+    expect(cubic.attr('endArrow')).not.toBeUndefined();
+    expect(cubic.attr('arrowLength')).toBe(5);
+    expect(cubic.attr('arrowAngle')).toBe(90);
     canvas.draw();
   });
 
   it('isHit', function() {
-    expect(cubic.isHit(70, 39)).to.be.true;
-    expect(cubic.isHit(102.5, 46.2)).to.be.true;
-    expect(cubic.isHit(150, 90)).to.be.true;
+    expect(cubic.isHit(70, 39)).toBe(true);
+    expect(cubic.isHit(102.5, 46.2)).toBe(true);
+    expect(cubic.isHit(150, 90)).toBe(true);
   });
 
   it('getPoint', function() {
@@ -160,26 +160,26 @@ describe('Cubic line', function() {
     });
 
     const point = cubic.getPoint(0);
-    expect(point.x).to.equal(100);
-    expect(point.y).to.equal(100);
+    expect(point.x).toBe(100);
+    expect(point.y).toBe(100);
     const point1 = cubic.getPoint(1);
-    expect(point1.x).to.equal(400);
-    expect(point1.y).to.equal(100);
+    expect(point1.x).toBe(400);
+    expect(point1.y).toBe(100);
     const point2 = cubic.getPoint(0.25);
-    expect(point2.x).to.equal(175);
-    expect(point2.y).to.equal(128.125);
-    expect(cubic.isHit(point2.x, point2.y)).to.be.true;
+    expect(point2.x).toBe(175);
+    expect(point2.y).toBe(128.125);
+    expect(cubic.isHit(point2.x, point2.y)).toBe(true);
     const point3 = cubic.getPoint(0.5);
-    expect(point3.x).to.equal(250);
-    expect(point3.y).to.equal(100);
-    expect(cubic.isHit(point3.x, point3.y)).to.be.true;
+    expect(point3.x).toBe(250);
+    expect(point3.y).toBe(100);
+    expect(cubic.isHit(point3.x, point3.y)).toBe(true);
     const point4 = cubic.getPoint(0.75);
-    expect(point4.x).to.equal(325);
-    expect(point4.y).to.equal(71.875);
-    expect(cubic.isHit(point4.x, point4.y)).to.be.true;
+    expect(point4.x).toBe(325);
+    expect(point4.y).toBe(71.875);
+    expect(cubic.isHit(point4.x, point4.y)).toBe(true);
     const point5 = cubic.getPoint(0.3);
-    expect(Util.isNumberEqual(point5.x, 190)).to.be.true;
-    expect(Util.isNumberEqual(point5.y, 125.2)).to.be.true;
-    expect(cubic.isHit(point5.x, point5.y)).to.be.true;
+    expect(Util.isNumberEqual(point5.x, 190)).toBe(true);
+    expect(Util.isNumberEqual(point5.y, 125.2)).toBe(true);
+    expect(cubic.isHit(point5.x, point5.y)).toBe(true);
   });
 });

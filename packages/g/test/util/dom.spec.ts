@@ -1,61 +1,68 @@
-const expect = require('chai').expect;
-const DOMUtil = require('../../../src/util/dom');
+import {
+  getBoundingClientRect,
+  getHeight,
+  getOuterHeight,
+  getOuterWidth,
+  getStyle,
+  getWidth,
+  modifyCSS
+} from '../../src/util/dom';
 
 describe('DomUtils', () => {
   const nodeNotExist = null;
 
   it('getBoundingClientRect(node, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getBoundingClientRect(nodeNotExist);
-    }).to.not.throw();
+      getBoundingClientRect(nodeNotExist);
+    }).not.toThrowError();
   });
 
   it('getStyle(node, name, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getStyle(nodeNotExist, 'width');
-    }).to.not.throw();
-    expect(DOMUtil.getStyle(nodeNotExist, 'width', 450)).to.equal(450);
+      getStyle(nodeNotExist, 'width');
+    }).not.toThrowError();
+    expect(getStyle(nodeNotExist, 'width', 450)).toBe(450);
   });
 
   it('modifyCSS(node, css)', () => {
     expect(() => {
-      DOMUtil.modifyCSS(nodeNotExist, {
+      modifyCSS(nodeNotExist, {
         width: '500px'
       });
-    }).to.not.throw();
+    }).not.toThrowError();
   });
 
   it('getWidth(node, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getWidth(nodeNotExist, 500);
-    }).to.not.throw();
-    expect(DOMUtil.getWidth(nodeNotExist, 450)).to.equal(450);
+      getWidth(nodeNotExist, 500);
+    }).not.toThrowError();
+    expect(getWidth(nodeNotExist, 450)).toBe(450);
   });
 
   it('getHeight(node, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getHeight(nodeNotExist, 500);
-    }).to.not.throw();
-    expect(DOMUtil.getHeight(nodeNotExist, 450)).to.equal(450);
+      getHeight(nodeNotExist, 500);
+    }).not.toThrowError();
+    expect(getHeight(nodeNotExist, 450)).toBe(450);
   });
 
   it('getOuterWidth(node, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getOuterWidth(nodeNotExist, 500);
-    }).to.not.throw();
-    expect(DOMUtil.getOuterWidth(nodeNotExist, 450)).to.equal(450);
+      getOuterWidth(nodeNotExist, 500);
+    }).not.toThrowError();
+    expect(getOuterWidth(nodeNotExist, 450)).toBe(450);
   });
 
   it('getOuterHeight(node, defaultValue)', () => {
     expect(() => {
-      DOMUtil.getOuterHeight(nodeNotExist, 500);
-    }).to.not.throw();
-    expect(DOMUtil.getOuterHeight(nodeNotExist, 450)).to.equal(450);
+      getOuterHeight(nodeNotExist, 500);
+    }).not.toThrowError();
+    expect(getOuterHeight(nodeNotExist, 450)).toBe(450);
   });
 
   it('addEventListener(node, eventType, callback)', () => {
     expect(() => {
-      DOMUtil.addEventListener(nodeNotExist, 'click', () => {});
-    }).to.not.throw();
+      addEventListener(nodeNotExist, 'click', () => {});
+    }).not.toThrowError();
   });
 });
