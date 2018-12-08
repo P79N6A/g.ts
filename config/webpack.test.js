@@ -14,7 +14,7 @@ module.exports = function (options) {
     devtool: 'inline-source-map',
     resolve: {
       extensions: ['.ts', '.js'],
-      modules: [helpers.root('libs'), 'node_modules'],
+      modules: [helpers.root('libs'), helpers.root('packages'), 'node_modules'],
       plugins: [
         new TsConfigPathsPlugin({ configFile: helpers.root('tsconfig-spec.json') })
       ]
