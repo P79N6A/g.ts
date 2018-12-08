@@ -5,3 +5,5 @@ function makeAnnotation(cfg: {}) {
 }
 
 export const Config = makeAnnotation({});
+
+export const Attr = makeAnnotation({});

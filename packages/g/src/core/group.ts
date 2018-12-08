@@ -1,23 +1,22 @@
-/**
- * @licence
- * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
- *
- * Use of this source code is governed by an MIT-style license.
- * See LICENSE file in the project root for full license information.
- */
+import * as Shape from '../shapes/index';
+import * as Util from '../util/index';
+import * as Element from './element';
 
-import {Element} from './element';
-
-const Util      = require('../util/index');
-const Shape     = require('../shape/index');
 const SHAPE_MAP = {}; // 缓存图形类型
 const INDEX     = '_INDEX';
+
+function getComparer(compare) {
+  return function (left, right) {
+    const result = compare(left, right);
+    return result === 0 ? left[INDEX] - right[INDEX] : result;
+  };
+}
 
 function find(children, x, y) {
   let rst;
   for (let i = children.length - 1; i >= 0; i--) {
     const child = children[i];
-    if (child.__cfg.visible && child.__cfg.capture) {
+    if (child._cfg.visible && child._cfg.capture) {
       if (child.isGroup) {
         rst = child.getShape(x, y);
       } else if (child.isHit(x, y)) {
@@ -31,54 +30,39 @@ function find(children, x, y) {
   return rst;
 }
 
-function getComparer(compare) {
-  return function(left, right) {
-    const result = compare(left, right);
-    return result === 0 ? left[INDEX] - right[INDEX] : result;
-  };
-}
-
 function initClassCfgs(c) {
-  if (c.__cfg || c === Group) {
+  if (c._cfg || c === Group) {
     return;
   }
   const superCon = c.superclass.constructor;
-  if (superCon && !superCon.__cfg) {
+  if (superCon && !superCon._cfg) {
     initClassCfgs(superCon);
   }
-  c.__cfg = {};
-
-  Util.merge(c.__cfg, superCon.__cfg);
-  Util.merge(c.__cfg, c.CFG);
+  c._cfg = {};
+  Util.merge(c._cfg, superCon._cfg);
+  Util.merge(c._cfg, c.CFG);
 }
 
-export class Group extends Element {
+Util.extend(Group, Element);
 
-  public isGroup: true;
-  public canFill: true;
-  public canStroke: true;
+export class Group {
+  isGroup   = true;
+  type      = 'group';
+  canFill   = true;
+  canStroke = true;
 
-  constructor(cfg) {
-    super(cfg);
-    this.set('children', []);
-
-    this._beforeRenderUI();
-    this._renderUI();
-    this._bindUI();
-  }
-
-  public getDefaultCfg() {
+  getDefaultCfg() {
     initClassCfgs(this.constructor);
-    return Util.merge({}, this.constructor.__cfg);
+    return Util.merge({}, this.constructor._cfg);
   }
 
-  public _beforeRenderUI() {}
+  _beforeRenderUI() {}
 
-  public _renderUI() {}
+  _renderUI() {}
 
-  public _bindUI() {}
+  _bindUI() {}
 
-  public addShape(type, cfg) {
+  addShape(type, cfg) {
     const canvas  = this.get('canvas');
     cfg           = cfg || {};
     let shapeType = SHAPE_MAP[type];
@@ -86,12 +70,15 @@ export class Group extends Element {
       shapeType       = Util.upperFirst(type);
       SHAPE_MAP[type] = shapeType;
     }
-    if (cfg.attrs) {
+    if (cfg.attrs && canvas) {
       const attrs = cfg.attrs;
-      if (type === 'text') { // 临时解决
+      if (type === 'text') {
+        // 临时解决
         const topFontFamily = canvas.get('fontFamily');
         if (topFontFamily) {
-          attrs.fontFamily = attrs.fontFamily ? attrs.fontFamily : topFontFamily;
+          attrs.fontFamily = attrs.fontFamily
+            ? attrs.fontFamily
+            : topFontFamily;
         }
       }
     }
@@ -107,7 +94,7 @@ export class Group extends Element {
    * @param  {Object} cfg 配置项
    * @return {Object} rst 图组
    */
-  public addGroup(param, cfg) {
+  addGroup(param, cfg) {
     const canvas = this.get('canvas');
     let rst;
     cfg          = Util.merge({}, cfg);
@@ -119,7 +106,7 @@ export class Group extends Element {
       } else {
         rst = new param({
           canvas,
-          parent: this,
+          parent: this
         });
       }
       this.add(rst);
@@ -142,7 +129,7 @@ export class Group extends Element {
    * @param  {Shape} backShape 背景图形
    * @return {Object} 背景层对象
    */
-  public renderBack(padding, attrs) {
+  renderBack(padding, attrs) {
     let backShape  = this.get('backShape');
     const innerBox = this.getBBox();
     // const parent = this.get('parent'); // getParent
@@ -150,14 +137,14 @@ export class Group extends Element {
       x     : innerBox.minX - padding[3],
       y     : innerBox.minY - padding[0],
       width : innerBox.width + padding[1] + padding[3],
-      height: innerBox.height + padding[0] + padding[2],
+      height: innerBox.height + padding[0] + padding[2]
     });
     if (backShape) {
       backShape.attr(attrs);
     } else {
       backShape = this.addShape('rect', {
         zIndex: -1,
-        attrs,
+        attrs
       });
     }
     this.set('backShape', backShape);
@@ -165,7 +152,7 @@ export class Group extends Element {
     return backShape;
   }
 
-  public removeChild(item, destroy) {
+  removeChild(item, destroy) {
     if (arguments.length >= 2) {
       if (this.contain(item)) {
         item.remove(destroy);
@@ -184,7 +171,6 @@ export class Group extends Element {
       if (arguments.length === 0) {
         destroy = true;
       }
-
       Group.superclass.remove.call(this, destroy);
     }
     return this;
@@ -195,118 +181,132 @@ export class Group extends Element {
    * @param {Object} items 图形或者分组
    * @return {Object} group 本尊
    */
-  public add(items) {
+  add(items) {
     const self     = this;
     const children = self.get('children');
     if (Util.isArray(items)) {
-      Util.each(items, function(item) {
+      Util.each(items, function (item) {
         const parent = item.get('parent');
         if (parent) {
           parent.removeChild(item, false);
         }
-        self.__setEvn(item);
+        self._setCfgProperty(item);
       });
-      children.push.apply(children, items);
+      self._cfg.children = children.concat(items);
     } else {
       const item   = items;
       const parent = item.get('parent');
       if (parent) {
         parent.removeChild(item, false);
       }
-      self.__setEvn(item);
+      self._setCfgProperty(item);
       children.push(item);
     }
     return self;
   }
 
-  public contain(item) {
+  _setCfgProperty(item) {
+    const cfg = this._cfg;
+    item.set('parent', this);
+    item.set('canvas', cfg.canvas);
+    if (cfg.timeline) {
+      item.set('timeline', cfg.timeline);
+    }
+  }
+
+  contain(item) {
     const children = this.get('children');
     return children.indexOf(item) > -1;
   }
 
-  public getChildByIndex(index) {
+  getChildByIndex(index) {
     const children = this.get('children');
     return children[index];
   }
 
-  public getFirst() {
+  getFirst() {
     return this.getChildByIndex(0);
   }
 
-  public getLast() {
+  getLast() {
     const lastIndex = this.get('children').length - 1;
     return this.getChildByIndex(lastIndex);
   }
 
-  public __setEvn(item) {
-    const self         = this;
-    item.__cfg.parent  = self;
-    item.__cfg.context = self.__cfg.context;
-    item.__cfg.canvas  = self.__cfg.canvas;
-    const clip         = item.__attrs.clip;
-    if (clip) {
-      clip.setSilent('parent', self);
-      clip.setSilent('context', self.get('context'));
-    }
-    const children = item.__cfg.children;
-    if (children) {
-      Util.each(children, function(child) {
-        item.__setEvn(child);
-      });
-    }
-  }
-
-  public getBBox() {
+  getBBox() {
     const self     = this;
     let minX       = Infinity;
     let maxX       = -Infinity;
     let minY       = Infinity;
     let maxY       = -Infinity;
     const children = self.get('children');
-    Util.each(children, function(child) {
-      if (child.get('visible')) {
-        const box = child.getBBox();
-        if (!box) {
-          return true;
+    if (children.length > 0) {
+      Util.each(children, function (child) {
+        if (child.get('visible')) {
+          if (child.isGroup && child.get('children').length === 0) {
+            return;
+          }
+          const box = child.getBBox();
+          if (!box) {
+            return true;
+          }
+          const leftTop     = [box.minX, box.minY, 1];
+          const leftBottom  = [box.minX, box.maxY, 1];
+          const rightTop    = [box.maxX, box.minY, 1];
+          const rightBottom = [box.maxX, box.maxY, 1];
+          child.apply(leftTop);
+          child.apply(leftBottom);
+          child.apply(rightTop);
+          child.apply(rightBottom);
+          const boxMinX = Math.min(
+            leftTop[0],
+            leftBottom[0],
+            rightTop[0],
+            rightBottom[0]
+          );
+          const boxMaxX = Math.max(
+            leftTop[0],
+            leftBottom[0],
+            rightTop[0],
+            rightBottom[0]
+          );
+          const boxMinY = Math.min(
+            leftTop[1],
+            leftBottom[1],
+            rightTop[1],
+            rightBottom[1]
+          );
+          const boxMaxY = Math.max(
+            leftTop[1],
+            leftBottom[1],
+            rightTop[1],
+            rightBottom[1]
+          );
+          if (boxMinX < minX) {
+            minX = boxMinX;
+          }
+          if (boxMaxX > maxX) {
+            maxX = boxMaxX;
+          }
+          if (boxMinY < minY) {
+            minY = boxMinY;
+          }
+          if (boxMaxY > maxY) {
+            maxY = boxMaxY;
+          }
         }
-
-        const leftTop     = [box.minX, box.minY, 1];
-        const leftBottom  = [box.minX, box.maxY, 1];
-        const rightTop    = [box.maxX, box.minY, 1];
-        const rightBottom = [box.maxX, box.maxY, 1];
-
-        child.apply(leftTop);
-        child.apply(leftBottom);
-        child.apply(rightTop);
-        child.apply(rightBottom);
-
-        const boxMinX = Math.min(leftTop[0], leftBottom[0], rightTop[0], rightBottom[0]);
-        const boxMaxX = Math.max(leftTop[0], leftBottom[0], rightTop[0], rightBottom[0]);
-        const boxMinY = Math.min(leftTop[1], leftBottom[1], rightTop[1], rightBottom[1]);
-        const boxMaxY = Math.max(leftTop[1], leftBottom[1], rightTop[1], rightBottom[1]);
-
-        if (boxMinX < minX) {
-          minX = boxMinX;
-        }
-
-        if (boxMaxX > maxX) {
-          maxX = boxMaxX;
-        }
-
-        if (boxMinY < minY) {
-          minY = boxMinY;
-        }
-
-        if (boxMaxY > maxY) {
-          maxY = boxMaxY;
-        }
-      }
-    });
+      });
+    } else {
+      minX = 0;
+      maxX = 0;
+      minY = 0;
+      maxY = 0;
+    }
     const box  = {
       minX,
       minY,
       maxX,
-      maxY,
+      maxY
     };
     box.x      = box.minX;
     box.y      = box.minY;
@@ -315,36 +315,27 @@ export class Group extends Element {
     return box;
   }
 
-  public drawInner(context) {
-    const children = this.get('children');
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      child.draw(context);
-    }
-    return this;
-  }
-
-  public getCount() {
+  getCount() {
     return this.get('children').length;
   }
 
-  public sort() {
+  sort() {
     const children = this.get('children');
     // 稳定排序
     Util.each(children, (child, index) => {
       child[INDEX] = index;
       return child;
     });
-
-    children.sort(getComparer(function(obj1, obj2) {
-      return obj1.get('zIndex') - obj2.get('zIndex');
-    }));
-
+    children.sort(
+      getComparer(function (obj1, obj2) {
+        return obj1.get('zIndex') - obj2.get('zIndex');
+      })
+    );
     return this;
   }
 
-  public find(id) {
-    return this.findBy(function(item) {
+  findById(id) {
+    return this.find(function (item) {
       return item.get('id') === id;
     });
   }
@@ -354,15 +345,17 @@ export class Group extends Element {
    * @param  {Function} fn 匹配函数
    * @return {Canvas.Base} 分组或者图形
    */
-  public findBy(fn) {
+  find(fn) {
+    if (Util.isString(fn)) {
+      return this.findById(fn);
+    }
     const children = this.get('children');
     let rst        = null;
-
-    Util.each(children, function(item) {
+    Util.each(children, function (item) {
       if (fn(item)) {
         rst = item;
-      } else if (item.findBy) {
-        rst = item.findBy(fn);
+      } else if (item.find) {
+        rst = item.find(fn);
       }
       if (rst) {
         return false;
@@ -371,11 +364,15 @@ export class Group extends Element {
     return rst;
   }
 
-  public findAllBy(fn) {
+  /**
+   * @param  {Function} fn filter mathod
+   * @return {Array} all the matching shapes and groups
+   */
+  findAll(fn) {
     const children = this.get('children');
     let rst        = [];
     let childRst   = [];
-    Util.each(children, function(item) {
+    Util.each(children, function (item) {
       if (fn(item)) {
         rst.push(item);
       }
@@ -388,18 +385,56 @@ export class Group extends Element {
   }
 
   /**
-   * 根据x，y轴坐标获取对应的图形
-   * @param  {Number} x x坐标
-   * @param  {Number} y y坐标
-   * @return {Object}  最上面的图形
+   * @Deprecated
+   * @param  {Function} fn filter method
+   * @return {Object} found shape or group
    */
-  public getShape(x, y) {
+  findBy(fn) {
+    const children = this.get('children');
+    let rst        = null;
+    Util.each(children, function (item) {
+      if (fn(item)) {
+        rst = item;
+      } else if (item.findBy) {
+        rst = item.findBy(fn);
+      }
+      if (rst) {
+        return false;
+      }
+    });
+    return rst;
+  }
+
+  /**
+   * @Deprecated
+   * @param  {Function} fn filter mathod
+   * @return {Array} all the matching shapes and groups
+   */
+  findAllBy(fn) {
+    const children = this.get('children');
+    let rst        = [];
+    let childRst   = [];
+    Util.each(children, function (item) {
+      if (fn(item)) {
+        rst.push(item);
+      }
+      if (item.findAllBy) {
+        childRst = item.findAllBy(fn);
+        rst      = rst.concat(childRst);
+      }
+    });
+    return rst;
+  }
+
+  getShape(x, y) {
     const self     = this;
-    const clip     = self.__attrs.clip;
-    const children = self.__cfg.children;
+    const clip     = self._attrs.clip;
+    const children = self._cfg.children;
     let rst;
     if (clip) {
-      if (clip.inside(x, y)) {
+      const v = [x, y, 1];
+      clip.invert(v, self.get('canvas')); // 已经在外面转换
+      if (clip.isPointInPath(v[0], v[1])) {
         rst = find(children, x, y);
       }
     } else {
@@ -408,11 +443,11 @@ export class Group extends Element {
     return rst;
   }
 
-  public clearTotalMatrix() {
+  clearTotalMatrix() {
     const m = this.get('totalMatrix');
     if (m) {
       this.setSilent('totalMatrix', null);
-      const children = this.__cfg.children;
+      const children = this._cfg.children;
       for (let i = 0; i < children.length; i++) {
         const child = children[i];
         child.clearTotalMatrix();
@@ -420,20 +455,39 @@ export class Group extends Element {
     }
   }
 
-  public clear() {
-    const children = this.get('children');
-
-    while (children.length !== 0) {
-      children[children.length - 1].remove();
+  clear(delayRemove) {
+    const children = this._cfg.children;
+    for (let i = children.length - 1; i >= 0; i--) {
+      children[i].remove(true, delayRemove);
     }
+    this._cfg.children = [];
     return this;
   }
 
-  public destroy() {
+  destroy() {
     if (this.get('destroyed')) {
       return;
     }
     this.clear();
-    super.destroy();
+    Group.superclass.destroy.call(this);
+  }
+
+  clone() {
+    const self     = this;
+    const children = self._cfg.children;
+    const clone    = new Group();
+    Util.each(children, child => {
+      clone.add(child.clone());
+    });
+    return clone;
+  }
+
+  constructor(cfg) {
+    Group.superclass.constructor.call(this, cfg);
+    this.set('children', []);
+    this.set('tobeRemoved', []);
+    this._beforeRenderUI();
+    this._renderUI();
+    this._bindUI();
   }
 }
