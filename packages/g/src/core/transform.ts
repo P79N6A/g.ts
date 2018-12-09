@@ -8,9 +8,7 @@
 
 import {Attribute} from './attribute';
 
-const Util = require('../../util/index');
-const mat3 = require('../../util/matrix').mat3;
-const vec3 = require('../../util/matrix').vec3;
+import { mat3, vec3 } from '../../util/matrix';
 
 // 是否未改变
 function isUnchanged(m) {

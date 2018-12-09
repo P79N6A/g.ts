@@ -1,6 +1,6 @@
 import * as Shape from '../shapes/index';
 import * as Util from '../util/index';
-import * as Element from './element';
+import { Element } from './element';
 
 const SHAPE_MAP = {}; // 缓存图形类型
 const INDEX     = '_INDEX';
@@ -43,9 +43,7 @@ function initClassCfgs(c) {
   Util.merge(c._cfg, c.CFG);
 }
 
-Util.extend(Group, Element);
-
-export class Group {
+export class Group extends Element {
   isGroup   = true;
   type      = 'group';
   canFill   = true;

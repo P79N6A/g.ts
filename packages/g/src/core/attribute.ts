@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {EventEmitter} from '@gradii/g/event-emitter';
+import {EventEmitter} from '../event/event-emitter';
 import {isObject} from 'util';
 
 const ALIAS_ATTRS           = ['strokeStyle', 'fillStyle', 'globalAlpha'];

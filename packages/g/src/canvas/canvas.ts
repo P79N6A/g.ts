@@ -6,14 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('./util/index');
+import {Timeline} from '../util/mixin/timeline';
+import {createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId} from '../util';
+import { Cfg } from '../annotations/annotations';
+import { Group } from '../core/group'
 
-import {Event, Group} from '@gradii/g/core';
 
-const Timeline = require('../util/mixin/timeline');
-import {createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId} from '@gradii/g/util';
-
-@CFG({
+@Cfg({
   eventEnable: true,
   /**
    * 像素宽度
