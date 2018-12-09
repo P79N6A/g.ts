@@ -6,29 +6,29 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Timeline} from '../util/mixin/timeline';
-import {createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId} from '../util';
 import { Cfg } from '../annotations/annotations';
 import { Group } from '../core/group'
-
+import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '../util';
+import { Timeline } from '../util/mixin/timeline';
+import { Event } from './event'
 
 @Cfg({
-  eventEnable: true,
+  eventEnable : true,
   /**
    * 像素宽度
    * @type {Number}
    */
-  width: null,
+  width       : null,
   /**
    * 像素高度
    * @type {Number}
    */
-  height: null,
+  height      : null,
   /**
    * 画布宽度
    * @type {Number}
    */
-  widthCanvas: null,
+  widthCanvas : null,
   /**
    * 画布高度
    * @type {Number}
@@ -38,12 +38,12 @@ import { Group } from '../core/group'
    * CSS宽
    * @type {String}
    */
-  widthStyle: null,
+  widthStyle  : null,
   /**
    * CSS高
    * @type {String}
    */
-  heightStyle: null,
+  heightStyle : null,
   /**
    * 容器DOM
    * @type {Object}
@@ -53,12 +53,12 @@ import { Group } from '../core/group'
    * 当前Canvas的DOM
    * @type {Object}
    */
-  canvasDOM: null,
+  canvasDOM   : null,
   /**
    * 屏幕像素比
    * @type {Number}
    */
-  pixelRatio: null,
+  pixelRatio  : null,
 })
 export class Canvas extends Group {
 
@@ -156,7 +156,7 @@ export class Canvas extends Group {
       'click',
       'dblclick'
     ];
-    Util.each(events, event => {
+    events.forEach(event => {
       el.addEventListener(event, e => {
         self._triggerEvent(event, e);
       }, false);
@@ -170,19 +170,19 @@ export class Canvas extends Group {
     }, false);
 
     el.addEventListener('touchstart', e => {
-      if (!Util.isEmpty(e.touches)) {
+      if (!isEmpty(e.touches)) {
         self._triggerEvent('touchstart', e.touches[0]);
       }
     }, false);
 
     el.addEventListener('touchmove', e => {
-      if (!Util.isEmpty(e.touches)) {
+      if (!isEmpty(e.touches)) {
         self._triggerEvent('touchmove', e.touches[0]);
       }
     }, false);
 
     el.addEventListener('touchend', e => {
-      if (!Util.isEmpty(e.changedTouches)) {
+      if (!isEmpty(e.changedTouches)) {
         self._triggerEvent('touchend', e.changedTouches[0]);
       }
     }, false);

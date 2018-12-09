@@ -7,19 +7,18 @@
  */
 
 
+import Canvas from '../../../src/canvas';
 
-const Util = require('../../../src/util/index');
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
-div.id = 'canvas-arc';
+div.id    = 'canvas-arc';
 document.body.appendChild(div);
 const ratio = Util.getRatio();
 describe('Arc line', () => {
 
   const canvas = new Canvas({
     containerId: 'canvas-arc',
-    width: 200,
-    height: 200
+    width      : 200,
+    height     : 200
   });
 
   canvas.on('canvas-click', ev => {
@@ -113,11 +112,11 @@ describe('Arc line', () => {
   it('stroke', () => {
     arc.attr({
       startAngle: -Math.PI,
-      endAngle: Math.PI / 2,
-      clockwise: false,
-      x: 60,
-      y: 60,
-      r: 20
+      endAngle  : Math.PI / 2,
+      clockwise : false,
+      x         : 60,
+      y         : 60,
+      r         : 20
     });
     arc.attr('stroke', 'l (0) 0:#ff00ff 1:#00ffff');
     expect(arc.attr('stroke')).toBe('l (0) 0:#ff00ff 1:#00ffff');
@@ -145,12 +144,12 @@ describe('Arc line', () => {
   it('normal', () => {
     const arc = new G.Arc({
       attrs: {
-        x: 50,
-        y: 50,
-        r: 40,
+        x         : 50,
+        y         : 50,
+        r         : 40,
         startAngle: 0,
-        endAngle: 110 / 180 * Math.PI,
-        stroke: 'red'
+        endAngle  : 110 / 180 * Math.PI,
+        stroke    : 'red'
       }
     });
     canvas.add(arc);

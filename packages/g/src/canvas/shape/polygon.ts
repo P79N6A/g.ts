@@ -6,19 +6,20 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('../util/index');
-const Shape = require('../core/shape');
-const Inside = require('./util/inside');
+import { Attrs } from '../../annotations/annotations';
+import { Shape } from '../../core/shape';
+import Util from '../util/index';
+import { Inside } from './util/inside';
 
+@Attrs({
+  points   : null,
+  lineWidth: 1,
+})
 export class Polygon extends Shape {
-  public static ATTRS = {
-    points: null,
-    lineWidth: 1,
-  };
 
-  protected canFill = true;
+  protected canFill   = true;
   protected canStroke = true;
-  protected type = 'polygon';
+  protected type      = 'polygon';
 
   constructor(cfg) {
     super(cfg);
@@ -31,9 +32,9 @@ export class Polygon extends Shape {
   }
 
   public calculateBox() {
-    const self = this;
-    const attrs = self.__attrs;
-    const points = attrs.points;
+
+    const attrs     = this.__attrs;
+    const points    = attrs.points;
     const lineWidth = this.getHitLineWidth();
     if (!points || points.length === 0) {
       return null;
@@ -72,35 +73,35 @@ export class Polygon extends Shape {
   }
 
   public isPointInPath(x, y) {
-    const self = this;
-    const fill = self.hasFill();
-    const stroke = self.hasStroke();
+
+    const fill   = this.hasFill();
+    const stroke = this.hasStroke();
 
     if (fill && stroke) {
-      return self.__isPointInFill(x, y) || self.__isPointInStroke(x, y);
+      return this.__isPointInFill(x, y) || this.__isPointInStroke(x, y);
     }
 
     if (fill) {
-      return self.__isPointInFill(x, y);
+      return this.__isPointInFill(x, y);
     }
 
     if (stroke) {
-      return self.__isPointInStroke(x, y);
+      return this.__isPointInStroke(x, y);
     }
 
     return false;
   }
 
   public __isPointInFill(x, y) {
-    const self = this;
-    const context = self.get('context');
-    self.createPath();
+
+    const context = this.get('context');
+    this.createPath();
     return context.isPointInPath(x, y);
   }
 
   public __isPointInStroke(x, y) {
-    const self = this;
-    const attrs = self.__attrs;
+
+    const attrs  = this.__attrs;
     const points = attrs.points;
     if (points.length < 2) {
       return false;
@@ -115,13 +116,13 @@ export class Polygon extends Shape {
   }
 
   public createPath(context) {
-    const self = this;
-    const attrs = self.__attrs;
+
+    const attrs  = this.__attrs;
     const points = attrs.points;
     if (points.length < 2) {
       return;
     }
-    context = context || self.get('context');
+    context = context || this.get('context');
     context.beginPath();
     points.forEach((point, index) => {
       if (index === 0) {

@@ -1,5 +1,5 @@
 import * as Util from '../util';
-import * as Interaction from './base';
+import { Interaction } from './base';
 import * as filterData from './helper/filter-data';
 import * as getColDef from './helper/get-col-def';
 import * as getLimitRange from './helper/get-limit-range';

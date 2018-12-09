@@ -1,7 +1,9 @@
-import * as GeomBase from "./base";
-import * as SplitMixin from "./mixin/split";
-import * as Util from "../util";
+import * as Util from '../util';
+import { GeomBase } from './base';
+import * as SplitMixin from './mixin/split';
+
 require("./shape/area");
+
 export class Area extends GeomBase {
   /**
    * 获取默认的配置属性
@@ -37,7 +39,7 @@ export class Area extends GeomBase {
     });
   }
 }
-class AreaStack extends Area {
+export class AreaStack extends Area {
   getDefaultCfg() {
     const cfg = super.getDefaultCfg();
     cfg.hasDefaultAdjust = true;
@@ -45,6 +47,3 @@ class AreaStack extends Area {
     return cfg;
   }
 }
-Area.Stack = AreaStack;
-GeomBase.Area = Area;
-GeomBase.AreaStack = AreaStack;

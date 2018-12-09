@@ -6,10 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Arrow, Shape} from '@gradii/g/core';
-
-const Util   = require('../util/index');
-const Inside = require('./util/inside');
+import { Shape } from '../../core/shape';
+import { Inside } from '../../util/inside';
 
 function _getArcX(x, radius, angle) {
   return x + (radius * Math.cos(angle));
@@ -79,18 +77,18 @@ export class Arc extends Shape {
   }
 
   public createPath(context) {
-    const attrs = this.__attrs;
-    const { x, y, r, startAngle, endAngle, clockwise } = attrs;
-    context = context || self.get('context');
+    const attrs                                      = this.__attrs;
+    const {x, y, r, startAngle, endAngle, clockwise} = attrs;
+    context                                          = context || self.get('context');
 
     context.beginPath();
     context.arc(x, y, r, startAngle, endAngle, clockwise);
   }
 
   public afterPath(context) {
-    const attrs = this.__attrs;
-    const { x, y, r, startAngle, endAngle, clockwise } = attrs;
-    context = context || this.get('context');
+    const attrs                                      = this.__attrs;
+    const {x, y, r, startAngle, endAngle, clockwise} = attrs;
+    context                                          = context || this.get('context');
     let diff;
     let x1;
     let y1;
