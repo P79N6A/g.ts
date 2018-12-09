@@ -1,66 +1,74 @@
-import * as Util from "../util";
-const DomUtil = Util.DomUtil;
-const EVENT_TYPES = ["start", "process", "end", "reset"];
+import * as Util from '../util';
+
+const DomUtil     = Util.DomUtil;
+const EVENT_TYPES = ['start', 'process', 'end', 'reset'];
+
 export class Interaction {
   getDefaultCfg() {
     return {
-      startEvent: "mousedown",
-      processEvent: "mousemove",
-      endEvent: "mouseup",
-      resetEvent: "dblclick"
+      startEvent  : 'mousedown',
+      processEvent: 'mousemove',
+      endEvent    : 'mouseup',
+      resetEvent  : 'dblclick'
     };
   }
+
   _start(ev) {
-    const me = this;
-    me.preStart && me.preStart(ev);
-    me.start(ev);
-    me.onStart && me.onStart(ev);
+    this.preStart && this.preStart(ev);
+    this.start(ev);
+    this.onStart && this.onStart(ev);
   }
+
   _process(ev) {
-    const me = this;
-    me.preProcess && me.preProcess(ev);
-    me.process(ev);
-    me.onProcess && me.onProcess(ev);
+    this.preProcess && this.preProcess(ev);
+    this.process(ev);
+    this.onProcess && this.onProcess(ev);
   }
+
   _end(ev) {
-    const me = this;
-    me.preEnd && me.preEnd(ev);
-    me.end(ev);
-    me.onEnd && me.onEnd(ev);
+    this.preEnd && this.preEnd(ev);
+    this.end(ev);
+    this.onEnd && this.onEnd(ev);
   }
+
   _reset(ev) {
-    const me = this;
-    me.preReset && me.preReset(ev);
-    me.reset(ev);
-    me.onReset && me.onReset(ev);
+    this.preReset && this.preReset(ev);
+    this.reset(ev);
+    this.onReset && this.onReset(ev);
   }
+
   start() {
     // TODO override
   }
+
   process() {
     // TODO override
   }
+
   end() {
     // TODO override
   }
+
   reset() {
     // TODO override
   }
+
   constructor(cfg, view) {
-    const me = this;
-    const defaultCfg = me.getDefaultCfg();
+
+    const defaultCfg = this.getDefaultCfg();
     Util.assign(me, defaultCfg, cfg);
-    me.view = me.chart = view;
-    me.canvas = view.get("canvas");
-    me._bindEvents();
+    this.view   = this.chart = view;
+    this.canvas = view.get('canvas');
+    this._bindEvents();
   }
+
   _bindEvents() {
-    const me = this;
-    const canvas = me.canvas;
-    const canvasDOM = canvas.get("canvasDOM");
-    me._clearEvents();
+
+    const canvas    = this.canvas;
+    const canvasDOM = canvas.get('canvasDOM');
+    this._clearEvents();
     Util.each(EVENT_TYPES, type => {
-      const ucType = Util.upperFirst(type);
+      const ucType               = Util.upperFirst(type);
       me[`_on${ucType}Listener`] = DomUtil.addEventListener(
         canvasDOM,
         me[`${type}Event`],
@@ -68,13 +76,15 @@ export class Interaction {
       );
     });
   }
+
   _clearEvents() {
-    const me = this;
+
     Util.each(EVENT_TYPES, type => {
       const listenerName = `_on${Util.upperFirst(type)}Listener`;
       me[listenerName] && me[listenerName].remove();
     });
   }
+
   destroy() {
     this._clearEvents();
   }

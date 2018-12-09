@@ -38,7 +38,7 @@ function findGeom(geoms, value) {
   return rst;
 }
 
-class LegendController {
+export class LegendController {
   constructor(cfg) {
     const self = this;
     self.options = {};
@@ -850,4 +850,3 @@ class LegendController {
   }
 }
 
-module.exports = LegendController;

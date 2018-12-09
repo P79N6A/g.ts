@@ -3,6 +3,10 @@ import * as Interaction from "./base";
 import * as getFieldRange from "./helper/get-field-range";
 import * as getLimitRange from "./helper/get-limit-range";
 const DEFAULT_TYPE = "X";
+
+@Interaction({
+  name: 'scroll-bar'
+})
 export class ScrollBar extends Interaction {
   getDefaultCfg() {
     const cfg = super.getDefaultCfg();

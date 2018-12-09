@@ -3,6 +3,10 @@ import * as Interaction from "./base";
 // const G2 = require('../core.js');
 const BRUSH_TYPES = ["X", "Y", "XY", "POLYGON"];
 const DEFAULT_TYPE = "XY";
+
+@Interaction({
+  name: 'brush'
+})
 export class Brush extends Interaction {
   getDefaultCfg() {
     const cfg = super.getDefaultCfg();
@@ -31,13 +35,13 @@ export class Brush extends Interaction {
   constructor(cfg, view) {
     super(cfg, view);
     const me = this;
-    me.filter = !me.draggable;
-    me.type = me.type.toUpperCase();
-    me.chart = view;
-    if (BRUSH_TYPES.indexOf(me.type) === -1) {
-      me.type = DEFAULT_TYPE;
+    this.filter = !this.draggable;
+    this.type = this.type.toUpperCase();
+    this.chart = view;
+    if (BRUSH_TYPES.indexOf(this.type) === -1) {
+      this.type = DEFAULT_TYPE;
     }
-    const canvas = me.canvas;
+    const canvas = this.canvas;
     if (canvas) {
       let plotRange;
       canvas.get("children").map(child => {
@@ -47,21 +51,21 @@ export class Brush extends Interaction {
         }
         return child;
       });
-      me.plot = {
+      this.plot = {
         start: plotRange.bl,
         end: plotRange.tr
       };
     }
     if (view) {
       const coord = view.get("coord");
-      me.plot = {
+      this.plot = {
         start: coord.start,
         end: coord.end
       };
       const xScales = view._getScales("x");
       const yScales = view._getScales("y");
-      me.xScale = me.xField ? xScales[me.xField] : view.getXScale();
-      me.yScale = me.yField ? yScales[me.yField] : view.getYScales()[0];
+      this.xScale = this.xField ? xScales[this.xField] : view.getXScale();
+      this.yScale = this.yField ? yScales[this.yField] : view.getYScales()[0];
     }
   }
   // onBurshstart() { }
@@ -76,34 +80,34 @@ export class Brush extends Interaction {
     if (!type) return;
     const startPoint = { x: ev.offsetX, y: ev.offsetY };
     if (!startPoint.x) return;
-    const isInPlot = me.plot && me.inPlot;
+    const isInPlot = this.plot && this.inPlot;
     const canvasDOM = canvas.get("canvasDOM");
     const pixelRatio = canvas.get("pixelRatio");
-    if (me.selection) me.selection = null;
-    if (me.draggable && brushShape && !brushShape.get("destroyed")) {
+    if (this.selection) this.selection = null;
+    if (this.draggable && brushShape && !brushShape.get("destroyed")) {
       // allow drag the brushShape
       if (
         brushShape.isHit(startPoint.x * pixelRatio, startPoint.y * pixelRatio)
       ) {
         canvasDOM.style.cursor = "move";
-        me.selection = brushShape;
-        me.dragging = true;
+        this.selection = brushShape;
+        this.dragging = true;
         if (type === "X") {
-          me.dragoffX = startPoint.x - brushShape.attr("x");
-          me.dragoffY = 0;
+          this.dragoffX = startPoint.x - brushShape.attr("x");
+          this.dragoffY = 0;
         } else if (type === "Y") {
-          me.dragoffX = 0;
-          me.dragoffY = startPoint.y - brushShape.attr("y");
+          this.dragoffX = 0;
+          this.dragoffY = startPoint.y - brushShape.attr("y");
         } else if (type === "XY") {
-          me.dragoffX = startPoint.x - brushShape.attr("x");
-          me.dragoffY = startPoint.y - brushShape.attr("y");
+          this.dragoffX = startPoint.x - brushShape.attr("x");
+          this.dragoffY = startPoint.y - brushShape.attr("y");
         } else if (type === "POLYGON") {
           const box = brushShape.getBBox();
-          me.dragoffX = startPoint.x - box.minX;
-          me.dragoffY = startPoint.y - box.minY;
+          this.dragoffX = startPoint.x - box.minX;
+          this.dragoffY = startPoint.y - box.minY;
         }
         if (isInPlot) {
-          // me.selection.attr('clip', canvas.addShape('rect', {
+          // this.selection.attr('clip', canvas.addShape('rect', {
           //   attrs: {
           //     x: this.plot.start.x,
           //     y: this.plot.end.y,
@@ -114,16 +118,16 @@ export class Brush extends Interaction {
           //   }
           // }));
         }
-        me.onDragstart && me.onDragstart(ev);
+        this.onDragstart && this.onDragstart(ev);
       }
-      me.prePoint = startPoint;
+      this.prePoint = startPoint;
     }
-    if (!me.dragging) {
+    if (!this.dragging) {
       // brush start
-      me.onBrushstart && me.onBrushstart(startPoint);
-      let container = me.container;
+      this.onBrushstart && this.onBrushstart(startPoint);
+      let container = this.container;
       if (isInPlot) {
-        const { start, end } = me.plot;
+        const { start, end } = this.plot;
         if (
           startPoint.x < start.x ||
           startPoint.x > end.x ||
@@ -133,9 +137,9 @@ export class Brush extends Interaction {
           return;
       }
       canvasDOM.style.cursor = "crosshair";
-      me.startPoint = startPoint;
-      me.brushShape = null;
-      me.brushing = true;
+      this.startPoint = startPoint;
+      this.brushShape = null;
+      this.brushing = true;
       if (!container) {
         container = canvas.addGroup({
           zIndex: 5 // upper
@@ -144,9 +148,9 @@ export class Brush extends Interaction {
       } else {
         container.clear();
       }
-      me.container = container;
+      this.container = container;
       if (type === "POLYGON")
-        me.polygonPath = `M ${startPoint.x} ${startPoint.y}`;
+        this.polygonPath = `M ${startPoint.x} ${startPoint.y}`;
     }
   }
   process(ev) {
@@ -172,11 +176,11 @@ export class Brush extends Interaction {
     if (brushing) {
       canvasDOM.style.cursor = "crosshair";
       const { start, end } = plot;
-      let polygonPath = me.polygonPath;
-      let brushShape = me.brushShape;
-      const container = me.container;
-      if (me.plot && me.inPlot) {
-        currentPoint = me._limitCoordScope(currentPoint);
+      let polygonPath = this.polygonPath;
+      let brushShape = this.brushShape;
+      const container = this.container;
+      if (this.plot && this.inPlot) {
+        currentPoint = this._limitCoordScope(currentPoint);
       }
       let rectStartX;
       let rectStartY;
@@ -208,10 +212,10 @@ export class Brush extends Interaction {
         rectHeight = Math.abs(startPoint.y - currentPoint.y);
       } else if (type === "POLYGON") {
         polygonPath += `L ${currentPoint.x} ${currentPoint.y}`;
-        me.polygonPath = polygonPath;
+        this.polygonPath = polygonPath;
         if (!brushShape) {
           brushShape = container.addShape("path", {
-            attrs: Util.mix(me.style, {
+            attrs: Util.mix(this.style, {
               path: polygonPath
             })
           });
@@ -227,7 +231,7 @@ export class Brush extends Interaction {
       if (type !== "POLYGON") {
         if (!brushShape) {
           brushShape = container.addShape("rect", {
-            attrs: Util.mix(me.style, {
+            attrs: Util.mix(this.style, {
               x: rectStartX,
               y: rectStartY,
               width: rectWidth,
@@ -246,26 +250,26 @@ export class Brush extends Interaction {
             );
         }
       }
-      me.brushShape = brushShape;
+      this.brushShape = brushShape;
     } else if (dragging) {
       canvasDOM.style.cursor = "move";
-      const selection = me.selection;
+      const selection = this.selection;
       if (selection && !selection.get("destroyed")) {
         if (type === "POLYGON") {
-          const prePoint = me.prePoint;
-          me.selection.translate(
+          const prePoint = this.prePoint;
+          this.selection.translate(
             currentPoint.x - prePoint.x,
             currentPoint.y - prePoint.y
           );
         } else {
-          me.dragoffX && selection.attr("x", currentPoint.x - me.dragoffX);
-          me.dragoffY && selection.attr("y", currentPoint.y - me.dragoffY);
+          this.dragoffX && selection.attr("x", currentPoint.x - this.dragoffX);
+          this.dragoffY && selection.attr("y", currentPoint.y - this.dragoffY);
         }
       }
     }
-    me.prePoint = currentPoint;
+    this.prePoint = currentPoint;
     canvas.draw();
-    const { data, shapes, xValues, yValues } = me._getSelected();
+    const { data, shapes, xValues, yValues } = this._getSelected();
     const eventObj = {
       data,
       shapes,
@@ -278,8 +282,8 @@ export class Brush extends Interaction {
     if (yScale) {
       eventObj[yScale.field] = yValues;
     }
-    me.onDragmove && me.onDragmove(eventObj);
-    me.onBrushmove && me.onBrushmove(eventObj);
+    this.onDragmove && this.onDragmove(eventObj);
+    this.onBrushmove && this.onBrushmove(eventObj);
   }
   end(ev) {
     const me = this;
@@ -304,8 +308,8 @@ export class Brush extends Interaction {
       Math.abs(startPoint.y - offsetY) <= 1
     ) {
       // 防止点击事件
-      me.brushing = false;
-      me.dragging = false;
+      this.brushing = false;
+      this.dragging = false;
       return;
     }
     const eventObj = {
@@ -320,13 +324,13 @@ export class Brush extends Interaction {
     if (yScale) {
       eventObj[yScale.field] = yValues;
     }
-    if (me.dragging) {
-      me.dragging = false;
-      me.onDragend && me.onDragend(eventObj);
-    } else if (me.brushing) {
-      me.brushing = false;
-      const brushShape = me.brushShape;
-      let polygonPath = me.polygonPath;
+    if (this.dragging) {
+      this.dragging = false;
+      this.onDragend && this.onDragend(eventObj);
+    } else if (this.brushing) {
+      this.brushing = false;
+      const brushShape = this.brushShape;
+      let polygonPath = this.polygonPath;
       if (type === "POLYGON") {
         polygonPath += "z";
         brushShape &&
@@ -336,12 +340,12 @@ export class Brush extends Interaction {
               path: polygonPath
             })
           );
-        me.polygonPath = polygonPath;
+        this.polygonPath = polygonPath;
         canvas.draw();
       }
-      if (me.onBrushend) {
-        me.onBrushend(eventObj);
-      } else if (chart && me.filter) {
+      if (this.onBrushend) {
+        this.onBrushend(eventObj);
+      } else if (chart && this.filter) {
         container.clear(); // clear the brush
         // filter data
         if (type === "X") {
@@ -430,10 +434,10 @@ export class Brush extends Interaction {
         return geom;
       });
     }
-    me.shapes = selectedShapes;
-    me.xValues = xValues;
-    me.yValues = yValues;
-    me.data = selectedData;
+    this.shapes = selectedShapes;
+    this.xValues = xValues;
+    this.yValues = yValues;
+    this.data = selectedData;
     canvas.draw();
     return {
       data: selectedData,

@@ -1,13 +1,12 @@
-import * as Global from "../global";
-import * as Util from "../util";
-const assign = Util.assign;
-const isNil = Util.isNil;
-const isArray = Util.isArray;
-const cloneDeep = Util.cloneDeep;
-// 绑定事件
-const wrapBehavior = Util.wrapBehavior;
-// 获取绑定的事件
-const getWrapBehavior = Util.getWrapBehavior;
+import { Global } from "../global";
+import {
+  assign,
+  isNil,
+  isArray,
+  cloneDeep,
+  wrapBehavior,
+  getWrapBehavior
+} from '../util'
 export class Base {
   getDefaultCfg() {
     return {

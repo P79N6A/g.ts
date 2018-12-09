@@ -79,7 +79,7 @@ function _uniqItems(items) {
   return tmp;
 }
 
-class TooltipController {
+export class TooltipController {
   constructor(cfg) {
     Util.assign(this, cfg);
     this.timeStamp = 0;
@@ -461,5 +461,3 @@ class TooltipController {
   }
 
 }
-
-module.exports = TooltipController;

@@ -4,6 +4,10 @@ import * as getColDef from "./helper/get-col-def";
 import * as getLimitRange from "./helper/get-limit-range";
 const ZOOMING_TYPES = ["X", "Y", "XY"];
 const DEFAULT_TYPE = "X";
+
+@Interaction({
+  name: 'zoom'
+})
 export class Zoom extends Interaction {
   getDefaultCfg() {
     const cfg = super.getDefaultCfg();

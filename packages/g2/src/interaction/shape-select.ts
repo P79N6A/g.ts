@@ -7,6 +7,10 @@ function getOriginalAttrs(attrs, styles) {
   }
   return origin;
 }
+
+@Interaction({
+  name: 'shape-select'
+})
 export class Select extends Interaction {
   getDefaultCfg() {
     const defaultCfg = super.getDefaultCfg();

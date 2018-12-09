@@ -1,4 +1,4 @@
-import * as EventEmitter from "wolfy87-eventemitter";
+import { EventEmitter } from "wolfy87-eventemitter";
 import * as Util from "./util";
 export class Base extends EventEmitter {
   getDefaultCfg() {

@@ -13,7 +13,7 @@ const {
 } = require('venn.js');
 require('./shape/venn');
 
-class Venn extends GeomBase {
+export class Venn extends GeomBase {
   /**
    * get default configuration
    * @protected
@@ -104,5 +104,3 @@ class Venn extends GeomBase {
 }
 
 GeomBase.Venn = Venn;
-
-module.exports = Venn;

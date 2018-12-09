@@ -8,6 +8,10 @@ import * as getColDef from "./helper/get-col-def";
 import * as getColDefs from "./helper/get-col-defs";
 const { Canvas } = G;
 const { DomUtil, isNumber } = Util;
+
+@Interaction({
+  name: 'slider'
+})
 export class Slider extends Interaction {
   getDefaultCfg() {
     const cfg = super.getDefaultCfg();
