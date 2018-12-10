@@ -7,7 +7,7 @@
  */
 
 
-import Canvas from '../../../src/canvas';
+import Canvas from '@gradii/g';
 
 const div = document.createElement('div');
 div.id    = 'canvas-arc';
