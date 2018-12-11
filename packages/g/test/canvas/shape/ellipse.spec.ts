@@ -7,32 +7,32 @@
  */
 
 
+import { Canvas } from '../../../src/canvas/canvas';
 
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
-div.id = 'canvas-ellipse';
+div.id    = 'canvas-ellipse';
 document.body.appendChild(div);
 
 
-describe('Ellipse', function() {
+describe('Ellipse', function () {
 
   const canvas = new Canvas({
     containerId: 'canvas-ellipse',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  const ellipse = new G.Ellipse({
+  const ellipse = new Ellipse({
     attrs: {
-      x: 0,
-      y: 0,
+      x : 0,
+      y : 0,
       rx: 1,
       ry: 1
     }
   });
 
-  it('init attr', function() {
+  it('init attr', function () {
     expect(ellipse.attr('x')).toBe(0);
     expect(ellipse.attr('y')).toBe(0);
     expect(ellipse.attr('rx')).toBe(1);
@@ -47,7 +47,7 @@ describe('Ellipse', function() {
     expect(box.maxY).toBe(1.5);
   });
 
-  it('x', function() {
+  it('x', function () {
     ellipse.attr('x', 20);
     expect(ellipse.attr('x')).toBe(20);
     const box = ellipse.getBBox();
@@ -57,7 +57,7 @@ describe('Ellipse', function() {
     expect(box.maxY).toBe(1.5);
   });
 
-  it('y', function() {
+  it('y', function () {
     ellipse.attr('y', 30);
     expect(ellipse.attr('y')).toBe(30);
     const box = ellipse.getBBox();
@@ -67,7 +67,7 @@ describe('Ellipse', function() {
     expect(box.maxY).toBe(31.5);
   });
 
-  it('rx', function() {
+  it('rx', function () {
     expect(ellipse.attr('rx')).toBe(1);
     ellipse.attr('rx', 5);
     expect(ellipse.attr('rx')).toBe(5);
@@ -78,7 +78,7 @@ describe('Ellipse', function() {
     expect(box.maxY).toBe(31.5);
   });
 
-  it('ry', function() {
+  it('ry', function () {
     expect(ellipse.attr('ry')).toBe(1);
     ellipse.attr('ry', 10);
     expect(ellipse.attr('ry')).toBe(10);
@@ -90,7 +90,7 @@ describe('Ellipse', function() {
   });
 
 
-  it('lineWidth', function() {
+  it('lineWidth', function () {
     expect(ellipse.attr('lineWidth')).toBe(1);
     ellipse.attr('lineWidth', 2);
     expect(ellipse.attr('lineWidth')).toBe(2);
@@ -101,25 +101,25 @@ describe('Ellipse', function() {
     expect(box.maxY).toBe(41);
   });
 
-  it('stroke', function() {
+  it('stroke', function () {
     ellipse.attr('stroke', 'l (0) 0:#959231 1:#00cd54');
     expect(ellipse.attr('stroke')).toBe('l (0) 0:#959231 1:#00cd54');
     canvas.add(ellipse);
     canvas.draw();
   });
 
-  it('fill', function() {
+  it('fill', function () {
     ellipse.attr('fill', 'l (90) 0:#959231 1:#00cd54');
     expect(ellipse.attr('fill')).toBe('l (90) 0:#959231 1:#00cd54');
     canvas.draw();
   });
 
 
-  it('isHit', function() {
-    const ellipse1 = new G.Ellipse({
+  it('isHit', function () {
+    const ellipse1 = new Ellipse({
       attrs: {
-        x: 50,
-        y: 50,
+        x : 50,
+        y : 50,
         rx: 200,
         ry: 100
       }
@@ -136,10 +136,10 @@ describe('Ellipse', function() {
     expect(ellipse1.isHit(250, 50)).toBe(true);
     expect(ellipse1.isHit(50, 150)).toBe(true);
 
-    const ellipse2 = new G.Ellipse({
+    const ellipse2 = new Ellipse({
       attrs: {
-        x: 100,
-        y: 200,
+        x : 100,
+        y : 200,
         rx: 50,
         ry: 80
       }
@@ -157,10 +157,10 @@ describe('Ellipse', function() {
     expect(ellipse2.isHit(130, 200)).toBe(true);
     expect(ellipse2.isHit(100, 230)).toBe(true);
 
-    const ellipse3 = new G.Ellipse({
+    const ellipse3 = new Ellipse({
       attrs: {
-        x: 200,
-        y: 200,
+        x : 200,
+        y : 200,
         rx: 50,
         ry: 100
       }
@@ -172,7 +172,7 @@ describe('Ellipse', function() {
     expect(ellipse3.isHit(200, 300)).toBe(false);
     expect(ellipse3.isHit(170, 200)).toBe(false);
     ellipse3.attr({
-      fill: 'green',
+      fill  : 'green',
       stroke: 'red'
     });
     expect(ellipse3.isHit(150, 200)).toBe(true);

@@ -7,25 +7,25 @@
  */
 
 
-const Canvas = require('../../../src/canvas');
+import { Canvas } from '../../../src/canvas/canvas';
 
-describe('Marker', function() {
+describe('Marker', function () {
   const div = document.createElement('div');
-  div.id = 'canvas-marker';
+  div.id    = 'canvas-marker';
   document.body.appendChild(div);
   const canvas = new Canvas({
     containerId: 'canvas-marker',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
-  it('init', function() {
+  it('init', function () {
     const marker = canvas.addShape('marker', {
       attrs: {
-        x: 10,
-        y: 10,
+        x     : 10,
+        y     : 10,
         radius: 10,
-        fill: 'red',
+        fill  : 'red',
         symbol: 'circle'
       }
     });
@@ -33,13 +33,13 @@ describe('Marker', function() {
     expect(marker.attr('y')).toBe(10);
   });
 
-  it('hit', function() {
+  it('hit', function () {
     const marker = canvas.addShape('marker', {
       attrs: {
-        x: 20,
-        y: 20,
+        x     : 20,
+        y     : 20,
         radius: 10,
-        fill: 'blue',
+        fill  : 'blue',
         symbol: 'circle'
       }
     });
@@ -47,15 +47,15 @@ describe('Marker', function() {
     expect(marker.isHit(10, 10)).toBe(false);
   });
 
-  it('hit with lineWidth', function() {
+  it('hit with lineWidth', function () {
     const marker = canvas.addShape('marker', {
       attrs: {
-        x: 100,
-        y: 100,
-        radius: 5,
+        x        : 100,
+        y        : 100,
+        radius   : 5,
         lineWidth: 6,
-        fill: 'blue',
-        symbol: 'circle'
+        fill     : 'blue',
+        symbol   : 'circle'
       }
     });
     expect(marker.isHit(100, 100)).toBe(true);

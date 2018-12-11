@@ -8,7 +8,7 @@
 
 
 
-const Canvas = require('../../../src/canvas');
+import {Canvas} from '../../../src/canvas/canvas';
 const div = document.createElement('div');
 div.id = 'canvas-text';
 document.body.appendChild(div);
@@ -22,7 +22,7 @@ describe('Text', function() {
     pixelRatio: 1
   });
 
-  const text = new G.Text({
+  const text = new Text({
     attrs: {
       x: 0,
       y: 0,
@@ -62,7 +62,7 @@ describe('Text', function() {
     expect(box.minY).toBe(-12.5);
     expect(box.maxX).toBe(36.5);
     expect(box.maxY).toBe(0.5);
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 0,
         y: 0,
@@ -84,7 +84,7 @@ describe('Text', function() {
     expect(box.minY).toBe(-12.5);
     expect(box.maxX).toBe(46.5);
     expect(box.maxY).toBe(0.5);
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 10,
         y: 0
@@ -101,7 +101,7 @@ describe('Text', function() {
       width: 0,
       height: 0
     });
-    const text2 = new G.Text({
+    const text2 = new Text({
       attrs: {
         x: 10,
         y: 0,
@@ -123,7 +123,7 @@ describe('Text', function() {
     expect(box.minY).toBe(7.5);
     expect(box.maxX).toBe(46.5);
     expect(box.maxY).toBe(20.5);
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 0,
         y: 20
@@ -163,7 +163,7 @@ describe('Text', function() {
   });
 
   it('fill', function() {
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 50,
         y: 150,
@@ -186,7 +186,7 @@ describe('Text', function() {
     text.attr('fontSize', 20);
     expect(text.attr('fontSize')).toBe(20);
     expect(text.attr('font')).toBe('normal normal normal 20px Arial');
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         fontSize: 20,
         text: '你好啊啊',
@@ -202,7 +202,7 @@ describe('Text', function() {
   });
 
   it('fontSize < 12', function() {
-    const text = new G.Text({
+    const text = new Text({
       attrs: {
         fontSize: 10,
         text: '你好啊啊',
@@ -277,7 +277,7 @@ describe('Text', function() {
     expect(box.maxX, 70.5);
 
 
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 0,
         y: 0,
@@ -295,7 +295,7 @@ describe('Text', function() {
       height: 0
     });
 
-    const text2 = new G.Text({
+    const text2 = new Text({
       attrs: {
         x: 0,
         y: 0,
@@ -324,7 +324,7 @@ describe('Text', function() {
     expect(box.minY).toBe(-0.5);
     expect(box.maxY).toBe(20.5);
 
-    const text1 = new G.Text({
+    const text1 = new Text({
       attrs: {
         x: 0,
         y: 0,
@@ -342,7 +342,7 @@ describe('Text', function() {
       height: 0
     });
 
-    const text2 = new G.Text({
+    const text2 = new Text({
       attrs: {
         x: 0,
         y: 0,
@@ -374,7 +374,7 @@ describe('Text', function() {
 
 
   it('normal use', function() {
-    const text = new G.Text({
+    const text = new Text({
       attrs: {
         text: 'hello world',
         x: 50,
@@ -437,7 +437,7 @@ describe('Text \n', function() {
     height: 200
   });
 
-  const text = new G.Text({
+  const text = new Text({
     attrs: {
       x: 50,
       y: 50,
@@ -448,7 +448,7 @@ describe('Text \n', function() {
     }
   });
   const bbox = text.getBBox();
-  const rect = new G.Rect({
+  const rect = new Rect({
     attrs: {
       x: bbox.minX,
       y: bbox.minY,
@@ -459,7 +459,7 @@ describe('Text \n', function() {
   });
 
   it('text outline', () => {
-    const text = new G.Text({
+    const text = new Text({
       attrs: {
         x: 100,
         y: 100,
@@ -500,7 +500,7 @@ describe('Text 不存在', function() {
     height: 200
   });
 
-  const text = new G.Text({
+  const text = new Text({
     attrs: {
       x: 50,
       y: 50,
@@ -511,7 +511,7 @@ describe('Text 不存在', function() {
     }
   });
   const bbox = text.getBBox();
-  const rect = new G.Rect({
+  const rect = new Rect({
     attrs: {
       x: bbox.minX,
       y: bbox.minY,

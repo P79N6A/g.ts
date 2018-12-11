@@ -6,14 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util      = require('../util/index');
-const Shape     = require('../core/shape');
-const Inside    = require('./util/inside');
-const Arrow     = require('./util/arrow');
-const CubicMath = require('./math/cubic');
+import { Shape } from '../core/shape';
+import CubicMath from './math/cubic';
+import { Arrow } from './util/arrow';
+import { Inside } from './util/inside';
 
 export class Cubic extends Shape {
-  public static ATTRS        = {
+  public static ATTRS = {
     p1        : null, // 起始点
     p2        : null, // 第一个控制点
     p3        : null, // 第二个控制点
@@ -25,7 +24,7 @@ export class Cubic extends Shape {
   protected canStroke = true;
   protected type      = 'cubic';
 
-  constructor(cfg) {
+  constructor(cfg?) {
     super(cfg);
   }
 
@@ -87,9 +86,9 @@ export class Cubic extends Shape {
   }
 
   public createPath(context) {
-    const attrs = this.__attrs;
-    const { p1, p2, p3, p4 } = attrs;
-    context = context || self.get('context');
+    const attrs            = this.__attrs;
+    const {p1, p2, p3, p4} = attrs;
+    context                = context || self.get('context');
     if (
       Util.isNil(p1) ||
       Util.isNil(p2) ||
@@ -102,15 +101,14 @@ export class Cubic extends Shape {
     context.moveTo(p1[0], p1[1]);
     context.bezierCurveTo(p2[0], p2[1], p3[0], p3[1], p4[0], p4[1]);
 
-    const attrs = this.__attrs;
-    const { p1, p2, p3, p4 } = attrs;
-    context = context || this.get('context');
+    const attrs            = this.__attrs;
+    const {p1, p2, p3, p4} = attrs;
+    context                = context || this.get('context');
     if (attrs.startArrow) {
       Arrow.addStartArrow(context, attrs, p2[0], p2[1], p1[0], p1[1]);
     }
     if (attrs.endArrow) {
       Arrow.addEndArrow(context, attrs, p3[0], p3[1], p4[0], p4[1]);
-    }
     }
   }
 

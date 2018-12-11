@@ -7,7 +7,7 @@
  */
 
 
-import Canvas from '@gradii/g';
+import {Canvas} from '../../../src/canvas/canvas';
 
 const div = document.createElement('div');
 div.id    = 'canvas-arc';
@@ -24,7 +24,7 @@ describe('Arc line', () => {
   canvas.on('canvas-click', ev => {
     console.log(ev);
   });
-  const arc = new G.Arc();
+  const arc = new Arc();
   it('init attrs', () => {
     expect(arc.attr('x')).toBe(0);
     expect(arc.attr('y')).toBe(0);
@@ -69,7 +69,7 @@ describe('Arc line', () => {
 
   it('startAngle', () => {
     arc.attr('startAngle', 1 / 3 * Math.PI);
-    expect(Util.isNumberEqual(arc.attr('startAngle'), 1 / 3 * Math.PI)).toBe(true);
+    expect(arc.attr('startAngle')).toBeCloseTo(1 / 3 * Math.PI);
     const box = arc.getBBox();
     expect(box.minX).toBe(-20.5);
     expect(box.maxX).toBe(40.5);
@@ -79,12 +79,12 @@ describe('Arc line', () => {
 
   it('endAngle', () => {
     arc.attr('endAngle', 120 / 180 * Math.PI);
-    expect(Util.isNumberEqual(arc.attr('endAngle'), 120 / 180 * Math.PI)).toBe(true);
+    expect(arc.attr('endAngle').toBeCloseTo(120 / 180 * Math.PI)).toBe(true);
     const box = arc.getBBox();
-    expect(Util.isNumberEqual(box.minX, -5.5)).toBe(true);
-    expect(Util.isNumberEqual(box.maxX, 25.5)).toBe(true);
-    expect(Util.isNumberEqual(box.minY, 45.48076211353316)).toBe(true);
-    expect(Util.isNumberEqual(box.maxY, 50.5)).toBe(true);
+    expect(box.minX).toBeCloseTo(-5.5);
+    expect(box.maxX).toBeCloseTo(25.5);
+    expect(box.minY).toBeCloseTo(45.48076211353316);
+    expect(box.maxY).toBeCloseTo(50.5);
   });
 
   it('clockwise', () => {
@@ -92,10 +92,10 @@ describe('Arc line', () => {
     arc.attr('clockwise', true);
     expect(arc.attr('clockwise')).toBe(true);
     const box = arc.getBBox();
-    expect(Util.isNumberEqual(box.minX, -20.5)).toBe(true);
-    expect(Util.isNumberEqual(box.maxX, 40.5)).toBe(true);
-    expect(Util.isNumberEqual(box.minY, -10.5)).toBe(true);
-    expect(Util.isNumberEqual(box.maxY, 46.48076211353316)).toBe(true);
+    expect(box.minX).toBeCloseTo(-20.5);
+    expect(box.maxX).toBeCloseTo(40.5);
+    expect(box.minY).toBeCloseTo(-10.5);
+    expect(box.maxY).toBeCloseTo(46.48076211353316);
   });
 
   it('lineWidth', () => {
@@ -103,10 +103,10 @@ describe('Arc line', () => {
     arc.attr('lineWidth', 2);
     expect(arc.attr('lineWidth')).toBe(2);
     const box = arc.getBBox();
-    expect(Util.isNumberEqual(box.minX, -21)).toBe(true);
-    expect(Util.isNumberEqual(box.maxX, 41)).toBe(true);
-    expect(Util.isNumberEqual(box.minY, -11)).toBe(true);
-    expect(Util.isNumberEqual(box.maxY, 46.98076211353316)).toBe(true);
+    expect(box.minX).toBeCloseTo(-21);
+    expect(box.maxX).toBeCloseTo(41);
+    expect(box.minY).toBeCloseTo(-11);
+    expect(box.maxY).toBeCloseTo(46.98076211353316);
   });
 
   it('stroke', () => {
@@ -142,7 +142,7 @@ describe('Arc line', () => {
   });
 
   it('normal', () => {
-    const arc = new G.Arc({
+    const arc = new Arc({
       attrs: {
         x         : 50,
         y         : 50,

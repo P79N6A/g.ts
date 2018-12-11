@@ -107,8 +107,8 @@ export class EventEmitter {
   /**
    * Alias of addListener
    */
-  public on() {
-    this.addListener.apply(this, arguments);
+  public on(...args) {
+    this.addListener.apply(this, args);
   }
 
   /**

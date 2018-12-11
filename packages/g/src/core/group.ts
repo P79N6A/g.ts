@@ -49,6 +49,15 @@ export class Group extends Element {
   canFill   = true;
   canStroke = true;
 
+  constructor(cfg) {
+    super(cfg);
+    this.set('children', []);
+    this.set('tobeRemoved', []);
+    this._beforeRenderUI();
+    this._renderUI();
+    this._bindUI();
+  }
+
   getDefaultCfg() {
     initClassCfgs(this.constructor);
     return Util.merge({}, this.constructor._cfg);
@@ -480,12 +489,5 @@ export class Group extends Element {
     return clone;
   }
 
-  constructor(cfg) {
-    Group.superclass.constructor.call(this, cfg);
-    this.set('children', []);
-    this.set('tobeRemoved', []);
-    this._beforeRenderUI();
-    this._renderUI();
-    this._bindUI();
-  }
+
 }

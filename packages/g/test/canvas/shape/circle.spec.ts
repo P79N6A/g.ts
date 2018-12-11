@@ -7,7 +7,7 @@
  */
 
 
-import {Circle} from '../../../src/shapes/circle';
+import {Circle} from '../../../src/canvas/shape/circle';
 
 const div = document.createElement('div');
 div.id = 'canvas-circle';

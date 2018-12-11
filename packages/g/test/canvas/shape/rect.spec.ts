@@ -7,30 +7,30 @@
  */
 
 
+import { Canvas } from '../../../src/canvas/canvas';
 
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
-div.id = 'canvas-rect';
+div.id    = 'canvas-rect';
 document.body.appendChild(div);
 
-describe('Rect', function() {
+describe('Rect', function () {
   const canvas = new Canvas({
     containerId: 'canvas-rect',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  const rect = new G.Rect({
+  const rect = new Rect({
     attrs: {
-      x: 0,
-      y: 0,
-      width: 0,
+      x     : 0,
+      y     : 0,
+      width : 0,
       height: 0
     }
   });
 
-  it('init attrs', function() {
+  it('init attrs', function () {
     expect(rect.attr('x')).toBe(0);
     expect(rect.attr('y')).toBe(0);
     expect(rect.attr('width')).toBe(0);
@@ -46,30 +46,30 @@ describe('Rect', function() {
     expect(box.maxY).toBe(0.5);
   });
 
-  it('width', function() {
+  it('width', function () {
     expect(rect.attr('width')).toBe(0);
     rect.attr('width', 10);
     expect(rect.attr('width')).toBe(10);
     let box = rect.getBBox();
     expect(box.minX).toBe(-0.5);
     expect(box.maxX).toBe(10.5);
-    const rect1 = new G.Rect({
+    const rect1 = new Rect({
       attrs: {
-        x: 0,
-        y: 0,
+        x     : 0,
+        y     : 0,
         height: 1,
-        width: 15
+        width : 15
       }
     });
     expect(rect1.attr('width')).toBe(15);
     box = rect1.getBBox();
     expect(box.minX).toBe(-0.5);
     expect(box.maxX).toBe(15.5);
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 10,
-        y: 0,
-        width: 15,
+        x     : 10,
+        y     : 0,
+        width : 15,
         height: 1
       }
     });
@@ -79,31 +79,31 @@ describe('Rect', function() {
     expect(box.maxX).toBe(25.5);
   });
 
-  it('height', function() {
+  it('height', function () {
     expect(rect.attr('height')).toBe(0);
     rect.attr('height', 20);
     expect(rect.attr('height')).toBe(20);
     let box = rect.getBBox();
     expect(box.minY).toBe(-0.5);
     expect(box.maxY).toBe(20.5);
-    const rect1 = new G.Rect({
+    const rect1 = new Rect({
       attrs: {
-        x: 0,
-        y: 0,
+        x     : 0,
+        y     : 0,
         height: 25,
-        width: 1
+        width : 1
       }
     });
     expect(rect1.attr('height')).toBe(25);
     box = rect1.getBBox();
     expect(box.minY).toBe(-0.5);
     expect(box.maxY).toBe(25.5);
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 0,
-        y: 10,
+        x     : 0,
+        y     : 10,
         height: 25,
-        width: 1
+        width : 1
       }
     });
     expect(rect2.attr('height')).toBe(25);
@@ -112,17 +112,17 @@ describe('Rect', function() {
     expect(box.maxY).toBe(35.5);
   });
 
-  it('x', function() {
+  it('x', function () {
     rect.attr('x', 10);
     expect(rect.attr('x')).toBe(10);
     let box = rect.getBBox();
     expect(box.minX).toBe(9.5);
     expect(box.maxX).toBe(20.5);
-    const rect1 = new G.Rect({
+    const rect1 = new Rect({
       attrs: {
-        x: 10,
-        y: 0,
-        width: 0,
+        x     : 10,
+        y     : 0,
+        width : 0,
         height: 0
       }
     });
@@ -130,11 +130,11 @@ describe('Rect', function() {
     box = rect1.getBBox();
     expect(box.minX).toBe(9.5);
     expect(box.maxX).toBe(10.5);
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 20,
-        y: 0,
-        width: 15,
+        x     : 20,
+        y     : 0,
+        width : 15,
         height: 0
       }
     });
@@ -144,30 +144,30 @@ describe('Rect', function() {
     expect(box.maxX).toBe(35.5);
   });
 
-  it('y', function() {
+  it('y', function () {
     rect.attr('y', 20);
     expect(rect.attr('y')).toBe(20);
     let box = rect.getBBox();
     expect(box.minY).toBe(19.5);
     expect(box.maxY).toBe(40.5);
-    const rect1 = new G.Rect({
+    const rect1 = new Rect({
       attrs: {
-        x: 0,
-        y: 12,
+        x     : 0,
+        y     : 12,
         height: 0,
-        width: 0
+        width : 0
       }
     });
     expect(rect1.attr('y')).toBe(12);
     box = rect1.getBBox();
     expect(box.minY).toBe(11.5);
     expect(box.maxY).toBe(12.5);
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 0,
-        y: 12,
+        x     : 0,
+        y     : 12,
         height: 20,
-        width: 0
+        width : 0
       }
     });
     expect(rect2.attr('y')).toBe(12);
@@ -176,7 +176,7 @@ describe('Rect', function() {
     expect(box.maxY).toBe(32.5);
   });
 
-  it('lineWidth', function() {
+  it('lineWidth', function () {
     expect(rect.attr('lineWidth')).toBe(1);
     rect.attr('lineWidth', 2);
     expect(rect.attr('lineWidth')).toBe(2);
@@ -185,12 +185,12 @@ describe('Rect', function() {
     expect(box.minX).toBe(9);
     expect(box.maxX).toBe(21);
     expect(box.maxY).toBe(41);
-    const rect1 = new G.Rect({
+    const rect1 = new Rect({
       attrs: {
-        x: 0,
-        y: 0,
-        width: 0,
-        height: 0,
+        x        : 0,
+        y        : 0,
+        width    : 0,
+        height   : 0,
         lineWidth: 2
       }
     });
@@ -201,12 +201,12 @@ describe('Rect', function() {
     expect(box.maxX).toBe(1);
     expect(box.maxY).toBe(1);
 
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 30,
-        y: 40,
-        width: 200,
-        height: 100,
+        x        : 30,
+        y        : 40,
+        width    : 200,
+        height   : 100,
         lineWidth: 2
       }
     });
@@ -218,31 +218,31 @@ describe('Rect', function() {
     expect(box.maxY).toBe(141);
   });
 
-  it('radius', function() {
+  it('radius', function () {
     expect(rect.attr('radius')).toBe(0);
     rect.attr('radius', 3);
     expect(rect.attr('radius')).toBe(3);
   });
 
-  it('stroke', function() {
+  it('stroke', function () {
     rect.attr('stroke', 'l (0) 0:#ff00ff 1:#00ff00');
     expect(rect.attr('stroke')).toBe('l (0) 0:#ff00ff 1:#00ff00');
     canvas.add(rect);
     canvas.draw();
   });
 
-  it('fill', function() {
+  it('fill', function () {
     rect.attr('fill', 'l (90) 0:#00ffff 1:#ffff00');
     expect(rect.attr('fill')).toBe('l (90) 0:#00ffff 1:#ffff00');
     canvas.draw();
   });
 
-  it('isHit', function() {
-    const rect1 = new G.Rect({
+  it('isHit', function () {
+    const rect1 = new Rect({
       attrs: {
-        x: 40,
-        y: 40,
-        width: 50,
+        x     : 40,
+        y     : 40,
+        width : 50,
         height: 70
       }
     });
@@ -268,11 +268,11 @@ describe('Rect', function() {
     expect(rect1.isHit(41, 41)).toBe(false);
 
 
-    const rect2 = new G.Rect({
+    const rect2 = new Rect({
       attrs: {
-        x: 50,
-        y: 50,
-        width: 40,
+        x     : 50,
+        y     : 50,
+        width : 40,
         height: 50
       }
     });
@@ -300,14 +300,14 @@ describe('Rect', function() {
     expect(rect2.isHit(50, 50)).toBe(false);
     expect(rect2.isHit(89, 99)).toBe(false);
 
-    const rect3 = new G.Rect({
+    const rect3 = new Rect({
       attrs: {
-        x: 20,
-        y: 30,
-        width: 100,
-        height: 120,
-        stroke: 'red',
-        fill: 'green',
+        x        : 20,
+        y        : 30,
+        width    : 100,
+        height   : 120,
+        stroke   : 'red',
+        fill     : 'green',
         lineWidth: 4
       }
     });

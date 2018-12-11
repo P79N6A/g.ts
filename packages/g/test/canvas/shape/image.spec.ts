@@ -7,36 +7,35 @@
  */
 
 
+import { Canvas } from '../../../src/canvas/canvas';
 
-
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
-div.id = 'canvas-img';
+div.id    = 'canvas-img';
 document.body.appendChild(div);
-const baseHref = (document.getElementsByTagName('base')[ 0 ] || {}).href || './base';
+const baseHref = (document.getElementsByTagName('base')[0] || {}).href || './base';
 
-describe('Image', function() {
+describe('Image', function () {
 
-  const can1 = document.createElement('canvas');
-  can1.id = 'img1';
-  can1.width = 800;
-  can1.height = 800;
+  const can1   = document.createElement('canvas');
+  can1.id      = 'img1';
+  can1.width   = 800;
+  can1.height  = 800;
   const canvas = new Canvas({
     containerId: 'canvas-img',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  const image = new G.Image({
+  const image = new Image({
     attrs: {
-      x: 0,
-      y: 0,
-      width: 0,
+      x     : 0,
+      y     : 0,
+      width : 0,
       height: 0
     }
   });
-  it('init attr', function() {
+  it('init attr', function () {
     expect(image.attr('x')).toBe(0);
     expect(image.attr('y')).toBe(0);
     expect(image.attr('img')).toBeUndefined();
@@ -53,9 +52,9 @@ describe('Image', function() {
     expect(box.maxY).toBe(0);
   });
 
-  it('img', function(done) {
-    const img = new Image();
-    img.onload = function() {
+  it('img', function (done) {
+    const img  = new Image();
+    img.onload = function () {
       image.attr('img', img);
       const box = image.getBBox();
       expect(box.minX).toBe(0);
@@ -66,17 +65,17 @@ describe('Image', function() {
       canvas.draw();
       done();
     };
-    img.src = (baseHref + '/test/fixtures/test1.jpg'); // relative to test/unit
+    img.src    = (baseHref + '/test/fixtures/test1.jpg'); // relative to test/unit
   });
 
-  it('canvas', function() {
-    const image = new G.Image({
+  it('canvas', function () {
+    const image = new Image({
       attrs: {
         x: 0,
         y: 0
       }
     });
-    const img = can1;
+    const img   = can1;
     image.attr('img', img);
     const box = image.getBBox();
     expect(box.minX).toBe(0);
@@ -87,14 +86,14 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('imageData', function(done) {
-    const image = new G.Image({
+  it('imageData', function (done) {
+    const image = new Image({
       attrs: {
         x: 0,
         y: 0
       }
     });
-    const img = can1.getContext('2d')
+    const img   = can1.getContext('2d')
       .getImageData(0, 0, 800, 800);
     image.attr('img', img);
     const box = image.getBBox();
@@ -107,7 +106,7 @@ describe('Image', function() {
     done();
   });
 
-  it('width', function() {
+  it('width', function () {
     expect(image.attr('width')).toBe(768);
     image.attr('width', 200);
     expect(image.attr('width')).toBe(200);
@@ -117,7 +116,7 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('height', function() {
+  it('height', function () {
     expect(image.attr('height')).toBe(1024);
     image.attr('height', 200);
     expect(image.attr('height')).toBe(200);
@@ -127,7 +126,7 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('x', function() {
+  it('x', function () {
     image.attr('x', 10);
     expect(image.attr('x')).toBe(10);
     const box = image.getBBox();
@@ -136,7 +135,7 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('y', function() {
+  it('y', function () {
     image.attr('y', 10);
     expect(image.attr('y')).toBe(10);
     const box = image.getBBox();
@@ -145,25 +144,25 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('sx, sy, swidth, sheight', function() {
+  it('sx, sy, swidth, sheight', function () {
     image.attr({
-      sx: 20,
-      sy: 20,
-      swidth: 100,
+      sx     : 20,
+      sy     : 20,
+      swidth : 100,
       sheight: 200
     });
     canvas.draw();
   });
 
-  it('normal use', function() {
-    const image1 = new G.Image({
+  it('normal use', function () {
+    const image1 = new Image({
       attrs: {
-        x: 300,
-        y: 300,
-        width: 300,
+        x     : 300,
+        y     : 300,
+        width : 300,
         height: 300,
         // img: '../fixtures/test2.jpg' // relative to test/unit
-        img: (baseHref + '/test/fixtures/test1.jpg') // relative to test/unit
+        img   : (baseHref + '/test/fixtures/test1.jpg') // relative to test/unit
       }
     });
 
@@ -171,7 +170,7 @@ describe('Image', function() {
     canvas.draw();
   });
 
-  it('isHit', function() {
+  it('isHit', function () {
     expect(image.isHit(10, 10)).toBe(true);
     expect(image.isHit(210, 210)).toBe(true);
     expect(image.isHit(20, 20)).toBe(true);
@@ -180,7 +179,7 @@ describe('Image', function() {
   });
 
   // it('image onload && image.remove(true)', function() {
-  //   const image = new G.Image({
+  //   const image = new Image({
   //     attrs: {
   //       img: 'http://alipay-rmsdeploy-assets-private.cn-hangzhou.alipay.aliyun-inc.com/rmsportal/IHJtPedUbTUPQCx.png'
   //     }

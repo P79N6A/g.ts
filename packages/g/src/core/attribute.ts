@@ -7,7 +7,7 @@
  */
 
 import {EventEmitter} from '../event/event-emitter';
-import {isObject} from 'util';
+import { isObject } from '../util/isType';
 
 const ALIAS_ATTRS           = ['strokeStyle', 'fillStyle', 'globalAlpha'];
 const CLIP_SHAPES           = ['circle', 'ellipse', 'fan', 'polygon', 'rect', 'path'];

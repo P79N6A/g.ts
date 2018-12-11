@@ -7,23 +7,23 @@
  */
 
 
+import { Canvas } from '../../../src/canvas/canvas';
+import { Cubic } from '../../../src/canvas/shape/cubic';
 
-const Canvas = require('../../../src/canvas');
-const Util = require('../../../src/util/index');
 const div = document.createElement('div');
-div.id = 'canvas-cubic';
+div.id    = 'canvas-cubic';
 document.body.appendChild(div);
 
-describe('Cubic line', function() {
+describe('Cubic line', function () {
   const canvas = new Canvas({
     containerId: 'canvas-cubic',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  const cubic = new G.Cubic();
-  it('init cubic', function() {
+  const cubic = new Cubic();
+  it('init cubic', function () {
     expect(cubic.attr('p1')).toBeUndefined();
     expect(cubic.attr('p2')).toBeUndefined();
     expect(cubic.attr('p3')).toBeUndefined();
@@ -35,12 +35,12 @@ describe('Cubic line', function() {
     expect(cubic.getBBox()).toBeNull();
   });
 
-  it('p1, p2, p3, p4', function() {
+  it('p1, p2, p3, p4', function () {
     cubic.attr({
-      p1: [ 50, 50 ],
-      p2: [ 80, 12 ],
-      p3: [ 120, 150 ],
-      p4: [ 150, 50 ]
+      p1: [50, 50],
+      p2: [80, 12],
+      p3: [120, 150],
+      p4: [150, 50]
     });
     expect(cubic.attr('p1')[0]).toBe(50);
     expect(cubic.attr('p2')[1]).toBe(12);
@@ -54,7 +54,7 @@ describe('Cubic line', function() {
     expect(Util.isNumberEqual(box.maxY, 87.61466742731623)).toBe(true);
   });
 
-  it('stroke', function() {
+  it('stroke', function () {
     cubic.attr('lineWidth', 5);
     cubic.attr('stroke', 'l (0) 0:#ff00ff 1:#00ffff');
     expect(cubic.attr('stroke')).toBe('l (0) 0:#ff00ff 1:#00ffff');
@@ -63,8 +63,8 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('p1', function() {
-    cubic.attr('p1', [ 70, 39 ]);
+  it('p1', function () {
+    cubic.attr('p1', [70, 39]);
     expect(cubic.attr('p1')[0]).toBe(70);
     expect(cubic.attr('p1')[1]).toBe(39);
     const box = cubic.getBBox();
@@ -75,8 +75,8 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('p2', function() {
-    cubic.attr('p2', [ 90, 80 ]);
+  it('p2', function () {
+    cubic.attr('p2', [90, 80]);
     expect(cubic.attr('p2')[0]).toBe(90);
     expect(cubic.attr('p2')[1]).toBe(80);
     const box = cubic.getBBox();
@@ -87,8 +87,8 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('p3', function() {
-    cubic.attr('p3', [ 110, 0 ]);
+  it('p3', function () {
+    cubic.attr('p3', [110, 0]);
     expect(cubic.attr('p3')[0]).toBe(110);
     expect(cubic.attr('p3')[1]).toBe(0);
     const box = cubic.getBBox();
@@ -99,9 +99,9 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('p4', function() {
+  it('p4', function () {
     console.log(cubic.getBBox());
-    cubic.attr('p4', [ 150, 90 ]);
+    cubic.attr('p4', [150, 90]);
     expect(cubic.attr('p4')[0]).toBe(150);
     expect(cubic.attr('p4')[1]).toBe(90);
     /* var box = cubic.getBBox();
@@ -113,7 +113,7 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('lineWidth', function() {
+  it('lineWidth', function () {
     cubic.attr('lineWidth', 2);
     expect(cubic.attr('lineWidth')).toBe(2);
     const box = cubic.getBBox();
@@ -124,13 +124,13 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('arrow', function() {
+  it('arrow', function () {
     cubic.attr('startArrow', true);
-    cubic.attr('endArrow', new G.Marker({
+    cubic.attr('endArrow', new Marker({
       attrs: {
         symbol: 'triangle',
-        r: 5,
-        fill: 'red'
+        r     : 5,
+        fill  : 'red'
       }
     }));
     cubic.attr('arrowLength', 5);
@@ -143,19 +143,19 @@ describe('Cubic line', function() {
     canvas.draw();
   });
 
-  it('isHit', function() {
+  it('isHit', function () {
     expect(cubic.isHit(70, 39)).toBe(true);
     expect(cubic.isHit(102.5, 46.2)).toBe(true);
     expect(cubic.isHit(150, 90)).toBe(true);
   });
 
-  it('getPoint', function() {
-    const cubic = new G.Cubic({
+  it('getPoint', function () {
+    const cubic = new Cubic({
       attrs: {
-        p1: [ 100, 100 ],
-        p2: [ 200, 200 ],
-        p3: [ 300, 0 ],
-        p4: [ 400, 100 ]
+        p1: [100, 100],
+        p2: [200, 200],
+        p3: [300, 0],
+        p4: [400, 100]
       }
     });
 

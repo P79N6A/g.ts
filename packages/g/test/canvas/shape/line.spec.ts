@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Canvas } from '@gradii/g';
+import { Canvas } from '../../../src/canvas/canvas';
 
 const div = document.createElement('div');
 div.id    = 'canvas-line';
@@ -20,7 +20,7 @@ describe('Line', function () {
     height     : 200,
     pixelRatio : 1
   });
-  const line   = new G.Line({
+  const line   = new Line({
     attrs: {
       x1: 0,
       x2: 0,
@@ -99,7 +99,7 @@ describe('Line', function () {
     expect(line.isHit(9, 14)).toBe(true);
     expect(line.isHit(34.5, 47.5)).toBe(true);
     expect(line.isHit(8, 11)).toBe(false);
-    const line1 = new G.Line({
+    const line1 = new Line({
       attrs: {
         x1: 0,
         y1: 0,
@@ -117,7 +117,7 @@ describe('Line', function () {
   it('arrow', function () {
     line.attr({
       startArrow: true,
-      endArrow  : new G.Marker({
+      endArrow  : new Marker({
         attrs: {
           symbol: 'triangle'
         }
@@ -125,12 +125,12 @@ describe('Line', function () {
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow : new G.Marker({
+        startArrow : new Marker({
           attrs: {
             symbol: 'triangle'
           }
         }),
-        endArrow   : new G.Marker({
+        endArrow   : new Marker({
           attrs: {
             symbol: 'triangle'
           }
@@ -146,12 +146,12 @@ describe('Line', function () {
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow : new G.Marker({
+        startArrow : new Marker({
           attrs: {
             symbol: 'circle'
           }
         }),
-        endArrow   : new G.Marker({
+        endArrow   : new Marker({
           attrs: {
             symbol: 'square'
           }
@@ -167,7 +167,7 @@ describe('Line', function () {
     });
     canvas.addShape('line', {
       attrs: {
-        startArrow : new G.Marker({
+        startArrow : new Marker({
           attrs: {
             symbol: 'triangle'
           }
@@ -186,7 +186,7 @@ describe('Line', function () {
   });
 
   it('getPoint', function () {
-    const line = new G.Line({
+    const line = new Line({
       attrs: {
         x1: 0,
         y1: 0,

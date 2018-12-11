@@ -7,25 +7,24 @@
  */
 
 
+import { Canvas } from '../../../src/canvas/canvas';
 
-const Util = require('../../../src/util/index');
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
-div.id = 'canvas-quadratic';
+div.id    = 'canvas-quadratic';
 document.body.appendChild(div);
 
 
-describe('Quadratic line', function() {
+describe('Quadratic line', function () {
 
   const canvas = new Canvas({
     containerId: 'canvas-quadratic',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  const quadratic = new G.Quadratic();
-  it('init quadratic', function() {
+  const quadratic = new Quadratic();
+  it('init quadratic', function () {
     expect(quadratic.attr('p1')).toBeUndefined();
     expect(quadratic.attr('p2')).toBeUndefined();
     expect(quadratic.attr('p3')).toBeUndefined();
@@ -36,11 +35,11 @@ describe('Quadratic line', function() {
     expect(quadratic.getBBox()).toBeNull();
   });
 
-  it('p1, p2, p3', function() {
+  it('p1, p2, p3', function () {
     quadratic.attr({
-      p1: [ 50, 50 ],
-      p2: [ 80, 12 ],
-      p3: [ 120, 150 ]
+      p1: [50, 50],
+      p2: [80, 12],
+      p3: [120, 150]
     });
     expect(quadratic.attr('p1')[0]).toBe(50);
     expect(quadratic.attr('p2')[1]).toBe(12);
@@ -53,7 +52,7 @@ describe('Quadratic line', function() {
     expect(Util.isNumberEqual(box.maxY, 150.5)).toBe(true);
   });
 
-  it('stroke', function() {
+  it('stroke', function () {
     quadratic.attr('stroke', 'l (0) 0:#ff00ff 1:#00ffff');
     expect(quadratic.attr('stroke')).toBe('l (0) 0:#ff00ff 1:#00ffff');
 
@@ -61,8 +60,8 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
-  it('p1', function() {
-    quadratic.attr('p1', [ 70, 39 ]);
+  it('p1', function () {
+    quadratic.attr('p1', [70, 39]);
     expect(quadratic.attr('p1')[0]).toBe(70);
     expect(quadratic.attr('p1')[1]).toBe(39);
     const box = quadratic.getBBox();
@@ -73,8 +72,8 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
-  it('p2', function() {
-    quadratic.attr('p2', [ 90, 80 ]);
+  it('p2', function () {
+    quadratic.attr('p2', [90, 80]);
     expect(quadratic.attr('p2')[0]).toBe(90);
     expect(quadratic.attr('p2')[1]).toBe(80);
     const box = quadratic.getBBox();
@@ -85,8 +84,8 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
-  it('p3', function() {
-    quadratic.attr('p3', [ 110, 10 ]);
+  it('p3', function () {
+    quadratic.attr('p3', [110, 10]);
     expect(quadratic.attr('p3')[0]).toBe(110);
     expect(quadratic.attr('p3')[1]).toBe(10);
     const box = quadratic.getBBox();
@@ -97,7 +96,7 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
-  it('lineWidth', function() {
+  it('lineWidth', function () {
     quadratic.attr('lineWidth', 2);
     expect(quadratic.attr('lineWidth')).toBe(2);
     const box = quadratic.getBBox();
@@ -108,7 +107,7 @@ describe('Quadratic line', function() {
     canvas.draw();
   });
 
-  it('arrow', function() {
+  it('arrow', function () {
     quadratic.attr('startArrow', true);
     quadratic.attr('endArrow', true);
     // quadratic.attr('arrowLength', 15);
@@ -121,18 +120,18 @@ describe('Quadratic line', function() {
   });
 
 
-  it('isHit', function() {
+  it('isHit', function () {
     expect(quadratic.isHit(70, 39)).toBe(true);
     expect(quadratic.isHit(90, 52.2)).toBe(true);
     expect(quadratic.isHit(110, 10)).toBe(true);
   });
 
-  it('getPoint', function() {
-    const quadratic = new G.Quadratic({
+  it('getPoint', function () {
+    const quadratic = new Quadratic({
       attrs: {
-        p1: [ 100, 100 ],
-        p2: [ 200, 200 ],
-        p3: [ 300, 100 ]
+        p1: [100, 100],
+        p2: [200, 200],
+        p3: [300, 100]
       }
     });
 
