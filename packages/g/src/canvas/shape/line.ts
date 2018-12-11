@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Shape} from '@gradii/g/core';
+import { Shape } from '@gradii/g/core';
 
 const Util     = require('../util/index');
 const Inside   = require('./util/inside');
@@ -55,30 +55,32 @@ export class Line extends Shape {
   }
 
   public createPath(context) {
-    const attrs = this.__attrs;
-    const { x1, y1, x2, y2 } = attrs;
-    context = context || self.get('context');
+    const attrs            = this.__attrs;
+    const {x1, y1, x2, y2} = attrs;
+    context                = context || self.get('context');
     context.beginPath();
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
 
-    const attrs = this.__attrs;
-    const { x1, y1, x2, y2 } = attrs;
-    context = context || this.get('context');
+    const attrs            = this.__attrs;
+    const {x1, y1, x2, y2} = attrs;
+    context                = context || this.get('context');
     if (attrs.startArrow) {
       Arrow.addStartArrow(context, attrs, x2, y2, x1, y1);
     }
     if (attrs.endArrow) {
       Arrow.addEndArrow(context, attrs, x1, y1, x2, y2);
     }
-    }
   }
+}
 
-  public getPoint(t) {
-    const attrs = this.__attrs;
-    return {
-      x: LineMath.at(attrs.x1, attrs.x2, t),
-      y: LineMath.at(attrs.y1, attrs.y2, t),
-    };
-  }
+public
+getPoint(t)
+{
+  const attrs = this.__attrs;
+  return {
+    x: LineMath.at(attrs.x1, attrs.x2, t),
+    y: LineMath.at(attrs.y1, attrs.y2, t),
+  };
+}
 }

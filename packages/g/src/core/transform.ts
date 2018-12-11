@@ -6,9 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Attribute} from './attribute';
-
 import { mat3, vec3 } from '../../util/matrix';
+import { Attribute } from './attribute';
 
 // 是否未改变
 function isUnchanged(m) {
@@ -94,7 +93,7 @@ export class Transform extends Attribute {
     const self   = this;
     const matrix = self.attr('matrix');
 
-    Util.each(ts, function(t) {
+    Util.each(ts, function (t) {
       switch (t[0]) {
         case 't':
           self.translate(t[1], t[2]);
@@ -156,7 +155,7 @@ export class Transform extends Attribute {
     parents.unshift(parent);
 
     const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    Util.each(parents, function(child) {
+    Util.each(parents, function (child) {
       mat3.multiply(m, child.attr('matrix'), m);
     });
     return m;

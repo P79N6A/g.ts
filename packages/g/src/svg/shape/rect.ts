@@ -1,42 +1,42 @@
-const Util = require('../../util/index');
-const Shape = require('../core/shape');
-
-const Rect = function(cfg) {
-  Rect.superclass.constructor.call(this, cfg);
-};
+import * as Util from '../../util/index';
+import * as Shape from '../core/shape';
 
 Rect.ATTRS = {
-  x: 0,
-  y: 0,
-  width: 0,
-  height: 0,
-  radius: 0,
+  x        : 0,
+  y        : 0,
+  width    : 0,
+  height   : 0,
+  radius   : 0,
   lineWidth: 1,
-  fill: 'none'
+  fill     : 'none'
 };
-
 Util.extend(Rect, Shape);
 
-Util.augment(Rect, {
-  canFill: true,
-  canStroke: true,
-  type: 'rect',
+export class Rect {
+  canFill   = true;
+  canStroke = true;
+  type      = 'rect';
+
   getDefaultAttrs() {
     return {
       lineWidth: 1,
-      fill: 'none'
+      fill     : 'none'
     };
-  },
+  }
+
   _afterSetRadius() {
     const el = this.get('el');
     el.setAttribute('rx', this.__attrs.radius);
     el.setAttribute('ry', this.__attrs.radius);
-  },
+  }
+
   _afterSetAttrAll(objs) {
     if ('radius' in objs) {
       this._afterSetRadius();
     }
   }
-});
 
-module.exports = Rect;
+  constructor(cfg) {
+    super(cfg);
+  }
+}

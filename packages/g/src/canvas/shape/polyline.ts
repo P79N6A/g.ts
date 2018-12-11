@@ -6,23 +6,23 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('../util/index');
-const Shape = require('../core/shape');
-const Inside = require('./util/inside');
-const Arrow = require('./util/arrow');
+const Util     = require('../util/index');
+const Shape    = require('../core/shape');
+const Inside   = require('./util/inside');
+const Arrow    = require('./util/arrow');
 const LineMath = require('./math/line');
 
 export class Polyline extends Shape {
   public static ATTRS = {
-    points: null,
-    lineWidth: 1,
+    points    : null,
+    lineWidth : 1,
     startArrow: false,
-    endArrow: false,
-    tCache: null,
+    endArrow  : false,
+    tCache    : null,
   };
   protected canStroke = true;
-  protected type = 'polyline';
-  protected tCache = null; // 缓存各点的t
+  protected type      = 'polyline';
+  protected tCache    = null; // 缓存各点的t
 
   constructor(cfg) {
     super(cfg);
@@ -30,17 +30,17 @@ export class Polyline extends Shape {
 
   public getDefaultAttrs() {
     return {
-      lineWidth: 1,
+      lineWidth : 1,
       startArrow: false,
-      endArrow: false,
+      endArrow  : false,
     };
   }
 
   public calculateBox() {
-    const self = this;
-    const attrs = self.__attrs;
+    const self      = this;
+    const attrs     = self.__attrs;
     const lineWidth = this.getHitLineWidth();
-    const points = attrs.points;
+    const points    = attrs.points;
     if (!points || points.length === 0) {
       return null;
     }
@@ -78,12 +78,12 @@ export class Polyline extends Shape {
   }
 
   public __setTcache() {
-    const self = this;
-    const attrs = self.__attrs;
-    const points = attrs.points;
+    const self      = this;
+    const attrs     = self.__attrs;
+    const points    = attrs.points;
     let totalLength = 0;
-    let tempLength = 0;
-    const tCache = [];
+    let tempLength  = 0;
+    const tCache    = [];
     let segmentT;
     let segmentL;
     if (!points || points.length === 0) {
@@ -100,9 +100,9 @@ export class Polyline extends Shape {
     }
     Util.each(points, function (p, i) {
       if (points[i + 1]) {
-        segmentT = [];
+        segmentT    = [];
         segmentT[0] = tempLength / totalLength;
-        segmentL = LineMath.len(p[0], p[1], points[i + 1][0], points[i + 1][1]);
+        segmentL    = LineMath.len(p[0], p[1], points[i + 1][0], points[i + 1][1]);
         tempLength += segmentL;
         segmentT[1] = tempLength / totalLength;
         tCache.push(segmentT);
@@ -112,7 +112,7 @@ export class Polyline extends Shape {
   }
 
   public isPointInPath(x, y) {
-    const self = this;
+    const self  = this;
     const attrs = self.__attrs;
     if (self.hasStroke()) {
       const points = attrs.points;
@@ -126,8 +126,8 @@ export class Polyline extends Shape {
   }
 
   public createPath(context) {
-    const self = this;
-    const attrs = self.__attrs;
+    const self   = this;
+    const attrs  = self.__attrs;
     const points = attrs.points;
     let l;
     let i;
@@ -145,11 +145,11 @@ export class Polyline extends Shape {
     context.lineTo(points[l][0], points[l][1]);
 
 
-    const self = this;
-    const attrs = self.__attrs;
+    const self   = this;
+    const attrs  = self.__attrs;
     const points = attrs.points;
-    const l = points.length - 1;
-    context = context || self.get('context');
+    const l      = points.length - 1;
+    context      = context || self.get('context');
 
     if (attrs.startArrow) {
       Arrow.addStartArrow(context, attrs, points[1][0], points[1][1], points[0][0], points[0][1]);
@@ -160,9 +160,9 @@ export class Polyline extends Shape {
   }
 
   public getPoint(t) {
-    const attrs = this.__attrs;
+    const attrs  = this.__attrs;
     const points = attrs.points;
-    let tCache = this.tCache;
+    let tCache   = this.tCache;
     let subt;
     let index;
     if (!tCache) {
@@ -171,7 +171,7 @@ export class Polyline extends Shape {
     }
     Util.each(tCache, function (v, i) {
       if (t >= v[0] && t <= v[1]) {
-        subt = (t - v[0]) / (v[1] - v[0]);
+        subt  = (t - v[0]) / (v[1] - v[0]);
         index = i;
       }
     });

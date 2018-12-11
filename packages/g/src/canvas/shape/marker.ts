@@ -6,9 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Shape} from '../core/shape';
+import { Shape } from '../core/shape';
 import Util from '../util/index';
-import {Inside} from './util/inside';
+import { Inside } from './util/inside';
 
 export class Marker extends Shape {
   public static Symbols = {

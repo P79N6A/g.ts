@@ -1,23 +1,23 @@
-const Util = require('../index');
-const PathUtil = require('../path');
-const d3Timer = require('d3-timer');
-const d3Ease = require('d3-ease');
-const { interpolate, interpolateArray } = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
+const Util                            = require('../index');
+const PathUtil                        = require('../path');
+const d3Timer                         = require('d3-timer');
+const d3Ease                          = require('d3-ease');
+const {interpolate, interpolateArray} = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
 
-const Timeline = function() {
+const Timeline = function () {
   // 待执行动画的队列
   this._animators = [];
   // 当前时间
-  this._current = 0;
+  this._current   = 0;
   // 计时器实例
-  this._timer = null;
+  this._timer     = null;
 };
 
 function _update(self, animator, ratio) {
-  const cProps = {}; // 此刻属性
-  const toAttrs = animator.toAttrs;
+  const cProps    = {}; // 此刻属性
+  const toAttrs   = animator.toAttrs;
   const fromAttrs = animator.fromAttrs;
-  const toMatrix = animator.toMatrix;
+  const toMatrix  = animator.toMatrix;
   if (self.get('destroyed')) {
     return;
   }
@@ -25,13 +25,13 @@ function _update(self, animator, ratio) {
   for (const k in toAttrs) {
     if (!Util.isEqual(fromAttrs[k], toAttrs[k])) {
       if (k === 'path') {
-        const toPath = PathUtil.parsePathString(toAttrs[k]); // 终点状态
+        const toPath   = PathUtil.parsePathString(toAttrs[k]); // 终点状态
         const fromPath = PathUtil.parsePathString(fromAttrs[k]); // 起始状态
-        cProps[k] = [];
+        cProps[k]      = [];
         for (let i = 0; i < toPath.length; i++) {
-          const toPathPoint = toPath[i];
+          const toPathPoint   = toPath[i];
           const fromPathPoint = fromPath[i];
-          const cPathPoint = [];
+          const cPathPoint    = [];
           for (let j = 0; j < toPathPoint.length; j++) {
             if (Util.isNumber(toPathPoint[j]) && fromPathPoint) {
               interf = interpolate(fromPathPoint[j], toPathPoint[j]);
@@ -43,7 +43,7 @@ function _update(self, animator, ratio) {
           cProps[k].push(cPathPoint);
         }
       } else {
-        interf = interpolate(fromAttrs[k], toAttrs[k]);
+        interf    = interpolate(fromAttrs[k], toAttrs[k]);
         cProps[k] = interf(ratio);
       }
     }
@@ -65,9 +65,9 @@ function update(shape, animator, elapsed) {
   let ratio;
   let isFinished = false;
   const duration = animator.duration;
-  const easing = animator.easing;
+  const easing   = animator.easing;
   // 已执行时间
-  elapsed = elapsed - startTime - animator.delay;
+  elapsed        = elapsed - startTime - animator.delay;
   if (animator.toAttrs.repeat) {
     ratio = (elapsed % duration) / duration;
     ratio = d3Ease[easing](ratio);
@@ -89,13 +89,13 @@ function update(shape, animator, elapsed) {
 
 Util.augment(Timeline, {
   initTimer() {
-    const self = this;
+    const self     = this;
     let isFinished = false;
     let shape,
-      animators,
-      animator,
-      canvas;
-    self._timer = d3Timer.timer(elapsed => {
+        animators,
+        animator,
+        canvas;
+    self._timer    = d3Timer.timer(elapsed => {
       self._current = elapsed;
       if (this._animators.length > 0) {
         for (let i = this._animators.length - 1; i >= 0; i--) {
@@ -111,7 +111,7 @@ Util.augment(Timeline, {
           if (!shape.get('pause').isPaused) {
             animators = shape.get('animators');
             for (let j = animators.length - 1; j >= 0; j--) {
-              animator = animators[j];
+              animator   = animators[j];
               isFinished = update(shape, animator, elapsed);
               if (isFinished) {
                 animators.splice(j, 1);

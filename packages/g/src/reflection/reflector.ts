@@ -6,12 +6,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Type} from '../type';
-import {PlatformReflectionCapabilities} from './platform_reflection_capabilities';
-import {GetterFn, MethodFn, SetterFn} from './types';
+import { Type } from '../type';
+import { PlatformReflectionCapabilities } from './platform_reflection_capabilities';
+import { GetterFn, MethodFn, SetterFn } from './types';
 
-export {PlatformReflectionCapabilities};
-export {GetterFn, MethodFn, SetterFn};
+export { PlatformReflectionCapabilities };
+export { GetterFn, MethodFn, SetterFn };
 
 /**
  * Provides access to reflection data about symbols. Used internally by Angular
@@ -32,7 +32,7 @@ export class Reflector {
     return this.reflectionCapabilities.annotations(typeOrFunc);
   }
 
-  propMetadata(typeOrFunc: Type<any>): {[key: string]: any[]} {
+  propMetadata(typeOrFunc: Type<any>): { [key: string]: any[] } {
     return this.reflectionCapabilities.propMetadata(typeOrFunc);
   }
 

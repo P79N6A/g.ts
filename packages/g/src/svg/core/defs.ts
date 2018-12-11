@@ -1,13 +1,12 @@
+import Util from '../../util/index';
+import Arrow from '../defs/arrow';
 import Clip from '../defs/clip';
 import Gradient from '../defs/gradient';
-import Util from '../../util/index';
-import Element from './element';
 import Shadow from '../defs/shadow';
-import Arrow from '../defs/arrow';
+import Element from './element';
 
 export class Defs extends Element {
-
-  constructor(cfg){
+  constructor(cfg) {
     super(cfg);
     this.set('children', []);
   }
@@ -22,7 +21,7 @@ export class Defs extends Element {
 
   find(type, attr) {
     const children = this.get('children');
-    let result = null;
+    let result     = null;
     for (let i = 0; i < children.length; i++) {
       if (children[i].match(type, attr)) {
         result = children[i].__cfg.id;
@@ -34,7 +33,7 @@ export class Defs extends Element {
 
   findById(id) {
     const children = this.get('children');
-    let flag = null;
+    let flag       = null;
     for (let i = 0; i < children.length; i++) {
       if (children[i].__cfg.id === id) {
         flag = children[i];
@@ -45,8 +44,8 @@ export class Defs extends Element {
   }
 
   add(items) {
-    const el = this.get('el');
-    const self = this;
+    const el       = this.get('el');
+    const self     = this;
     const children = this.get('children');
     if (Util.isArray(items)) {
       Util.each(items, item => {
@@ -76,7 +75,7 @@ export class Defs extends Element {
     this.get('el').appendChild(item.__cfg.el);
     this.get('children').push(item);
     item.__cfg.parent = this;
-    item.__cfg.defs = this;
+    item.__cfg.defs   = this;
     item.__cfg.canvas = this.__cfg.canvas;
   }
 
@@ -105,11 +104,10 @@ export class Defs extends Element {
   }
 }
 
-Util.augment(Defs, {
-  isGroup: false,
-  canFill: false,
-  canStroke: false,
-  capture: false,
-  visible: false,
-
-});
+class Defs {
+  isGroup   = false;
+  canFill   = false;
+  canStroke = false;
+  capture   = false;
+  visible   = false;
+}

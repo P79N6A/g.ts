@@ -1,11 +1,8 @@
-/**
- * Created by Elaine on 2018/5/9.
- */
-const Util = require('../../util/index');
+import * as Util from '../../util/index';
 
-const regexLG = /^l\s*\(\s*([\d.]+)\s*\)\s*(.*)/i;
-const regexRG = /^r\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)\s*(.*)/i;
-const regexColorStop = /[\d.]+:(#[^\s]+|[^\)]+\))/ig;
+const regexLG        = /^l\s*\(\s*([\d.]+)\s*\)\s*(.*)/i;
+const regexRG        = /^r\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)\s*(.*)/i;
+const regexColorStop = /[\d.]+:(#[^\s]+|[^\)]+\))/gi;
 
 function addStop(steps) {
   const arr = steps.match(regexColorStop);
@@ -13,7 +10,7 @@ function addStop(steps) {
     return '';
   }
   let stops = '';
-  arr.sort(function(a, b) {
+  arr.sort(function (a, b) {
     a = a.split(':');
     b = b.split(':');
     return Number(a[0]) - Number(b[0]);
@@ -26,18 +23,17 @@ function addStop(steps) {
 }
 
 function parseLineGradient(color, el) {
-  const arr = regexLG.exec(color);
+  const arr   = regexLG.exec(color);
   const angle = Util.mod(Util.toRadian(parseFloat(arr[1])), Math.PI * 2);
   const steps = arr[2];
   let start;
   let end;
-
   if (angle >= 0 && angle < 0.5 * Math.PI) {
     start = {
       x: 0,
       y: 0
     };
-    end = {
+    end   = {
       x: 1,
       y: 1
     };
@@ -46,7 +42,7 @@ function parseLineGradient(color, el) {
       x: 1,
       y: 0
     };
-    end = {
+    end   = {
       x: 0,
       y: 1
     };
@@ -55,7 +51,7 @@ function parseLineGradient(color, el) {
       x: 1,
       y: 1
     };
-    end = {
+    end   = {
       x: 0,
       y: 0
     };
@@ -64,17 +60,20 @@ function parseLineGradient(color, el) {
       x: 0,
       y: 1
     };
-    end = {
+    end   = {
       x: 1,
       y: 0
     };
   }
-
-  const tanTheta = Math.tan(angle);
+  const tanTheta  = Math.tan(angle);
   const tanTheta2 = tanTheta * tanTheta;
-
-  const x = ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.x;
-  const y = tanTheta * ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.y;
+  const x         =
+          (end.x - start.x + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) +
+          start.x;
+  const y         =
+          (tanTheta * (end.x - start.x + tanTheta * (end.y - start.y))) /
+          (tanTheta2 + 1) +
+          start.y;
   el.setAttribute('x1', start.x);
   el.setAttribute('y1', start.y);
   el.setAttribute('x2', x);
@@ -83,10 +82,10 @@ function parseLineGradient(color, el) {
 }
 
 function parseRadialGradient(color, self) {
-  const arr = regexRG.exec(color);
-  const cx = parseFloat(arr[1]);
-  const cy = parseFloat(arr[2]);
-  const r = parseFloat(arr[3]);
+  const arr   = regexRG.exec(color);
+  const cx    = parseFloat(arr[1]);
+  const cy    = parseFloat(arr[2]);
+  const r     = parseFloat(arr[3]);
   const steps = arr[4];
   self.setAttribute('cx', cx);
   self.setAttribute('cy', cy);
@@ -94,28 +93,32 @@ function parseRadialGradient(color, self) {
   self.innerHTML = addStop(steps);
 }
 
-const Gradient = function(cfg) {
-  let el = null;
-  const id = Util.uniqueId('gradient_');
-  if (cfg.toLowerCase()[0] === 'l') {
-    el = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
-    parseLineGradient(cfg, el);
-  } else {
-    el = document.createElementNS('http://www.w3.org/2000/svg', 'radialGradient');
-    parseRadialGradient(cfg, el);
-  }
-  el.setAttribute('id', id);
-  this.__cfg = { el, id };
-  this.__attrs = { config: cfg };
-  return this;
-};
+export class Gradient {
+  type = 'gradient';
 
-Util.augment(Gradient, {
-  type: 'gradient',
   match(type, attr) {
     return this.type === type && this.__attrs.config === attr;
   }
-});
 
-module.exports = Gradient;
-
+  constructor(cfg) {
+    let el   = null;
+    const id = Util.uniqueId('gradient_');
+    if (cfg.toLowerCase()[0] === 'l') {
+      el = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'linearGradient'
+      );
+      parseLineGradient(cfg, el);
+    } else {
+      el = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'radialGradient'
+      );
+      parseRadialGradient(cfg, el);
+    }
+    el.setAttribute('id', id);
+    this.__cfg   = {el, id};
+    this.__attrs = {config: cfg};
+    return this;
+  }
+}

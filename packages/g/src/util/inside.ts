@@ -6,10 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Arc} from '../math/arc';
-import {Cubic} from '../math/cubic';
-import {Line} from '../math/line';
-import {Quadratic} from '../math/quadratic';
+import { Arc } from '../math/arc';
+import { Cubic } from '../math/cubic';
+import { Line } from '../math/line';
+import { Quadratic } from '../math/quadratic';
 
 export class Inside {
   public static line(x1, y1, x2, y2, lineWidth, x, y) {

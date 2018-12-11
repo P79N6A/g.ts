@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {EventEmitter} from '../event/event-emitter';
+import { EventEmitter } from '../event/event-emitter';
 import { isObject } from '../util/isType';
 
 const ALIAS_ATTRS           = ['strokeStyle', 'fillStyle', 'globalAlpha'];
@@ -175,7 +175,7 @@ export class Attribute extends EventEmitter {
       }
       clip.set('parent', this.get('parent'));
       clip.set('context', this.get('context'));
-      clip.inside = function(x, y) {
+      clip.inside = function (x, y) {
         const v = [x, y, 1];
         clip.invert(v, this.get('canvas')); // 已经在外面转换
         return clip.__isPointInFill(v[0], v[1]);

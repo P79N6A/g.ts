@@ -1,26 +1,26 @@
 const Util = require('../util/index');
 
-const regexTags = /[MLHVQTCSAZ]([^MLHVQTCSAZ]*)/ig;
-const regexDot = /[^\s\,]+/ig;
-const regexLG = /^l\s*\(\s*([\d.]+)\s*\)\s*(.*)/i;
-const regexRG = /^r\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)\s*(.*)/i;
-const regexPR = /^p\s*\(\s*([axyn])\s*\)\s*(.*)/i;
+const regexTags      = /[MLHVQTCSAZ]([^MLHVQTCSAZ]*)/ig;
+const regexDot       = /[^\s\,]+/ig;
+const regexLG        = /^l\s*\(\s*([\d.]+)\s*\)\s*(.*)/i;
+const regexRG        = /^r\s*\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*\)\s*(.*)/i;
+const regexPR        = /^p\s*\(\s*([axyn])\s*\)\s*(.*)/i;
 const regexColorStop = /[\d.]+:(#[^\s]+|[^\)]+\))/ig;
-const numColorCache = {};
+const numColorCache  = {};
 
 function addStop(steps, gradient) {
   const arr = steps.match(regexColorStop);
-  Util.each(arr, function(item) {
+  Util.each(arr, function (item) {
     item = item.split(':');
     gradient.addColorStop(item[0], item[1]);
   });
 }
 
 function parseLineGradient(color, self) {
-  const arr = regexLG.exec(color);
+  const arr   = regexLG.exec(color);
   const angle = Util.mod(Util.toRadian(parseFloat(arr[1])), Math.PI * 2);
   const steps = arr[2];
-  const box = self.getBBox();
+  const box   = self.getBBox();
   let start;
   let end;
 
@@ -29,7 +29,7 @@ function parseLineGradient(color, self) {
       x: box.minX,
       y: box.minY
     };
-    end = {
+    end   = {
       x: box.maxX,
       y: box.maxY
     };
@@ -38,7 +38,7 @@ function parseLineGradient(color, self) {
       x: box.maxX,
       y: box.minY
     };
-    end = {
+    end   = {
       x: box.minX,
       y: box.maxY
     };
@@ -47,7 +47,7 @@ function parseLineGradient(color, self) {
       x: box.maxX,
       y: box.maxY
     };
-    end = {
+    end   = {
       x: box.minX,
       y: box.minY
     };
@@ -56,39 +56,39 @@ function parseLineGradient(color, self) {
       x: box.minX,
       y: box.maxY
     };
-    end = {
+    end   = {
       x: box.maxX,
       y: box.minY
     };
   }
 
-  const tanTheta = Math.tan(angle);
+  const tanTheta  = Math.tan(angle);
   const tanTheta2 = tanTheta * tanTheta;
 
-  const x = ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.x;
-  const y = tanTheta * ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.y;
-  const context = self.get('context');
+  const x        = ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.x;
+  const y        = tanTheta * ((end.x - start.x) + tanTheta * (end.y - start.y)) / (tanTheta2 + 1) + start.y;
+  const context  = self.get('context');
   const gradient = context.createLinearGradient(start.x, start.y, x, y);
   addStop(steps, gradient);
   return gradient;
 }
 
 function parseRadialGradient(color, self) {
-  const arr = regexRG.exec(color);
-  const fx = parseFloat(arr[1]);
-  const fy = parseFloat(arr[2]);
-  const fr = parseFloat(arr[3]);
+  const arr   = regexRG.exec(color);
+  const fx    = parseFloat(arr[1]);
+  const fy    = parseFloat(arr[2]);
+  const fr    = parseFloat(arr[3]);
   const steps = arr[4];
   // 环半径为0时，默认无渐变，取渐变序列的最后一个颜色
   if (fr === 0) {
     const colors = steps.match(regexColorStop);
     return colors[colors.length - 1].split(':')[1];
   }
-  const box = self.getBBox();
-  const context = self.get('context');
-  const width = box.maxX - box.minX;
-  const height = box.maxY - box.minY;
-  const r = Math.sqrt(width * width + height * height) / 2;
+  const box      = self.getBBox();
+  const context  = self.get('context');
+  const width    = box.maxX - box.minX;
+  const height   = box.maxY - box.minY;
+  const r        = Math.sqrt(width * width + height * height) / 2;
   const gradient = context.createRadialGradient(box.minX + width * fx, box.minY + height * fy, fr * r, box.minX + width / 2, box.minY + height / 2, r);
   addStop(steps, gradient);
   return gradient;
@@ -100,15 +100,15 @@ function parsePattern(color, self) {
   }
   let pattern;
   let img;
-  const arr = regexPR.exec(color);
-  let repeat = arr[1];
+  const arr    = regexPR.exec(color);
+  let repeat   = arr[1];
   const source = arr[2];
 
   // Function to be called when pattern loads
   function onload() {
     // Create pattern
     const context = self.get('context');
-    pattern = context.createPattern(img, repeat);
+    pattern       = context.createPattern(img, repeat);
     self.setSilent('pattern', pattern); // be a cache
     self.setSilent('patternSource', color);
   }
@@ -143,7 +143,7 @@ function parsePattern(color, self) {
   } else {
     img.onload = onload;
     // Fix onload() bug in IE9
-    img.src = img.src;
+    img.src    = img.src;
   }
 
   return pattern;
@@ -158,14 +158,14 @@ module.exports = {
 
     if (Util.isString(path)) {
       path = path.match(regexTags);
-      Util.each(path, function(item, index) {
+      Util.each(path, function (item, index) {
         item = item.match(regexDot);
         if (item[0].length > 1) {
           const tag = item[0].charAt(0);
           item.splice(1, 0, item[0].substr(1));
           item[0] = tag;
         }
-        Util.each(item, function(sub, i) {
+        Util.each(item, function (sub, i) {
           if (!isNaN(sub)) {
             item[i] = +sub;
           }
@@ -197,7 +197,7 @@ module.exports = {
       for (let i = str.length; i < 6; i++) {
         str = '0' + str;
       }
-      color = '#' + str;
+      color              = '#' + str;
       numColorCache[num] = color;
     }
     return color;

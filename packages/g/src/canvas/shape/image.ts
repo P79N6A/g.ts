@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util   = require('../util/index');
-import {Shape} from '@gradii/g/core';
+const Util = require('../util/index');
+import { Shape } from '@gradii/g/core';
 
 import Inside from './util/inside';
 
@@ -85,7 +85,7 @@ export class CImage extends Shape {
     const attrs = self.__attrs;
     if (Util.isString(img)) {
       const image  = new Image();
-      image.onload = function() {
+      image.onload = function () {
         if (self.get('destroyed')) { return false; }
         self.attr('imgSrc', img);
         self.attr('img', image);

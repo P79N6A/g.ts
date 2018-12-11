@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Inside, Shape} from '@gradii/g/core';
+import { Inside, Shape } from '@gradii/g/core';
 
 export class Circle extends Shape {
   public static ATTRS = {
@@ -25,7 +25,6 @@ export class Circle extends Shape {
   constructor(cfg) {
     super(cfg);
   }
-
 
 
   public getDefaultAttrs() {

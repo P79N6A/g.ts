@@ -6,18 +6,16 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {d3Ease} from '@gradii/g/z-ease';
-
-import {interpolate, interpolateArray} from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
-import {d3Timer} from '@gradii/g/timer-engine';
+import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
+import { d3Timer } from '@gradii/g/timer-engine';
+import { d3Ease } from '@gradii/g/z-ease';
 
 import MatrixUtil from '../../util/matrix';
 
-import {PathUtil} from '../../util/path';
-import {Format} from '../util/format';
-import {Animate} from './animate';
-import {Transform} from './transform';
-import {EventEmitter} from '../event/event-emitter';
+import { PathUtil } from '../../util/path';
+import { Format } from '../util/format';
+import { Animate } from './animate';
+import { Transform } from './transform';
 
 const ReservedProps = {
   delay: 'delay',

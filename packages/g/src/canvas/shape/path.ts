@@ -87,7 +87,7 @@ export class Path extends Shape {
     let maxX        = -Infinity;
     let minY        = Infinity;
     let maxY        = -Infinity;
-    Util.each(segments, function(segment) {
+    Util.each(segments, function (segment) {
       segment.getBBox(lineWidth);
       const box = segment.box;
       if (box) {
@@ -173,7 +173,7 @@ export class Path extends Shape {
       return;
     }
 
-    Util.each(curve, function(segment, i) {
+    Util.each(curve, function (segment, i) {
       segmentN = curve[i + 1];
       l        = segment.length;
       if (segmentN) {
@@ -181,7 +181,7 @@ export class Path extends Shape {
       }
     });
 
-    Util.each(curve, function(segment, i) {
+    Util.each(curve, function (segment, i) {
       segmentN = curve[i + 1];
       l        = segment.length;
       if (segmentN) {
@@ -226,7 +226,7 @@ export class Path extends Shape {
       }
       return null;
     }
-    Util.each(tCache, function(v, i) {
+    Util.each(tCache, function (v, i) {
       if (t >= v[0] && t <= v[1]) {
         subt  = (t - v[0]) / (v[1] - v[0]);
         index = i;
@@ -245,7 +245,7 @@ export class Path extends Shape {
   }
 
   public createPath(context) {
-    const self = this;
+    const self     = this;
     const segments = self.get('segments');
     if (!Util.isArray(segments)) return;
 
@@ -258,14 +258,14 @@ export class Path extends Shape {
       segments[i].draw(context);
     }
 
-    const self = this;
-    const attrs = self.__attrs;
+    const self     = this;
+    const attrs    = self.__attrs;
     const segments = self.get('segments');
-    const path = attrs.path;
+    const path     = attrs.path;
     let startPoint,
-      endPoint,
-      tangent;
-    context = context || self.get('context');
+        endPoint,
+        tangent;
+    context        = context || self.get('context');
     if (!Util.isArray(segments)) return;
     if (!attrs.startArrow && !attrs.endArrow) {
       return;
@@ -276,8 +276,8 @@ export class Path extends Shape {
     const segmentsLen = segments.length;
     if (segmentsLen > 1) {
       startPoint = segments[0].endPoint;
-      endPoint = segments[1].endPoint;
-      tangent = segments[1].startTangent;
+      endPoint   = segments[1].endPoint;
+      tangent    = segments[1].startTangent;
       if (Util.isFunction(tangent)) {
         const v = tangent();
         Arrow.addStartArrow(context, attrs, startPoint.x - v[0], startPoint.y - v[1], startPoint.x, startPoint.y);
@@ -286,17 +286,17 @@ export class Path extends Shape {
       }
     }
     if (segmentsLen > 1) {
-      startPoint = segments[ segmentsLen - 2 ].endPoint;
-      endPoint = segments[ segmentsLen - 1 ].endPoint;
-      tangent = segments[segmentsLen - 1].endTangent;
+      startPoint = segments[segmentsLen - 2].endPoint;
+      endPoint   = segments[segmentsLen - 1].endPoint;
+      tangent    = segments[segmentsLen - 1].endTangent;
       if (Util.isFunction(tangent)) {
         const v = tangent();
         Arrow.addEndArrow(context, attrs, endPoint.x - v[0], endPoint.y - v[1], endPoint.x, endPoint.y, tangent());
       } else {
         Arrow.addEndArrow(context, attrs, startPoint.x, startPoint.y, endPoint.x, endPoint.y);
       }
-      }
     }
   }
+}
 
 }

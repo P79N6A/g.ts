@@ -6,9 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import {Shape, Util, vec2} from '@gradii/g/core';
-import {ArcMath} from './math/arc';
-import {Inside} from './util/inside';
+import { Shape, Util, vec2 } from '@gradii/g/core';
+import { ArcMath } from './math/arc';
+import { Inside } from './util/inside';
 
 export class Fan extends Shape {
   public static ATTRS = {

@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import {Type} from '../type';
+import { Type } from '../type';
 
 /**
  * An interface implemented by all Angular type decorators, which allows them to be used as ES7
@@ -25,28 +25,27 @@ import {Type} from '../type';
 export interface TypeDecorator {
   /**
    * Invoke as ES7 decorator.
-   */
-  <T extends Type<any>>(type: T): T;
+   */<T extends Type<any>>(type: T): T;
 
   // Make TypeDecorator assignable to built-in ParameterDecorator type.
   // ParameterDecorator is declared in lib.d.ts as a `declare type`
   // so we cannot declare this interface as a subtype.
   // see https://github.com/angular/angular/issues/3379#issuecomment-126169417
-  (target: Object, propertyKey?: string|symbol, parameterIndex?: number): void;
+  (target: Object, propertyKey?: string | symbol, parameterIndex?: number): void;
 }
 
-export const ANNOTATIONS = '__annotations__';
-export const PARAMETERS = '__parameters__';
+export const ANNOTATIONS   = '__annotations__';
+export const PARAMETERS    = '__parameters__';
 export const PROP_METADATA = '__prop__metadata__';
 
 /**
  * @suppress {globalThis}
  */
 export function makeDecorator<T>(
-    name: string, props?: (...args: any[]) => any, parentClass?: any,
-    additionalProcessing?: (type: Type<T>) => void,
-    typeFn?: (type: Type<T>, ...args: any[]) => void):
-    {new (...args: any[]): any; (...args: any[]): any; (...args: any[]): (cls: any) => any;} {
+  name: string, props?: (...args: any[]) => any, parentClass?: any,
+  additionalProcessing?: (type: Type<T>) => void,
+  typeFn?: (type: Type<T>, ...args: any[]) => void):
+  { new(...args: any[]): any; (...args: any[]): any; (...args: any[]): (cls: any) => any; } {
   const metaCtor = makeMetadataCtor(props);
 
   function DecoratorFactory(...args: any[]): (cls: Type<T>) => any {
@@ -61,8 +60,8 @@ export function makeDecorator<T>(
       // Use of Object.defineProperty is important since it creates non-enumerable property which
       // prevents the property is copied during subclassing.
       const annotations = cls.hasOwnProperty(ANNOTATIONS) ?
-          (cls as any)[ANNOTATIONS] :
-          Object.defineProperty(cls, ANNOTATIONS, {value: []})[ANNOTATIONS];
+        (cls as any)[ANNOTATIONS] :
+        Object.defineProperty(cls, ANNOTATIONS, {value: []})[ANNOTATIONS];
       annotations.push(annotationInstance);
 
 
@@ -77,7 +76,7 @@ export function makeDecorator<T>(
   }
 
   DecoratorFactory.prototype.ngMetadataName = name;
-  (DecoratorFactory as any).annotationCls = DecoratorFactory;
+  (DecoratorFactory as any).annotationCls   = DecoratorFactory;
   return DecoratorFactory as any;
 }
 
@@ -93,8 +92,9 @@ function makeMetadataCtor(props?: (...args: any[]) => any): any {
 }
 
 export function makeParamDecorator(
-    name: string, props?: (...args: any[]) => any, parentClass?: any): any {
+  name: string, props?: (...args: any[]) => any, parentClass?: any): any {
   const metaCtor = makeMetadataCtor(props);
+
   function ParamDecoratorFactory(...args: any[]): any {
     if (this instanceof ParamDecoratorFactory) {
       metaCtor.apply(this, args);
@@ -109,8 +109,8 @@ export function makeParamDecorator(
       // Use of Object.defineProperty is important since it creates non-enumerable property which
       // prevents the property is copied during subclassing.
       const parameters = cls.hasOwnProperty(PARAMETERS) ?
-          (cls as any)[PARAMETERS] :
-          Object.defineProperty(cls, PARAMETERS, {value: []})[PARAMETERS];
+        (cls as any)[PARAMETERS] :
+        Object.defineProperty(cls, PARAMETERS, {value: []})[PARAMETERS];
 
       // there might be gaps if some in between parameters do not have annotations.
       // we pad with nulls.
@@ -122,17 +122,18 @@ export function makeParamDecorator(
       return cls;
     }
   }
+
   if (parentClass) {
     ParamDecoratorFactory.prototype = Object.create(parentClass.prototype);
   }
   ParamDecoratorFactory.prototype.ngMetadataName = name;
-  (<any>ParamDecoratorFactory).annotationCls = ParamDecoratorFactory;
+  (<any>ParamDecoratorFactory).annotationCls     = ParamDecoratorFactory;
   return ParamDecoratorFactory;
 }
 
 export function makePropDecorator(
-    name: string, props?: (...args: any[]) => any, parentClass?: any,
-    additionalProcessing?: (target: any, name: string, ...args: any[]) => void): any {
+  name: string, props?: (...args: any[]) => any, parentClass?: any,
+  additionalProcessing?: (target: any, name: string, ...args: any[]) => void): any {
   const metaCtor = makeMetadataCtor(props);
 
   function PropDecoratorFactory(...args: any[]): any {
@@ -148,8 +149,8 @@ export function makePropDecorator(
       // Use of Object.defineProperty is important since it creates non-enumerable property which
       // prevents the property is copied during subclassing.
       const meta = constructor.hasOwnProperty(PROP_METADATA) ?
-          (constructor as any)[PROP_METADATA] :
-          Object.defineProperty(constructor, PROP_METADATA, {value: {}})[PROP_METADATA];
+        (constructor as any)[PROP_METADATA] :
+        Object.defineProperty(constructor, PROP_METADATA, {value: {}})[PROP_METADATA];
       meta[name] = meta.hasOwnProperty(name) && meta[name] || [];
       meta[name].unshift(decoratorInstance);
 
@@ -164,6 +165,6 @@ export function makePropDecorator(
   }
 
   PropDecoratorFactory.prototype.ngMetadataName = name;
-  (<any>PropDecoratorFactory).annotationCls = PropDecoratorFactory;
+  (<any>PropDecoratorFactory).annotationCls     = PropDecoratorFactory;
   return PropDecoratorFactory;
 }

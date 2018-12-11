@@ -8,8 +8,8 @@ function quadraticAt(p0, p1, p2, t) {
 
 function quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, out) {
   let t;
-  let interval = 0.005;
-  let d = Infinity;
+  let interval  = 0.005;
+  let d         = Infinity;
   let d1;
   let v1;
   let v2;
@@ -17,7 +17,7 @@ function quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, out) {
   let d2;
   let i;
   const EPSILON = 0.0001;
-  const v0 = [ x, y ];
+  const v0      = [x, y];
 
   for (_t = 0; _t < 1; _t += 0.05) {
     v1 = [
@@ -80,22 +80,22 @@ function quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, out) {
 function quadraticExtrema(p0, p1, p2) {
   const a = p0 + p2 - 2 * p1;
   if (Util.isNumberEqual(a, 0)) {
-    return [ 0.5 ];
+    return [0.5];
   }
   const rst = (p0 - p1) / a;
   if (rst <= 1 && rst >= 0) {
-    return [ rst ];
+    return [rst];
   }
   return [];
 }
 
 module.exports = {
-  at: quadraticAt,
+  at           : quadraticAt,
   projectPoint(x1, y1, x2, y2, x3, y3, x, y) {
     const rst = {};
     quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, rst);
     return rst;
   },
   pointDistance: quadraticProjectPoint,
-  extrema: quadraticExtrema
+  extrema      : quadraticExtrema
 };

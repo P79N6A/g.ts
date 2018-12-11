@@ -6,42 +6,42 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('../util/index');
-const Shape = require('../core/shape');
+const Util   = require('../util/index');
+const Shape  = require('../core/shape');
 const Inside = require('./util/inside');
 
-const Rect = function(cfg) {
-  Rect.superclass.constructor.call(this, cfg);
+const Rect = function (cfg) {
+  super(cfg);
 };
 
 Rect.ATTRS = {
-  x: 0,
-  y: 0,
-  width: 0,
-  height: 0,
-  radius: 0,
+  x        : 0,
+  y        : 0,
+  width    : 0,
+  height   : 0,
+  radius   : 0,
   lineWidth: 1,
 };
 
 Util.extend(Rect, Shape);
 
 Util.augment(Rect, {
-  canFill: true,
+  canFill  : true,
   canStroke: true,
-  type: 'rect',
+  type     : 'rect',
   getDefaultAttrs() {
     return {
       lineWidth: 1,
-      radius: 0,
+      radius   : 0,
     };
   },
   calculateBox() {
-    const self = this;
-    const attrs = self.__attrs;
-    const x = attrs.x;
-    const y = attrs.y;
-    const width = attrs.width;
-    const height = attrs.height;
+    const self      = this;
+    const attrs     = self.__attrs;
+    const x         = attrs.x;
+    const y         = attrs.y;
+    const width     = attrs.width;
+    const height    = attrs.height;
     const lineWidth = this.getHitLineWidth();
 
     const halfWidth = lineWidth / 2;
@@ -53,8 +53,8 @@ Util.augment(Rect, {
     };
   },
   isPointInPath(x, y) {
-    const self = this;
-    const fill = self.hasFill();
+    const self   = this;
+    const fill   = self.hasFill();
     const stroke = self.hasStroke();
 
     if (fill && stroke) {
@@ -79,13 +79,13 @@ Util.augment(Rect, {
     return context.isPointInPath(x, y);
   },
   __isPointInStroke(x, y) {
-    const self = this;
-    const attrs = self.__attrs;
-    const rx = attrs.x;
-    const ry = attrs.y;
-    const width = attrs.width;
-    const height = attrs.height;
-    const radius = attrs.radius;
+    const self      = this;
+    const attrs     = self.__attrs;
+    const rx        = attrs.x;
+    const ry        = attrs.y;
+    const width     = attrs.width;
+    const height    = attrs.height;
+    const radius    = attrs.radius;
     const lineWidth = this.getHitLineWidth();
 
     if (radius === 0) {
@@ -106,14 +106,14 @@ Util.augment(Rect, {
       Inside.arcline(rx + radius, ry + radius, radius, Math.PI, 1.5 * Math.PI, false, lineWidth, x, y);
   },
   createPath(context) {
-    const self = this;
-    const attrs = self.__attrs;
-    const x = attrs.x;
-    const y = attrs.y;
-    const width = attrs.width;
+    const self   = this;
+    const attrs  = self.__attrs;
+    const x      = attrs.x;
+    const y      = attrs.y;
+    const width  = attrs.width;
     const height = attrs.height;
     const radius = attrs.radius;
-    context = context || self.get('context');
+    context      = context || self.get('context');
 
     context.beginPath();
     if (radius === 0) {

@@ -1,6 +1,6 @@
 import * as Util from '../../util/index';
-import * as Element from './element';
 import * as Shape from '../shape/index';
+import * as Element from './element';
 
 const SHAPE_MAP = {}; // 缓存图形类型
 const INDEX     = '_INDEX';
@@ -13,7 +13,7 @@ function getComparer(compare) {
 }
 
 // const Group = function (cfg) {
-//   Group.superclass.constructor.call(this, cfg);
+super(cfg);
 //   this.set('children', []);
 //
 //   this._beforeRenderUI();
@@ -34,9 +34,7 @@ function getComparer(compare) {
 //   Util.merge(c.__cfg, superCon.__cfg);
 //   Util.merge(c.__cfg, c.CFG);
 // }
-
-@CFG({
-})
+@CFG({})
 export class Group extends Element {
   isGroup: true;
   canFill: true;
@@ -45,7 +43,6 @@ export class Group extends Element {
   constructor(cfg) {
     super(cfg);
     this.set('children', []);
-
     this._beforeRenderUI();
     this._renderUI();
     this._bindUI();
@@ -81,7 +78,8 @@ export class Group extends Element {
     }
     if (cfg.attrs) {
       const attrs = cfg.attrs;
-      if (type === 'text') { // 临时解决
+      if (type === 'text') {
+        // 临时解决
         const topFontFamily = canvas.get('fontFamily');
         if (topFontFamily) {
           attrs.fontFamily = attrs.fontFamily || topFontFamily;
@@ -93,7 +91,9 @@ export class Group extends Element {
     cfg.type    = type;
     const shape = Shape[shapeType];
     if (!shape) {
-      throw new TypeError(`the shape ${shapeType} is not supported by svg version, use canvas instead`);
+      throw new TypeError(
+        `the shape ${shapeType} is not supported by svg version, use canvas instead`
+      );
     }
     const rst = new shape(cfg);
     this.add(rst);
@@ -145,9 +145,9 @@ export class Group extends Element {
     const innerBox = this.getBBox();
     // const parent = this.get('parent'); // getParent
     Util.merge(attrs, {
-      x: innerBox.minX - padding[3],
-      y: innerBox.minY - padding[0],
-      width: innerBox.width + padding[1] + padding[3],
+      x     : innerBox.minX - padding[3],
+      y     : innerBox.minY - padding[0],
+      width : innerBox.width + padding[1] + padding[3],
       height: innerBox.height + padding[0] + padding[2]
     });
     if (backShape) {
@@ -182,7 +182,6 @@ export class Group extends Element {
       if (arguments.length === 0) {
         destroy = true;
       }
-
       Group.superclass.remove.call(this, destroy);
     }
     return this;
@@ -283,11 +282,11 @@ export class Group extends Element {
       child[INDEX] = index;
       return child;
     });
-
-    children.sort(getComparer((obj1, obj2) => {
-      return obj1.get('zIndex') - obj2.get('zIndex');
-    }));
-
+    children.sort(
+      getComparer((obj1, obj2) => {
+        return obj1.get('zIndex') - obj2.get('zIndex');
+      })
+    );
     return this;
   }
 
@@ -306,7 +305,6 @@ export class Group extends Element {
     }
     const children = this.get('children');
     let rst        = null;
-
     Util.each(children, item => {
       if (fn(item)) {
         rst = item;
@@ -348,7 +346,6 @@ export class Group extends Element {
   findBy(fn) {
     const children = this.get('children');
     let rst        = null;
-
     Util.each(children, item => {
       if (fn(item)) {
         rst = item;
@@ -428,7 +425,6 @@ export class Group extends Element {
 
   clear() {
     const children = this.get('children');
-
     while (children.length !== 0) {
       children[children.length - 1].remove();
     }

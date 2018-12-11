@@ -1,5 +1,5 @@
 const Util = require('../../util');
-const { parseRadius } = require('../../util/format');
+const {parseRadius} = require('../../util/format');
 const Marker = require('../../shapes/marker');
 const Defs = require('./defs');
 
@@ -86,8 +86,10 @@ class Painter {
     this.toDraw = false;
     return this;
   }
+
   draw(model) {
     const self = this;
+
     function drawInner() {
       self.animateHandler = Util.requestAnimationFrame(() => {
         self.animateHandler = undefined;
@@ -104,15 +106,18 @@ class Painter {
         self.toDraw = false;
       }
     }
+
     if (self.animateHandler) {
       self.toDraw = true;
     } else {
       drawInner();
     }
   }
+
   drawSync(model) {
     this._drawChildren(model);
   }
+
   _drawGroup(model, index) {
     const cfg = model._cfg;
     if (cfg.removed || cfg.destroyed) {
@@ -131,6 +136,7 @@ class Painter {
       this._drawChildren(model);
     }
   }
+
   _drawChildren(parent) {
     const self = this;
     const children = parent._cfg.children;
@@ -148,6 +154,7 @@ class Painter {
       }
     }
   }
+
   _drawShape(model, index) {
     const self = this;
     const attrs = model._attrs;
@@ -186,6 +193,7 @@ class Painter {
       self._updateShape(attrs.clip);
     }
   }
+
   _updateShape(model) {
     const self = this;
     const attrs = model._attrs;
@@ -223,6 +231,7 @@ class Painter {
     model._cfg.attrs = Util.deepMix({}, model._attrs);
     model._cfg.hasUpdate = false;
   }
+
   _setAttribute(model, name, value) {
     const type = model.type;
     const attrs = model._attrs;
@@ -230,11 +239,11 @@ class Painter {
     const defs = this.context;
 
     // 计算marker路径
-    if ((type === 'marker' || type === 'rect') && ~[ 'x', 'y', 'radius', 'r' ].indexOf(name)) {
+    if ((type === 'marker' || type === 'rect') && ~['x', 'y', 'radius', 'r'].indexOf(name)) {
       return;
     }
     // 圆和椭圆不是x, y， 是cx, cy。 marker的x,y 用于计算marker的路径，不需要写到dom
-    if (~[ 'circle', 'ellipse' ].indexOf(type) && ~[ 'x', 'y' ].indexOf(name)) {
+    if (~['circle', 'ellipse'].indexOf(type) && ~['x', 'y'].indexOf(name)) {
       el.setAttribute('c' + name, parseInt(value, 10));
       return;
     }
@@ -317,6 +326,7 @@ class Painter {
       el.setAttribute(SVG_ATTR_MAP[name], value);
     }
   }
+
   _createDom(model, index) {
     const type = SHAPE_TO_TAGS[model.type];
     const attrs = model._attrs;
@@ -332,7 +342,7 @@ class Painter {
         parentNode.appendChild(shape);
       } else {
         const childNodes = parent._cfg.el.childNodes;
-       // svg下天然有defs作为子节点，svg下子元素index需要+1
+        // svg下天然有defs作为子节点，svg下子元素index需要+1
         if (parentNode.tagName === 'svg') {
           index += 1;
         }
@@ -357,6 +367,7 @@ class Painter {
     }
     return shape;
   }
+
   _assembleMarker(attrs) {
     let r = attrs.r;
     if (typeof attrs.r === 'undefined') {
@@ -378,6 +389,7 @@ class Painter {
     }
     return d;
   }
+
   _assembleRect(attrs) {
     const x = attrs.x;
     const y = attrs.y;
@@ -409,19 +421,20 @@ class Painter {
       r.r1 = r.r2 = r.r3 = r.r4 = radius;
     }
     const d = [
-      [ `M ${x + r.r1},${y}` ],
-      [ `l ${w - r.r1 - r.r2},0` ],
-      [ `a ${r.r2},${r.r2},0,0,1,${r.r2},${r.r2}` ],
-      [ `l 0,${h - r.r2 - r.r3}` ],
-      [ `a ${r.r3},${r.r3},0,0,1,${-r.r3},${r.r3}` ],
-      [ `l ${r.r3 + r.r4 - w},0` ],
-      [ `a ${r.r4},${r.r4},0,0,1,${-r.r4},${-r.r4}` ],
-      [ `l 0,${r.r4 + r.r1 - h}` ],
-      [ `a ${r.r1},${r.r1},0,0,1,${r.r1},${-r.r1}` ],
-      [ 'z' ]
+      [`M ${x + r.r1},${y}`],
+      [`l ${w - r.r1 - r.r2},0`],
+      [`a ${r.r2},${r.r2},0,0,1,${r.r2},${r.r2}`],
+      [`l 0,${h - r.r2 - r.r3}`],
+      [`a ${r.r3},${r.r3},0,0,1,${-r.r3},${r.r3}`],
+      [`l ${r.r3 + r.r4 - w},0`],
+      [`a ${r.r4},${r.r4},0,0,1,${-r.r4},${-r.r4}`],
+      [`l 0,${r.r4 + r.r1 - h}`],
+      [`a ${r.r1},${r.r1},0,0,1,${r.r1},${-r.r1}`],
+      ['z']
     ];
     return d.join(' ');
   }
+
   _formatPath(value) {
     value = value.map(path => {
       return path.join(' ');
@@ -431,6 +444,7 @@ class Painter {
     }
     return value;
   }
+
   _setTransform(model) {
     const matrix = model._attrs.matrix;
     const el = model._cfg.el;
@@ -445,6 +459,7 @@ class Painter {
       console.warn('invalid matrix:', matrix);
     }
   }
+
   _setImage(model, img) {
     const attrs = model._attrs;
     const el = model._cfg.el;
@@ -478,6 +493,7 @@ class Painter {
       el.setAttribute('href', canvas.toDataURL());
     }
   }
+
   _updateFan(model) {
     function getPoint(angle, radius, center) {
       return {
@@ -485,6 +501,7 @@ class Painter {
         y: radius * Math.sin(angle) + center.y
       };
     }
+
     const attrs = model._attrs;
     const cfg = model._cfg;
     const center = {
@@ -522,6 +539,7 @@ class Painter {
     }
     cfg.el.setAttribute('d', d.join(' '));
   }
+
   _updateText(model) {
     const self = this;
     const attrs = model._attrs;
@@ -550,6 +568,7 @@ class Painter {
     model._cfg.attrs = Object.assign({}, model._attrs);
     model._cfg.hasUpdate = false;
   }
+
   _setFont(model) {
     const el = model.get('el');
     const attrs = model._attrs;
@@ -558,14 +577,15 @@ class Painter {
     el.setAttribute('alignment-baseline', BASELINE_MAP[attrs.textBaseline] || 'baseline');
     el.setAttribute('text-anchor', ANCHOR_MAP[attrs.textAlign] || 'left');
     if (fontSize && +fontSize < 12) { // 小于 12 像素的文本进行 scale 处理
-      attrs.matrix = [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ];
+      attrs.matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
       model.transform([
-        [ 't', -attrs.x, -attrs.y ],
-        [ 's', +fontSize / 12, +fontSize / 12 ],
-        [ 't', attrs.x, attrs.y ]
+        ['t', -attrs.x, -attrs.y],
+        ['s', +fontSize / 12, +fontSize / 12],
+        ['t', attrs.x, attrs.y]
       ]);
     }
   }
+
   _setText(model, text) {
     const el = model._cfg.el;
     const baseline = model._attrs.textBaseline || 'bottom';
@@ -598,6 +618,7 @@ class Painter {
       el.innerHTML = text;
     }
   }
+
   _setClip(model, value) {
     const el = model._cfg.el;
     if (!value) {
@@ -613,6 +634,7 @@ class Painter {
       this._updateShape(value);
     }
   }
+
   _setColor(model, name, value) {
     const el = model._cfg.el;
     const defs = this.context;
@@ -637,6 +659,7 @@ class Painter {
       el.setAttribute(SVG_ATTR_MAP[name], value);
     }
   }
+
   _setShadow(model) {
     const el = model._cfg.el;
     const attrs = model._attrs;

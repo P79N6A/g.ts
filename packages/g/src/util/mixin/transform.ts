@@ -25,11 +25,11 @@ function multiple(m1, m2) {
 
 module.exports = {
   initTransform() {
-    this.attr('matrix', [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]);
+    this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
   },
   translate(tx, ty) {
     const matrix = this.attr('matrix');
-    mat3.translate(matrix, matrix, [ tx, ty ]);
+    mat3.translate(matrix, matrix, [tx, ty]);
     this.clearTotalMatrix();
     this.attr('matrix', matrix);
     return this;
@@ -43,7 +43,7 @@ module.exports = {
   },
   scale(s1, s2) {
     const matrix = this.attr('matrix');
-    mat3.scale(matrix, matrix, [ s1, s2 ]);
+    mat3.scale(matrix, matrix, [s1, s2]);
     this.clearTotalMatrix();
     this.attr('matrix', matrix);
     return this;
@@ -59,9 +59,9 @@ module.exports = {
       rotate = rotate / 180 * Math.PI;
     }
     this.transform([
-      [ 't', -x, -y ],
-      [ 'r', rotate ],
-      [ 't', x, y ]
+      ['t', -x, -y],
+      ['r', rotate],
+      ['t', x, y]
     ]);
   },
   /**
@@ -77,10 +77,10 @@ module.exports = {
     this.set('y', y);
   },
   transform(ts) {
-    const self = this;
+    const self   = this;
     const matrix = self.attr('matrix');
 
-    Util.each(ts, function(t) {
+    Util.each(ts, function (t) {
       switch (t[0]) {
         case 't':
           self.translate(t[1], t[2]);
@@ -102,7 +102,7 @@ module.exports = {
     return self;
   },
   setTransform(ts) {
-    this.attr('matrix', [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ]);
+    this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
     return this.transform(ts);
   },
   getMatrix() {
@@ -125,9 +125,9 @@ module.exports = {
   },
   // 获取到达指定根节点的矩阵
   _getMatrixByRoot(root) {
-    const self = this;
-    root = root || self;
-    let parent = self;
+    const self    = this;
+    root          = root || self;
+    let parent    = self;
     const parents = [];
 
     while (parent !== root) {
@@ -136,8 +136,8 @@ module.exports = {
     }
     parents.unshift(parent);
 
-    const m = [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ];
-    Util.each(parents, function(child) {
+    const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    Util.each(parents, function (child) {
       mat3.multiply(m, child.attr('matrix'), m);
     });
     return m;
@@ -149,7 +149,7 @@ module.exports = {
   getTotalMatrix() {
     let m = this.__cfg.totalMatrix;
     if (!m) {
-      m = [ 1, 0, 0, 0, 1, 0, 0, 0, 1 ];
+      m            = [1, 0, 0, 0, 1, 0, 0, 0, 1];
       const parent = this.__cfg.parent;
       if (parent) {
         const pm = parent.getTotalMatrix();

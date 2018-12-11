@@ -13,17 +13,17 @@ declare var WorkerGlobalScope: any /** TODO #9100 */;
 // the global "global" var for now.
 declare var global: any /** TODO #9100 */;
 const __window = typeof window !== 'undefined' && window;
-const __self = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
-    self instanceof WorkerGlobalScope && self;
+const __self   = typeof self !== 'undefined' && typeof WorkerGlobalScope !== 'undefined' &&
+  self instanceof WorkerGlobalScope && self;
 const __global = typeof global !== 'undefined' && global;
 
 // Check __global first, because in Node tests both __global and __window may be defined and _global
 // should be __global in that case.
-const _global: {[name: string]: any} = __global || __window || __self;
+const _global: { [name: string]: any } = __global || __window || __self;
 
 /**
  * Attention: whenever providing a new value, be sure to add an
  * entry into the corresponding `....externs.js` file,
  * so that closure won't use that global for its purposes.
  */
-export {_global as global};
+export { _global as global };

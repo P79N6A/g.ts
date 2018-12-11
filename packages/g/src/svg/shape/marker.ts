@@ -1,9 +1,5 @@
-const Util = require('../../util/index');
-const Shape = require('../core/shape');
-
-const Marker = function(cfg) {
-  Marker.superclass.constructor.call(this, cfg);
-};
+import * as Util from '../../util/index';
+import * as Shape from '../core/shape';
 
 Marker.Symbols = {
   // 圆
@@ -34,60 +30,69 @@ Marker.Symbols = {
             L${x + r},${y + diff}Z`;
   },
   // 倒三角形
-  'triangle-down': function(x, y, r) {
+  'triangle-down': function (x, y, r) {
     const diff = r * Math.sin((1 / 3) * Math.PI);
     return `M${x - r},${y - diff}
             L${x + r},${y - diff}
             L${x},${y + diff}Z`;
   }
 };
-
-Marker.ATTRS = {
-  path: null,
+Marker.ATTRS   = {
+  path     : null,
   lineWidth: 1
 };
-
 Util.extend(Marker, Shape);
 
-Util.augment(Marker, {
-  type: 'marker',
-  canFill: true,
-  canStroke: true,
+export class Marker {
+  type      = 'marker';
+  canFill   = true;
+  canStroke = true;
+
   init(id) {
     Marker.superclass.init.call(this);
-    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    id = id || Util.uniqueId(this.type + '_');
+    const marker = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'path'
+    );
+    id           = id || Util.uniqueId(this.type + '_');
     marker.setAttribute('id', id);
     this.setSilent('el', marker);
-  },
+  }
+
   getDefaultAttrs() {
     return {
-      x: 0,
-      y: 0,
+      x        : 0,
+      y        : 0,
       lineWidth: 1,
-      fill: 'none'
+      fill     : 'none'
     };
-  },
+  }
+
   _afterSetX() {
     this._assembleShape();
-  },
+  }
+
   _afterSetY() {
     this._assembleShape();
-  },
+  }
+
   _afterSetRadius() {
     this._assembleShape();
-  },
+  }
+
   _afterSetR() {
     this._assembleShape();
-  },
+  }
+
   _afterSetAttrAll(objs) {
     if ('x' in objs || 'y' in objs || 'radius' in objs) {
       this._assembleShape();
     }
-  },
+  }
+
   _assembleShape() {
     const attrs = this.__attrs;
-    let r = attrs.r;
+    let r       = attrs.r;
     if (typeof attrs.r === 'undefined') {
       r = attrs.radius;
     }
@@ -101,12 +106,16 @@ Util.augment(Marker, {
       d = Marker.Symbols[attrs.symbol || 'circle'](attrs.x, attrs.y, r);
     }
     if (Util.isArray(d)) {
-      d = d.map(path => {
-        return path.join(' ');
-      }).join('');
+      d = d
+        .map(path => {
+          return path.join(' ');
+        })
+        .join('');
     }
     this.get('el').setAttribute('d', d);
   }
-});
 
-module.exports = Marker;
+  constructor(cfg) {
+    super(cfg);
+  }
+}

@@ -1,31 +1,28 @@
-const Util = require('../../util/index');
-const Shape = require('../core/shape');
-
-const Polygon = function(cfg) {
-  Polygon.superclass.constructor.call(this, cfg);
-};
+import * as Util from '../../util/index';
+import * as Shape from '../core/shape';
 
 Polygon.ATTRS = {
-  points: null,
+  points   : null,
   lineWidth: 1
 };
-
 Util.extend(Polygon, Shape);
 
-Util.augment(Polygon, {
-  canFill: true,
-  canStroke: true,
-  type: 'polygon',
+export class Polygon {
+  canFill   = true;
+  canStroke = true;
+  type      = 'polygon';
+
   getDefaultAttrs() {
     return {
       lineWidth: 1,
-      fill: 'none'
+      fill     : 'none'
     };
-  },
+  }
+
   _afterSetAttrPoints() {
     const value = this.__attrs.points;
-    const el = this.get('el');
-    let points = value;
+    const el    = this.get('el');
+    let points  = value;
     if (!value || value.length === 0) {
       points = '';
     } else if (Util.isArray(value)) {
@@ -33,13 +30,17 @@ Util.augment(Polygon, {
       points = points.join(' ');
     }
     el.setAttribute('points', points);
-  },
+  }
+
   _afterSetAttrAll(obj) {
     if ('points' in obj) {
       this._afterSetAttrPoints();
     }
-  },
-  createPath() {}
-});
+  }
 
-module.exports = Polygon;
+  createPath() {}
+
+  constructor(cfg) {
+    super(cfg);
+  }
+}

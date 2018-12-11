@@ -1,7 +1,7 @@
-const Util = require('../index');
+const Util       = require('../index');
 const MatrixUtil = require('../matrix');
 
-const ReservedProps = { delay: 'delay' };
+const ReservedProps = {delay: 'delay'};
 
 function getFromAttrs(toAttrs, shape) {
   const rst = {};
@@ -14,7 +14,7 @@ function getFromAttrs(toAttrs, shape) {
 function getFormatProps(props, shape) {
   const rst = {
     matrix: null,
-    attrs: {}
+    attrs : {}
   };
   for (const k in props) {
     if (k === 'transform') {
@@ -64,28 +64,28 @@ module.exports = {
       timeline.initTimer();
     }
     if (Util.isNumber(callback)) {
-      delay = callback;
+      delay    = callback;
       callback = null;
     }
     if (Util.isFunction(easing)) {
       callback = easing;
-      easing = 'easeLinear';
+      easing   = 'easeLinear';
     } else {
       easing = easing ? easing : 'easeLinear';
     }
     const formatProps = getFormatProps(toProps, self);
     // 记录动画属性
-    const animator = {
-      fromAttrs: getFromAttrs(toProps, self),
-      toAttrs: formatProps.attrs,
+    const animator    = {
+      fromAttrs : getFromAttrs(toProps, self),
+      toAttrs   : formatProps.attrs,
       fromMatrix: Util.clone(self.getMatrix()),
-      toMatrix: formatProps.matrix,
+      toMatrix  : formatProps.matrix,
       duration,
       easing,
       callback,
       delay,
-      startTime: timeline.getTime(),
-      id: Util.uniqueId()
+      startTime : timeline.getTime(),
+      id        : Util.uniqueId()
     };
     // 如果动画队列中已经有这个图形了
     if (animators.length > 0) {
@@ -97,7 +97,7 @@ module.exports = {
     }
     animators.push(animator);
     self.setSilent('animators', animators);
-    self.setSilent('pause', { isPaused: false });
+    self.setSilent('pause', {isPaused: false});
   },
   stopAnimate() {
     const animators = this.get('animators');
@@ -112,25 +112,25 @@ module.exports = {
     this.setSilent('animators', []);
   },
   pauseAnimate() {
-    const self = this;
+    const self     = this;
     const timeline = self.get('timeline');
     // 记录下是在什么时候暂停的
     self.setSilent('pause', {
-      isPaused: true,
+      isPaused : true,
       pauseTime: timeline.getTime()
     });
     return self;
   },
   resumeAnimate() {
-    const self = this;
-    const timeline = self.get('timeline');
-    const current = timeline.getTime();
+    const self      = this;
+    const timeline  = self.get('timeline');
+    const current   = timeline.getTime();
     const animators = self.get('animators');
     const pauseTime = self.get('pause').pauseTime;
     // 之后更新属性需要计算动画已经执行的时长，如果暂停了，就把初始时间调后
     Util.each(animators, animator => {
-      animator.startTime = animator.startTime + (current - pauseTime);
-      animator._paused = false;
+      animator.startTime  = animator.startTime + (current - pauseTime);
+      animator._paused    = false;
       animator._pauseTime = null;
     });
     self.setSilent('pause', {
