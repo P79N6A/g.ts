@@ -80,3 +80,8 @@ export function isEquivalent(a, b) {
   }
   return true;
 }
+
+const PRECISION = 0.00001;
+export function isNumberEqual(a, b, precision = PRECISION){
+  return Math.abs((a - b)) < precision;
+}

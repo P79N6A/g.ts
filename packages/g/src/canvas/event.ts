@@ -11,7 +11,7 @@
 /**
  * Event
  */
-export class Event {
+export class GEvent {
   public x;
   public y;
   public clientX;
@@ -50,7 +50,7 @@ export class Event {
   }
 
   public clone() {
-    const event              = new Event(this.type, this.event, this.bubbles, this.cancelable);
+    const event              = new GEvent(this.type, this.event, this.bubbles, this.cancelable);
     event.x                  = this.x;
     event.y                  = this.y;
     event.clientX            = this.clientX;

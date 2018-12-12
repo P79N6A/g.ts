@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Inside, Shape } from '@gradii/g/core';
+import { Shape } from '../../core/shape';
 
 export class Circle extends Shape {
   public static ATTRS = {

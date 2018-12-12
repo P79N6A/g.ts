@@ -25,6 +25,9 @@
       ],
       "@gradii/*": [
         "libs/*/public-api"
+      ],
+      "@gradii/vector-math": [
+        "libs/vector-math/public-api"
       ]
     }
   },

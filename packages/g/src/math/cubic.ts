@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('../../util/index');
-const vec2 = require('../../util/matrix').vec2;
+import { Vector2 } from '@gradii/vector-math';
+import { isNumberEqual } from '../util/isType';
 
 export namespace CubicMath {
   export function cubicAt(p0, p1, p2, p3, t) {
@@ -43,7 +43,7 @@ export namespace CubicMath {
         cubicAt(y1, y2, y3, y4, _t)
       ];
 
-      d1 = vec2.squaredDistance(v0, v1);
+      d1 = Vector2.squaredDistance(v0, v1);
       if (d1 < d) {
         t = _t;
         d = d1;
@@ -103,8 +103,8 @@ export namespace CubicMath {
     let t2;
     let discSqrt;
 
-    if (Util.isNumberEqual(a, 0)) {
-      if (!Util.isNumberEqual(b, 0)) {
+    if (isNumberEqual(a, 0)) {
+      if (!isNumberEqual(b, 0)) {
         t1 = -c / b;
         if (t1 >= 0 && t1 <= 1) {
           extrema.push(t1);
@@ -112,7 +112,7 @@ export namespace CubicMath {
       }
     } else {
       const disc = b * b - 4 * a * c;
-      if (Util.isNumberEqual(disc, 0)) {
+      if (isNumberEqual(disc, 0)) {
         extrema.push(-b / (2 * a));
       } else if (disc > 0) {
         discSqrt = Math.sqrt(disc);

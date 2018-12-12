@@ -6,20 +6,20 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Arc } from '../math/arc';
-import { Cubic } from '../math/cubic';
-import { Line } from '../math/line';
-import { Quadratic } from '../math/quadratic';
+import { ArcMath } from '../math/arc';
+import { CubicMath } from '../math/cubic';
+import { LineMath } from '../math/line';
+import { QuadraticMath } from '../math/quadratic';
 
 export class Inside {
   public static line(x1, y1, x2, y2, lineWidth, x, y) {
-    const box = Line.box(x1, y1, x2, y2, lineWidth);
+    const box = LineMath.box(x1, y1, x2, y2, lineWidth);
 
     if (!this.box(box.minX, box.maxX, box.minY, box.maxY, x, y)) {
       return false;
     }
 
-    const d = Line.pointDistance(x1, y1, x2, y2, x, y);
+    const d = LineMath.pointDistance(x1, y1, x2, y2, x, y);
     if (isNaN(d)) {
       return false;
     }
@@ -46,15 +46,15 @@ export class Inside {
   }
 
   public static cubicline(x1, y1, x2, y2, x3, y3, x4, y4, lineWidth, x, y) {
-    return Cubic.pointDistance(x1, y1, x2, y2, x3, y3, x4, y4, x, y) <= lineWidth / 2;
+    return CubicMath.pointDistance(x1, y1, x2, y2, x3, y3, x4, y4, x, y) <= lineWidth / 2;
   }
 
   public static quadraticline(x1, y1, x2, y2, x3, y3, lineWidth, x, y) {
-    return Quadratic.pointDistance(x1, y1, x2, y2, x3, y3, x, y) <= lineWidth / 2;
+    return QuadraticMath.pointDistance(x1, y1, x2, y2, x3, y3, x, y) <= lineWidth / 2;
   }
 
   public static arcline(cx, cy, r, startAngle, endAngle, clockwise, lineWidth, x, y) {
-    return Arc.pointDistance(cx, cy, r, startAngle, endAngle, clockwise, x, y) <= lineWidth / 2;
+    return ArcMath.pointDistance(cx, cy, r, startAngle, endAngle, clockwise, x, y) <= lineWidth / 2;
   }
 
   public static rect(rx, ry, width, height, x, y) {
