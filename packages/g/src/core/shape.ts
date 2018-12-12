@@ -56,6 +56,7 @@ export class Shape extends Element implements isPointInPath {
     self.afterPath(context);
   }
 
+  afterPath(...args);
   afterPath() {}
 
   /**

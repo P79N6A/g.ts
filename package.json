@@ -66,7 +66,9 @@
     "test:vector-match": "karma start libs/vector-math/karma.conf.js"
   },
   "dependencies": {
+    "@types/ramda": "^0.25.43",
     "codecov": "^3.1.0",
-    "global": "^4.3.2"
+    "global": "^4.3.2",
+    "ramda": "^0.26.1"
   }
 }

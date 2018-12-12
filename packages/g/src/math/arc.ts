@@ -1,6 +1,8 @@
+import { mathMod } from 'ramda';
 import { vec2 } from '../../util/matrix';
 
-const Util = require('../../util/index');
+
+type radians = number;
 
 export class ArcMath {
 
@@ -30,14 +32,14 @@ export class ArcMath {
     return v1 > v2 ? max : min;
   }
 
-  static nearAngle(angle, startAngle, endAngle, clockwise) {
+  static nearAngle(angle: radians, startAngle: number, endAngle: number, clockwise: number) {
     let plus = 0;
     if (endAngle - startAngle >= Math.PI * 2) {
       plus = Math.PI * 2;
     }
-    startAngle = Util.mod(startAngle, Math.PI * 2);
-    endAngle   = Util.mod(endAngle, Math.PI * 2) + plus;
-    angle      = Util.mod(angle, Math.PI * 2);
+    startAngle = mathMod(startAngle, Math.PI * 2);
+    endAngle   = mathMod(endAngle, Math.PI * 2) + plus;
+    angle      = mathMod(angle, Math.PI * 2);
     if (clockwise) {
       if (startAngle >= endAngle) {
         if (angle > endAngle && angle < startAngle) {
@@ -111,7 +113,7 @@ export class ArcMath {
     let maxX = -Infinity;
     let minY = Infinity;
     let maxY = -Infinity;
-    Util.each(points, function (point) {
+    points.forEach((point) => {
       if (minX > point.x) {
         minX = point.x;
       }

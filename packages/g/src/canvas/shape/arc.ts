@@ -7,6 +7,7 @@
  */
 
 import { Shape } from '../../core/shape';
+import { ArcMath } from '../../math/arc';
 import { Inside } from '../../util/inside';
 
 function _getArcX(x, radius, angle) {
@@ -56,7 +57,7 @@ export class Arc extends Shape {
     const {x, y, r, startAngle, endAngle, clockwise} = attrs;
     const lineWidth                                  = this.getHitLineWidth();
     const halfWidth                                  = lineWidth / 2;
-    const box                                        = ArcMath.box(x, y, r, startAngle, endAngle, clockwise);
+    const box                                        = ArcMath.arcBox(x, y, r, startAngle, endAngle, clockwise);
     box.minX -= halfWidth;
     box.minY -= halfWidth;
     box.maxX += halfWidth;
@@ -79,7 +80,7 @@ export class Arc extends Shape {
   public createPath(context) {
     const attrs                                      = this.__attrs;
     const {x, y, r, startAngle, endAngle, clockwise} = attrs;
-    context                                          = context || self.get('context');
+    context                                          = context || this.get('context');
 
     context.beginPath();
     context.arc(x, y, r, startAngle, endAngle, clockwise);
