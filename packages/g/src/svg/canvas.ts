@@ -1,10 +1,11 @@
+import { Cfg } from '../annotations/annotations';
 import * as Util from '../util/index';
 import * as Timeline from '../util/mixin/timeline';
 import * as Defs from './core/defs';
 import * as Group from './core/group';
 import * as Event from './event';
 
-@CFG({
+@Cfg({
   eventEnable : true,
   /**
    * 像素宽度

@@ -1,21 +1,29 @@
-const Util = require('../../util/index');
-const vec2 = require('../../util/matrix').vec2;
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
 
+import Util from '../../util/index';
 
-export class QuadraticMath {
+import { vec2 } from '../../util/matrix';
 
-  static quadraticAt(p0, p1, p2, t) {
+export namespace QuadraticMath {
+
+  export function quadraticAt(p0, p1, p2, t) {
     const onet = 1 - t;
     return onet * (onet * p0 + 2 * t * p1) + t * t * p2;
   }
 
-  static projectPoint(x1, y1, x2, y2, x3, y3, x, y) {
+  export function projectPoint(x1, y1, x2, y2, x3, y3, x, y) {
     const rst = {};
     quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, rst);
     return rst;
   }
 
-  static quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, out) {
+  export function quadraticProjectPoint(x1, y1, x2, y2, x3, y3, x, y, out) {
     let t;
     let interval  = 0.005;
     let d         = Infinity;
@@ -86,7 +94,7 @@ export class QuadraticMath {
   }
 
 
-  static quadraticExtrema(p0, p1, p2) {
+  export function quadraticExtrema(p0, p1, p2) {
     const a = p0 + p2 - 2 * p1;
     if (Util.isNumberEqual(a, 0)) {
       return [0.5];

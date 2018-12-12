@@ -6,8 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Marker = require('../marker');
-const Util   = require('../../util/index');
+import Marker from '../marker';
+
+import Util from '../../util/index';
 
 const PI             = Math.PI;
 const sin            = Math.sin;

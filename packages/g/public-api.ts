@@ -6,6 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-export {Cfg, Attrs, Interaction} from './src/annotations/annotations'
+export { EventEmitter } from './src/event/event-emitter'
+export { Cfg, Attrs, Interaction } from './src/annotations/annotations'
 
 export const version = '____G_VERSION____';

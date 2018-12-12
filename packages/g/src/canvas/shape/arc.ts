@@ -6,6 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
+import { Attrs } from '../../annotations/annotations';
 import { Shape } from '../../core/shape';
 import { ArcMath } from '../../math/arc';
 import { Inside } from '../../util/inside';
@@ -18,20 +19,20 @@ function _getArcY(y, radius, angle) {
   return y + (radius * Math.sin(angle));
 }
 
+@Attrs({
+  x         : 0,
+  y         : 0,
+  r         : 0,
+  startAngle: 0,
+  endAngle  : 0,
+  clockwise : false,
+  lineWidth : 1,
+  startArrow: false,
+  endArrow  : false,
+})
 export class Arc extends Shape {
-  public static ATTRS = {
-    x         : 0,
-    y         : 0,
-    r         : 0,
-    startAngle: 0,
-    endAngle  : 0,
-    clockwise : false,
-    lineWidth : 1,
-    startArrow: false,
-    endArrow  : false,
-  };
 
-  private canStroke = true;
+  public canStroke = true;
   private type      = 'arc';
 
   constructor(cfg) {

@@ -1,11 +1,19 @@
-const vec2 = require('../../util/matrix').vec2;
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
 
-export class LineMath {
-  static at(p1, p2, t) {
+import { vec2 } from '../../util/matrix';
+
+export namespace LineMath {
+  export function at(p1, p2, t) {
     return (p2 - p1) * t + p1;
   }
 
-  static pointDistance(x1, y1, x2, y2, x, y) {
+  export function pointDistance(x1, y1, x2, y2, x, y) {
     const d = [x2 - x1, y2 - y1];
     if (vec2.exactEquals(d, [0, 0])) {
       return NaN;
@@ -17,7 +25,7 @@ export class LineMath {
     return Math.abs(vec2.dot(a, u));
   }
 
-  static box(x1, y1, x2, y2, lineWidth) {
+  export function box(x1, y1, x2, y2, lineWidth) {
     const halfWidth = lineWidth / 2;
     const minX      = Math.min(x1, x2);
     const maxX      = Math.max(x1, x2);
@@ -32,7 +40,7 @@ export class LineMath {
     };
   }
 
-  static len(x1, y1, x2, y2) {
+  export function len(x1, y1, x2, y2) {
     return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
   }
 }

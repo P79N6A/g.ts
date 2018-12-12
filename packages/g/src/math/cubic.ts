@@ -1,13 +1,21 @@
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
 const Util = require('../../util/index');
 const vec2 = require('../../util/matrix').vec2;
 
-export class CubicMath {
-  static cubicAt(p0, p1, p2, p3, t) {
+export namespace CubicMath {
+  export function cubicAt(p0, p1, p2, p3, t) {
     const onet = 1 - t;
     return onet * onet * (onet * p3 + 3 * t * p2) + t * t * (t * p0 + 3 * onet * p1);
   }
 
-  static cubicDerivativeAt(p0, p1, p2, p3, t) {
+  export function cubicDerivativeAt(p0, p1, p2, p3, t) {
     const onet = 1 - t;
     return 3 * (
       ((p1 - p0) * onet + 2 * (p2 - p1) * t) * onet +
@@ -15,7 +23,7 @@ export class CubicMath {
     );
   }
 
-  static cubicProjectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y, out) {
+  export function cubicProjectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y, out) {
     let t;
     let interval  = 0.005;
     let d         = Infinity;
@@ -31,8 +39,8 @@ export class CubicMath {
 
     for (_t = 0; _t < 1; _t += 0.05) {
       v1 = [
-        CubicMath.cubicAt(x1, x2, x3, x4, _t),
-        CubicMath.cubicAt(y1, y2, y3, y4, _t)
+        cubicAt(x1, x2, x3, x4, _t),
+        cubicAt(y1, y2, y3, y4, _t)
       ];
 
       d1 = vec2.squaredDistance(v0, v1);
@@ -52,20 +60,19 @@ export class CubicMath {
       next = t + interval;
 
       v1 = [
-        CubicMath.cubicAt(x1, x2, x3, x4, prev),
-        CubicMath.cubicAt(y1, y2, y3, y4, prev)
+        cubicAt(x1, x2, x3, x4, prev),
+        cubicAt(y1, y2, y3, y4, prev)
       ];
 
       d1 = vec2.squaredDistance(v0, v1);
-
 
       if (prev >= 0 && d1 < d) {
         t = prev;
         d = d1;
       } else {
         v2 = [
-          CubicMath.cubicAt(x1, x2, x3, x4, next),
-          CubicMath.cubicAt(y1, y2, y3, y4, next)
+          cubicAt(x1, x2, x3, x4, next),
+          cubicAt(y1, y2, y3, y4, next)
         ];
 
         d2 = vec2.squaredDistance(v0, v2);
@@ -80,14 +87,14 @@ export class CubicMath {
     }
 
     if (out) {
-      out.x = CubicMath.cubicAt(x1, x2, x3, x4, t);
-      out.y = CubicMath.cubicAt(y1, y2, y3, y4, t);
+      out.x = cubicAt(x1, x2, x3, x4, t);
+      out.y = cubicAt(y1, y2, y3, y4, t);
     }
 
     return Math.sqrt(d);
   }
 
-  static cubicExtrema(p0, p1, p2, p3) {
+  export function cubicExtrema(p0, p1, p2, p3) {
     const a       = 3 * p0 - 9 * p1 + 9 * p2 - 3 * p3;
     const b       = 6 * p1 - 12 * p2 + 6 * p3;
     const c       = 3 * p2 - 3 * p3;
@@ -122,16 +129,13 @@ export class CubicMath {
     return extrema;
   }
 
-  static base3(t, p1, p2, p3, p4) {
+  export function base3(t, p1, p2, p3, p4) {
     const t1 = -3 * p1 + 9 * p2 - 9 * p3 + 3 * p4;
     const t2 = t * t1 + 6 * p1 - 12 * p2 + 6 * p3;
     return t * t2 - 3 * p1 + 3 * p2;
   }
 
-  static cubiclLen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
-    if (Util.isNil(z)) {
-      z = 1;
-    }
+  export function cubiclLen(x1, y1, x2, y2, x3, y3, x4, y4, z = 1) {
     z             = z > 1 ? 1 : z < 0 ? 0 : z;
     const z2      = z / 2;
     const n       = 12;
@@ -140,17 +144,17 @@ export class CubicMath {
     let sum       = 0;
     for (let i = 0; i < n; i++) {
       const ct    = z2 * Tvalues[i] + z2;
-      const xbase = CubicMath.base3(ct, x1, x2, x3, x4);
-      const ybase = CubicMath.base3(ct, y1, y2, y3, y4);
+      const xbase = base3(ct, x1, x2, x3, x4);
+      const ybase = base3(ct, y1, y2, y3, y4);
       const comb  = xbase * xbase + ybase * ybase;
       sum += Cvalues[i] * Math.sqrt(comb);
     }
     return z2 * sum;
   }
 
-  static projectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y) {
+  export function projectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y) {
     const rst = {};
-    CubicMath.cubicProjectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y, rst);
+    cubicProjectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y, rst);
     return rst;
   }
 }
