@@ -10,7 +10,7 @@ import { Cfg } from '../annotations/annotations';
 import { Group } from '../core/group'
 import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '../util';
 import { Timeline } from '../util/mixin/timeline';
-import { Event } from './event'
+import { GEvent } from './g-event'
 
 @Cfg({
   eventEnable : true,
@@ -92,7 +92,7 @@ export class Canvas extends Group {
   }
 
   public _getEventObj(type, e, point, target) {
-    const event         = new Event(type, e, true, true);
+    const event         = new GEvent(type, e, true, true);
     event.x             = point.x;
     event.y             = point.y;
     event.clientX       = e.clientX;

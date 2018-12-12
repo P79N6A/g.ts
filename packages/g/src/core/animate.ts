@@ -4,6 +4,7 @@ import d3Timer from 'd3-timer';
 import Util from '../../util/index';
 import MatrixUtil from '../../util/matrix';
 import PathUtil from '../../util/path';
+import { isFunction, isNumber } from '../util/isType';
 
 // 目前整体动画只需要数值和数组的差值计算
 
@@ -59,16 +60,16 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
   const toAttrs     = formatProps.attrs;
   const toM         = formatProps.M;
   const fromAttrs   = getfromAttrs(toAttrs);
-  const fromM       = Util.clone(self.getMatrix());
+  const fromM       = self.getMatrix().clone();
   const repeat      = toProps.repeat;
   let timer         = self.get('animateTimer');
   timer && timer.stop();
   // 可能不设置 easing
-  if (Util.isNumber(callback)) {
+  if (isNumber(callback)) {
     delay    = callback;
     callback = null;
   }
-  if (Util.isFunction(easing)) {
+  if (isFunction(easing)) {
     callback = easing;
     easing   = 'easeLinear';
   } else {
@@ -122,17 +123,17 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
     let interf; //  差值函数
 
     for (const k in toAttrs) {
-      if (!Util.isEqual(fromAttrs[k], toAttrs[k])) {
+      if (!isEqual(fromAttrs[k], toAttrs[k])) {
         if (k === 'path') {
-          const toPath   = PathUtil.parsePathString(toAttrs[k]); // 终点状态
-          const fromPath = PathUtil.parsePathString(fromAttrs[k]); // 起始状态
+          const toPath   = PathparsePathString(toAttrs[k]); // 终点状态
+          const fromPath = PathparsePathString(fromAttrs[k]); // 起始状态
           cProps[k]      = [];
           for (let i = 0; i < toPath.length; i++) {
             const toPathPoint   = toPath[i];
             const fromPathPoint = fromPath[i];
             const cPathPoint    = [];
             for (let j = 0; j < toPathPoint.length; j++) {
-              if (Util.isNumber(toPathPoint[j]) && fromPathPoint) {
+              if (isNumber(toPathPoint[j]) && fromPathPoint) {
                 interf = interpolate(fromPathPoint[j], toPathPoint[j]);
                 cPathPoint.push(interf(ratio));
               } else {
@@ -163,7 +164,7 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
     };
     for (const k in props) {
       if (k === 'transform') {
-        rst.M = MatrixUtil.transform(self.getMatrix(), props[k]);
+        rst.M = Matrixtransform(self.getMatrix(), props[k]);
       } else if (k === 'matrix') {
         rst.M = props[k];
       } else if (!ReservedProps[k]) {

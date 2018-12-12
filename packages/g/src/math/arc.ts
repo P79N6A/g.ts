@@ -7,8 +7,7 @@
  */
 
 import { mathMod } from 'ramda';
-import { vec2 } from '../../util/matrix';
-
+import { Vector2 } from '@gradii/vector-math';
 
 type radians = number;
 
@@ -76,8 +75,8 @@ export class ArcMath {
     const v    = [x, y];
     const v0   = [cx, cy];
     const v1   = [1, 0];
-    const subv = vec2.subtract([], v, v0);
-    let angle  = vec2.angleTo(v1, subv);
+    const subv = Vector2.subtract([], v, v0);
+    let angle  = Vector2.angleTo(v1, subv);
 
     angle        = ArcMath.nearAngle(angle, startAngle, endAngle, clockwise);
     const vpoint = [r * Math.cos(angle) + cx, r * Math.sin(angle) + cy];
@@ -85,7 +84,7 @@ export class ArcMath {
       out.x = vpoint[0];
       out.y = vpoint[1];
     }
-    const d = vec2.distance(vpoint, v);
+    const d = Vector2.distance(vpoint, v);
     return d;
   }
 

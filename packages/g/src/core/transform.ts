@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { mat3, vec3 } from '../../util/matrix';
+import { Matrix3 } from '@gradii/vector-math';
 import { Attribute } from './attribute';
 
 // 是否未改变
@@ -25,7 +25,7 @@ function multiple(m1, m2) {
       m1[0] *= m2[0];
       m1[4] *= m2[4];
     } else {
-      mat3.multiply(m1, m1, m2);
+      Matrix3.multiply(m1, m1, m2);
     }
   }
 }
@@ -155,7 +155,7 @@ export class Transform extends Attribute {
     parents.unshift(parent);
 
     const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    Util.each(parents, function (child) {
+    parents.forEach(function (child) {
       mat3.multiply(m, child.attr('matrix'), m);
     });
     return m;

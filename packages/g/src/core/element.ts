@@ -6,6 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
+import { Cfg } from '@gradii/g';
 import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
 import { d3Timer } from '@gradii/g/timer-engine';
 import { d3Ease } from '@gradii/g/z-ease';
@@ -40,54 +41,53 @@ const SHAPE_ATTRS = [
   'lineDashOffset',
 ];
 
+@Cfg({
+  /**
+   * 唯一标示
+   * @type {Number}
+   */
+  id       : null,
+  /**
+   * Z轴的层叠关系，Z值越大离用户越近
+   * @type {Number}
+   */
+  zIndex   : 0,
+  /**
+   * Canvas对象
+   * @type: {Object}
+   */
+  canvas   : null,
+  /**
+   * 父元素指针
+   * @type {Object}
+   */
+  parent   : null,
+  /**
+   * 用来设置当前对象是否能被捕捉
+   * true 能
+   * false 不能
+   * 对象默认是都可以被捕捉的, 当capture为false时，group.getShape(x, y)方法无法获得该元素
+   * 通过将不必要捕捉的元素的该属性设置成false, 来提高捕捉性能
+   * @type {Boolean}
+   **/
+  capture  : true,
+  /**
+   * 画布的上下文
+   * @type {Object}
+   */
+  context  : null,
+  /**
+   * 是否显示
+   * @type {Boolean}
+   */
+  visible  : true,
+  /**
+   * 是否被销毁
+   * @type: {Boolean}
+   */
+  destroyed: false,
+})
 export class Element extends Transform {
-  public static CFG = {
-    /**
-     * 唯一标示
-     * @type {Number}
-     */
-    id       : null,
-    /**
-     * Z轴的层叠关系，Z值越大离用户越近
-     * @type {Number}
-     */
-    zIndex   : 0,
-    /**
-     * Canvas对象
-     * @type: {Object}
-     */
-    canvas   : null,
-    /**
-     * 父元素指针
-     * @type {Object}
-     */
-    parent   : null,
-    /**
-     * 用来设置当前对象是否能被捕捉
-     * true 能
-     * false 不能
-     * 对象默认是都可以被捕捉的, 当capture为false时，group.getShape(x, y)方法无法获得该元素
-     * 通过将不必要捕捉的元素的该属性设置成false, 来提高捕捉性能
-     * @type {Boolean}
-     **/
-    capture  : true,
-    /**
-     * 画布的上下文
-     * @type {Object}
-     */
-    context  : null,
-    /**
-     * 是否显示
-     * @type {Boolean}
-     */
-    visible  : true,
-    /**
-     * 是否被销毁
-     * @type: {Boolean}
-     */
-    destroyed: false,
-  };
-
   protected __cfg: any;
 
   constructor(cfg) {
