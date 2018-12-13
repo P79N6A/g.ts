@@ -6,26 +6,23 @@
  * See LICENSE file in the project root for full license information.
  */
 
+import { Attrs } from '@gradii/g';
 import { Shape } from '../../core/shape';
 
+@Attrs({
+  x        : 0,
+  y        : 0,
+  r        : 0,
+  lineWidth: 1,
+})
 export class Circle extends Shape {
-  public static ATTRS = {
-    x        : 0,
-    y        : 0,
-    r        : 0,
-    lineWidth: 1,
-  };
-
-  private canFill   = true;
-  private canStroke = true;
-  private type      = 'circle';
-
-  protected __attrs: any;
+  public canFill   = true;
+  public canStroke = true;
+  public type      = 'circle';
 
   constructor(cfg) {
     super(cfg);
   }
-
 
   public getDefaultAttrs() {
     return {
@@ -90,7 +87,7 @@ export class Circle extends Shape {
     const cx    = attrs.x;
     const cy    = attrs.y;
     const r     = attrs.r;
-    context     = context || self.get('context');
+    context     = context || this.get('context');
 
     context.beginPath();
     context.arc(cx, cy, r, 0, Math.PI * 2, false);

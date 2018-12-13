@@ -6,21 +6,22 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Shape } from '../core/shape';
-import CubicMath from './math/cubic';
+import { Attrs } from '../../annotations/annotations';
+import { Shape } from '../../core/shape';
+import { CubicMath } from './math/cubic';
 import { Arrow } from './util/arrow';
 import { Inside } from './util/inside';
 
+@Attrs({
+  p1        : null, // 起始点
+  p2        : null, // 第一个控制点
+  p3        : null, // 第二个控制点
+  p4        : null, // 终点
+  lineWidth : 1,
+  startArrow: false,
+  endArrow  : false,
+})
 export class Cubic extends Shape {
-  public static ATTRS = {
-    p1        : null, // 起始点
-    p2        : null, // 第一个控制点
-    p3        : null, // 第二个控制点
-    p4        : null, // 终点
-    lineWidth : 1,
-    startArrow: false,
-    endArrow  : false,
-  };
   protected canStroke = true;
   protected type      = 'cubic';
 

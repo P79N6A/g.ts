@@ -4,6 +4,8 @@ const Util                            = require('../index');
 const d3Ease                          = require('d3-ease');
 const d3Timer                         = require('d3-timer');
 const {interpolate, interpolateArray} = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
+
+
 const ReservedProps                   = {
   delay: 'delay'
 };

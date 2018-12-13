@@ -22,7 +22,7 @@ function _cloneArrayAttr(arr) {
 }
 
 export class Shape extends Element implements isPointInPath {
-  isShape = true;
+  public isShape = true;
 
   constructor(cfg) {
     super(cfg);

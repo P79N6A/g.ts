@@ -6,13 +6,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util      = require('../../util/index');
-const Inside    = require('./inside');
-const Cubic     = require('../math/cubic');
-const Quadratic = require('../math/quadratic');
-const Ellipse   = require('../math/ellipse');
-const vec3      = require('../../util/matrix').vec3;
-const mat3      = require('../../util/matrix').mat3;
+import Util from '../../util/index';
+import { mat3, vec3 } from '../../util/matrix';
+import Cubic from '../math/cubic';
+import Ellipse from '../math/ellipse';
+import Quadratic from '../math/quadratic';
+import Inside from './inside';
 
 const ARR_CMD = ['m', 'l', 'c', 'a', 'q', 'h', 'v', 't', 's', 'z'];
 

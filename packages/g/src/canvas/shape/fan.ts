@@ -7,24 +7,24 @@
  */
 
 import { Shape, Util, vec2 } from '@gradii/g/core';
+import { Attrs } from '../../annotations/annotations';
 import { ArcMath } from './math/arc';
 import { Inside } from './util/inside';
 
+@Attrs({
+  x         : 0,
+  y         : 0,
+  rs        : 0,
+  re        : 0,
+  startAngle: 0,
+  endAngle  : 0,
+  clockwise : false,
+  lineWidth : 1,
+})
 export class Fan extends Shape {
-  public static ATTRS = {
-    x         : 0,
-    y         : 0,
-    rs        : 0,
-    re        : 0,
-    startAngle: 0,
-    endAngle  : 0,
-    clockwise : false,
-    lineWidth : 1,
-  };
-
-  private canFill   = true;
-  private canStroke = true;
-  private type      = 'fan';
+  public canFill   = true;
+  public canStroke = true;
+  public type      = 'fan';
 
   constructor(cfg) {
     super(cfg);

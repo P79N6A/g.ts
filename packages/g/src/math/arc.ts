@@ -6,21 +6,21 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { mathMod } from 'ramda';
 import { Vector2 } from '@gradii/vector-math';
+import { mathMod } from 'ramda';
 
 type radians = number;
 
-export class ArcMath {
+export namespace ArcMath {
 
-  static circlePoint(cx, cy, r, angle) {
+  export function circlePoint(cx, cy, r, angle) {
     return {
       x: Math.cos(angle) * r + cx,
       y: Math.sin(angle) * r + cy
     };
   }
 
-  static angleNearTo(angle, min, max, out?) {
+  export function angleNearTo(angle, min, max, out?) {
     let v1;
     let v2;
     if (out) {
@@ -39,7 +39,7 @@ export class ArcMath {
     return v1 > v2 ? max : min;
   }
 
-  static nearAngle(angle: radians, startAngle: number, endAngle: number, clockwise: number) {
+  export function nearAngle(angle: radians, startAngle: number, endAngle: number, clockwise: number) {
     let plus = 0;
     if (endAngle - startAngle >= Math.PI * 2) {
       plus = Math.PI * 2;
@@ -71,7 +71,7 @@ export class ArcMath {
     return ArcMath.angleNearTo(angle, endAngle, startAngle);
   }
 
-  static arcProjectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y, out) {
+  export function arcProjectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y, out) {
     const v    = [x, y];
     const v0   = [cx, cy];
     const v1   = [1, 0];
@@ -88,7 +88,7 @@ export class ArcMath {
     return d;
   }
 
-  static arcBox(cx, cy, r, startAngle, endAngle, clockwise) {
+  export function arcBox(cx, cy, r, startAngle, endAngle, clockwise) {
     const angleRight  = 0;
     const angleBottom = Math.PI / 2;
     const angleLeft   = Math.PI;

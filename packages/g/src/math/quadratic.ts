@@ -6,12 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import Util from '../../util/index';
-
-import { vec2 } from '../../util/matrix';
+import { Vector2 } from '@gradii/vector-math'
 
 export namespace QuadraticMath {
-
   export function quadraticAt(p0, p1, p2, t) {
     const onet = 1 - t;
     return onet * (onet * p0 + 2 * t * p1) + t * t * p2;
@@ -63,7 +60,7 @@ export namespace QuadraticMath {
         quadraticAt(y1, y2, y3, prev)
       ];
 
-      d1 = vec2.squaredDistance(v0, v1);
+      d1 = Vector2.squaredDistance(v0, v1);
 
       if (prev >= 0 && d1 < d) {
         t = prev;
@@ -74,7 +71,7 @@ export namespace QuadraticMath {
           quadraticAt(y1, y2, y3, next)
         ];
 
-        d2 = vec2.squaredDistance(v0, v2);
+        d2 = Vector2.squaredDistance(v0, v2);
 
         if (next <= 1 && d2 < d) {
           t = next;
@@ -92,7 +89,6 @@ export namespace QuadraticMath {
 
     return Math.sqrt(d);
   }
-
 
   export function quadraticExtrema(p0, p1, p2) {
     const a = p0 + p2 - 2 * p1;

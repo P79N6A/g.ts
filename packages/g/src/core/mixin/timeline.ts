@@ -4,14 +4,6 @@ const d3Timer                         = require('d3-timer');
 const d3Ease                          = require('d3-ease');
 const {interpolate, interpolateArray} = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
 
-const Timeline = function () {
-  // 待执行动画的队列
-  this._animators = [];
-  // 当前时间
-  this._current   = 0;
-  // 计时器实例
-  this._timer     = null;
-};
 
 function _update(self, animator, ratio) {
   const cProps    = {}; // 此刻属性
@@ -87,7 +79,17 @@ function update(shape, animator, elapsed) {
   return isFinished;
 }
 
-Util.augment(Timeline, {
+export class Timeline {
+
+  constructor() {
+    // 待执行动画的队列
+    this._animators = [];
+    // 当前时间
+    this._current   = 0;
+    // 计时器实例
+    this._timer     = null;
+  };
+
   initTimer() {
     const self     = this;
     let isFinished = false;
@@ -128,22 +130,25 @@ Util.augment(Timeline, {
         }
       }
     });
-  },
+  }
+
   addAnimator(shape) {
     this._animators.push(shape);
-  },
+  }
+
   removeAnimator(index) {
     this._animators.splice(index, 1);
-  },
+  }
+
   clear() {
     this._animators = [];
-  },
+  }
+
   isAnimating() {
     return !!this._animators.length;
-  },
+  }
+
   getTime() {
     return this._current;
   }
-});
-
-module.exports = Timeline;
+}

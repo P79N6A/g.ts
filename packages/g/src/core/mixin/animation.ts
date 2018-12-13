@@ -41,7 +41,7 @@ function checkExistedAttrs(animators, animator) {
   return animators;
 }
 
-module.exports = {
+export class Animation {
   /**
    * 执行动画
    * @param  {Object}   toProps  动画最终状态
@@ -98,7 +98,8 @@ module.exports = {
     animators.push(animator);
     self.setSilent('animators', animators);
     self.setSilent('pause', {isPaused: false});
-  },
+  }
+
   stopAnimate() {
     const animators = this.get('animators');
     // 将动画执行到最后一帧，执行回调
@@ -110,7 +111,8 @@ module.exports = {
     });
     this.setSilent('animating', false);
     this.setSilent('animators', []);
-  },
+  }
+
   pauseAnimate() {
     const self     = this;
     const timeline = self.get('timeline');
@@ -120,7 +122,8 @@ module.exports = {
       pauseTime: timeline.getTime()
     });
     return self;
-  },
+  }
+
   resumeAnimate() {
     const self      = this;
     const timeline  = self.get('timeline');
@@ -139,4 +142,4 @@ module.exports = {
     self.setSilent('animators', animators);
     return self;
   }
-};
+}

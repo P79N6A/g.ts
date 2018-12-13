@@ -1,6 +1,4 @@
-const Util = require('../index');
-const mat3 = require('../matrix').mat3;
-const vec3 = require('../matrix').vec3;
+import { mat3, vec3 } from '../matrix';
 
 // 是否未改变
 function isUnchanged(m) {
@@ -23,31 +21,36 @@ function multiple(m1, m2) {
   }
 }
 
-module.exports = {
+export class Transform {
+
   initTransform() {
     this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
-  },
+  }
+
   translate(tx, ty) {
     const matrix = this.attr('matrix');
     mat3.translate(matrix, matrix, [tx, ty]);
     this.clearTotalMatrix();
     this.attr('matrix', matrix);
     return this;
-  },
+  }
+
   rotate(radian) {
     const matrix = this.attr('matrix');
     mat3.rotate(matrix, matrix, radian);
     this.clearTotalMatrix();
     this.attr('matrix', matrix);
     return this;
-  },
+  }
+
   scale(s1, s2) {
     const matrix = this.attr('matrix');
     mat3.scale(matrix, matrix, [s1, s2]);
     this.clearTotalMatrix();
     this.attr('matrix', matrix);
     return this;
-  },
+  }
+
   /**
    * 绕起始点旋转
    * @param  {Number} rotate 0～360
@@ -63,7 +66,8 @@ module.exports = {
       ['r', rotate],
       ['t', x, y]
     ]);
-  },
+  }
+
   /**
    * 移动的到位置
    * @param  {Number} x 移动到x
@@ -75,7 +79,8 @@ module.exports = {
     this.translate(x - cx, y - cy);
     this.set('x', x);
     this.set('y', y);
-  },
+  }
+
   transform(ts) {
     const self   = this;
     const matrix = self.attr('matrix');
@@ -100,19 +105,23 @@ module.exports = {
       }
     });
     return self;
-  },
+  }
+
   setTransform(ts) {
     this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
     return this.transform(ts);
-  },
+  }
+
   getMatrix() {
     return this.attr('matrix');
-  },
+  }
+
   setMatrix(m) {
     this.attr('matrix', m);
     this.clearTotalMatrix();
     return this;
-  },
+  }
+
   apply(v, root) {
     let m;
     if (root) {
@@ -122,7 +131,8 @@ module.exports = {
     }
     vec3.transformMat3(v, v, m);
     return this;
-  },
+  }
+
   // 获取到达指定根节点的矩阵
   _getMatrixByRoot(root) {
     const self    = this;
@@ -141,7 +151,8 @@ module.exports = {
       mat3.multiply(m, child.attr('matrix'), m);
     });
     return m;
-  },
+  }
+
   /**
    * 应用到当前元素上的总的矩阵
    * @return {Matrix} 矩阵
@@ -160,11 +171,13 @@ module.exports = {
       this.__cfg.totalMatrix = m;
     }
     return m;
-  },
+  }
+
   // 清除当前的矩阵
   clearTotalMatrix() {
     // this.__cfg.totalMatrix = null;
-  },
+  }
+
   invert(v) {
     const m = this.getTotalMatrix();
     // 单精屏幕下大多数矩阵没变化
@@ -178,7 +191,8 @@ module.exports = {
       }
     }
     return this;
-  },
+  }
+
   resetTransform(context) {
     const mo = this.attr('matrix');
     // 不改变时
@@ -186,4 +200,4 @@ module.exports = {
       context.transform(mo[0], mo[1], mo[3], mo[4], mo[6], mo[7]);
     }
   }
-};
+}

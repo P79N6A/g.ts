@@ -24,11 +24,11 @@ export class CImage extends Shape {
     sheight: null,
   };
 
+  public type = 'image';
+
   constructor(cfg) {
     super(cfg);
   }
-
-  private type = 'image';
 
   public __afterSetAttrImg(img) {
     this.__setAttrImg(img);
@@ -179,5 +179,4 @@ export class CImage extends Shape {
     }
     return;
   }
-
 }
