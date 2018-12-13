@@ -14,6 +14,7 @@ export * from './src/canvas/shape/polyline';
 export * from './src/canvas/shape/quadratic';
 export * from './src/canvas/shape/rect';
 export * from './src/canvas/shape/text';
+
 export * from './src/svg/shape/circle';
 export * from './src/svg/shape/dom';
 export * from './src/svg/shape/ellipse';
