@@ -33,7 +33,7 @@ function _getArcY(y, radius, angle) {
 export class Arc extends Shape {
 
   public canStroke = true;
-  private type      = 'arc';
+  public type      = 'arc';
 
   constructor(cfg) {
     super(cfg);

@@ -5,6 +5,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import { Attrs } from '@gradii/g/core';
 
 const Util   = require('../util/index');
 const Shape  = require('../core/shape');
@@ -12,18 +13,18 @@ const Inside = require('./util/inside');
 const mat3   = require('../util/matrix').mat3;
 const vec3   = require('../util/matrix').vec3;
 
+@Attrs({
+  x        : 0,
+  y        : 0,
+  rx       : 1,
+  ry       : 1,
+  lineWidth: 1,
+})
 export class Ellipse extends Shape {
-  public static ATTRS = {
-    x        : 0,
-    y        : 0,
-    rx       : 1,
-    ry       : 1,
-    lineWidth: 1,
-  };
 
-  protected canFill   = true;
-  protected canStroke = true;
-  protected type      = 'ellipse';
+  public canFill   = true;
+  public canStroke = true;
+  public type      = 'ellipse';
 
   constructor(cfg) {
     super(cfg);

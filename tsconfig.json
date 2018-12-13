@@ -21,7 +21,7 @@
         "packages/g/public-api"
       ],
       "@gradii/g/*": [
-        "packages/*/index"
+        "packages/g/*/index"
       ],
       "@gradii/*": [
         "libs/*/public-api"
