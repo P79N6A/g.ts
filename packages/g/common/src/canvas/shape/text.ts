@@ -6,15 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util   = require('../util/index');
-const Shape  = require('../core/shape');
-const Inside = require('./util/inside');
+import { Attrs, Shape } from '@gradii/g/core';
+import { Inside } from '@gradii/g/util';
 
-const CText = function (cfg) {
-  super(cfg);
-};
-
-CText.ATTRS = {
+@Attrs({
   x           : 0,
   y           : 0,
   text        : null,
@@ -27,14 +22,16 @@ CText.ATTRS = {
   textBaseline: 'bottom',
   lineHeight  : null,
   textArr     : null,
-};
+})
+export class CText extends Shape {
+  public canFill  : true;
+  public canStroke: true;
+  public type     : 'text';
 
-Util.extend(CText, Shape);
+  constructor(cfg) {
+    super(cfg);
+  }
 
-Util.augment(CText, {
-  canFill  : true,
-  canStroke: true,
-  type     : 'text',
   getDefaultAttrs() {
     return {
       lineWidth   : 1,
@@ -47,7 +44,8 @@ Util.augment(CText, {
       textAlign   : 'start',
       textBaseline: 'bottom',
     };
-  },
+  }
+
   initTransform() {
     this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
     const fontSize = this.__attrs.fontSize;
@@ -58,7 +56,8 @@ Util.augment(CText, {
         ['t', this.__attrs.x, this.__attrs.y],
       ]);
     }
-  },
+  }
+
   __assembleFont() {
     // var self = this;
     const attrs       = this.__attrs;
@@ -69,28 +68,34 @@ Util.augment(CText, {
     const fontVariant = attrs.fontVariant; // self.attr('fontVariant');
     // self.attr('font', [fontStyle, fontVariant, fontWeight, fontSize + 'px', fontFamily].join(' '));
     attrs.font = [fontStyle, fontVariant, fontWeight, fontSize + 'px', fontFamily].join(' ');
-  },
+  }
+
   __afterSetAttrFontSize() {
     /* this.attr({
       height: this.__getTextHeight()
     }); */
     this.__assembleFont();
-  },
+  }
   __afterSetAttrFontFamily() {
     this.__assembleFont();
-  },
+  }
+
   __afterSetAttrFontWeight() {
     this.__assembleFont();
-  },
+  }
+
   __afterSetAttrFontStyle() {
     this.__assembleFont();
-  },
+  }
+
   __afterSetAttrFontVariant() {
     this.__assembleFont();
-  },
+  }
+
   __afterSetAttrFont() {
     // this.attr('width', this.measureText());
-  },
+  }
+
   __afterSetAttrText() {
     const attrs = this.__attrs;
     const text  = attrs.text;
@@ -103,7 +108,8 @@ Util.augment(CText, {
     }
     // attrs.height = this.__getTextHeight();
     // attrs.width = this.measureText();
-  },
+  }
+
   __getTextHeight() {
     const attrs     = this.__attrs;
     const lineCount = attrs.lineCount;
@@ -113,7 +119,8 @@ Util.augment(CText, {
       return fontSize * lineCount + spaceingY * (lineCount - 1);
     }
     return fontSize;
-  },
+  }
+
   // 计算浪费，效率低，待优化
   __afterSetAttrAll(objs) {
     const self = this;
@@ -132,10 +139,12 @@ Util.augment(CText, {
     ) {
       self.__afterSetAttrText(objs.text);
     }
-  },
+  }
+
   isHitBox() {
     return false;
-  },
+  }
+
   calculateBox() {
     const self  = this;
     const attrs = self.__attrs;
@@ -184,20 +193,23 @@ Util.augment(CText, {
       maxX: point.x + width + halfWidth,
       maxY: point.y + height + halfWidth,
     };
-  },
+  }
+
   __getSpaceingY() {
     const attrs      = this.__attrs;
     const lineHeight = attrs.lineHeight;
     const fontSize   = attrs.fontSize * 1;
     return lineHeight ? (lineHeight - fontSize) : fontSize * 0.14;
-  },
+  }
+
   isPointInPath(x, y) {
     const self = this;
     const box  = self.getBBox();
     if (self.hasFill() || self.hasStroke()) {
       return Inside.box(box.minX, box.maxX, box.minY, box.maxY, x, y);
     }
-  },
+  }
+
   drawInner(context) {
     const self  = this;
     const attrs = self.__attrs;
@@ -228,7 +240,8 @@ Util.augment(CText, {
         context.fillText(text, x, y);
       }
     }
-  },
+  }
+
   __drawTextArr(context, fill) {
     const textArr      = this.__attrs.textArr;
     const textBaseline = this.__attrs.textBaseline;
@@ -250,7 +263,8 @@ Util.augment(CText, {
         context.strokeText(subText, x, subY);
       }
     });
-  },
+  }
+
   measureText() {
     const self    = this;
     const attrs   = self.__attrs;
@@ -277,7 +291,5 @@ Util.augment(CText, {
       context.restore();
     }
     return width;
-  },
-});
-
-module.exports = CText;
+  }
+}

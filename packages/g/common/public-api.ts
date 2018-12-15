@@ -1,4 +1,3 @@
-export * from './src/canvas/canvas-render-strategy';
 export * from './src/canvas/canvas';
 export * from './src/canvas/shape/arc';
 export * from './src/canvas/shape/circle';
