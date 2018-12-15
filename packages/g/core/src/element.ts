@@ -11,10 +11,10 @@ import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前
 import { d3Timer } from '@gradii/g/timer-engine';
 import { d3Ease } from '@gradii/g/z-ease';
 
-import MatrixUtil from '../../util/matrix';
+import MatrixUtil from '@gradii/g/util';
 
-import { PathUtil } from '../../util/path';
-import { Format } from '../util/format';
+import { PathUtil } from '@gradii/g/util';
+import { Format } from '@gradii/g/util';
 import { Animate } from './animate';
 import { Transform } from './transform';
 

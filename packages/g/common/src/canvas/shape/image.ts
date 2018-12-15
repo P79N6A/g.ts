@@ -9,7 +9,7 @@
 const Util = require('../util/index');
 import { Shape } from '@gradii/g/core';
 
-import Inside from './util/inside';
+import Inside from '@gradii/g/util';
 
 export class CImage extends Shape {
   public static ATTRS = {

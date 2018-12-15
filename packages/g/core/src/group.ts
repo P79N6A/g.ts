@@ -1,5 +1,5 @@
+import { isFunction } from '@gradii/g/util';
 import * as Shape from '../shapes/index';
-import * as Util from '../util/index';
 import { Element } from './element';
 
 const SHAPE_MAP = {}; // 缓存图形类型
@@ -105,7 +105,7 @@ export class Group extends Element {
     const canvas = this.get('canvas');
     let rst;
     cfg          = Util.merge({}, cfg);
-    if (Util.isFunction(param)) {
+    if (isFunction(param)) {
       if (cfg) {
         cfg.canvas = canvas;
         cfg.parent = this;
@@ -476,7 +476,7 @@ export class Group extends Element {
       return;
     }
     this.clear();
-    Group.superclass.destroy.call(this);
+    super.destroy();
   }
 
   clone() {

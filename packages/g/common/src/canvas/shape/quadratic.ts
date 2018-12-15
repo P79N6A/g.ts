@@ -6,12 +6,12 @@ import { Attrs } from '@gradii/g';
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import { isPresent } from '../../util/isType';
+import { isPresent } from '@gradii/g/util';
 
 import { Shape } from '../core/shape';
 import { QuadraticMath } from './math/quadratic';
-import { Arrow } from './util/arrow';
-import { Inside } from './util/inside';
+import { Arrow } from '@gradii/g/util';
+import { Inside } from '@gradii/g/util';
 
 
 @Attrs({

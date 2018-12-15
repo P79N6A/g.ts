@@ -9,7 +9,7 @@
 import { Cfg } from '../annotations/annotations';
 import { Group } from '../core/group'
 import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '../util';
-import { Timeline } from '../util/mixin/timeline';
+import { Timeline } from '@gradii/g/util';
 import { GEvent } from './g-event'
 
 @Cfg({

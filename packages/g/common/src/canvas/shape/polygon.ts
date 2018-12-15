@@ -8,8 +8,8 @@
 
 import { Attrs } from '../../annotations/annotations';
 import { Shape } from '../../core/shape';
-import Util from '../util/index';
-import { Inside } from './util/inside';
+import Util from '@gradii/g/util';
+import { Inside } from '@gradii/g/util';
 
 @Attrs({
   points   : null,

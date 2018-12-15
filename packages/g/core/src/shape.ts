@@ -1,6 +1,10 @@
-import { Inside } from '../shapes/util/inside';
+import { Inside } from '@gradii/g/util';
 import { Element } from './element';
 import { isPointInPath } from './mixin/isPointInPath';
+
+export interface IsPointInPath {
+  isPointInPath(x, y): boolean
+}
 
 const ARRAY_ATTRS = {
   matrix  : 'matrix',
@@ -21,7 +25,7 @@ function _cloneArrayAttr(arr) {
   return result;
 }
 
-export class Shape extends Element implements isPointInPath {
+export class Shape extends Element implements IsPointInPath {
   public isShape = true;
 
   constructor(cfg) {
@@ -161,5 +165,9 @@ export class Shape extends Element implements isPointInPath {
     // zIndex也是绘图属性，但是在cfg中，特殊处理
     clone._cfg.zIndex = self._cfg.zIndex;
     return clone;
+  }
+
+  isPointInPath(x, y): boolean {
+    return false;
   }
 }

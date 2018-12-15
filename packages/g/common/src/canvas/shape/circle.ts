@@ -6,8 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Attrs } from '@gradii/g';
-import { Shape } from '../../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   x        : 0,

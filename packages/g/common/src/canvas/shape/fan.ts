@@ -9,7 +9,7 @@
 import { Shape, Util, vec2 } from '@gradii/g/core';
 import { Attrs } from '../../annotations/annotations';
 import { ArcMath } from './math/arc';
-import { Inside } from './util/inside';
+import { Inside } from '@gradii/g/util';
 
 @Attrs({
   x         : 0,

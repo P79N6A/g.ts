@@ -6,11 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Attrs } from '../../annotations/annotations';
-import { Shape } from '../../core/shape';
-import { CubicMath } from './math/cubic';
-import { Arrow } from './util/arrow';
-import { Inside } from './util/inside';
+import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import { Arrow, Inside } from '@gradii/g/util';
 
 @Attrs({
   p1        : null, // 起始点
