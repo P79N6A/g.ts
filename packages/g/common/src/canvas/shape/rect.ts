@@ -5,36 +5,33 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import { Attrs, Shape } from '@gradii/g/core';
+import { Inside } from '@gradii/g/util';
 
-const Util   = require('../util/index');
-const Shape  = require('../core/shape');
-const Inside = require('./util/inside');
-
-const Rect = function (cfg) {
-  super(cfg);
-};
-
-Rect.ATTRS = {
+@Attrs({
   x        : 0,
   y        : 0,
   width    : 0,
   height   : 0,
   radius   : 0,
   lineWidth: 1,
-};
+})
+export class Rect extends Shape {
+  public canFill   = true;
+  public canStroke = true;
+  public type      = 'rect';
 
-Util.extend(Rect, Shape);
+  constructor(cfg) {
+    super(cfg);
+  }
 
-Util.augment(Rect, {
-  canFill  : true,
-  canStroke: true,
-  type     : 'rect',
   getDefaultAttrs() {
     return {
       lineWidth: 1,
       radius   : 0,
     };
-  },
+  }
+
   calculateBox() {
     const self      = this;
     const attrs     = self.__attrs;
@@ -51,7 +48,8 @@ Util.augment(Rect, {
       maxX: x + width + halfWidth,
       maxY: y + height + halfWidth,
     };
-  },
+  }
+
   isPointInPath(x, y) {
     const self   = this;
     const fill   = self.hasFill();
@@ -70,14 +68,16 @@ Util.augment(Rect, {
     }
 
     return false;
-  },
+  }
+
   __isPointInFill(x, y) {
     const context = this.get('context');
 
     if (!context) { return false; }
     this.createPath();
     return context.isPointInPath(x, y);
-  },
+  }
+
   __isPointInStroke(x, y) {
     const self      = this;
     const attrs     = self.__attrs;
@@ -104,8 +104,9 @@ Util.augment(Rect, {
       Inside.arcline(rx + width - radius, ry + height - radius, radius, 0, 0.5 * Math.PI, false, lineWidth, x, y) ||
       Inside.arcline(rx + radius, ry + height - radius, radius, 0.5 * Math.PI, Math.PI, false, lineWidth, x, y) ||
       Inside.arcline(rx + radius, ry + radius, radius, Math.PI, 1.5 * Math.PI, false, lineWidth, x, y);
-  },
-  createPath(context) {
+  }
+
+  createPath(context?) {
     const self   = this;
     const attrs  = self.__attrs;
     const x      = attrs.x;
@@ -131,7 +132,5 @@ Util.augment(Rect, {
       context.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2, false);
       context.closePath();
     }
-  },
-});
-
-module.exports = Rect;
+  }
+}

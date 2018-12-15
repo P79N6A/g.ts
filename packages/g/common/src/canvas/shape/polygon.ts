@@ -6,9 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Attrs } from '../../annotations/annotations';
-import { Shape } from '../../core/shape';
-import Util from '@gradii/g/util';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
 @Attrs({
@@ -115,7 +113,7 @@ export class Polygon extends Shape {
     return Inside.polyline(outPoints, lineWidth, x, y);
   }
 
-  public createPath(context) {
+  public createPath(context?) {
 
     const attrs  = this.__attrs;
     const points = attrs.points;

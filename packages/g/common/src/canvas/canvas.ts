@@ -6,9 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Cfg } from '../annotations/annotations';
-import { Group } from '../core/group'
-import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '../util';
+import { Cfg } from '@gradii/g/core';
+import { Group } from '@gradii/g/core'
+import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '@gradii/g/util';
 import { Timeline } from '@gradii/g/util';
 import { GEvent } from './g-event'
 

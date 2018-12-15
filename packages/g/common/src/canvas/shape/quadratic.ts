@@ -1,4 +1,3 @@
-import { Attrs } from '@gradii/g';
 /**
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
@@ -6,13 +5,9 @@ import { Attrs } from '@gradii/g';
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
-import { isPresent } from '@gradii/g/util';
 
-import { Shape } from '../core/shape';
-import { QuadraticMath } from './math/quadratic';
-import { Arrow } from '@gradii/g/util';
-import { Inside } from '@gradii/g/util';
-
+import { Attrs, QuadraticMath, Shape } from '@gradii/g/core';
+import { Arrow, Inside, isPresent } from '@gradii/g/util';
 
 @Attrs({
   p1        : null, // 起始点

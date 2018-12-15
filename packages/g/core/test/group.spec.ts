@@ -1,21 +1,21 @@
+import { Canvas } from '@gradii/g/common';
 
 
 const Event = require('../../../src/event');
-const Canvas = require('../../../src/canvas');
-const div = document.createElement('div');
-div.id = 'canvas-group-1';
+const div   = document.createElement('div');
+div.id      = 'canvas-group-1';
 document.body.appendChild(div);
 
-describe('Group', function() {
+describe('Group', function () {
 
   const canvas = new Canvas({
     containerId: 'canvas-group-1',
-    width: 200,
-    height: 200,
-    pixelRatio: 1
+    width      : 200,
+    height     : 200,
+    pixelRatio : 1
   });
 
-  it('constructor', function() {
+  it('constructor', function () {
     const g = new G.Group({
       id: 'g1'
     });
@@ -25,8 +25,8 @@ describe('Group', function() {
     expect(g.get('children').length).toBe(0);
   });
 
-  it('add', function() {
-    const e = new G.Circle({
+  it('add', function () {
+    const e  = new G.Circle({
       id: 'e1'
     });
     const e2 = new G.Circle({
@@ -80,7 +80,7 @@ describe('Group', function() {
     expect(e.get('parent')).toEqual(g3);
   });
 
-  it('clear', function() {
+  it('clear', function () {
     const g = new G.Group({
       id: 'g'
     });
@@ -105,7 +105,7 @@ describe('Group', function() {
     expect(e1.get('destroyed')).toBe(true);
   });
 
-  it('destroy', function() {
+  it('destroy', function () {
     const g = new G.Group({
       id: 'g'
     });
@@ -130,7 +130,7 @@ describe('Group', function() {
     expect(g.get('destroyed')).toBe(true);
   });
 
-  it('remove', function() {
+  it('remove', function () {
     const g1 = new G.Group({
       id: 'g1'
     });
@@ -185,23 +185,23 @@ describe('Group', function() {
     expect(g1.get('destroyed')).toBe(true);
   });
 
-  it('zIndex', function() {
+  it('zIndex', function () {
     const g = new G.Group({
       id: 'g'
     });
 
     const e1 = new G.Circle({
-      id: 'e1',
+      id    : 'e1',
       zIndex: 1
     });
 
     const e2 = new G.Circle({
-      id: 'e2',
+      id    : 'e2',
       zIndex: 2
     });
 
     const e3 = new G.Circle({
-      id: 'e3',
+      id    : 'e3',
       zIndex: 3
     });
 
@@ -218,7 +218,7 @@ describe('Group', function() {
     expect(g.get('children')[2]).toEqual(e2);
   });
 
-  it('find and findBy', function() {
+  it('find and findBy', function () {
     const g1 = new G.Group({
       id: 'g1'
     });
@@ -228,17 +228,17 @@ describe('Group', function() {
     });
 
     const e1 = new G.Circle({
-      id: 'e1',
+      id    : 'e1',
       zIndex: 1
     });
 
     const e2 = new G.Circle({
-      id: 'e2',
+      id    : 'e2',
       zIndex: 2
     });
 
     const e3 = new G.Circle({
-      id: 'e3',
+      id    : 'e3',
       zIndex: 3
     });
 
@@ -248,78 +248,78 @@ describe('Group', function() {
     g2.add(e2);
     g2.add(e3);
 
-    expect(g1.findBy(function(item) {
+    expect(g1.findBy(function (item) {
       return item.get('zIndex') === 3;
     })).toEqual(e3);
 
     expect(g1.find('e1')).toEqual(e1);
   });
-/*
-  it('fill', function() {
-    var g = new G.Group({
-      attrs: {
-        fill: 'green'
-      }
+  /*
+    it('fill', function() {
+      var g = new G.Group({
+        attrs: {
+          fill: 'green'
+        }
+      });
+
+      var circle = new G.Circle({
+        attrs: {
+          x: 100,
+          y: 100,
+          r: 50
+        }
+      });
+      expect(circle.hasFill()).to.be.undefined;
+      g.add(circle);
+      expect(circle.hasFill()).to.be('green');
+      expect(circle.attr('fill')).to.be.undefined;
+      var arc = new G.Arc({
+        attrs: {
+          x: 100,
+          y: 100,
+          r: 70,
+          startAngle: 0,
+          endAngle: 120,
+          stroke: 'red'
+        }
+      });
+      expect(arc.hasFill()).to.be.undefined;
+      g.add(arc);
+      expect(arc.hasFill()).to.be.undefined;
+      expect(arc.hasStroke()).to.be('red');
+      canvas.add(g);
+      canvas.draw();
     });
 
-    var circle = new G.Circle({
-      attrs: {
-        x: 100,
-        y: 100,
-        r: 50
-      }
-    });
-    expect(circle.hasFill()).to.be.undefined;
-    g.add(circle);
-    expect(circle.hasFill()).to.be('green');
-    expect(circle.attr('fill')).to.be.undefined;
-    var arc = new G.Arc({
-      attrs: {
-        x: 100,
-        y: 100,
-        r: 70,
-        startAngle: 0,
-        endAngle: 120,
-        stroke: 'red'
-      }
-    });
-    expect(arc.hasFill()).to.be.undefined;
-    g.add(arc);
-    expect(arc.hasFill()).to.be.undefined;
-    expect(arc.hasStroke()).to.be('red');
-    canvas.add(g);
-    canvas.draw();
-  });
+    it('stroke', function() {
+      var g = new G.Group({
+        attrs: {
+          stroke: 'l (0) 0:#00ffff 1:#ffff00'
+        }
+      });
 
-  it('stroke', function() {
-    var g = new G.Group({
-      attrs: {
-        stroke: 'l (0) 0:#00ffff 1:#ffff00'
-      }
+      var arc = new G.Arc({
+        attrs: {
+          x: 100,
+          y: 100,
+          r: 70,
+          startAngle: 180,
+          endAngle: 300
+        }
+      });
+      expect(arc.hasStroke()).to.be.undefined;
+      g.add(arc);
+      expect(arc.hasStroke()).to.be('l (0) 0:#00ffff 1:#ffff00');
+      canvas.add(g);
+      canvas.draw();
     });
-
-    var arc = new G.Arc({
-      attrs: {
-        x: 100,
-        y: 100,
-        r: 70,
-        startAngle: 180,
-        endAngle: 300
-      }
-    });
-    expect(arc.hasStroke()).to.be.undefined;
-    g.add(arc);
-    expect(arc.hasStroke()).to.be('l (0) 0:#00ffff 1:#ffff00');
-    canvas.add(g);
-    canvas.draw();
-  });
-*/
-  it('transform', function() {
+  */
+  it('transform', function () {
     const arc = new G.Circle({
       attrs: {
-        x: 100,
-        y: 100,
-        r: 50,
+        x   : 100,
+        y   : 100,
+        r   : 50,
         fill: 'red'
       }
     });
@@ -335,14 +335,14 @@ describe('Group', function() {
 
   });
 
-  it('group event', function() {
+  it('group event', function () {
     const circle = new G.Circle();
-    const group = new G.Group();
+    const group  = new G.Group();
     group.add(circle);
-    const e = new Event('group', {}, true, true);
+    const e         = new Event('group', {}, true, true);
     e.currentTarget = circle;
-    let aa = 0;
-    const handler = function(e) {
+    let aa          = 0;
+    const handler   = function (e) {
       expect(e.currentTarget).toEqual(circle);
       e.stopPropagation();
       aa++;
@@ -350,19 +350,19 @@ describe('Group', function() {
     group.on('group', handler);
     circle.trigger(e);
     expect(aa).toBe(0);
-    group.trigger('group', [ e ]);
+    group.trigger('group', [e]);
     expect(aa).toBe(1);
   });
 
-  it('add items & sort', function() {
-    const circle1 = new G.Circle({ zIndex: 2 });
-    const circle2 = new G.Circle({ zIndex: 1 });
-    const circle3 = new G.Circle({ zIndex: 3 });
-    const text = new G.Text({ zIndex: 4 });
+  it('add items & sort', function () {
+    const circle1 = new G.Circle({zIndex: 2});
+    const circle2 = new G.Circle({zIndex: 1});
+    const circle3 = new G.Circle({zIndex: 3});
+    const text    = new G.Text({zIndex: 4});
 
     const group = new G.Group();
 
-    group.add([ circle1, circle2, circle3, text ]);
+    group.add([circle1, circle2, circle3, text]);
 
     const children = group.get('children');
     expect(children.length).toBe(4);
@@ -374,10 +374,10 @@ describe('Group', function() {
     // const box = group.getBBox();
   });
 
-  it('contain', function() {
+  it('contain', function () {
     const group1 = new G.Group();
     const group2 = new G.Group();
-    const r1 = new G.Rect();
+    const r1     = new G.Rect();
     group1.add(r1);
     expect(group1.contain(r1)).toBe(true);
     group2.removeChild(r1);

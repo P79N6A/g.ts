@@ -6,8 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Shape } from '../core/shape';
-import Util from '@gradii/g/util';
+import { Shape } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
 export class Marker extends Shape {

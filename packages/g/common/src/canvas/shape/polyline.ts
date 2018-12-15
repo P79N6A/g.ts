@@ -6,11 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util     = require('../util/index');
-const Shape    = require('../core/shape');
-const Inside   = require('./util/inside');
-const Arrow    = require('./util/arrow');
-const LineMath = require('./math/line');
+import { LineMath, Shape } from '@gradii/g/core';
+import { Arrow, Inside } from '@gradii/g/util';
 
 export class Polyline extends Shape {
   public static ATTRS = {

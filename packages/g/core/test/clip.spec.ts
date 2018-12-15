@@ -1,6 +1,5 @@
+import Canvas from '../src/canvas';
 
-
-const Canvas = require('../../../src/canvas');
 const div = document.createElement('div');
 div.id = 'canvas-clip';
 document.body.appendChild(div);

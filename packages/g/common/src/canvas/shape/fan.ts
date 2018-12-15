@@ -6,10 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Shape, Util, vec2 } from '@gradii/g/core';
-import { Attrs } from '../../annotations/annotations';
-import { ArcMath } from './math/arc';
+import { ArcMath, Attrs, Shape } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
+import {Vector2} from '@gradii/vector-math';
 
 @Attrs({
   x         : 0,

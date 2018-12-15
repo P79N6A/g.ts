@@ -6,12 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 import { Attrs } from '@gradii/g/core';
-
-const Util   = require('../util/index');
-const Shape  = require('../core/shape');
-const Inside = require('./util/inside');
-const mat3   = require('../util/matrix').mat3;
-const vec3   = require('../util/matrix').vec3;
+import {Inside} from '@gradii/g/util';
+import {Shape} from '@gradii/g/core';
 
 @Attrs({
   x        : 0,

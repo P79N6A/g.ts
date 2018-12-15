@@ -6,13 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util        = require('../util/index');
-const Shape       = require('../core/shape');
-const PathSegment = require('./util/path-segment');
-const Format      = require('../util/format');
-const Arrow       = require('./util/arrow');
-const PathUtil    = require('../util/path');
-const CubicMath   = require('./math/cubic');
+import { CubicMath, Shape } from '@gradii/g/core';
+import { Arrow, Format, PathSegment, PathUtil } from '@gradii/g/util';
 
 export class Path extends Shape {
   public static ATTRS = {

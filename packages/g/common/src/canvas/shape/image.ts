@@ -6,10 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util = require('../util/index');
 import { Shape } from '@gradii/g/core';
-
-import Inside from '@gradii/g/util';
+import { Inside } from '@gradii/g/util';
 
 export class CImage extends Shape {
   public static ATTRS = {
