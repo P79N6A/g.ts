@@ -1,16 +1,16 @@
 // geoms
-require("./src/geom/area");
-require("./src/geom/edge");
-require("./src/geom/heatmap");
-require("./src/geom/interval");
-require("./src/geom/line");
-require("./src/geom/path");
-require("./src/geom/point");
-require("./src/geom/polygon");
-require("./src/geom/schema");
-require("./src/geom/venn");
-require("./src/geom/violin");
+export * from './src/geom/area';
+export * from './src/geom/edge';
+export * from './src/geom/heatmap';
+export * from './src/geom/interval';
+export * from './src/geom/line';
+export * from './src/geom/path';
+export * from './src/geom/point';
+export * from './src/geom/polygon';
+export * from './src/geom/schema';
+export * from './src/geom/venn';
+export * from './src/geom/violin';
 // facets
-require("./src/facet/index");
+export * from './src/facet/index';
 // interaction
-require("./src/interaction/index");
+export * from './src/interaction/index';
