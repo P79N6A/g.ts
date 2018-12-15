@@ -49,7 +49,7 @@ export class Group extends Element {
   canFill   = true;
   canStroke = true;
 
-  constructor(cfg) {
+  constructor(cfg?) {
     super(cfg);
     this.set('children', []);
     this.set('tobeRemoved', []);

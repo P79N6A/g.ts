@@ -6,7 +6,7 @@ describe('animate', function() {
   const div = document.createElement('div');
   div.id = 'canvas-animate';
   document.body.appendChild(div);
-  const canvas = new G.Canvas({
+  const canvas = new Canvas({
     containerId: 'canvas-animate',
     width: 500,
     height: 500

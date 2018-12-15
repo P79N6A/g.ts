@@ -90,7 +90,7 @@ const SHAPE_ATTRS = [
 export class Element extends Transform {
   protected __cfg: any;
 
-  constructor(cfg) {
+  constructor(cfg = {}) {
     super();
     this.__cfg = {
       zIndex   : 0,

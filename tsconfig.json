@@ -20,8 +20,11 @@
       "@gradii/g": [
         "packages/g/public-api"
       ],
+      "@gradii/g/core": [
+        "packages/g/core/public-api"
+      ],
       "@gradii/g/*": [
-        "packages/g/*/index"
+        "packages/g/*/public-api"
       ],
       "@gradii/*": [
         "libs/*/public-api"

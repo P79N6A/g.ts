@@ -6,10 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Attrs } from '../../annotations/annotations';
-import { Shape } from '../../core/shape';
-import { ArcMath } from '../../math/arc';
-import { Inside } from '../../util/inside';
+import { ArcMath, Attrs, Shape } from '@gradii/g/core';
+import { Inside } from '@gradii/g/util';
 
 function _getArcX(x, radius, angle) {
   return x + (radius * Math.cos(angle));

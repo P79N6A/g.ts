@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { EventEmitter } from '../event/event-emitter';
-import { isObject } from '../util/isType';
+import { EventEmitter } from '@gradii/g/core';
+import { isObject } from '@gradii/g/util';
 
 const ALIAS_ATTRS           = ['strokeStyle', 'fillStyle', 'globalAlpha'];
 const CLIP_SHAPES           = ['circle', 'ellipse', 'fan', 'polygon', 'rect', 'path'];

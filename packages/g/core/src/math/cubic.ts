@@ -7,7 +7,7 @@
  */
 
 import { Vector2 } from '@gradii/vector-math';
-import { isNumberEqual } from '../util/isType';
+import { isNumberEqual } from '@gradii/g/util';
 
 export namespace CubicMath {
   export function cubicAt(p0, p1, p2, p3, t) {
@@ -35,13 +35,13 @@ export namespace CubicMath {
     let prev;
     let next;
     const EPSILON = 0.0001;
-    const v0      = [x, y];
+    const v0      = new Vector2(x, y);
 
     for (_t = 0; _t < 1; _t += 0.05) {
-      v1 = [
+      v1 = new Vector2(
         cubicAt(x1, x2, x3, x4, _t),
         cubicAt(y1, y2, y3, y4, _t)
-      ];
+      );
 
       d1 = Vector2.squaredDistance(v0, v1);
       if (d1 < d) {

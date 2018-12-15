@@ -244,7 +244,8 @@ export class Vector2 {
   constructor() {
     if (arguments.length === 1) {
       if (arguments[0]) {
-        this.xy = arguments[0];
+        this.x = arguments[0][0];
+        this.y = arguments[0][1];
       }
     } else if (arguments.length === 2) {
       this.values[0] = arguments[0];

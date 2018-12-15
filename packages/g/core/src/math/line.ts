@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { vec2 } from '../../util/matrix';
+import { Vector2 } from '@gradii/vector-math';
 
 export namespace LineMath {
   export function at(p1, p2, t) {

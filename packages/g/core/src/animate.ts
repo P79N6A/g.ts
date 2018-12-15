@@ -1,10 +1,4 @@
-import d3Ease from 'd3-ease';
-import { interpolate, interpolateArray } from 'd3-interpolate';
-import d3Timer from 'd3-timer';
-import Util from '../../util/index';
-import MatrixUtil from '../../util/matrix';
-import PathUtil from '../../util/path';
-import { isFunction, isNumber } from '../util/isType';
+import { isFunction, isNumber } from '@gradii/g/util';
 
 // 目前整体动画只需要数值和数组的差值计算
 
