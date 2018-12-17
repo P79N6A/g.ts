@@ -1,7 +1,6 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
-Line.ATTRS = {
+@Attrs({
   x1        : 0,
   y1        : 0,
   x2        : 0,
@@ -9,12 +8,10 @@ Line.ATTRS = {
   lineWidth : 1,
   startArrow: false,
   endArrow  : false
-};
-Util.extend(Line, Shape);
-
-export class Line {
-  canStroke = true;
-  type      = 'line';
+})
+export class Line extends Shape {
+  public canStroke = true;
+  public type      = 'line';
 
   getDefaultAttrs() {
     return {

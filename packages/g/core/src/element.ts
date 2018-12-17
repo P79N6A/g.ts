@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Cfg } from '@gradii/g';
+import { Cfg } from './annotations/annotations';
 import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
 import { d3Timer } from '@gradii/g/timer-engine';
 import { d3Ease } from '@gradii/g/z-ease';

@@ -1,52 +1,54 @@
+import { Attrs } from '@gradii/g/core';
 import * as Util from '../../util/index';
 import * as Shape from '../core/shape';
 
-Marker.Symbols = {
-  // 圆
-  circle(x, y, r) {
-    return `M${x},${y}
-            m${-r},0
-            a ${r},${r},0,1,0,${r * 2},0
-            a ${r},${r},0,1,0,${-r * 2},0`;
-  },
-  // 正方形
-  square(x, y, r) {
-    return `M${x - r},${y - r}
-            H${x + r}V${y + r}
-            H${x - r}Z`;
-  },
-  // 菱形
-  diamond(x, y, r) {
-    return `M${x - r},${y}
-             L${x},${y - r}
-             L${x + r},${y},
-             L${x},${y + r}Z`;
-  },
-  // 三角形
-  triangle(x, y, r) {
-    const diff = r * Math.sin((1 / 3) * Math.PI);
-    return `M${x - r},${y + diff}
-            L${x},${y - diff}
-            L${x + r},${y + diff}Z`;
-  },
-  // 倒三角形
-  'triangle-down': function (x, y, r) {
-    const diff = r * Math.sin((1 / 3) * Math.PI);
-    return `M${x - r},${y - diff}
-            L${x + r},${y - diff}
-            L${x},${y + diff}Z`;
-  }
-};
-Marker.ATTRS   = {
+Marker.
+
+@Attrs({
   path     : null,
   lineWidth: 1
-};
-Util.extend(Marker, Shape);
-
-export class Marker {
+})
+export class Marker extends Shape {
   type      = 'marker';
   canFill   = true;
   canStroke = true;
+
+  static Symbols = {
+    // 圆
+    circle(x, y, r) {
+      return `M${x},${y}
+            m${-r},0
+            a ${r},${r},0,1,0,${r * 2},0
+            a ${r},${r},0,1,0,${-r * 2},0`;
+    },
+    // 正方形
+    square(x, y, r) {
+      return `M${x - r},${y - r}
+            H${x + r}V${y + r}
+            H${x - r}Z`;
+    },
+    // 菱形
+    diamond(x, y, r) {
+      return `M${x - r},${y}
+             L${x},${y - r}
+             L${x + r},${y},
+             L${x},${y + r}Z`;
+    },
+    // 三角形
+    triangle(x, y, r) {
+      const diff = r * Math.sin((1 / 3) * Math.PI);
+      return `M${x - r},${y + diff}
+            L${x},${y - diff}
+            L${x + r},${y + diff}Z`;
+    },
+    // 倒三角形
+    'triangle-down': function (x, y, r) {
+      const diff = r * Math.sin((1 / 3) * Math.PI);
+      return `M${x - r},${y - diff}
+            L${x + r},${y - diff}
+            L${x},${y + diff}Z`;
+    }
+  };
 
   init(id) {
     Marker.superclass.init.call(this);

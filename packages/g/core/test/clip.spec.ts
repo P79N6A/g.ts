@@ -1,4 +1,4 @@
-import Canvas from '../src/canvas';
+import { Circle } from '../../common/src/canvas/shape/circle';
 
 const div = document.createElement('div');
 div.id = 'canvas-clip';
@@ -13,7 +13,7 @@ describe('clip', function() {
     pixelRatio: 1
   });
 
-  const shape = new G.Circle({
+  const shape = new Circle({
     attrs: {
       x: 100,
       y: 100,
@@ -25,7 +25,7 @@ describe('clip', function() {
   canvas.add(shape);
 
   it('shape rect', function() {
-    const rect = new G.Rect({
+    const rect = new Rect({
       attrs: {
         x: 50,
         y: 50,
@@ -42,7 +42,7 @@ describe('clip', function() {
   });
 
   it('shape circle', function() {
-    const circle = new G.Circle({
+    const circle = new Circle({
       attrs: {
         x: 50,
         y: 100,
@@ -61,7 +61,7 @@ describe('clip', function() {
   });
 
   it('shape ellipse', function() {
-    const ellipse = new G.Ellipse({
+    const ellipse = new Ellipse({
       attrs: {
         x: 100,
         y: 100,
@@ -79,7 +79,7 @@ describe('clip', function() {
   });
 
   it('shape fan', function() {
-    const fan = new G.Fan({
+    const fan = new Fan({
       attrs: {
         x: 100,
         y: 0,
@@ -100,7 +100,7 @@ describe('clip', function() {
   });
 
   it('shape ploygon', function() {
-    const polygon = new G.Polygon({
+    const polygon = new Polygon({
       attrs: {
         points: [
           [ 100, 40 ],
@@ -119,7 +119,7 @@ describe('clip', function() {
   });
 
   it('shape path', function() {
-    const path = new G.Path({
+    const path = new Path({
       attrs: {
         path: [
           [ 'M', 50, 50 ],
@@ -140,9 +140,9 @@ describe('clip', function() {
     expect(shape.isHit(76, 125)).toBe(false);
   });
 
-  const group = new G.Group();
+  const group = new Group();
 
-  const fan = new G.Fan({
+  const fan = new Fan({
     attrs: {
       x: 150,
       y: 100,
@@ -157,7 +157,7 @@ describe('clip', function() {
   canvas.add(group);
 
   it('group rect', function() {
-    const rect = new G.Rect({
+    const rect = new Rect({
       attrs: {
         x: 80,
         y: 75,
@@ -176,7 +176,7 @@ describe('clip', function() {
   });
 
   it('group circle', function() {
-    const circle = new G.Circle({
+    const circle = new Circle({
       attrs: {
         x: 130,
         y: 100,
@@ -189,7 +189,7 @@ describe('clip', function() {
   });
 
   it('group ellipse', function() {
-    const ellipse = new G.Ellipse({
+    const ellipse = new Ellipse({
       attrs: {
         x: 130,
         y: 100,
@@ -203,7 +203,7 @@ describe('clip', function() {
   });
 
   it('group fan', function() {
-    const fan = new G.Fan({
+    const fan = new Fan({
       attrs: {
         x: 130,
         y: 100,
@@ -218,7 +218,7 @@ describe('clip', function() {
   });
 
   it('group polygon', function() {
-    const polygon = new G.Polygon({
+    const polygon = new Polygon({
       attrs: {
         points: [
           [ 120, 40 ],

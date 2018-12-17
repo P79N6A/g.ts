@@ -1,5 +1,4 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
 const BASELINE_MAP = {
   top       : 'before-edge',
@@ -15,7 +14,8 @@ const ANCHOR_MAP   = {
   right : 'end',
   end   : 'end'
 };
-CText.ATTRS        = {
+
+@Attrs({
   x           : 0,
   y           : 0,
   text        : null,
@@ -28,10 +28,8 @@ CText.ATTRS        = {
   textBaseline: 'bottom',
   lineHeight  : null,
   textArr     : null
-};
-Util.extend(CText, Shape);
-
-export class CText {
+})
+export class CText extends Shape{
   canFill   = true;
   canStroke = true;
   type      = 'text';

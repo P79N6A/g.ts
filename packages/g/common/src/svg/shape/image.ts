@@ -1,7 +1,7 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
+import { isString } from '@gradii/g/util';
 
-CImage.ATTRS = {
+@Attrs({
   x      : 0,
   y      : 0,
   img    : undefined,
@@ -11,10 +11,8 @@ CImage.ATTRS = {
   sy     : null,
   swidth : null,
   sheight: null
-};
-Util.extend(CImage, Shape);
-
-export class CImage {
+})
+export class CImage extends Shape {
   type = 'image';
 
   _afterSetAttrImg(img) {
@@ -45,7 +43,7 @@ export class CImage {
       el.setAttribute('href', img.src);
     } else if (
       img instanceof HTMLElement &&
-      Util.isString(img.nodeName) &&
+      isString(img.nodeName) &&
       img.nodeName.toUpperCase() === 'CANVAS'
     ) {
       el.setAttribute('href', img.toDataURL());

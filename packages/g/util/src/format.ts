@@ -149,57 +149,58 @@ function parsePattern(color, self) {
   return pattern;
 }
 
-module.exports = {
-  parsePath(path) {
-    path = path || [];
-    if (Util.isArray(path)) {
-      return path;
-    }
+export function parsePath(path) {
+  path = path || [];
+  if (Util.isArray(path)) {
+    return path;
+  }
 
-    if (Util.isString(path)) {
-      path = path.match(regexTags);
-      Util.each(path, function (item, index) {
-        item = item.match(regexDot);
-        if (item[0].length > 1) {
-          const tag = item[0].charAt(0);
-          item.splice(1, 0, item[0].substr(1));
-          item[0] = tag;
+  if (Util.isString(path)) {
+    path = path.match(regexTags);
+    Util.each(path, function (item, index) {
+      item = item.match(regexDot);
+      if (item[0].length > 1) {
+        const tag = item[0].charAt(0);
+        item.splice(1, 0, item[0].substr(1));
+        item[0] = tag;
+      }
+      Util.each(item, function (sub, i) {
+        if (!isNaN(sub)) {
+          item[i] = +sub;
         }
-        Util.each(item, function (sub, i) {
-          if (!isNaN(sub)) {
-            item[i] = +sub;
-          }
-        });
-        path[index] = item;
       });
-      return path;
-    }
-  },
-  parseStyle(color, self) {
-    if (Util.isString(color)) {
-      if (color[1] === '(' || color[2] === '(') {
-        if (color[0] === 'l') { // regexLG.test(color)
-          return parseLineGradient(color, self);
-        } else if (color[0] === 'r') { // regexRG.test(color)
-          return parseRadialGradient(color, self);
-        } else if (color[0] === 'p') { // regexPR.test(color)
-          return parsePattern(color, self);
-        }
+      path[index] = item;
+    });
+    return path;
+  }
+}
+
+export function parseStyle(color, self) {
+  if (Util.isString(color)) {
+    if (color[1] === '(' || color[2] === '(') {
+      if (color[0] === 'l') { // regexLG.test(color)
+        return parseLineGradient(color, self);
+      } else if (color[0] === 'r') { // regexRG.test(color)
+        return parseRadialGradient(color, self);
+      } else if (color[0] === 'p') { // regexPR.test(color)
+        return parsePattern(color, self);
       }
-      return color;
-    }
-  },
-  numberToColor(num) {
-    // 增加缓存
-    let color = numColorCache[num];
-    if (!color) {
-      let str = num.toString(16);
-      for (let i = str.length; i < 6; i++) {
-        str = '0' + str;
-      }
-      color              = '#' + str;
-      numColorCache[num] = color;
     }
     return color;
   }
-};
+}
+
+export function numberToColor(num) {
+  // 增加缓存
+  let color = numColorCache[num];
+  if (!color) {
+    let str = num.toString(16);
+    for (let i = str.length; i < 6; i++) {
+      str = '0' + str;
+    }
+    color              = '#' + str;
+    numColorCache[num] = color;
+  }
+  return color;
+}
+

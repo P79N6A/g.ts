@@ -21,7 +21,7 @@ export class Rect extends Shape {
   public canStroke = true;
   public type      = 'rect';
 
-  constructor(cfg) {
+  constructor(cfg?) {
     super(cfg);
   }
 

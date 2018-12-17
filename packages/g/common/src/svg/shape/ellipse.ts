@@ -1,16 +1,13 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
-Ellipse.ATTRS = {
+@Attrs({
   x        : 0,
   y        : 0,
   rx       : 1,
   ry       : 1,
   lineWidth: 1
-};
-Util.extend(Ellipse, Shape);
-
-export class Ellipse {
+})
+export class Ellipse extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'ellipse';

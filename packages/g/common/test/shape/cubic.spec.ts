@@ -7,8 +7,8 @@
  */
 
 
-import { Canvas } from '../../../src/canvas/canvas';
-import { Cubic } from '../../../src/canvas/shape/cubic';
+import { Canvas } from '../../src/canvas/canvas';
+import { Cubic } from '../../src/canvas/shape/cubic';
 
 const div = document.createElement('div');
 div.id    = 'canvas-cubic';

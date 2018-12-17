@@ -159,7 +159,8 @@ export class Group extends Element {
     return backShape;
   }
 
-  removeChild(item, destroy) {
+  removeChild(destroy)
+  removeChild(item, destroy?) {
     if (arguments.length >= 2) {
       if (this.contain(item)) {
         item.remove(destroy);
@@ -178,7 +179,7 @@ export class Group extends Element {
       if (arguments.length === 0) {
         destroy = true;
       }
-      Group.superclass.remove.call(this, destroy);
+      super.remove(destroy);
     }
     return this;
   }

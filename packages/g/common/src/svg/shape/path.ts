@@ -1,5 +1,4 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
 function at(p0, p1, p2, p3, t) {
   const onet = 1 - t;
@@ -8,17 +7,15 @@ function at(p0, p1, p2, p3, t) {
   );
 }
 
-Path.ATTRS = {
+@Attrs({
   path      : null,
   lineWidth : 1,
   curve     : null,
   tCache    : null,
   startArrow: false,
   endArrow  : false
-};
-Util.extend(Path, Shape);
-
-export class Path {
+})
+export class Path extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'path';

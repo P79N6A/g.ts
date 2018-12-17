@@ -1,9 +1,4 @@
-const Util   = require('../../../src/util/common');
-const Matrix = require('../../../src/util/matrix');
-
-const mat3 = Matrix.mat3;
-const vec3 = Matrix.vec3;
-const vec2 = Matrix.vec2;
+import { mat3, vec2, vec3 } from '../../../src/util/matrix';
 
 describe('Matrix', () => {
   it('vec2.direction(v1, v2)', () => {

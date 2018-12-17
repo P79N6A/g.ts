@@ -1,12 +1,11 @@
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
-Circle.ATTRS = {
+@Attrs({
   x        : 0,
   y        : 0,
   r        : 0,
   lineWidth: 1
-};
-
+})
 export class Circle extends Shape {
   canFill   = true;
   canStroke = true;

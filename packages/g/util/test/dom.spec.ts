@@ -6,7 +6,7 @@ import {
   getStyle,
   getWidth,
   modifyCSS
-} from '../../src/util/dom';
+} from '../src/dom';
 
 describe('DomUtils', () => {
   const nodeNotExist = null;

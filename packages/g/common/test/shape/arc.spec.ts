@@ -7,7 +7,8 @@
  */
 
 
-import {Canvas} from '../../../src/canvas/canvas';
+import { Canvas } from '../../src/canvas/canvas';
+import { Arc } from '../../src/canvas/shape/arc';
 
 const div = document.createElement('div');
 div.id    = 'canvas-arc';

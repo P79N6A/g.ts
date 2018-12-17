@@ -7,7 +7,7 @@
  */
 
 
-import { Canvas } from '../../../src/canvas/canvas';
+import { Canvas } from '../../src/canvas/canvas';
 
 const div = document.createElement('div');
 div.id    = 'canvas-polygon';

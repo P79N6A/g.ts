@@ -1,7 +1,6 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
-Rect.ATTRS = {
+@Attrs({
   x        : 0,
   y        : 0,
   width    : 0,
@@ -9,10 +8,8 @@ Rect.ATTRS = {
   radius   : 0,
   lineWidth: 1,
   fill     : 'none'
-};
-Util.extend(Rect, Shape);
-
-export class Rect {
+})
+export class Rect extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'rect';

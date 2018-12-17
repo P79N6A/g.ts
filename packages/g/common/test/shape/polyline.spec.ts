@@ -7,8 +7,8 @@
  */
 
 
-import { Canvas } from '../../../src/canvas/canvas';
-import { Polyline } from '../../../src/canvas/shape/polyline';
+import { Canvas } from '../../src/canvas/canvas';
+import { Polyline } from '../../src/canvas/shape/polyline';
 
 const div = document.createElement('div');
 div.id    = 'canvas-polyline';

@@ -6,20 +6,19 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { LineMath, Shape } from '@gradii/g/core';
+import { Attrs, LineMath, Shape } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
 
+@Attrs({
+  x1        : 0,
+  y1        : 0,
+  x2        : 0,
+  y2        : 0,
+  lineWidth : 1,
+  startArrow: false,
+  endArrow  : false,
+})
 export class Line extends Shape {
-  public static ATTRS = {
-    x1        : 0,
-    y1        : 0,
-    x2        : 0,
-    y2        : 0,
-    lineWidth : 1,
-    startArrow: false,
-    endArrow  : false,
-  };
-
   protected canStroke = true;
   protected type      = 'line';
 
@@ -68,15 +67,12 @@ export class Line extends Shape {
       Arrow.addEndArrow(context, attrs, x1, y1, x2, y2);
     }
   }
-}
 
-public
-getPoint(t)
-{
-  const attrs = this.__attrs;
-  return {
-    x: LineMath.at(attrs.x1, attrs.x2, t),
-    y: LineMath.at(attrs.y1, attrs.y2, t),
-  };
-}
+  public getPoint(t) {
+    const attrs = this.__attrs;
+    return {
+      x: LineMath.at(attrs.x1, attrs.x2, t),
+      y: LineMath.at(attrs.y1, attrs.y2, t),
+    };
+  }
 }

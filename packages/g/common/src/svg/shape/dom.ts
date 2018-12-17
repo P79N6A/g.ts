@@ -1,12 +1,13 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Shape } from '@gradii/g/core';
 
-Util.extend(Dom, Shape);
+export class Dom extends Shape {
+  protected canFill   = true;
+  protected canStroke = true;
+  protected type      = 'dom';
 
-export class Dom {
-  canFill   = true;
-  canStroke = true;
-  type      = 'dom';
+  constructor(cfg) {
+    super(cfg);
+  }
 
   _afterSetAttrHtml() {
     const html = this.__attrs.html;
@@ -23,9 +24,5 @@ export class Dom {
     if ('html' in objs) {
       this._afterSetAttrHtml();
     }
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }

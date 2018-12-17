@@ -7,7 +7,7 @@
  */
 
 
-import { ArcMath } from '../../../src/math/arc';
+import { ArcMath } from '../../src/math/arc';
 
 describe('Arc math', function () {
   it('nearAngle', function () {

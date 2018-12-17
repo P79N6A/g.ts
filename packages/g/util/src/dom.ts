@@ -13,7 +13,7 @@ const CONTAINERS   = {
   '*'  : document.createElement('div')
 };
 
-export function getBoundingClientRect(node, defaultValue) {
+export function getBoundingClientRect(node, defaultValue?) {
   if (node && node.getBoundingClientRect) {
     const rect = node.getBoundingClientRect();
     const top  = document.documentElement.clientTop;

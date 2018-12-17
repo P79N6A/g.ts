@@ -8,11 +8,10 @@
 
 import { ANNOTATIONS, PARAMETERS, PROP_METADATA } from '../annotation/decorators';
 import { isType, Type } from '../type';
-import { global, stringify } from '../util';
+import { global } from '../global';
 
 import { PlatformReflectionCapabilities } from './platform_reflection_capabilities';
 import { GetterFn, MethodFn, SetterFn } from './types';
-
 
 /**
  * Attention: These regex has to hold even if the code is minified!
@@ -225,18 +224,6 @@ export class ReflectionCapabilities implements PlatformReflectionCapabilities {
         return o.${name}.apply(o, args);`;
     return <MethodFn>new Function('o', 'args', functionBody);
   }
-
-  // There is not a concept of import uri in Js, but this is useful in developing Dart applications.
-  importUri(type: any): string {
-    // StaticSymbol
-    if (typeof type === 'object' && type['filePath']) {
-      return type['filePath'];
-    }
-    // Runtime type
-    return `./${stringify(type)}`;
-  }
-
-  resourceUri(type: any): string { return `./${stringify(type)}`; }
 
   resolveIdentifier(name: string, moduleUrl: string, members: string[], runtime: any): any {
     return runtime;

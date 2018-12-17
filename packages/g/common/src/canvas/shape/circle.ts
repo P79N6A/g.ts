@@ -7,6 +7,7 @@
  */
 
 import { Attrs, Shape } from '@gradii/g/core';
+import { Inside } from '@gradii/g/util';
 
 @Attrs({
   x        : 0,
@@ -19,7 +20,7 @@ export class Circle extends Shape {
   public canStroke = true;
   public type      = 'circle';
 
-  constructor(cfg) {
+  constructor(cfg?) {
     super(cfg);
   }
 

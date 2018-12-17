@@ -1,16 +1,17 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
 
-Polygon.ATTRS = {
+@Attrs({
   points   : null,
   lineWidth: 1
-};
-Util.extend(Polygon, Shape);
-
-export class Polygon {
+})
+export class Polygon extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'polygon';
+
+  constructor(cfg) {
+    super(cfg);
+  }
 
   getDefaultAttrs() {
     return {
@@ -40,7 +41,5 @@ export class Polygon {
 
   createPath() {}
 
-  constructor(cfg) {
-    super(cfg);
-  }
+
 }

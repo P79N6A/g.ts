@@ -1,9 +1,11 @@
 import { Canvas } from '@gradii/g/common';
+import { Circle } from '../../common/src/canvas/shape/circle';
+import { Rect } from '../../common/src/canvas/shape/rect';
+import { GEvent } from '../src/g-event';
+import { Group } from '../src/group';
 
-
-const Event = require('../../../src/event');
-const div   = document.createElement('div');
-div.id      = 'canvas-group-1';
+const div = document.createElement('div');
+div.id    = 'canvas-group-1';
 document.body.appendChild(div);
 
 describe('Group', function () {
@@ -16,7 +18,7 @@ describe('Group', function () {
   });
 
   it('constructor', function () {
-    const g = new G.Group({
+    const g = new Group({
       id: 'g1'
     });
 
@@ -26,14 +28,14 @@ describe('Group', function () {
   });
 
   it('add', function () {
-    const e  = new G.Circle({
+    const e  = new Circle({
       id: 'e1'
     });
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id: 'e2'
     });
 
-    const g2 = new G.Group({
+    const g2 = new Group({
       id: 'g2'
     });
 
@@ -41,7 +43,7 @@ describe('Group', function () {
 
     expect(e.get('parent')).toEqual(g2);
     expect(g2.getCount()).toBe(1);
-    const g3 = new G.Group({
+    const g3 = new Group({
       id: 'g3'
     });
 
@@ -51,7 +53,7 @@ describe('Group', function () {
     expect(g3.getCount()).toBe(1);
     expect(g2.getCount()).toBe(0);
 
-    const g4 = new G.Group({
+    const g4 = new Group({
       id: 'g4'
     });
 
@@ -81,17 +83,17 @@ describe('Group', function () {
   });
 
   it('clear', function () {
-    const g = new G.Group({
+    const g = new Group({
       id: 'g'
     });
 
-    const e1 = new G.Circle({
+    const e1 = new Circle({
       id: 'e1'
     });
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id: 'e2'
     });
-    const e3 = new G.Circle({
+    const e3 = new Circle({
       id: 'e3'
     });
 
@@ -106,17 +108,17 @@ describe('Group', function () {
   });
 
   it('destroy', function () {
-    const g = new G.Group({
+    const g = new Group({
       id: 'g'
     });
 
-    const e1 = new G.Circle({
+    const e1 = new Circle({
       id: 'e1'
     });
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id: 'e2'
     });
-    const e3 = new G.Circle({
+    const e3 = new Circle({
       id: 'e3'
     });
 
@@ -131,27 +133,27 @@ describe('Group', function () {
   });
 
   it('remove', function () {
-    const g1 = new G.Group({
+    const g1 = new Group({
       id: 'g1'
     });
 
-    const g2 = new G.Group({
+    const g2 = new Group({
       id: 'g2'
     });
 
-    const e1 = new G.Circle({
+    const e1 = new Circle({
       id: 'e1'
     });
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id: 'e2'
     });
-    const e3 = new G.Circle({
+    const e3 = new Circle({
       id: 'e3'
     });
-    const e4 = new G.Circle({
+    const e4 = new Circle({
       id: 'e4'
     });
-    const e5 = new G.Circle({
+    const e5 = new Circle({
       id: 'e5'
     });
 
@@ -186,21 +188,21 @@ describe('Group', function () {
   });
 
   it('zIndex', function () {
-    const g = new G.Group({
+    const g = new Group({
       id: 'g'
     });
 
-    const e1 = new G.Circle({
+    const e1 = new Circle({
       id    : 'e1',
       zIndex: 1
     });
 
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id    : 'e2',
       zIndex: 2
     });
 
-    const e3 = new G.Circle({
+    const e3 = new Circle({
       id    : 'e3',
       zIndex: 3
     });
@@ -219,25 +221,25 @@ describe('Group', function () {
   });
 
   it('find and findBy', function () {
-    const g1 = new G.Group({
+    const g1 = new Group({
       id: 'g1'
     });
 
-    const g2 = new G.Group({
+    const g2 = new Group({
       id: 'g2'
     });
 
-    const e1 = new G.Circle({
+    const e1 = new Circle({
       id    : 'e1',
       zIndex: 1
     });
 
-    const e2 = new G.Circle({
+    const e2 = new Circle({
       id    : 'e2',
       zIndex: 2
     });
 
-    const e3 = new G.Circle({
+    const e3 = new Circle({
       id    : 'e3',
       zIndex: 3
     });
@@ -256,13 +258,13 @@ describe('Group', function () {
   });
   /*
     it('fill', function() {
-      var g = new G.Group({
+      var g = new Group({
         attrs: {
           fill: 'green'
         }
       });
 
-      var circle = new G.Circle({
+      var circle = new Circle({
         attrs: {
           x: 100,
           y: 100,
@@ -270,10 +272,10 @@ describe('Group', function () {
         }
       });
       expect(circle.hasFill()).to.be.undefined;
-      g.add(circle);
+      add(circle);
       expect(circle.hasFill()).to.be('green');
       expect(circle.attr('fill')).to.be.undefined;
-      var arc = new G.Arc({
+      var arc = new Arc({
         attrs: {
           x: 100,
           y: 100,
@@ -284,7 +286,7 @@ describe('Group', function () {
         }
       });
       expect(arc.hasFill()).to.be.undefined;
-      g.add(arc);
+      add(arc);
       expect(arc.hasFill()).to.be.undefined;
       expect(arc.hasStroke()).to.be('red');
       canvas.add(g);
@@ -292,13 +294,13 @@ describe('Group', function () {
     });
 
     it('stroke', function() {
-      var g = new G.Group({
+      var g = new Group({
         attrs: {
           stroke: 'l (0) 0:#00ffff 1:#ffff00'
         }
       });
 
-      var arc = new G.Arc({
+      var arc = new Arc({
         attrs: {
           x: 100,
           y: 100,
@@ -308,14 +310,14 @@ describe('Group', function () {
         }
       });
       expect(arc.hasStroke()).to.be.undefined;
-      g.add(arc);
+      add(arc);
       expect(arc.hasStroke()).to.be('l (0) 0:#00ffff 1:#ffff00');
       canvas.add(g);
       canvas.draw();
     });
   */
   it('transform', function () {
-    const arc = new G.Circle({
+    const arc = new Circle({
       attrs: {
         x   : 100,
         y   : 100,
@@ -336,10 +338,10 @@ describe('Group', function () {
   });
 
   it('group event', function () {
-    const circle = new G.Circle();
-    const group  = new G.Group();
+    const circle = new Circle();
+    const group  = new Group();
     group.add(circle);
-    const e         = new Event('group', {}, true, true);
+    const e         = new GEvent('group', {}, true, true);
     e.currentTarget = circle;
     let aa          = 0;
     const handler   = function (e) {
@@ -355,12 +357,12 @@ describe('Group', function () {
   });
 
   it('add items & sort', function () {
-    const circle1 = new G.Circle({zIndex: 2});
-    const circle2 = new G.Circle({zIndex: 1});
-    const circle3 = new G.Circle({zIndex: 3});
-    const text    = new G.Text({zIndex: 4});
+    const circle1 = new Circle({zIndex: 2});
+    const circle2 = new Circle({zIndex: 1});
+    const circle3 = new Circle({zIndex: 3});
+    const text    = new Text({zIndex: 4});
 
-    const group = new G.Group();
+    const group = new Group();
 
     group.add([circle1, circle2, circle3, text]);
 
@@ -375,9 +377,9 @@ describe('Group', function () {
   });
 
   it('contain', function () {
-    const group1 = new G.Group();
-    const group2 = new G.Group();
-    const r1     = new G.Rect();
+    const group1 = new Group();
+    const group2 = new Group();
+    const r1     = new Rect();
     group1.add(r1);
     expect(group1.contain(r1)).toBe(true);
     group2.removeChild(r1);
@@ -385,4 +387,5 @@ describe('Group', function () {
     group1.removeChild(r1);
     expect(group1.contain(r1)).toBe(false);
   });
+
 });

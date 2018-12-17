@@ -110,12 +110,12 @@ export class Attribute extends EventEmitter {
       return self;
     }
     if (arguments.length === 2) {
-      if (this._setAttr(name, value) !== false) {
-        const m = '__afterSetAttr' + CAPITALIZED_ATTRS_MAP[name];
-        if (self[m]) {
-          self[m](value);
-        }
+      this._setAttr(name, value);
+      const m = '__afterSetAttr' + CAPITALIZED_ATTRS_MAP[name];
+      if (self[m]) {
+        self[m](value);
       }
+
       // this.setSilent('box', null);
       this.clearBBox();
       return self;

@@ -1,5 +1,5 @@
-import * as Util from '../../util/index';
-import * as Shape from '../core/shape';
+import { Attrs, Shape } from '@gradii/g/core';
+import { isNumberEqual } from '@gradii/g/util';
 
 function getPoint(angle, radius, center) {
   return {
@@ -8,7 +8,7 @@ function getPoint(angle, radius, center) {
   };
 }
 
-Fan.ATTRS = {
+@Attrs({
   x         : 0,
   y         : 0,
   rs        : 0,
@@ -17,10 +17,8 @@ Fan.ATTRS = {
   endAngle  : 0,
   clockwise : false,
   lineWidth : 1
-};
-Util.extend(Fan, Shape);
-
-export class Fan {
+})
+export class Fan  extends Shape{
   canFill   = true;
   canStroke = true;
   type      = 'fan';
@@ -87,7 +85,7 @@ export class Fan {
     const d          = [];
     const startAngle = attrs.startAngle;
     let endAngle     = attrs.endAngle;
-    if (Util.isNumberEqual(endAngle - startAngle, Math.PI * 2)) {
+    if (isNumberEqual(endAngle - startAngle, Math.PI * 2)) {
       endAngle -= 0.00001;
     }
     const outerStart = getPoint(startAngle, attrs.re, center);
