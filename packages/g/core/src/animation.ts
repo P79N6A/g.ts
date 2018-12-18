@@ -1,4 +1,3 @@
-import MatrixUtil from '../matrix';
 
 const ReservedProps = {delay: 'delay'};
 

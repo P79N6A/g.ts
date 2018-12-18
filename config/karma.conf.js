@@ -20,7 +20,8 @@ module.exports = function (config) {
 
     files: [
       // { pattern: './config/*-test.js', watched: false },
-      { pattern: './config/packages-test.js', watched: false },
+      // { pattern: './config/packages-test.js', watched: false },
+      { pattern: './config/tiny-test.js', watched: false },
       // { pattern: './packages/*/assets/**/*', watched: false, included: false, served: true, nocache: false }
     ],
 

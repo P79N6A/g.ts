@@ -1,4 +1,4 @@
-import { Canvas } from '@gradii/g/common';
+import { Canvas, Text } from '@gradii/g/common';
 import { Circle } from '../../common/src/canvas/shape/circle';
 import { Rect } from '../../common/src/canvas/shape/rect';
 import { GEvent } from '../src/g-event';

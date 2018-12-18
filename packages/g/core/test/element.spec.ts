@@ -1,6 +1,6 @@
 
-const Element = require('../../../src/core/element');
-const mat3 = require('gl-matrix').mat3;
+import { Matrix3 } from '../../../../libs/vector-math/src/matrix3';
+import {Element} from '../src/element';
 
 describe('Element', function() {
   it('constructor', function() {
@@ -19,8 +19,8 @@ describe('Element', function() {
     expect(e.__attrs.width).toBe(20);
     expect(e.__attrs.height).toBe(30);
     expect(e.attr('matrix')).not.toBeUndefined();
-    const m = mat3.create();
-    expect(mat3.exactEquals(e.attr('matrix'), m)).toBe(true);
+    const m = Matrix3;
+    expect(Matrix3.exactEquals(e.attr('matrix'), m)).toBe(true);
   });
 
   it('set and get', function() {

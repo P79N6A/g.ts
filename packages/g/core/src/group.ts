@@ -1,5 +1,5 @@
-import { isFunction } from '@gradii/g/util';
-import * as Shape from '../shapes/index';
+import { Shape } from '@gradii/g/core';
+import { isBoolean, isFunction } from '@gradii/g/util';
 import { Element } from './element';
 
 const SHAPE_MAP = {}; // 缓存图形类型
@@ -159,7 +159,7 @@ export class Group extends Element {
     return backShape;
   }
 
-  removeChild(destroy)
+  removeChild(destroy?);
   removeChild(item, destroy?) {
     if (arguments.length >= 2) {
       if (this.contain(item)) {
@@ -167,7 +167,7 @@ export class Group extends Element {
       }
     } else {
       if (arguments.length === 1) {
-        if (Util.isBoolean(item)) {
+        if (isBoolean(item)) {
           destroy = item;
         } else {
           if (this.contain(item)) {
