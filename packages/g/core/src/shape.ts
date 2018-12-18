@@ -1,4 +1,4 @@
-import { Inside } from '@gradii/g/util';
+import { Inside, isArray } from '@gradii/g/util';
 import { Element } from './element';
 import { isPointInPath } from './mixin/isPointInPath';
 
@@ -16,7 +16,7 @@ const ARRAY_ATTRS = {
 function _cloneArrayAttr(arr) {
   const result = [];
   for (let i = 0; i < arr.length; i++) {
-    if (Util.isArray(arr[i])) {
+    if (isArray(arr[i])) {
       result.push([].concat(arr[i]));
     } else {
       result.push(arr[i]);

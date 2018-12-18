@@ -29,6 +29,10 @@ export class PathSvgGraphic extends Shape {
   canStroke = true;
   type      = 'path';
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   getDefaultAttrs() {
     return {
       lineWidth : 1,
@@ -105,7 +109,7 @@ export class PathSvgGraphic extends Shape {
       }
     });
     const seg = curve[index];
-    if (Util.isNil(seg) || Util.isNil(index)) {
+    if (isBlank(seg) || isBlank(index)) {
       return null;
     }
     const l       = seg.length;
@@ -117,8 +121,4 @@ export class PathSvgGraphic extends Shape {
   }
 
   createPath() {}
-
-  constructor(cfg) {
-    super(cfg);
-  }
 }

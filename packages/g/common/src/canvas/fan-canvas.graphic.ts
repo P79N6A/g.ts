@@ -8,7 +8,7 @@
  */
 
 import { ArcMath, Attrs, Shape } from '@gradii/g/core';
-import { Inside } from '@gradii/g/util';
+import { Inside, isNumberEqual } from '@gradii/g/util';
 
 @Attrs({
   x         : 0,
@@ -50,8 +50,8 @@ export class FanCanvasGraphic extends Shape {
     const clockwise  = attrs.clockwise;
     const lineWidth  = this.getHitLineWidth();
 
-    const boxs = ArcMath.box(cx, cy, rs, startAngle, endAngle, clockwise);
-    const boxe = ArcMath.box(cx, cy, re, startAngle, endAngle, clockwise);
+    const boxs = ArcMath.arcBox(cx, cy, rs, startAngle, endAngle, clockwise);
+    const boxe = ArcMath.arcBox(cx, cy, re, startAngle, endAngle, clockwise);
     const minX = Math.min(boxs.minX, boxe.minX);
     const minY = Math.min(boxs.minY, boxe.minY);
     const maxX = Math.max(boxs.maxX, boxe.maxX);
@@ -99,7 +99,7 @@ export class FanCanvasGraphic extends Shape {
 
     const angle1 = ArcMath.nearAngle(angle, startAngle, endAngle, clockwise);
 
-    if (Util.isNumberEqual(angle, angle1)) {
+    if (isNumberEqual(angle, angle1)) {
       const ls = vec2.squaredLength(subv);
       if (rs * rs <= ls && ls <= re * re) {
         return true;

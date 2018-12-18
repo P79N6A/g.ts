@@ -23,3 +23,7 @@ export * from './src/math/cubic';
 export * from './src/math/ellipse';
 export * from './src/math/line';
 export * from './src/math/quadratic';
+
+export * from './src/canvas/canvas'
+export * from './src/canvas/camera.canvas'
+export * from './src/canvas/overlay.canvas'

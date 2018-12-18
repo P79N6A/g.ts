@@ -8,7 +8,7 @@
  */
 
 import { Attrs, CubicMath, Shape } from '@gradii/g/core';
-import { Arrow, Inside } from '@gradii/g/util';
+import { Arrow, Inside, isBlank } from '@gradii/g/util';
 
 @Attrs({
   p1        : null, // 起始点
@@ -43,10 +43,10 @@ export class CubicCanvasGraphic extends Shape {
     let l;
 
     if (
-      Util.isNil(p1) ||
-      Util.isNil(p2) ||
-      Util.isNil(p3) ||
-      Util.isNil(p4)
+      isBlank(p1) ||
+      isBlank(p2) ||
+      isBlank(p3) ||
+      isBlank(p4)
     ) {
       return null;
     }
@@ -89,10 +89,10 @@ export class CubicCanvasGraphic extends Shape {
     const {p1, p2, p3, p4} = attrs;
     context                = context || self.get('context');
     if (
-      Util.isNil(p1) ||
-      Util.isNil(p2) ||
-      Util.isNil(p3) ||
-      Util.isNil(p4)
+      isBlank(p1) ||
+      isBlank(p2) ||
+      isBlank(p3) ||
+      isBlank(p4)
     ) {
       return;
     }

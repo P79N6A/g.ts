@@ -22,6 +22,10 @@ export class LineSvgGraphic extends Shape {
   public canStroke = true;
   public type      = 'line';
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   getDefaultAttrs() {
     return {
       lineWidth : 1,
@@ -60,9 +64,5 @@ export class LineSvgGraphic extends Shape {
       x: (attrs.x2 - attrs.x1) * t + attrs.x1,
       y: (attrs.y2 - attrs.y1) * t + attrs.y1
     };
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }

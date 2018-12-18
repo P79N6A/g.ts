@@ -23,6 +23,10 @@ export class RectSvgGraphic extends Shape {
   canStroke = true;
   type      = 'rect';
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   getDefaultAttrs() {
     return {
       lineWidth: 1,
@@ -40,9 +44,5 @@ export class RectSvgGraphic extends Shape {
     if ('radius' in objs) {
       this._afterSetRadius();
     }
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }

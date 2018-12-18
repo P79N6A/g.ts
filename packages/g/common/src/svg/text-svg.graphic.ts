@@ -43,6 +43,10 @@ export class TextSvgGraphic extends Shape{
   canStroke = true;
   type      = 'text';
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   getDefaultAttrs() {
     return {
       lineWidth   : 1,
@@ -194,9 +198,5 @@ export class TextSvgGraphic extends Shape{
     if ('outline' in objs) {
       self._afterSetAttrOutline(objs.outline);
     }
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }

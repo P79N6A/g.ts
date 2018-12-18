@@ -155,19 +155,19 @@ export class ImageCanvasGraphic extends Shape {
       img.nodeName.toUpperCase() === 'CANVAS'
     )) {
       if (
-        Util.isNil(sx) ||
-        Util.isNil(sy) ||
-        Util.isNil(swidth) ||
-        Util.isNil(sheight)
+        isBlank(sx) ||
+        isBlank(sy) ||
+        isBlank(swidth) ||
+        isBlank(sheight)
       ) {
         context.drawImage(img, x, y, width, height);
         return;
       }
       if (
-        !Util.isNil(sx) &&
-        !Util.isNil(sy) &&
-        !Util.isNil(swidth) &&
-        !Util.isNil(sheight)
+        !isBlank(sx) &&
+        !isBlank(sy) &&
+        !isBlank(swidth) &&
+        !isBlank(sheight)
       ) {
         context.drawImage(img, sx, sy, swidth, sheight, x, y, width, height);
         return;

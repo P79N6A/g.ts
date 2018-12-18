@@ -55,6 +55,10 @@ export class MarkerSvgGraphic extends Shape {
     }
   };
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   init(id) {
     MarkerSvgGraphic.superclass.init.call(this);
     const marker = document.createElementNS(
@@ -120,9 +124,5 @@ export class MarkerSvgGraphic extends Shape {
         .join('');
     }
     this.get('el').setAttribute('d', d);
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }

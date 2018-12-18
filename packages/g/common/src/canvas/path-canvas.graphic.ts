@@ -229,7 +229,7 @@ export class PathCanvasGraphic extends Shape {
       }
     });
     const seg = curve[index];
-    if (Util.isNil(seg) || Util.isNil(index)) {
+    if (isBlank(seg) || isBlank(index)) {
       return null;
     }
     const l       = seg.length;

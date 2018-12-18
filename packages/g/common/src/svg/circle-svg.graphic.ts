@@ -20,14 +20,14 @@ export class CircleSvgGraphic extends Shape {
   canStroke = true;
   type      = 'circle';
 
+  constructor(cfg) {
+    super(cfg);
+  }
+
   getDefaultAttrs() {
     return {
       lineWidth: 1,
       fill     : 'none'
     };
-  }
-
-  constructor(cfg) {
-    super(cfg);
   }
 }
