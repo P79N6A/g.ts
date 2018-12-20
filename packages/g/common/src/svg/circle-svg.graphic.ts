@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   x        : 0,
@@ -15,7 +15,7 @@ import { Attrs, ShapeAttr } from '@gradii/g/core';
   r        : 0,
   lineWidth: 1
 })
-export class CircleSvgGraphic extends ShapeAttr {
+export class CircleSvgGraphic extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'circle';

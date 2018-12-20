@@ -1,8 +1,8 @@
-const Util                            = require('../index');
-const PathUtil                        = require('../path');
-const d3Timer                         = require('d3-timer');
-const d3Ease                          = require('d3-ease');
-const {interpolate, interpolateArray} = require('d3-interpolate'); // 目前整体动画只需要数值和数组的差值计算
+import * as d3Ease from '@gradii/easing';
+import { interpolate, interpolateArray } from '@gradii/interpolate'; // 目前整体动画只需要数值和数组的差值计算
+import * as d3Timer from '@gradii/timer-engine';
+import { isNumber } from '@gradii/g/util';
+import PathUtil from '../path';
 
 
 function _update(self, animator, ratio) {
@@ -15,7 +15,7 @@ function _update(self, animator, ratio) {
   }
   let interf; //  差值函数
   for (const k in toAttrs) {
-    if (!Util.isEqual(fromAttrs[k], toAttrs[k])) {
+    if (!isEqual(fromAttrs[k], toAttrs[k])) {
       if (k === 'path') {
         const toPath   = PathUtil.parsePathString(toAttrs[k]); // 终点状态
         const fromPath = PathUtil.parsePathString(fromAttrs[k]); // 起始状态
@@ -25,7 +25,7 @@ function _update(self, animator, ratio) {
           const fromPathPoint = fromPath[i];
           const cPathPoint    = [];
           for (let j = 0; j < toPathPoint.length; j++) {
-            if (Util.isNumber(toPathPoint[j]) && fromPathPoint) {
+            if (isNumber(toPathPoint[j]) && fromPathPoint) {
               interf = interpolate(fromPathPoint[j], toPathPoint[j]);
               cPathPoint.push(interf(ratio));
             } else {

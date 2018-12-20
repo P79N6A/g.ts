@@ -7,8 +7,19 @@
  *
  */
 
-import { Attrs, CubicMath, ShapeAttr } from '@gradii/g/core';
-import { Arrow, Format, isArray, isPresent, PathSegment, PathUtil } from '@gradii/g/util';
+import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import {
+  Arrow,
+  each,
+  Format,
+  isArray,
+  isBlank,
+  isEmpty,
+  isFunction,
+  isPresent,
+  PathSegment, pathTocurve,
+  PathUtil
+} from '@gradii/g/util';
 
 @Attrs({
   path      : null,
@@ -18,7 +29,7 @@ import { Arrow, Format, isArray, isPresent, PathSegment, PathUtil } from '@gradi
   startArrow: false,
   endArrow  : false,
 })
-export class PathCanvasGraphic extends ShapeAttr {
+export class PathCanvasGraphic extends Shape {
 
   protected canFill   = true;
   protected canStroke = true;
@@ -83,7 +94,7 @@ export class PathCanvasGraphic extends ShapeAttr {
     let maxX        = -Infinity;
     let minY        = Infinity;
     let maxY        = -Infinity;
-    Util.each(segments, function (segment) {
+    each(segments, function (segment) {
       segment.getBBox(lineWidth);
       const box = segment.box;
       if (box) {
@@ -143,7 +154,7 @@ export class PathCanvasGraphic extends ShapeAttr {
   public __isPointInStroke(x, y) {
     const self     = this;
     const segments = self.get('segments');
-    if (!Util.isEmpty(segments)) {
+    if (!isEmpty(segments)) {
       const lineWidth = self.getHitLineWidth();
       for (let i = 0, l = segments.length; i < l; i++) {
         if (segments[i].isInside(x, y, lineWidth)) {
@@ -169,7 +180,7 @@ export class PathCanvasGraphic extends ShapeAttr {
       return;
     }
 
-    Util.each(curve, function (segment, i) {
+    each(curve, function (segment, i) {
       segmentN = curve[i + 1];
       l        = segment.length;
       if (segmentN) {
@@ -177,7 +188,7 @@ export class PathCanvasGraphic extends ShapeAttr {
       }
     });
 
-    Util.each(curve, function (segment, i) {
+    each(curve, function (segment, i) {
       segmentN = curve[i + 1];
       l        = segment.length;
       if (segmentN) {
@@ -197,7 +208,7 @@ export class PathCanvasGraphic extends ShapeAttr {
     const self  = this;
     const attrs = self.__attrs;
     const path  = attrs.path;
-    this.curve  = PathUtil.pathTocurve(path);
+    this.curve  = pathTocurve(path);
   }
 
   public getPoint(t) {
@@ -222,7 +233,7 @@ export class PathCanvasGraphic extends ShapeAttr {
       }
       return null;
     }
-    Util.each(tCache, function (v, i) {
+    each(tCache, function (v, i) {
       if (t >= v[0] && t <= v[1]) {
         subt  = (t - v[0]) / (v[1] - v[0]);
         index = i;
@@ -274,7 +285,7 @@ export class PathCanvasGraphic extends ShapeAttr {
       startPoint = segments[0].endPoint;
       endPoint   = segments[1].endPoint;
       tangent    = segments[1].startTangent;
-      if (Util.isFunction(tangent)) {
+      if (isFunction(tangent)) {
         const v = tangent();
         Arrow.addStartArrow(context, attrs, startPoint.x - v[0], startPoint.y - v[1], startPoint.x, startPoint.y);
       } else {
@@ -285,9 +296,9 @@ export class PathCanvasGraphic extends ShapeAttr {
       startPoint = segments[segmentsLen - 2].endPoint;
       endPoint   = segments[segmentsLen - 1].endPoint;
       tangent    = segments[segmentsLen - 1].endTangent;
-      if (Util.isFunction(tangent)) {
+      if (isFunction(tangent)) {
         const v = tangent();
-        Arrow.addEndArrow(context, attrs, endPoint.x - v[0], endPoint.y - v[1], endPoint.x, endPoint.y, tangent());
+        Arrow.addEndArrow(context, attrs, endPoint.x - v[0], endPoint.y - v[1], endPoint.x, endPoint.y/*, tangent()*/);
       } else {
         Arrow.addEndArrow(context, attrs, startPoint.x, startPoint.y, endPoint.x, endPoint.y);
       }

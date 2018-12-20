@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
 @Attrs({
@@ -16,7 +16,7 @@ import { Inside } from '@gradii/g/util';
   r        : 0,
   lineWidth: 1,
 })
-export class CircleCanvasGraphic extends ShapeAttr {
+export class CircleCanvasGraphic extends Shape {
   public canFill   = true;
   public canStroke = true;
   public type      = 'circle';

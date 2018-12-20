@@ -7,10 +7,10 @@
  *
  */
 
-import { ShapeAttr } from '@gradii/g/core';
-import { Inside } from '@gradii/g/util';
+import { Shape } from '@gradii/g/core';
+import { Inside, isBlank, isString } from '@gradii/g/util';
 
-export class ImageCanvasGraphic extends ShapeAttr {
+export class ImageCanvasGraphic extends Shape {
   public static ATTRS = {
     x      : 0,
     y      : 0,

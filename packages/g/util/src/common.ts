@@ -7,7 +7,7 @@
  *
  */
 
-import { isArray, isObject } from './isType';
+import { isArray, isBlank, isObject, isArrayLike, isMap, isSet } from './isType';
 
 const degree = Math.PI / 180;
 
@@ -50,3 +50,39 @@ export function each(elements, func) {
     }
   }
 }
+
+export function isEmpty(value) {
+  if (isBlank(value)) {
+    return true;
+  }
+  if (isArrayLike(value)) {
+    return !value.length;
+  }
+  if (isMap(value) || isSet(value)) {
+    return !value.size;
+  }
+  for (var key in value) {
+    if (Object.prototype.hasOwnProperty.call(value, key)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+export function merge() {
+
+}
+
+
+export const uniqueId = (function() {
+  const map = {};
+  return function(prefix) {
+    prefix = prefix || 'g';
+    if (!map[prefix]) {
+      map[prefix] = 1;
+    } else {
+      map[prefix] += 1;
+    }
+    return prefix + map[prefix];
+  };
+})();

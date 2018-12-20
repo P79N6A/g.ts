@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   x        : 0,
@@ -18,7 +18,7 @@ import { Attrs, ShapeAttr } from '@gradii/g/core';
   lineWidth: 1,
   fill     : 'none'
 })
-export class RectSvgGraphic extends ShapeAttr {
+export class RectSvgGraphic extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'rect';

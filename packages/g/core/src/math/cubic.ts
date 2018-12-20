@@ -135,7 +135,7 @@ export namespace CubicMath {
     return t * t2 - 3 * p1 + 3 * p2;
   }
 
-  export function cubiclLen(x1, y1, x2, y2, x3, y3, x4, y4, z = 1) {
+  export function len(x1, y1, x2, y2, x3, y3, x4, y4, z = 1) {
     z             = z > 1 ? 1 : z < 0 ? 0 : z;
     const z2      = z / 2;
     const n       = 12;

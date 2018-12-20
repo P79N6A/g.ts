@@ -7,10 +7,10 @@
  *
  */
 
-import { LineMath, ShapeAttr } from '@gradii/g/core';
-import { Arrow, Inside } from '@gradii/g/util';
+import { LineMath, Shape } from '@gradii/g/core';
+import { Arrow, each, Inside } from '@gradii/g/util';
 
-export class PolylineCanvasGraphic extends ShapeAttr {
+export class PolylineCanvasGraphic extends Shape {
   public static ATTRS = {
     points    : null,
     lineWidth : 1,
@@ -88,7 +88,7 @@ export class PolylineCanvasGraphic extends ShapeAttr {
       return;
     }
 
-    Util.each(points, function (p, i) {
+    each(points, function (p, i) {
       if (points[i + 1]) {
         totalLength += LineMath.len(p[0], p[1], points[i + 1][0], points[i + 1][1]);
       }
@@ -96,7 +96,7 @@ export class PolylineCanvasGraphic extends ShapeAttr {
     if (totalLength <= 0) {
       return;
     }
-    Util.each(points, function (p, i) {
+    each(points, function (p, i) {
       if (points[i + 1]) {
         segmentT    = [];
         segmentT[0] = tempLength / totalLength;
@@ -167,7 +167,7 @@ export class PolylineCanvasGraphic extends ShapeAttr {
       this.__setTcache();
       tCache = this.tCache;
     }
-    Util.each(tCache, function (v, i) {
+    each(tCache, function (v, i) {
       if (t >= v[0] && t <= v[1]) {
         subt  = (t - v[0]) / (v[1] - v[0]);
         index = i;

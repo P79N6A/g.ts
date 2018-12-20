@@ -1,4 +1,4 @@
-/**
+/*
  * @licence
  * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
  *
@@ -6,11 +6,9 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Cfg } from '@gradii/g/core';
-import { Group } from '@gradii/g/core'
+import { Cfg, Group, Timeline } from '@gradii/g/core';
 import { createDom, getRatio, isEmpty, modifyCSS, requestAnimationFrame, uniqueId } from '@gradii/g/util';
-import { Timeline } from '@gradii/g/util';
-import { GEvent } from './g-event'
+import { GEvent } from '../g-event'
 
 @Cfg({
   eventEnable : true,

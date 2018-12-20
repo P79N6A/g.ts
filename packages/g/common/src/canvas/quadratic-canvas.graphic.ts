@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, QuadraticMath, ShapeAttr } from '@gradii/g/core';
+import { Attrs, QuadraticMath, Shape } from '@gradii/g/core';
 import { Arrow, Inside, isPresent } from '@gradii/g/util';
 
 @Attrs({
@@ -18,7 +18,7 @@ import { Arrow, Inside, isPresent } from '@gradii/g/util';
   startArrow: false,
   endArrow  : false,
 })
-export class QuadraticCanvasGraphic extends ShapeAttr {
+export class QuadraticCanvasGraphic extends Shape {
   public canStroke = true;
   public type      = 'quadratic';
 

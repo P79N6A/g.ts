@@ -7,8 +7,8 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
-import { Inside, isPresent, isString } from '@gradii/g/util';
+import { Attrs, Shape } from '@gradii/g/core';
+import { each, Inside, isPresent, isString } from '@gradii/g/util';
 
 @Attrs({
   x           : 0,
@@ -24,10 +24,10 @@ import { Inside, isPresent, isString } from '@gradii/g/util';
   lineHeight  : null,
   textArr     : null,
 })
-export class TextCanvasGraphic extends ShapeAttr {
-  public canFill  : true;
+export class TextCanvasGraphic extends Shape {
+  public canFill: true;
   public canStroke: true;
-  public type     : 'text';
+  public type: 'text';
 
   constructor(cfg?) {
     super(cfg);
@@ -77,6 +77,7 @@ export class TextCanvasGraphic extends ShapeAttr {
     }); */
     this.__assembleFont();
   }
+
   __afterSetAttrFontFamily() {
     this.__assembleFont();
   }
@@ -254,7 +255,7 @@ export class TextCanvasGraphic extends ShapeAttr {
     const height       = box.maxY - box.minY;
     let subY;
 
-    Util.each(textArr, (subText, index) => {
+    each(textArr, (subText, index) => {
       subY = y + index * (spaceingY + fontSize) - height + fontSize; // bottom;
       if (textBaseline === 'middle') { subY += height - fontSize - (height - fontSize) / 2; }
       if (textBaseline === 'top') { subY += height - fontSize; }
@@ -280,7 +281,7 @@ export class TextCanvasGraphic extends ShapeAttr {
     context.save();
     context.font = font;
     if (textArr) {
-      Util.each(textArr, (subText) => {
+      each(textArr, (subText) => {
         measureWidth = context.measureText(subText).width;
         if (width < measureWidth) {
           width = measureWidth;

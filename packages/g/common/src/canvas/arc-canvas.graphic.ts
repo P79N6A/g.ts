@@ -7,7 +7,7 @@
  *
  */
 
-import { ArcMath, Attrs, ShapeAttr } from '@gradii/g/core';
+import { ArcMath, Attrs, Shape } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
 import { ArcShape } from '../arc.shape';
 
@@ -30,7 +30,7 @@ function _getArcY(y, radius, angle) {
   startArrow: false,
   endArrow  : false,
 })
-export class ArcCanvasGraphic extends ShapeAttr {
+export class ArcCanvasGraphic extends Shape {
 
   public canStroke = true;
   public type      = 'arc';

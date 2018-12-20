@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   x1        : 0,
@@ -18,7 +18,7 @@ import { Attrs, ShapeAttr } from '@gradii/g/core';
   startArrow: false,
   endArrow  : false
 })
-export class LineSvgGraphic extends ShapeAttr {
+export class LineSvgGraphic extends Shape {
   public canStroke = true;
   public type      = 'line';
 

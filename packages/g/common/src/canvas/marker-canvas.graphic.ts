@@ -7,10 +7,10 @@
  *
  */
 
-import { ShapeAttr } from '@gradii/g/core';
-import { Inside } from '@gradii/g/util';
+import { Shape } from '@gradii/g/core';
+import { Inside, isFunction } from '@gradii/g/util';
 
-export class MarkerCanvasGraphic extends ShapeAttr {
+export class MarkerCanvasGraphic extends Shape {
   public static Symbols = {
     // 圆
     'circle'(x, y, r, ctx) {
@@ -102,7 +102,7 @@ export class MarkerCanvasGraphic extends ShapeAttr {
     const r      = attrs.radius;
     const symbol = attrs.symbol || 'circle';
     let method;
-    if (Util.isFunction(symbol)) {
+    if (isFunction(symbol)) {
       method = symbol;
     } else {
       method = MarkerCanvasGraphic.Symbols[symbol];

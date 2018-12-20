@@ -76,7 +76,7 @@ export class Group extends Element {
     cfg           = cfg || {};
     let shapeType = SHAPE_MAP[type];
     if (!shapeType) {
-      shapeType       = Util.upperFirst(type);
+      shapeType       = upperFirst(type);
       SHAPE_MAP[type] = shapeType;
     }
     if (cfg.attrs && canvas) {

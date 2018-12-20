@@ -6,8 +6,10 @@
  * See LICENSE file in the project root for full license information.
  *
  */
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+
+import { Attrs, Shape } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
+import { Matrix3, Vector2, Vector3 } from '@gradii/vector-math';
 
 @Attrs({
   x        : 0,
@@ -16,7 +18,7 @@ import { Inside } from '@gradii/g/util';
   ry       : 1,
   lineWidth: 1,
 })
-export class EllipseCanvasGraphic extends ShapeAttr {
+export class EllipseCanvasGraphic extends Shape {
 
   public canFill   = true;
   public canStroke = true;
@@ -80,12 +82,12 @@ export class EllipseCanvasGraphic extends ShapeAttr {
     const scaleX = (rx > ry) ? 1 : rx / ry;
     const scaleY = (rx > ry) ? ry / rx : 1;
 
-    const p = [x, y, 1];
-    const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    mat3.scale(m, m, [scaleX, scaleY]);
-    mat3.translate(m, m, [cx, cy]);
-    const inm = mat3.invert([], m);
-    vec3.transformMat3(p, p, inm);
+    const p = new Vector3(x, y, 1);
+    const m = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
+    m.scaleVector2(new Vector2(scaleX, scaleY));
+    m.translate(new Vector2(cx, cy));
+    m.inverse();
+    m.transformVector3(p);
 
     return Inside.circle(0, 0, r, p[0], p[1]);
   }
@@ -101,12 +103,12 @@ export class EllipseCanvasGraphic extends ShapeAttr {
     const r      = (rx > ry) ? rx : ry;
     const scaleX = (rx > ry) ? 1 : rx / ry;
     const scaleY = (rx > ry) ? ry / rx : 1;
-    const p      = [x, y, 1];
-    const m      = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    mat3.scale(m, m, [scaleX, scaleY]);
-    mat3.translate(m, m, [cx, cy]);
-    const inm = mat3.invert([], m);
-    vec3.transformMat3(p, p, inm);
+    const p      = new Vector3(x, y, 1);
+    const m      = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
+    m.scaleVector2(new Vector2(scaleX, scaleY));
+    m.translate(new Vector2(cx, cy));
+    m.inverse();
+    m.transformVector3(p);
 
     return Inside.arcline(0, 0, r, 0, Math.PI * 2, false, lineWidth, p[0], p[1]);
   }
@@ -123,9 +125,12 @@ export class EllipseCanvasGraphic extends ShapeAttr {
     const scaleX = (rx > ry) ? 1 : rx / ry;
     const scaleY = (rx > ry) ? ry / rx : 1;
 
-    const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    mat3.scale(m, m, [scaleX, scaleY]);
-    mat3.translate(m, m, [cx, cy]);
+    const m = new Matrix3(
+      1, 0, 0,
+      0, 1, 0,
+      0, 0, 1);
+    m.scaleVector2(new Vector2(scaleX, scaleY));
+    m.translate(new Vector2(cx, cy));
     context.beginPath();
     context.save();
     context.transform(m[0], m[1], m[3], m[4], m[6], m[7]);

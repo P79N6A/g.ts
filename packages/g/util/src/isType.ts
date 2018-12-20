@@ -13,6 +13,9 @@ export function isNumber(value) {
 export function isArray(value) {
   return Array.isArray(value);
 }
+export function isArrayLike(value) {
+  return value !== null && typeof value !== 'function' && isFinite(value.length);
+}
 
 export function isFunction(value) {
   return typeof value === 'function';

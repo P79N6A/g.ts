@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, CubicMath, ShapeAttr } from '@gradii/g/core';
+import { Attrs, CubicMath, Shape } from '@gradii/g/core';
 import { Arrow, Inside, isBlank } from '@gradii/g/util';
 
 @Attrs({
@@ -19,7 +19,7 @@ import { Arrow, Inside, isBlank } from '@gradii/g/util';
   startArrow: false,
   endArrow  : false,
 })
-export class CubicCanvasGraphic extends ShapeAttr {
+export class CubicCanvasGraphic extends Shape {
   protected canStroke = true;
   protected type      = 'cubic';
 

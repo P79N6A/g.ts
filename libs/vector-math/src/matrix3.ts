@@ -7,7 +7,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { equals } from './common';
+import { EPSILON, equals } from './common';
 import { Matrix4 } from './matrix4';
 import { Quaternion } from './quaternion';
 import { Vector2 } from './vector2';
@@ -422,6 +422,20 @@ export class Matrix3 {
 
   public scaled(scale: number) {
     return this.clone().scale(scale);
+  }
+
+  public scaleVector2(vector2: Vector2) {
+    this.values[0] = this.values[0] * vector2.x;
+    this.values[1] = this.values[1] * vector2.x;
+    this.values[2] = this.values[2] * vector2.x;
+    this.values[3] = this.values[3] * vector2.y;
+    this.values[4] = this.values[4] * vector2.y;
+    this.values[5] = this.values[5] * vector2.y;
+    return this;
+  }
+
+  public scaledVector2(vector2: Vector2) {
+    return this.clone().scaleVector2(vector2);
   }
 
   public add(m: Matrix3) {

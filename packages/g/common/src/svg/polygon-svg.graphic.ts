@@ -7,13 +7,13 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   points   : null,
   lineWidth: 1
 })
-export class PolygonSvgGraphic extends ShapeAttr {
+export class PolygonSvgGraphic extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'polygon';

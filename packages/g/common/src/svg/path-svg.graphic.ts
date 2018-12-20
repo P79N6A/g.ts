@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 function at(p0, p1, p2, p3, t) {
   const onet = 1 - t;
@@ -24,7 +24,7 @@ function at(p0, p1, p2, p3, t) {
   startArrow: false,
   endArrow  : false
 })
-export class PathSvgGraphic extends ShapeAttr {
+export class PathSvgGraphic extends Shape {
   canFill   = true;
   canStroke = true;
   type      = 'path';

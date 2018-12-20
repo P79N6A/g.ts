@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { isString } from '@gradii/g/util';
 
 @Attrs({
@@ -21,7 +21,7 @@ import { isString } from '@gradii/g/util';
   swidth : null,
   sheight: null
 })
-export class ImageSvgGraphic extends ShapeAttr {
+export class ImageSvgGraphic extends Shape {
   type = 'image';
 
   constructor(cfg) {

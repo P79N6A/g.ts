@@ -1,5 +1,6 @@
 import { isFunction, isNumber } from '@gradii/g/util';
-import { interpolate } from '../../../../libs/interpolate/public-api';
+import { Matrix3 } from '@gradii/vector-math';
+import { interpolate, interpolateArray } from '@gradii/interpolate';
 
 // 目前整体动画只需要数值和数组的差值计算
 
@@ -159,7 +160,7 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
     };
     for (const k in props) {
       if (k === 'transform') {
-        rst.M = Matrixtransform(self.getMatrix(), props[k]);
+        rst.M = Matrix3.transform(self.getMatrix(), props[k]);
       } else if (k === 'matrix') {
         rst.M = props[k];
       } else if (!ReservedProps[k]) {

@@ -7,8 +7,9 @@
  *
  */
 
-import { ArcMath, Attrs, ShapeAttr } from '@gradii/g/core';
+import { ArcMath, Attrs, Shape } from '@gradii/g/core';
 import { Inside, isNumberEqual } from '@gradii/g/util';
+import { Vector2 } from '@gradii/vector-math';
 
 @Attrs({
   x         : 0,
@@ -20,7 +21,7 @@ import { Inside, isNumberEqual } from '@gradii/g/util';
   clockwise : false,
   lineWidth : 1,
 })
-export class FanCanvasGraphic extends ShapeAttr {
+export class FanCanvasGraphic extends Shape {
   public canFill   = true;
   public canStroke = true;
   public type      = 'fan';
@@ -93,14 +94,14 @@ export class FanCanvasGraphic extends ShapeAttr {
     const startAngle = attrs.startAngle;
     const endAngle   = attrs.endAngle;
     const clockwise  = attrs.clockwise;
-    const v1         = [1, 0];
-    const subv       = [x - cx, y - cy];
-    const angle      = vec2.angleTo(v1, subv);
+    const v1         = new Vector2(1, 0);
+    const subv       = new Vector2(x - cx, y - cy);
+    const angle      = v1.angleTo(subv);
 
     const angle1 = ArcMath.nearAngle(angle, startAngle, endAngle, clockwise);
 
     if (isNumberEqual(angle, angle1)) {
-      const ls = vec2.squaredLength(subv);
+      const ls = subv.squaredLength;
       if (rs * rs <= ls && ls <= re * re) {
         return true;
       }

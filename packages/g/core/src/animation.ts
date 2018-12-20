@@ -28,8 +28,8 @@ function getFormatProps(props, shape) {
 
 function checkExistedAttrs(animators, animator) {
   const hasOwnProperty = Object.prototype.hasOwnProperty;
-  Util.each(animator.toAttrs, (v, k) => {
-    Util.each(animators, animator => {
+  each(animator.toAttrs, (v, k) => {
+    each(animators, animator => {
       if (hasOwnProperty.call(animator.toAttrs, k)) {
         delete animator.toAttrs[k];
         delete animator.fromAttrs[k];
@@ -101,7 +101,7 @@ export class Animation {
   stopAnimate() {
     const animators = this.get('animators');
     // 将动画执行到最后一帧，执行回调
-    Util.each(animators, animator => {
+    each(animators, animator => {
       this.attr(animator.toAttrs);
       if (animator.callback) {
         animator.callback();
@@ -129,7 +129,7 @@ export class Animation {
     const animators = self.get('animators');
     const pauseTime = self.get('pause').pauseTime;
     // 之后更新属性需要计算动画已经执行的时长，如果暂停了，就把初始时间调后
-    Util.each(animators, animator => {
+    each(animators, animator => {
       animator.startTime  = animator.startTime + (current - pauseTime);
       animator._paused    = false;
       animator._pauseTime = null;

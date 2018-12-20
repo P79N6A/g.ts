@@ -7,14 +7,14 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
-import { Inside } from '@gradii/g/util';
+import { Attrs, Shape } from '@gradii/g/core';
+import { each, Inside } from '@gradii/g/util';
 
 @Attrs({
   points   : null,
   lineWidth: 1,
 })
-export class PolygonCanvasGraphic extends ShapeAttr {
+export class PolygonCanvasGraphic extends Shape {
 
   protected canFill   = true;
   protected canStroke = true;
@@ -43,7 +43,7 @@ export class PolygonCanvasGraphic extends ShapeAttr {
     let maxX = -Infinity;
     let maxY = -Infinity;
 
-    Util.each(points, function (point) {
+    each(points, function (point) {
       const x = point[0];
       const y = point[1];
       if (x < minX) {

@@ -7,13 +7,13 @@
  *
  */
 
-import { Attrs, ShapeAttr } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 
 @Attrs({
   path     : null,
   lineWidth: 1
 })
-export class MarkerSvgGraphic extends ShapeAttr {
+export class MarkerSvgGraphic extends Shape {
   type      = 'marker';
   canFill   = true;
   canStroke = true;

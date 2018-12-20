@@ -1,4 +1,4 @@
-import { Inside, isArray, isBlank } from '@gradii/g/util';
+import { each, Inside, isArray, isBlank } from '@gradii/g/util';
 import { Element } from './element';
 
 export interface IsPointInPath {
@@ -153,7 +153,7 @@ export class Shape extends Element implements IsPointInPath {
     let clone    = null;
     const _attrs = self._attrs;
     const attrs  = {};
-    Util.each(_attrs, (i, k) => {
+    each(_attrs, (i, k) => {
       if (ARRAY_ATTRS[k] && isArray(_attrs[k])) {
         attrs[k] = _cloneArrayAttr(_attrs[k]);
       } else {

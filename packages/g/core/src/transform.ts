@@ -7,6 +7,7 @@
  */
 
 import { Matrix3 } from '@gradii/vector-math';
+import { each } from '../../util/src/common';
 import { Attribute } from './attribute';
 
 // 是否未改变
@@ -93,7 +94,7 @@ export class Transform extends Attribute {
     const self   = this;
     const matrix = self.attr('matrix');
 
-    Util.each(ts, function (t) {
+    each(ts, function (t) {
       switch (t[0]) {
         case 't':
           self.translate(t[1], t[2]);

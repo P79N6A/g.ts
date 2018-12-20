@@ -1,5 +1,4 @@
-import * as Util from '../../util';
-import * as renderUtil from './util';
+import { createDom } from '../../../util/src/dom';
 
 const SHAPE_ATTRS = [
   'fillStyle',
@@ -25,8 +24,8 @@ export class Painter {
     if (!dom) {
       return null;
     }
-    const canvasId  = Util.uniqueId('canvas_');
-    const canvasDom = Util.createDom('<canvas id="' + canvasId + '"></canvas>');
+    const canvasId  = uniqueId('canvas_');
+    const canvasDom = createDom('<canvas id="' + canvasId + '"></canvas>');
     dom.appendChild(canvasDom);
     this.type    = 'canvas';
     this.canvas  = canvasDom;
