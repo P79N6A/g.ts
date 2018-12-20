@@ -1,4 +1,4 @@
-const Util = require('./common');
+import { isBlank } from './isType';
 
 const TABLE        = document.createElement('table');
 const TABLE_TR     = document.createElement('tr');
@@ -42,7 +42,7 @@ export function getStyle(dom, name, defaultValue) {
     }
     return dom.currentStyle[name];
   } catch (e) {
-    if (!Util.isNil(defaultValue)) {
+    if (!isBlank(defaultValue)) {
       return defaultValue;
     }
     return null;

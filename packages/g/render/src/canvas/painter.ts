@@ -139,9 +139,9 @@ export class Painter {
             v = renderUtil.parseStyle(v, shape, context);
           }
           if (k === 'lineDash' && context.setLineDash) {
-            if (Util.isArray(v)) {
+            if (isArray(v)) {
               context.setLineDash(v);
-            } else if (Util.isString(v)) {
+            } else if (isString(v)) {
               context.setLineDash(v.split(' '));
             }
           } else {

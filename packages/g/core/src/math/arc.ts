@@ -71,7 +71,7 @@ export namespace ArcMath {
     return ArcMath.angleNearTo(angle, endAngle, startAngle);
   }
 
-  export function arcProjectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y, out) {
+  export function projectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y, out?) {
     const v    = [x, y];
     const v0   = [cx, cy];
     const v1   = [1, 0];

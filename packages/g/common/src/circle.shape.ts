@@ -7,11 +7,11 @@
  *
  */
 
-import { Shape, ShapeRenderPlatform } from '@gradii/g/core';
+import { ShapeAttr, ShapeRenderPlatform } from '@gradii/g/core';
 import { CircleCanvasGraphic } from './canvas/circle-canvas.graphic';
 import { CircleSvgGraphic } from './svg/circle-svg.graphic';
 
-@Shape({
+@ShapeAttr({
   type   : 'circle',
   renders: [
     {platform: ShapeRenderPlatform.Canvas, render: CircleCanvasGraphic},

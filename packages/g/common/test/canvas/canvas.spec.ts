@@ -6,11 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
+import * as $ from 'jquery';
 
-const $ = require('jquery');
-
-import { Canvas } from '../../src/canvas/canvas';
-import { Circle } from '../../src/canvas/shape/circle';
+import { Canvas } from '@gradii/g/core';
+import { Circle } from '../../src/canvas/circle-canvas.graphic';
 
 const Simulate = require('event-simulate');
 

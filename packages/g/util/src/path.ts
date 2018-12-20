@@ -6,7 +6,6 @@
  * See LICENSE file in the project root for full license information.
  */
 
-const Util         = require('./common');
 const SPACES       = '\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029';
 const PATH_COMMAND = new RegExp('([a-z])[' + SPACES + ',]*((-?\\d*\\.?\\d*(?:e[\\-+]?\\d+)?[' + SPACES + ']*,?[' + SPACES + ']*)+)', 'ig');
 const PATH_VALUES  = new RegExp('(-?\\d*\\.?\\d*(?:e[\\-+]?\\d+)?)[' + SPACES + ']*,?[' + SPACES + ']*', 'ig');
@@ -778,7 +777,7 @@ export const isBBoxIntersect = function (bbox1, bbox2) {
 };
 
 export const bezierBBox = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
-  if (!Util.isArray(p1x)) {
+  if (!isArray(p1x)) {
     p1x = [p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y];
   }
   const bbox = curveDim.apply(null, p1x);

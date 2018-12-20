@@ -7,10 +7,10 @@
  *
  */
 
-import { Shape, ShapeRenderPlatform } from '@gradii/g/core';
+import { ShapeAttr, ShapeRenderPlatform } from '@gradii/g/core';
 import { ArcShape } from './arc.shape';
 
-@Shape({
+@ShapeAttr({
   type     : 'arrow-arc',
   platforms: [ShapeRenderPlatform.Canvas, ShapeRenderPlatform.Svg],
 })

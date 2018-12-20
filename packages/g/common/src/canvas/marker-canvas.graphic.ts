@@ -7,10 +7,10 @@
  *
  */
 
-import { Shape } from '@gradii/g/core';
+import { ShapeAttr } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
-export class MarkerCanvasGraphic extends Shape {
+export class MarkerCanvasGraphic extends ShapeAttr {
   public static Symbols = {
     // 圆
     'circle'(x, y, r, ctx) {

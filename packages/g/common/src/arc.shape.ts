@@ -7,10 +7,10 @@
  *
  */
 
-import { Shape, ShapeRenderPlatform } from 'packages/g/core';
+import { ShapeAttr, ShapeRenderPlatform } from 'packages/g/core';
 import { ArcCanvasGraphic } from './canvas/arc-canvas.graphic';
 
-@Shape({
+@ShapeAttr({
   type     : 'arc',
   renders  : [
     {platform: ShapeRenderPlatform.Canvas, render: ArcCanvasGraphic}

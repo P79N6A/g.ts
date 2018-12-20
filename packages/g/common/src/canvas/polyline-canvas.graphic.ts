@@ -7,10 +7,10 @@
  *
  */
 
-import { LineMath, Shape } from '@gradii/g/core';
+import { LineMath, ShapeAttr } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
 
-export class PolylineCanvasGraphic extends Shape {
+export class PolylineCanvasGraphic extends ShapeAttr {
   public static ATTRS = {
     points    : null,
     lineWidth : 1,

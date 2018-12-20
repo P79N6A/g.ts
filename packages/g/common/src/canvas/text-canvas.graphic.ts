@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 import { Inside, isPresent, isString } from '@gradii/g/util';
 
 @Attrs({
@@ -24,7 +24,7 @@ import { Inside, isPresent, isString } from '@gradii/g/util';
   lineHeight  : null,
   textArr     : null,
 })
-export class TextCanvasGraphic extends Shape {
+export class TextCanvasGraphic extends ShapeAttr {
   public canFill  : true;
   public canStroke: true;
   public type     : 'text';

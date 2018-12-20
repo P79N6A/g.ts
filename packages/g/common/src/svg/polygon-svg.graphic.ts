@@ -7,13 +7,13 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 
 @Attrs({
   points   : null,
   lineWidth: 1
 })
-export class PolygonSvgGraphic extends Shape {
+export class PolygonSvgGraphic extends ShapeAttr {
   canFill   = true;
   canStroke = true;
   type      = 'polygon';
@@ -35,7 +35,7 @@ export class PolygonSvgGraphic extends Shape {
     let points  = value;
     if (!value || value.length === 0) {
       points = '';
-    } else if (Util.isArray(value)) {
+    } else if (isArray(value)) {
       points = points.map(point => point[0] + ',' + point[1]);
       points = points.join(' ');
     }

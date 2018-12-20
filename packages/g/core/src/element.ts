@@ -6,16 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Cfg } from './annotations/annotations';
 import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
 import { d3Timer } from '@gradii/g/timer-engine';
-import { d3Ease } from '@gradii/g/z-ease';
 
-import MatrixUtil from '@gradii/g/util';
-
-import { PathUtil } from '@gradii/g/util';
-import { Format } from '@gradii/g/util';
+import { Format, PathUtil } from '@gradii/g/util';
+import { d3Ease } from '@gradii/g/easing';
 import { Animate } from './animate';
+import { Cfg } from './annotations/annotations';
 import { Transform } from './transform';
 
 const ReservedProps = {
@@ -191,9 +188,9 @@ export class Element extends Transform {
             v = Format.parseStyle(v, this);
           }
           if (k === 'lineDash' && context.setLineDash) {
-            if (Util.isArray(v)) {
+            if (isArray(v)) {
               context.setLineDash(v);
-            } else if (Util.isString(v)) {
+            } else if (isString(v)) {
               context.setLineDash(v.split(' '));
             }
           } else {
@@ -255,7 +252,7 @@ export class Element extends Transform {
   public __setZIndex(zIndex) {
     this.__cfg.zIndex = zIndex;
 
-    if (!Util.isNil(this.get('parent'))) {
+    if (!isBlank(this.get('parent'))) {
       this.get('parent').sort();
     }
     return zIndex;

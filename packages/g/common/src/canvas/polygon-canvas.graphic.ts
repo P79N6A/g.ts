@@ -7,14 +7,14 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
 @Attrs({
   points   : null,
   lineWidth: 1,
 })
-export class PolygonCanvasGraphic extends Shape {
+export class PolygonCanvasGraphic extends ShapeAttr {
 
   protected canFill   = true;
   protected canStroke = true;

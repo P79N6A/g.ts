@@ -1,6 +1,5 @@
-import { Inside, isArray } from '@gradii/g/util';
+import { Inside, isArray, isBlank } from '@gradii/g/util';
 import { Element } from './element';
-import { isPointInPath } from './mixin/isPointInPath';
 
 export interface IsPointInPath {
   isPointInPath(x, y): boolean
@@ -39,7 +38,7 @@ export class Shape extends Element implements IsPointInPath {
     const originOpacity = context.globalAlpha;
     if (self.hasFill()) {
       const fillOpacity = attrs.fillOpacity;
-      if (!Util.isNil(fillOpacity) && fillOpacity !== 1) {
+      if (!isBlank(fillOpacity) && fillOpacity !== 1) {
         context.globalAlpha = fillOpacity;
         context.fill();
         context.globalAlpha = originOpacity;
@@ -51,7 +50,7 @@ export class Shape extends Element implements IsPointInPath {
       const lineWidth = self._attrs.lineWidth;
       if (lineWidth > 0) {
         const strokeOpacity = attrs.strokeOpacity;
-        if (!Util.isNil(strokeOpacity) && strokeOpacity !== 1) {
+        if (!isBlank(strokeOpacity) && strokeOpacity !== 1) {
           context.globalAlpha = strokeOpacity;
         }
         context.stroke();
@@ -155,7 +154,7 @@ export class Shape extends Element implements IsPointInPath {
     const _attrs = self._attrs;
     const attrs  = {};
     Util.each(_attrs, (i, k) => {
-      if (ARRAY_ATTRS[k] && Util.isArray(_attrs[k])) {
+      if (ARRAY_ATTRS[k] && isArray(_attrs[k])) {
         attrs[k] = _cloneArrayAttr(_attrs[k]);
       } else {
         attrs[k] = _attrs[k];

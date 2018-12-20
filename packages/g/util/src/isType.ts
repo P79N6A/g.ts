@@ -18,7 +18,7 @@ export function isFunction(value) {
   return typeof value === 'function';
 }
 
-export function isString(value) {
+export function isString(value): value is string {
   return typeof value === 'string';
 }
 

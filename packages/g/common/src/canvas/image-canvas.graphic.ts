@@ -7,10 +7,10 @@
  *
  */
 
-import { Shape } from '@gradii/g/core';
+import { ShapeAttr } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
-export class ImageCanvasGraphic extends Shape {
+export class ImageCanvasGraphic extends ShapeAttr {
   public static ATTRS = {
     x      : 0,
     y      : 0,
@@ -82,7 +82,7 @@ export class ImageCanvasGraphic extends Shape {
   public __setAttrImg(img) {
     const self  = this;
     const attrs = self.__attrs;
-    if (Util.isString(img)) {
+    if (isString(img)) {
       const image  = new Image();
       image.onload = function () {
         if (self.get('destroyed')) { return false; }
@@ -105,7 +105,7 @@ export class ImageCanvasGraphic extends Shape {
         self.attr('height', img.height);
       }
       return img;
-    } else if (img instanceof HTMLElement && Util.isString(img.nodeName) && img.nodeName.toUpperCase() === 'CANVAS') {
+    } else if (img instanceof HTMLElement && isString(img.nodeName) && img.nodeName.toUpperCase() === 'CANVAS') {
       if (!attrs.width) {
         self.attr('width', Number(img.getAttribute('width')));
       }
@@ -151,7 +151,7 @@ export class ImageCanvasGraphic extends Shape {
 
     if (img instanceof Image || (
       img instanceof HTMLElement &&
-      Util.isString(img.nodeName) &&
+      isString(img.nodeName) &&
       img.nodeName.toUpperCase() === 'CANVAS'
     )) {
       if (

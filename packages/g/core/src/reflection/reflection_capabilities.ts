@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ANNOTATIONS, PARAMETERS, PROP_METADATA } from '../annotation/decorators';
+import { ANNOTATIONS, PARAMETERS, PROP_METADATA } from '../annotations/decorators';
 import { isType, Type } from '../type';
 import { global } from '../global';
 

@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 
 @Attrs({
   x        : 0,
@@ -16,7 +16,7 @@ import { Attrs, Shape } from '@gradii/g/core';
   ry       : 1,
   lineWidth: 1
 })
-export class EllipseSvgGraphic extends Shape {
+export class EllipseSvgGraphic extends ShapeAttr {
   canFill   = true;
   canStroke = true;
   type      = 'ellipse';

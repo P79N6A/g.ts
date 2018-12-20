@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import Marker from '../marker';
 import { isFunction } from './isType';
+import { Marker } from './marker';
 
 
 const PI             = Math.PI;

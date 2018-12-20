@@ -10,7 +10,7 @@ import { Vector2 } from '@gradii/vector-math';
 import { isNumberEqual } from '@gradii/g/util';
 
 export namespace CubicMath {
-  export function cubicAt(p0, p1, p2, p3, t) {
+  export function at(p0, p1, p2, p3, t) {
     const onet = 1 - t;
     return onet * onet * (onet * p3 + 3 * t * p2) + t * t * (t * p0 + 3 * onet * p1);
   }
@@ -39,8 +39,8 @@ export namespace CubicMath {
 
     for (_t = 0; _t < 1; _t += 0.05) {
       v1 = new Vector2(
-        cubicAt(x1, x2, x3, x4, _t),
-        cubicAt(y1, y2, y3, y4, _t)
+        at(x1, x2, x3, x4, _t),
+        at(y1, y2, y3, y4, _t)
       );
 
       d1 = Vector2.squaredDistance(v0, v1);
@@ -60,8 +60,8 @@ export namespace CubicMath {
       next = t + interval;
 
       v1 = [
-        cubicAt(x1, x2, x3, x4, prev),
-        cubicAt(y1, y2, y3, y4, prev)
+        at(x1, x2, x3, x4, prev),
+        at(y1, y2, y3, y4, prev)
       ];
 
       d1 = vec2.squaredDistance(v0, v1);
@@ -71,8 +71,8 @@ export namespace CubicMath {
         d = d1;
       } else {
         v2 = [
-          cubicAt(x1, x2, x3, x4, next),
-          cubicAt(y1, y2, y3, y4, next)
+          at(x1, x2, x3, x4, next),
+          at(y1, y2, y3, y4, next)
         ];
 
         d2 = vec2.squaredDistance(v0, v2);
@@ -87,14 +87,14 @@ export namespace CubicMath {
     }
 
     if (out) {
-      out.x = cubicAt(x1, x2, x3, x4, t);
-      out.y = cubicAt(y1, y2, y3, y4, t);
+      out.x = at(x1, x2, x3, x4, t);
+      out.y = at(y1, y2, y3, y4, t);
     }
 
     return Math.sqrt(d);
   }
 
-  export function cubicExtrema(p0, p1, p2, p3) {
+  export function extrema(p0, p1, p2, p3) {
     const a       = 3 * p0 - 9 * p1 + 9 * p2 - 3 * p3;
     const b       = 6 * p1 - 12 * p2 + 6 * p3;
     const c       = 3 * p2 - 3 * p3;

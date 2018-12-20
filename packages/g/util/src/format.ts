@@ -1,3 +1,6 @@
+import { forEach } from 'ramda';
+import { each, mathMod, toRadian } from './common';
+import { isArray, isString } from './isType';
 
 const regexTags      = /[MLHVQTCSAZ]([^MLHVQTCSAZ]*)/ig;
 const regexDot       = /[^\s\,]+/ig;
@@ -7,17 +10,19 @@ const regexPR        = /^p\s*\(\s*([axyn])\s*\)\s*(.*)/i;
 const regexColorStop = /[\d.]+:(#[^\s]+|[^\)]+\))/ig;
 const numColorCache  = {};
 
-function addStop(steps, gradient) {
+function addStop(steps: string, gradient: CanvasGradient) {
   const arr = steps.match(regexColorStop);
-  Util.each(arr, function (item) {
-    item = item.split(':');
-    gradient.addColorStop(item[0], item[1]);
-  });
+  if (arr) {
+    forEach<string>(item => {
+      const _v = item.split(':');
+      gradient.addColorStop(+_v[0], _v[1]);
+    })(arr);
+  }
 }
 
 function parseLineGradient(color, self) {
   const arr   = regexLG.exec(color);
-  const angle = Util.mod(Util.toRadian(parseFloat(arr[1])), Math.PI * 2);
+  const angle = mathMod(toRadian(parseFloat(arr[1])), Math.PI * 2);
   const steps = arr[2];
   const box   = self.getBBox();
   let start;
@@ -150,20 +155,21 @@ function parsePattern(color, self) {
 
 export function parsePath(path) {
   path = path || [];
-  if (Util.isArray(path)) {
+  if (isArray(path)) {
     return path;
   }
 
-  if (Util.isString(path)) {
+  if (isString(path)) {
     path = path.match(regexTags);
-    Util.each(path, function (item, index) {
+
+    each(path, function (item, index) {
       item = item.match(regexDot);
       if (item[0].length > 1) {
         const tag = item[0].charAt(0);
         item.splice(1, 0, item[0].substr(1));
         item[0] = tag;
       }
-      Util.each(item, function (sub, i) {
+      each(item, function (sub, i) {
         if (!isNaN(sub)) {
           item[i] = +sub;
         }
@@ -175,7 +181,7 @@ export function parsePath(path) {
 }
 
 export function parseStyle(color, self) {
-  if (Util.isString(color)) {
+  if (isString(color)) {
     if (color[1] === '(' || color[2] === '(') {
       if (color[0] === 'l') { // regexLG.test(color)
         return parseLineGradient(color, self);

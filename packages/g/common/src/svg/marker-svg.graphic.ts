@@ -7,13 +7,13 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 
 @Attrs({
   path     : null,
   lineWidth: 1
 })
-export class MarkerSvgGraphic extends Shape {
+export class MarkerSvgGraphic extends ShapeAttr {
   type      = 'marker';
   canFill   = true;
   canStroke = true;
@@ -116,7 +116,7 @@ export class MarkerSvgGraphic extends Shape {
     } else {
       d = MarkerSvgGraphic.Symbols[attrs.symbol || 'circle'](attrs.x, attrs.y, r);
     }
-    if (Util.isArray(d)) {
+    if (isArray(d)) {
       d = d
         .map(path => {
           return path.join(' ');

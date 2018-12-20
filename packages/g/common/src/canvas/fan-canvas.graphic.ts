@@ -7,7 +7,7 @@
  *
  */
 
-import { ArcMath, Attrs, Shape } from '@gradii/g/core';
+import { ArcMath, Attrs, ShapeAttr } from '@gradii/g/core';
 import { Inside, isNumberEqual } from '@gradii/g/util';
 
 @Attrs({
@@ -20,7 +20,7 @@ import { Inside, isNumberEqual } from '@gradii/g/util';
   clockwise : false,
   lineWidth : 1,
 })
-export class FanCanvasGraphic extends Shape {
+export class FanCanvasGraphic extends ShapeAttr {
   public canFill   = true;
   public canStroke = true;
   public type      = 'fan';

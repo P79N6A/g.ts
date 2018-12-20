@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import { Attrs, CubicMath, ShapeAttr } from '@gradii/g/core';
 import { Arrow, Inside, isBlank } from '@gradii/g/util';
 
 @Attrs({
@@ -19,7 +19,7 @@ import { Arrow, Inside, isBlank } from '@gradii/g/util';
   startArrow: false,
   endArrow  : false,
 })
-export class CubicCanvasGraphic extends Shape {
+export class CubicCanvasGraphic extends ShapeAttr {
   protected canStroke = true;
   protected type      = 'cubic';
 
@@ -52,13 +52,13 @@ export class CubicCanvasGraphic extends Shape {
     }
     const halfWidth = lineWidth / 2;
 
-    const xDim = CubicMath.cubicExtrema(p1[0], p2[0], p3[0], p4[0]);
+    const xDim = CubicMath.extrema(p1[0], p2[0], p3[0], p4[0]);
     for (i = 0, l = xDim.length; i < l; i++) {
-      xDim[i] = CubicMath.cubicAt(p1[0], p2[0], p3[0], p4[0], xDim[i]);
+      xDim[i] = CubicMath.at(p1[0], p2[0], p3[0], p4[0], xDim[i]);
     }
-    const yDim = CubicMath.cubicExtrema(p1[1], p2[1], p3[1], p4[1]);
+    const yDim = CubicMath.extrema(p1[1], p2[1], p3[1], p4[1]);
     for (i = 0, l = yDim.length; i < l; i++) {
-      yDim[i] = CubicMath.cubicAt(p1[1], p2[1], p3[1], p4[1], yDim[i]);
+      yDim[i] = CubicMath.at(p1[1], p2[1], p3[1], p4[1], yDim[i]);
     }
     xDim.push(p1[0], p4[0]);
     yDim.push(p1[1], p4[1]);
@@ -114,8 +114,8 @@ export class CubicCanvasGraphic extends Shape {
   public getPoint(t) {
     const attrs = this.__attrs;
     return {
-      x: CubicMath.cubicAt(attrs.p4[0], attrs.p3[0], attrs.p2[0], attrs.p1[0], t),
-      y: CubicMath.cubicAt(attrs.p4[1], attrs.p3[1], attrs.p2[1], attrs.p1[1], t),
+      x: CubicMath.at(attrs.p4[0], attrs.p3[0], attrs.p2[0], attrs.p1[0], t),
+      y: CubicMath.at(attrs.p4[1], attrs.p3[1], attrs.p2[1], attrs.p1[1], t),
     };
   }
 

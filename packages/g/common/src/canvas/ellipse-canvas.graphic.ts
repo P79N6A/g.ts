@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  *
  */
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 import { Inside } from '@gradii/g/util';
 
 @Attrs({
@@ -16,7 +16,7 @@ import { Inside } from '@gradii/g/util';
   ry       : 1,
   lineWidth: 1,
 })
-export class EllipseCanvasGraphic extends Shape {
+export class EllipseCanvasGraphic extends ShapeAttr {
 
   public canFill   = true;
   public canStroke = true;

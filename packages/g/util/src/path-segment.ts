@@ -6,12 +6,13 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import Util from '../../util/index';
-import { mat3, vec3 } from '../../util/matrix';
-import Cubic from '../math/cubic';
-import Ellipse from '../math/ellipse';
-import Quadratic from '../math/quadratic';
-import Inside from './inside';
+import { Matrix3, Vector3 } from '@gradii/vector-math';
+import {CubicMath} from '@gradii/g/core';
+import {EllipseMath} from '@gradii/g/core';
+import {QuadraticMath} from '@gradii/g/core';
+import { mathMod, toRadian } from './common';
+import {Inside} from './inside';
+import { isNumberEqual } from './isType';
 
 const ARR_CMD = ['m', 'l', 'c', 'a', 'q', 'h', 'v', 't', 's', 'z'];
 
@@ -42,7 +43,7 @@ function vAngle(u, v) {
 }
 
 function getArcParams(point1, point2, fa, fs, rx, ry, psiDeg) {
-  const psi    = Util.mod(Util.toRadian(psiDeg), Math.PI * 2);
+  const psi    = mathMod(toRadian(psiDeg), Math.PI * 2);
   const x1     = point1.x;
   const y1     = point1.y;
   const x2     = point2.x;
@@ -312,11 +313,11 @@ export class PathSegment {
         this.subStart  = start;
         this.endPoint  = point;
         let startAngle = params[5] % (Math.PI * 2);
-        if (Util.isNumberEqual(startAngle, Math.PI * 2)) {
+        if (isNumberEqual(startAngle, Math.PI * 2)) {
           startAngle = 0;
         }
         let endAngle = params[6] % (Math.PI * 2);
-        if (Util.isNumberEqual(endAngle, Math.PI * 2)) {
+        if (isNumberEqual(endAngle, Math.PI * 2)) {
           endAngle = 0;
         }
         let d             = 0.001;
@@ -404,10 +405,10 @@ export class PathSegment {
 
         p       = [x, y, 1];
         const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-        mat3.translate(m, m, [-cx, -cy]);
-        mat3.rotate(m, m, -psi);
-        mat3.scale(m, m, [1 / scaleX, 1 / scaleY]);
-        vec3.transformMat3(p, p, m);
+        Matrix3.translate(m, m, [-cx, -cy]);
+        Matrix3.rotate(m, m, -psi);
+        Matrix3.scale(m, m, [1 / scaleX, 1 / scaleY]);
+        Vector3.transformMat3(p, p, m);
         return Inside.arcline(0, 0, r, theta, theta + dTheta, 1 - fs, lineWidth, p[0], p[1]);
       }
     }
@@ -499,14 +500,14 @@ export class PathSegment {
         break;
       case 'SQ':
       case 'Q':
-        xDims = Quadratic.extrema(params[0].x, params[1].x, params[2].x);
+        xDims = QuadraticMath.extrema(params[0].x, params[1].x, params[2].x);
         for (i = 0, l = xDims.length; i < l; i++) {
-          xDims[i] = Quadratic.at(params[0].x, params[1].x, params[2].x, xDims[i]);
+          xDims[i] = QuadraticMath.at(params[0].x, params[1].x, params[2].x, xDims[i]);
         }
         xDims.push(params[0].x, params[2].x);
-        yDims = Quadratic.extrema(params[0].y, params[1].y, params[2].y);
+        yDims = QuadraticMath.extrema(params[0].y, params[1].y, params[2].y);
         for (i = 0, l = yDims.length; i < l; i++) {
-          yDims[i] = Quadratic.at(params[0].y, params[1].y, params[2].y, yDims);
+          yDims[i] = QuadraticMath.at(params[0].y, params[1].y, params[2].y, yDims);
         }
         yDims.push(params[0].y, params[2].y);
         this.box = {
@@ -517,13 +518,13 @@ export class PathSegment {
         };
         break;
       case 'C':
-        xDims = Cubic.extrema(params[0].x, params[1].x, params[2].x, params[3].x);
+        xDims = CubicMath.extrema(params[0].x, params[1].x, params[2].x, params[3].x);
         for (i = 0, l = xDims.length; i < l; i++) {
-          xDims[i] = Cubic.at(params[0].x, params[1].x, params[2].x, params[3].x, xDims[i]);
+          xDims[i] = CubicMath.at(params[0].x, params[1].x, params[2].x, params[3].x, xDims[i]);
         }
-        yDims = Cubic.extrema(params[0].y, params[1].y, params[2].y, params[3].y);
+        yDims = CubicMath.extrema(params[0].y, params[1].y, params[2].y, params[3].y);
         for (i = 0, l = yDims.length; i < l; i++) {
-          yDims[i] = Cubic.at(params[0].y, params[1].y, params[2].y, params[3].y, yDims[i]);
+          yDims[i] = CubicMath.at(params[0].y, params[1].y, params[2].y, params[3].y, yDims[i]);
         }
         xDims.push(params[0].x, params[3].x);
         yDims.push(params[0].y, params[3].y);
@@ -548,7 +549,7 @@ export class PathSegment {
         const start  = theta;
         const end    = theta + dTheta;
 
-        const xDim = Ellipse.xExtrema(psi, rx, ry);
+        const xDim = EllipseMath.xExtrema(psi, rx, ry);
         let minX   = Infinity;
         let maxX   = -Infinity;
         const xs   = [start, end];
@@ -566,7 +567,7 @@ export class PathSegment {
         }
 
         for (i = 0, l = xs.length; i < l; i++) {
-          const x = Ellipse.xAt(psi, rx, ry, cx, xs[i]);
+          const x = EllipseMath.xAt(psi, rx, ry, cx, xs[i]);
           if (x < minX) {
             minX = x;
           }
@@ -575,7 +576,7 @@ export class PathSegment {
           }
         }
 
-        const yDim = Ellipse.yExtrema(psi, rx, ry);
+        const yDim = EllipseMath.yExtrema(psi, rx, ry);
         let minY   = Infinity;
         let maxY   = -Infinity;
         const ys   = [start, end];
@@ -593,7 +594,7 @@ export class PathSegment {
         }
 
         for (i = 0, l = ys.length; i < l; i++) {
-          const y = Ellipse.yAt(psi, rx, ry, cy, ys[i]);
+          const y = EllipseMath.yAt(psi, rx, ry, cy, ys[i]);
           if (y < minY) {
             minY = y;
           }

@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, LineMath, Shape } from '@gradii/g/core';
+import { Attrs, LineMath, ShapeAttr } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
 
 @Attrs({
@@ -19,7 +19,7 @@ import { Arrow, Inside } from '@gradii/g/util';
   startArrow: false,
   endArrow  : false,
 })
-export class LineCanvasGraphic extends Shape {
+export class LineCanvasGraphic extends ShapeAttr {
   protected canStroke = true;
   protected type      = 'line';
 

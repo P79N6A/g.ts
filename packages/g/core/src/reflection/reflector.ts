@@ -36,9 +36,9 @@ export class Reflector {
     return this.reflectionCapabilities.propMetadata(typeOrFunc);
   }
 
-  hasLifecycleHook(type: any, lcProperty: string): boolean {
-    return this.reflectionCapabilities.hasLifecycleHook(type, lcProperty);
-  }
+  // hasLifecycleHook(type: any, lcProperty: string): boolean {
+  //   return this.reflectionCapabilities.hasLifecycleHook(type, lcProperty);
+  // }
 
   getter(name: string): GetterFn { return this.reflectionCapabilities.getter(name); }
 

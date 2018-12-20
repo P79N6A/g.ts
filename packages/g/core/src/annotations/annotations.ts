@@ -18,6 +18,6 @@ export enum ShapeRenderPlatform {
   Svg
 }
 
-export const Shape = makeDecorator('shape', (data) => {
+export const ShapeAttr = makeDecorator('shape', (data) => {
   return data;
 });

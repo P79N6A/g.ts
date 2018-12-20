@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 import { isNumberEqual } from '@gradii/g/util';
 
 function getPoint(angle, radius, center) {
@@ -27,7 +27,7 @@ function getPoint(angle, radius, center) {
   clockwise : false,
   lineWidth : 1
 })
-export class FanSvgGraphic extends Shape{
+export class FanSvgGraphic extends ShapeAttr{
   canFill   = true;
   canStroke = true;
   type      = 'fan';

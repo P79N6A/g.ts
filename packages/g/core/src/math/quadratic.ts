@@ -7,9 +7,10 @@
  */
 
 import { Vector2 } from '@gradii/vector-math'
+import { isNumberEqual } from '../../../util/src/isType';
 
 export namespace QuadraticMath {
-  export function quadraticAt(p0, p1, p2, t) {
+  export function at(p0, p1, p2, t) {
     const onet = 1 - t;
     return onet * (onet * p0 + 2 * t * p1) + t * t * p2;
   }
@@ -35,8 +36,8 @@ export namespace QuadraticMath {
 
     for (_t = 0; _t < 1; _t += 0.05) {
       v1 = [
-        quadraticAt(x1, x2, x3, _t),
-        quadraticAt(y1, y2, y3, _t)
+        at(x1, x2, x3, _t),
+        at(y1, y2, y3, _t)
       ];
 
       d1 = vec2.squaredDistance(v0, v1);
@@ -56,8 +57,8 @@ export namespace QuadraticMath {
       const next = t + interval;
 
       v1 = [
-        quadraticAt(x1, x2, x3, prev),
-        quadraticAt(y1, y2, y3, prev)
+        at(x1, x2, x3, prev),
+        at(y1, y2, y3, prev)
       ];
 
       d1 = Vector2.squaredDistance(v0, v1);
@@ -67,8 +68,8 @@ export namespace QuadraticMath {
         d = d1;
       } else {
         v2 = [
-          quadraticAt(x1, x2, x3, next),
-          quadraticAt(y1, y2, y3, next)
+          at(x1, x2, x3, next),
+          at(y1, y2, y3, next)
         ];
 
         d2 = Vector2.squaredDistance(v0, v2);
@@ -83,16 +84,16 @@ export namespace QuadraticMath {
     }
 
     if (out) {
-      out.x = quadraticAt(x1, x2, x3, t);
-      out.y = quadraticAt(y1, y2, y3, t);
+      out.x = at(x1, x2, x3, t);
+      out.y = at(y1, y2, y3, t);
     }
 
     return Math.sqrt(d);
   }
 
-  export function quadraticExtrema(p0, p1, p2) {
+  export function extrema(p0, p1, p2) {
     const a = p0 + p2 - 2 * p1;
-    if (Util.isNumberEqual(a, 0)) {
+    if (isNumberEqual(a, 0)) {
       return [0.5];
     }
     const rst = (p0 - p1) / a;

@@ -1,5 +1,6 @@
-import { Shape } from '@gradii/g/core';
-import { isBoolean, isFunction } from '@gradii/g/util';
+import { ShapeAttr } from '@gradii/g/core';
+import { isArray, isBoolean, isFunction, isObject, isString } from '@gradii/g/util';
+import { each } from '../../util/src/common';
 import { Element } from './element';
 
 const SHAPE_MAP = {}; // 缓存图形类型
@@ -39,8 +40,8 @@ function initClassCfgs(c) {
     initClassCfgs(superCon);
   }
   c._cfg = {};
-  Util.merge(c._cfg, superCon._cfg);
-  Util.merge(c._cfg, c.CFG);
+  // Util.merge(c._cfg, superCon._cfg);
+  // Util.merge(c._cfg, c.CFG);
 }
 
 export class Group extends Element {
@@ -60,7 +61,8 @@ export class Group extends Element {
 
   getDefaultCfg() {
     initClassCfgs(this.constructor);
-    return Util.merge({}, this.constructor._cfg);
+    // return Util.merge({}, this.constructor._cfg);
+    return Object.assign({}, this.__cfg);
   }
 
   _beforeRenderUI() {}
@@ -91,7 +93,7 @@ export class Group extends Element {
     }
     cfg.canvas = canvas;
     cfg.type   = type;
-    const rst  = new Shape[shapeType](cfg);
+    const rst  = new ShapeAttr[shapeType](cfg);
     this.add(rst);
     return rst;
   }
@@ -104,7 +106,7 @@ export class Group extends Element {
   addGroup(param, cfg) {
     const canvas = this.get('canvas');
     let rst;
-    cfg          = Util.merge({}, cfg);
+    cfg          = Object.assign({}, cfg);
     if (isFunction(param)) {
       if (cfg) {
         cfg.canvas = canvas;
@@ -117,7 +119,7 @@ export class Group extends Element {
         });
       }
       this.add(rst);
-    } else if (Util.isObject(param)) {
+    } else if (isObject(param)) {
       param.canvas = canvas;
       rst          = new Group(param);
       this.add(rst);
@@ -133,7 +135,7 @@ export class Group extends Element {
   /** 绘制背景
    * @param  {Array} padding 内边距
    * @param  {Attrs} attrs 图形属性
-   * @param  {Shape} backShape 背景图形
+   * @param  {ShapeAttr} backShape 背景图形
    * @return {Object} 背景层对象
    */
   renderBack(padding, attrs) {
@@ -192,8 +194,8 @@ export class Group extends Element {
   add(items) {
     const self     = this;
     const children = self.get('children');
-    if (Util.isArray(items)) {
-      Util.each(items, function (item) {
+    if (isArray(items)) {
+      each(items, function (item) {
         const parent = item.get('parent');
         if (parent) {
           parent.removeChild(item, false);
@@ -249,7 +251,7 @@ export class Group extends Element {
     let maxY       = -Infinity;
     const children = self.get('children');
     if (children.length > 0) {
-      Util.each(children, function (child) {
+      each(children, function (child) {
         if (child.get('visible')) {
           if (child.isGroup && child.get('children').length === 0) {
             return;
@@ -330,7 +332,7 @@ export class Group extends Element {
   sort() {
     const children = this.get('children');
     // 稳定排序
-    Util.each(children, (child, index) => {
+    each(children, (child, index) => {
       child[INDEX] = index;
       return child;
     });
@@ -354,12 +356,12 @@ export class Group extends Element {
    * @return {Canvas.Base} 分组或者图形
    */
   find(fn) {
-    if (Util.isString(fn)) {
+    if (isString(fn)) {
       return this.findById(fn);
     }
     const children = this.get('children');
     let rst        = null;
-    Util.each(children, function (item) {
+    each(children, function (item) {
       if (fn(item)) {
         rst = item;
       } else if (item.find) {
@@ -380,7 +382,7 @@ export class Group extends Element {
     const children = this.get('children');
     let rst        = [];
     let childRst   = [];
-    Util.each(children, function (item) {
+    each(children, function (item) {
       if (fn(item)) {
         rst.push(item);
       }
@@ -400,7 +402,7 @@ export class Group extends Element {
   findBy(fn) {
     const children = this.get('children');
     let rst        = null;
-    Util.each(children, function (item) {
+    each(children, function (item) {
       if (fn(item)) {
         rst = item;
       } else if (item.findBy) {
@@ -422,7 +424,7 @@ export class Group extends Element {
     const children = this.get('children');
     let rst        = [];
     let childRst   = [];
-    Util.each(children, function (item) {
+    each(children, function (item) {
       if (fn(item)) {
         rst.push(item);
       }
@@ -484,7 +486,7 @@ export class Group extends Element {
     const self     = this;
     const children = self._cfg.children;
     const clone    = new Group();
-    Util.each(children, child => {
+    each(children, child => {
       clone.add(child.clone());
     });
     return clone;

@@ -6,10 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { ArcMath } from '../math/arc';
-import { CubicMath } from '../math/cubic';
-import { LineMath } from '../math/line';
-import { QuadraticMath } from '../math/quadratic';
+import { ArcMath, CubicMath, LineMath, QuadraticMath } from '@gradii/g/core';
 
 export class Inside {
   public static line(x1, y1, x2, y2, lineWidth, x, y) {
@@ -46,15 +43,15 @@ export class Inside {
   }
 
   public static cubicline(x1, y1, x2, y2, x3, y3, x4, y4, lineWidth, x, y) {
-    return CubicMath.pointDistance(x1, y1, x2, y2, x3, y3, x4, y4, x, y) <= lineWidth / 2;
+    return CubicMath.projectPoint(x1, y1, x2, y2, x3, y3, x4, y4, x, y) <= lineWidth / 2;
   }
 
   public static quadraticline(x1, y1, x2, y2, x3, y3, lineWidth, x, y) {
-    return QuadraticMath.pointDistance(x1, y1, x2, y2, x3, y3, x, y) <= lineWidth / 2;
+    return QuadraticMath.projectPoint(x1, y1, x2, y2, x3, y3, x, y) <= lineWidth / 2;
   }
 
   public static arcline(cx, cy, r, startAngle, endAngle, clockwise, lineWidth, x, y) {
-    return ArcMath.pointDistance(cx, cy, r, startAngle, endAngle, clockwise, x, y) <= lineWidth / 2;
+    return ArcMath.projectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y) <= lineWidth / 2;
   }
 
   public static rect(rx, ry, width, height, x, y) {

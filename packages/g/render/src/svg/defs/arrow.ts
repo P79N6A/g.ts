@@ -42,7 +42,7 @@ export class Arrow {
     const parent = this.el;
     let path     = this.cfg.path;
     const d      = this.cfg.d;
-    if (Util.isArray(path)) {
+    if (isArray(path)) {
       path = path
         .map(segment => {
           return segment.join(' ');

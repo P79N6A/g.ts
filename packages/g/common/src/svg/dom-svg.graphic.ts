@@ -7,9 +7,9 @@
  *
  */
 
-import { Shape } from '@gradii/g/core';
+import { ShapeAttr } from '@gradii/g/core';
 
-export class DomSvgGraphic extends Shape {
+export class DomSvgGraphic extends ShapeAttr {
   protected canFill   = true;
   protected canStroke = true;
   protected type      = 'dom';

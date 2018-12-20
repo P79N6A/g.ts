@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
+import { Attrs, ShapeAttr } from '@gradii/g/core';
 
 const BASELINE_MAP = {
   top       : 'before-edge',
@@ -38,7 +38,7 @@ const ANCHOR_MAP   = {
   lineHeight  : null,
   textArr     : null
 })
-export class TextSvgGraphic extends Shape{
+export class TextSvgGraphic extends ShapeAttr{
   canFill   = true;
   canStroke = true;
   type      = 'text';
@@ -136,7 +136,7 @@ export class TextSvgGraphic extends Shape{
   _afterSetAttrText(text) {
     const attrs = this.__attrs;
     let textArr;
-    if (Util.isString(text) && text.indexOf('\n') !== -1) {
+    if (isString(text) && text.indexOf('\n') !== -1) {
       textArr         = text.split('\n');
       const lineCount = textArr.length;
       attrs.lineCount = lineCount;

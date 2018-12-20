@@ -1,4 +1,5 @@
 import { isFunction, isNumber } from '@gradii/g/util';
+import { interpolate } from '../../../../libs/interpolate/public-api';
 
 // 目前整体动画只需要数值和数组的差值计算
 

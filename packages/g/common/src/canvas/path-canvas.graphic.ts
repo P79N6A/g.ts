@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import { Attrs, CubicMath, ShapeAttr } from '@gradii/g/core';
 import { Arrow, Format, isArray, isPresent, PathSegment, PathUtil } from '@gradii/g/util';
 
 @Attrs({
@@ -18,7 +18,7 @@ import { Arrow, Format, isArray, isPresent, PathSegment, PathUtil } from '@gradi
   startArrow: false,
   endArrow  : false,
 })
-export class PathCanvasGraphic extends Shape {
+export class PathCanvasGraphic extends ShapeAttr {
 
   protected canFill   = true;
   protected canStroke = true;
@@ -243,7 +243,7 @@ export class PathCanvasGraphic extends Shape {
   public createPath(context) {
     const self     = this;
     const segments = self.get('segments');
-    if (!Util.isArray(segments)) return;
+    if (!isArray(segments)) return;
 
     context = context || self.get('context');
 
@@ -262,7 +262,7 @@ export class PathCanvasGraphic extends Shape {
         endPoint,
         tangent;
     context        = context || self.get('context');
-    if (!Util.isArray(segments)) return;
+    if (!isArray(segments)) return;
     if (!attrs.startArrow && !attrs.endArrow) {
       return;
     }

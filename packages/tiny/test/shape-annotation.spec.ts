@@ -7,17 +7,24 @@
  *
  */
 
-import { ArcShape } from '@gradii/g/common';
+
+import { ArcShape } from '../../g/common/src/arc.shape';
+import { reflector } from '../../g/core/src/reflection/reflection';
 
 describe('test shape annotation', () => {
   let s;
 
   beforeEach(() => {
-    s = new ArcShape()
+    s = new ArcShape();
   });
 
   it('shape should create', () => {
     expect(s instanceof ArcShape).toBe(true)
   });
+
+  it('read annotation arc shape', () => {
+    const annotations = reflector.annotations(s);
+    console.log(annotations);
+  })
 
 });

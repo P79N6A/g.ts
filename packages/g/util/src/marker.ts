@@ -8,7 +8,8 @@
  */
 
 import { Attrs, Shape } from '@gradii/g/core';
-import { Format } from './format';
+import { parsePath } from './format';
+import { isFunction } from './isType';
 import { PathSegment } from './path-segment';
 
 @Attrs({
@@ -106,7 +107,7 @@ export class Marker extends Shape {
     const r      = attrs.radius || attrs.r;
     const symbol = attrs.symbol || 'circle';
     let method;
-    if (Util.isFunction(symbol)) {
+    if (isFunction(symbol)) {
       method = symbol;
     } else {
       method = Marker.Symbols[symbol];
@@ -124,7 +125,7 @@ export class Marker extends Shape {
       return;
     }
 
-    const path = Format.parsePath(this._getPath());
+    const path = parsePath(this._getPath());
     context.beginPath();
     let preSegment;
     segments = [];
