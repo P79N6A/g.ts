@@ -6,9 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Matrix3 } from '@gradii/vector-math';
+import { Matrix3, Quaternion, Vector3 } from '@gradii/vector-math';
 import { each } from '../../util/src/common';
-import { Attribute } from './attribute';
 
 // 是否未改变
 function isUnchanged(m) {
@@ -31,7 +30,35 @@ function multiple(m1, m2) {
   }
 }
 
-export class Transform extends Attribute {
+export class Transform {
+  private _position: Vector3;
+  private _rotation: Quaternion;
+  private _scale: Vector3;
+
+  get position(): Vector3 {
+    return this._position;
+  }
+
+  set position(value: Vector3) {
+    this._position = value;
+  }
+
+  get scale(): Vector3 {
+    return this._scale;
+  }
+
+  set scale(value: Vector3) {
+    this._scale = value;
+  }
+
+  get rotation(): Quaternion {
+    return this._rotation;
+  }
+
+  set rotation(value: Quaternion) {
+    this._rotation = value;
+  }
+
   public initTransform() {
     this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
   }
@@ -52,13 +79,14 @@ export class Transform extends Attribute {
     return this;
   }
 
-  public scale(s1, s2) {
-    const matrix = this.attr('matrix');
-    mat3.scale(matrix, matrix, [s1, s2]);
-    this.clearTotalMatrix();
-    this.attr('matrix', matrix);
-    return this;
-  }
+  //todo uncomment me
+  // public scale(s1, s2) {
+  //   const matrix = this.attr('matrix');
+  //   mat3.scale(matrix, matrix, [s1, s2]);
+  //   this.clearTotalMatrix();
+  //   this.attr('matrix', matrix);
+  //   return this;
+  // }
 
   /**
    * 绕起始点旋转
@@ -100,7 +128,7 @@ export class Transform extends Attribute {
           self.translate(t[1], t[2]);
           break;
         case 's':
-          self.scale(t[1], t[2]);
+          self._scale(t[1], t[2]);
           break;
         case 'r':
           self.rotate(t[1]);

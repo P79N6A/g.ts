@@ -1,4 +1,4 @@
-import { makeDecorator } from './decorators';
+import { makeDecorator } from 'injection-js';
 
 
 export const Cfg = makeDecorator('config', (data) => {

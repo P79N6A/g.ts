@@ -8,8 +8,8 @@
  */
 
 
-import { ArcShape } from '../../g/common/src/arc.shape';
-import { reflector } from '../../g/core/src/reflection/reflection';
+import { ArcShape } from '@gradii/g/common';
+import { reflector } from '../../g/core/src/di/reflection/reflection';
 
 describe('test shape annotation', () => {
   let s;

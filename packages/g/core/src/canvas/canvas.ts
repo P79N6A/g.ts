@@ -4,6 +4,7 @@
  *
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
+ *
  */
 
 import { Cfg, Group, Timeline } from '@gradii/g/core';

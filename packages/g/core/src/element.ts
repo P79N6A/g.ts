@@ -6,11 +6,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
+import { Attribute } from '@gradii/g/core';
+import * as d3Ease from '@gradii/g/easing';
 import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
 import { d3Timer } from '@gradii/g/timer-engine';
 
-import { Format, PathUtil } from '@gradii/g/util';
-import { d3Ease } from '@gradii/g/easing';
+import { Format, isArray, isBlank, isFunction, isNumber, isString, PathUtil } from '@gradii/g/util';
 import { Animate } from './animate';
 import { Cfg } from './annotations/annotations';
 import { Transform } from './transform';
@@ -84,8 +85,10 @@ const SHAPE_ATTRS = [
    */
   destroyed: false,
 })
-export class Element extends Transform {
+export class Element extends Attribute {
   protected __cfg: any;
+
+  protected transform: Transform;
 
   constructor(cfg = {}) {
     super();
@@ -201,7 +204,7 @@ export class Element extends Transform {
     }
   }
 
-  public drawInner(/* context */) {
+  public drawInner(context) {
 
   }
 
@@ -335,11 +338,11 @@ export class Element extends Transform {
     let timer         = this.get('animateTimer');
     timer && timer.stop();
     // 可能不设置 easing
-    if (Util.isNumber(callback)) {
+    if (isNumber(callback)) {
       delay    = callback;
       callback = null;
     }
-    if (Util.isFunction(easing)) {
+    if (isFunction(easing)) {
       callback = easing;
       easing   = 'easeLinear';
     } else {
@@ -405,7 +408,7 @@ export class Element extends Transform {
             const fromPathPoint = fromPath[i];
             const cPathPoint    = [];
             for (let j = 0; j < toPathPoint.length; j++) {
-              if (Util.isNumber(toPathPoint[j]) && fromPathPoint) {
+              if (isNumber(toPathPoint[j]) && fromPathPoint) {
                 interf = interpolate(fromPathPoint[j], toPathPoint[j]);
                 cPathPoint.push(interf(ratio));
               } else {
