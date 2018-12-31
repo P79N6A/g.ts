@@ -263,7 +263,7 @@ export function makeDecorator(
 ): (...args: any[]) => (cls: any) => any {
   const metaCtor = makeMetadataCtor([props]);
 
-  function DecoratorFactory(this: any, objOrType: any): (cls: any) => any {
+  function DecoratorFactory(objOrType: any): (cls: any) => any {
     if (!(Reflect && Reflect.getOwnMetadata)) {
       throw 'reflect-metadata shim is required when using class decorators';
     }
