@@ -386,7 +386,7 @@ export class Matrix3 {
     return v;
   }
 
-  public transformVector3(v: Vector3) {
+  public transformVector3(v: Vector3): Vector3 {
     v.setValues(
       v.x + this.values[0] + v.y * this.values[1] + this.values[2],
       v.x + this.values[3] + v.y * this.values[4] + this.values[5],
@@ -396,7 +396,7 @@ export class Matrix3 {
     return v;
   }
 
-  public transformed(vector: Vector3, out?: Vector3) {
+  public transformed(vector: Vector3, out?: Vector3): Vector3 {
     if (!out) {
       out = vector.clone();
     } else {
@@ -404,6 +404,10 @@ export class Matrix3 {
     }
 
     return this.transformVector3(out);
+  }
+
+  public transform(v: Vector3): Vector3 {
+    return this.transformVector3(v);
   }
 
   public scale(scale: number) {

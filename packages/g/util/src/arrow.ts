@@ -6,8 +6,8 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { isFunction } from './isType';
-import { Marker } from './marker';
+import { parsePath } from './format';
+import { PathSegment } from './path-segment';
 
 
 const PI             = Math.PI;
@@ -19,7 +19,7 @@ const DEFAULT_ANGLE  = PI / 3;
 
 export class Arrow {
 
-  static _addArrow(ctx, attrs, x1, y1, x2, y2) {
+  private static _addArrow(ctx, attrs, x1, y1, x2, y2, isStart) {
     let leftX;
     let leftY;
     let rightX;
@@ -30,18 +30,21 @@ export class Arrow {
 
     if (!attrs.fill) { // 闭合的不绘制箭头
       const arrowLength = attrs.arrowLength || DEFAULT_LENGTH;
-      const arrowAngle  = attrs.arrowAngle ? (attrs.arrowAngle * PI) / 180 : DEFAULT_ANGLE; // 转换为弧
+      const arrowAngle = attrs.arrowAngle ? (attrs.arrowAngle * PI) / 180 : DEFAULT_ANGLE; // 转换为弧
       // Calculate angle
-      angle   = atan2((y2 - y1), (x2 - x1));
-      // Adjust angle correctly
-      angle -= PI;
+      angle = atan2((y1 - y2), (x1 - x2));
+      /* // Adjust angle correctly
+      angle -= PI;*/
       // Calculate offset to place arrow at edge of path
-      offsetX = (attrs.lineWidth * cos(angle));
-      offsetY = (attrs.lineWidth * sin(angle));
-
+      offsetX = Math.abs(attrs.lineWidth * cos(angle)) / 2;
+      offsetY = Math.abs(attrs.lineWidth * sin(angle)) / 2;
+      if (isStart) {
+        offsetX = -offsetX;
+        offsetY = -offsetY;
+      }
       // Calculate coordinates for left half of arrow
-      leftX  = x2 + (arrowLength * cos(angle + (arrowAngle / 2)));
-      leftY  = y2 + (arrowLength * sin(angle + (arrowAngle / 2)));
+      leftX = x2 + (arrowLength * cos(angle + (arrowAngle / 2)));
+      leftY = y2 + (arrowLength * sin(angle + (arrowAngle / 2)));
       // Calculate coordinates for right half of arrow
       rightX = x2 + (arrowLength * cos(angle - (arrowAngle / 2)));
       rightY = y2 + (arrowLength * sin(angle - (arrowAngle / 2)));
@@ -61,59 +64,84 @@ export class Arrow {
     }
   }
 
-  static _addMarker(ctx, attrs, x1, y1, x2, y2, shape) {
-    const shape   = arrow.shape;
-    const marker  = shape.__attrs;
-    let method    = marker.symbol;
-    const markerX = marker.x || x2;
-    const markerY = marker.y || y2;
-    const markerR = marker.r || attrs.lineWidth;
-    if (!isFunction(method)) {
-      method = Marker.Symbols[method || 'triangle'];
+  private static parsePath(attrs) {
+    const segments = [];
+    const pathArray = parsePath(attrs.path);
+    let preSegment;
+
+    if (!Array.isArray(pathArray) ||
+      pathArray.length === 0 ||
+      (pathArray[0][0] !== 'M' &&
+        pathArray[0][0] !== 'm')
+    ) {
+      return false;
     }
+    const count = pathArray.length;
+    for (let i = 0; i < pathArray.length; i++) {
+      const item = pathArray[i];
+      preSegment = new PathSegment(item, preSegment, i === count - 1);
+      segments.push(preSegment);
+    }
+    return segments;
+  }
+
+  private static _addCustomizedArrow(ctx, attrs, x1, y1, x2, y2, isStart) {
+    const shape = isStart ? attrs.startArrow : attrs.endArrow;
+    const d = shape.d;
     let deg = 0;
-    const x = x1 - x2;
-    const y = y1 - y2;
-    if (y === 0) {
-      if (x < 0) {
-        deg = Math.PI / 2;
+    const x = x2 - x1;
+    const y = y2 - y1;
+    const tan = Math.atan(x / y);
+    if (y === 0 && x < 0) {
+      deg = Math.PI;
+    } else if (x > 0 && y > 0) {
+      deg = Math.PI / 2 - tan;
+    } else if (x < 0 && y < 0) {
+      deg = -Math.PI / 2 - tan;
+    } else if (x >= 0 && y < 0) {
+      deg = -tan - Math.PI / 2;
+    } else if (x <= 0 && y > 0) {
+      deg = Math.PI / 2 - tan;
+    }
+    const path = Arrow.parsePath(shape);
+    if (!path) {
+      return;
+    }
+    if (d) {
+      if (isStart) {
+        x2 = x2 + Math.sin(Math.abs(tan)) * d;
+        y2 = y2 + Math.cos(Math.abs(tan)) * d - 0.5 * ctx.lineWidth;
       } else {
-        deg = (270 * Math.PI) / 180;
+        x2 = x2 - Math.sin(Math.abs(tan)) * d;
+        y2 = y2 - Math.cos(Math.abs(tan)) * d + 0.5 * ctx.lineWidth;
       }
-    } else if (x >= 0 && y > 0) {
-      deg = -Math.atan(x / y);
-    } else if (x <= 0 && y < 0) {
-      deg = Math.PI - Math.atan(x / y);
-    } else if (x > 0 && y < 0) {
-      deg = Math.PI + Math.atan(-x / y);
-    } else if (x < 0 && y > 0) {
-      deg = Math.atan(x / -y);
     }
     ctx.save();
     ctx.beginPath();
-    ctx.translate(markerX, markerY);
+    ctx.translate(x2, y2);
     ctx.rotate(deg);
-    ctx.translate(-markerX, -markerY);
-    method(markerX, markerY, markerR, ctx, shape);
+    for (let i = 0; i < path.length; i++) {
+      path[i].draw(ctx);
+    }
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = shape.attr('fill') || ctx.strokeStyle;
+    ctx.fillStyle = ctx.strokeStyle;
     ctx.fill();
     ctx.restore();
   }
 
-  static addStartArrow(ctx, attrs, x1, y1, x2, y2) {
+  public static addStartArrow(ctx, attrs, x1, y1, x2, y2) {
     if (typeof attrs.startArrow === 'object') {
-      Arrow._addMarker(ctx, attrs, x1, y1, x2, y2, attrs.startArrow);
+      Arrow._addCustomizedArrow(ctx, attrs, x1, y1, x2, y2, true);
     } else if (attrs.startArrow) {
-      Arrow._addArrow(ctx, attrs, x1, y1, x2, y2);
+      Arrow._addArrow(ctx, attrs, x1, y1, x2, y2, true);
     }
   }
 
-  static addEndArrow(ctx, attrs, x1, y1, x2, y2) {
+  public static addEndArrow(ctx, attrs, x1, y1, x2, y2) {
     if (typeof attrs.endArrow === 'object') {
-      Arrow._addMarker(ctx, attrs, x1, y1, x2, y2, attrs.endArrow);
+      Arrow._addCustomizedArrow(ctx, attrs, x1, y1, x2, y2, false);
     } else if (attrs.endArrow) {
-      Arrow._addArrow(ctx, attrs, x1, y1, x2, y2);
+      Arrow._addArrow(ctx, attrs, x1, y1, x2, y2, false);
     }
   }
 }

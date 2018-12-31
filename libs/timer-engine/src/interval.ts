@@ -6,12 +6,12 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { now, Timer } from './timer';
+import { zNow, Timer } from './timer';
 
 export function zInterval(callback, delay, time) {
   let t = new Timer, total = delay;
   if (delay == null) { return t.restart(callback, delay, time), t; }
-  delay = +delay, time = time == null ? now() : +time;
+  delay = +delay, time = time == null ? zNow() : +time;
   t.restart(function tick(elapsed) {
     elapsed += total;
     t.restart(tick, total += delay, time);

@@ -7,12 +7,11 @@
  */
 
 import { Attribute } from '@gradii/g/core';
-import * as d3Ease from '@gradii/g/easing';
-import { interpolate, interpolateArray } from '@gradii/g/interpolate'; // 目前整体动画只需要数值和数组的差值计算
-import { d3Timer } from '@gradii/g/timer-engine';
+// import {} from '@gradii/easing';
+import { interpolate, interpolateArray } from '@gradii/interpolate'; // 目前整体动画只需要数值和数组的差值计算
+// import { d3Timer } from '@gradii/timer-engine';
 
-import { Format, isArray, isBlank, isFunction, isNumber, isString, PathUtil } from '@gradii/g/util';
-import { Animate } from './animate';
+import { isArray, isBlank, isFunction, isNumber, isString, upperFirst } from '@gradii/g/util';
 import { Cfg } from './annotations/annotations';
 import { Transform } from './transform';
 
@@ -102,7 +101,8 @@ export class Element extends Attribute {
     // Element.CFG不合并，提升性能 合并默认配置，用户配置->继承默认配置->Element默认配置
     this.__cfg = {...this.__cfg, ...this.getDefaultCfg(), ...cfg};
     this.initAttrs(this.__cfg.attrs); // 初始化绘图属性
-    this.initTransform(); // 初始化变换
+    // this.initTransform(); // 初始化变换
+    this.transform.initTransform();
     this.init(); // 类型初始化
   }
 
@@ -111,9 +111,11 @@ export class Element extends Attribute {
     this.setSilent('animable', true);
     this.setSilent('animating', false); // 初始时不处于动画状态
     const attrs = this.__attrs;
+    /* todo fixme
     if (attrs && attrs.rotate) {
       this.rotateAtStart(attrs.rotate);
     }
+    */
   }
 
   public getParent() {
@@ -130,7 +132,7 @@ export class Element extends Attribute {
   }
 
   public set(name, value) {
-    const m = '__set' + Util.upperFirst(name);
+    const m = '__set' + upperFirst(name);
 
     if (this[m]) {
       value = this[m](value);
@@ -147,7 +149,7 @@ export class Element extends Attribute {
     return this.__cfg[name];
   }
 
-  public draw(context) {
+  public draw(context?) {
     if (this.get('destroyed')) {
       return;
     }
@@ -169,7 +171,7 @@ export class Element extends Attribute {
       // context.restore();
     }
     this.resetContext(context);
-    this.resetTransform(context);
+    // this.resetTransform(context); todo fixme
   }
 
   public restoreContext(context) {
@@ -179,6 +181,7 @@ export class Element extends Attribute {
   public resetContext(context) {
     const elAttrs = this.__attrs;
     // var canvas = this.get('canvas');
+    /* todo fixme
     if (!this.isGroup) {
       // canvas.registShape(this); // 快速拾取方案暂时不执行
       for (const k in elAttrs) {
@@ -202,6 +205,7 @@ export class Element extends Attribute {
         }
       }
     }
+    */
   }
 
   public drawInner(context) {
@@ -226,7 +230,7 @@ export class Element extends Attribute {
     if (this.get('parent')) {
       const parent   = this.get('parent');
       const children = parent.get('children');
-      Util.remove(children, this);
+      // Util.remove(children, this); todo fixme
     }
 
     if (destroy) {
@@ -272,7 +276,7 @@ export class Element extends Attribute {
   }
 
   public clone() {
-    return Util.clone(this);
+    // return Util.clone(this); todo fixme
   }
 
   public getBBox() {
@@ -307,7 +311,7 @@ export class Element extends Attribute {
       if (animateCfg) {
         this.attr(animateCfg.toAttrs);
         if (animateCfg.toM) {
-          this.setMatrix(animateCfg.toM);
+          // this.setMatrix(animateCfg.toM); todo fixme
         }
         if (animateCfg.callback) {
           animateCfg.callback();
@@ -328,6 +332,7 @@ export class Element extends Attribute {
    * @param  {Number}   delay    动画延迟时间
    */
   public animate(toProps, duration, easing, callback, delay = 0) {
+    /* todo fixme
     const canvas      = this.get('canvas');
     const formatProps = getFormatProps(toProps);
     const toAttrs     = formatProps.attrs;
@@ -366,16 +371,19 @@ export class Element extends Attribute {
     }, delay);
 
     this.setSilent('animateTimer', timer);
-
+    */
   }
 
   private excuteRepeat(elapsed) {
+    /* todo fixme
     let ratio = (elapsed % duration) / duration;
     ratio     = d3Ease[easing](ratio);
     update(ratio);
+    */
   }
 
   private excuteOnce(elapsed) {
+    /* todo fixme
     let ratio = elapsed / duration;
     if (ratio < 1) {
       ratio = d3Ease[easing](ratio);
@@ -388,6 +396,7 @@ export class Element extends Attribute {
       this.setSilent('animateTimer', null);
       timer.stop();
     }
+    */
   }
 
   private update(ratio) {
@@ -397,6 +406,7 @@ export class Element extends Attribute {
     }
     let interf; //  差值函数
 
+    /* todo fixme
     for (const k in toAttrs) {
       if (!Util.isEqual(fromAttrs[k], toAttrs[k])) {
         if (k === 'path') {
@@ -430,9 +440,11 @@ export class Element extends Attribute {
     }
     this.attr(cProps);
     canvas.draw();
+    */
   }
 
   private getFormatProps(props) {
+    /* todo fixme
     const rst = {
       M    : null,
       attrs: {},
@@ -447,6 +459,7 @@ export class Element extends Attribute {
       }
     }
     return rst;
+    */
   }
 
   private getfromAttrs(toAttrs) {

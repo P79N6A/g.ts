@@ -269,7 +269,7 @@ export class EventEmitter {
    * @param {String|RegExp} [evt] Optional name of the event to remove all listeners for. Will remove from every event if not passed.
    * @return {Object} Current instance of EventEmitter for chaining.
    */
-  public removeEvent(evt) {
+  public removeEvent(evt?) {
     let type   = typeof evt;
     let events = this._getEvents();
     let key;

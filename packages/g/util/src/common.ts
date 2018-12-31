@@ -7,7 +7,7 @@
  *
  */
 
-import { isArray, isBlank, isObject, isArrayLike, isMap, isSet } from './isType';
+import { isArray, isArrayLike, isBlank, isMap, isObject, isSet } from './isType';
 
 const degree = Math.PI / 180;
 
@@ -74,9 +74,9 @@ export function merge() {
 }
 
 
-export const uniqueId = (function() {
+export const uniqueId = (function () {
   const map = {};
-  return function(prefix) {
+  return function (prefix) {
     prefix = prefix || 'g';
     if (!map[prefix]) {
       map[prefix] = 1;
@@ -86,3 +86,11 @@ export const uniqueId = (function() {
     return prefix + map[prefix];
   };
 })();
+
+export function upperFirst(value: string) {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+}
+
+export function isEqual(value1, value2) {
+  return value1 == value2
+}

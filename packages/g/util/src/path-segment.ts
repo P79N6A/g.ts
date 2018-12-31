@@ -6,12 +6,10 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { Matrix3, Vector3 } from '@gradii/vector-math';
-import {CubicMath} from '@gradii/g/core';
-import {EllipseMath} from '@gradii/g/core';
-import {QuadraticMath} from '@gradii/g/core';
+import { CubicMath, EllipseMath, QuadraticMath } from '@gradii/g/core';
+import { Matrix3, Vector3, Vector2 } from '@gradii/vector-math';
 import { mathMod, toRadian } from './common';
-import {Inside} from './inside';
+import { Inside } from './inside';
 import { isNumberEqual } from './isType';
 
 const ARR_CMD = ['m', 'l', 'c', 'a', 'q', 'h', 'v', 't', 's', 'z'];
@@ -403,13 +401,18 @@ export class PathSegment {
         const scaleX = (rx > ry) ? 1 : rx / ry;
         const scaleY = (rx > ry) ? ry / rx : 1;
 
-        p       = [x, y, 1];
-        const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-        Matrix3.translate(m, m, [-cx, -cy]);
-        Matrix3.rotate(m, m, -psi);
-        Matrix3.scale(m, m, [1 / scaleX, 1 / scaleY]);
-        Vector3.transformMat3(p, p, m);
-        return Inside.arcline(0, 0, r, theta, theta + dTheta, 1 - fs, lineWidth, p[0], p[1]);
+        const _p       = new Vector3(x, y, 1);
+        const m = new Matrix3(
+          1, 0, 0,
+          0, 1, 0,
+          0, 0, 1);
+        m.translate(new Vector2(-cx, -cy));
+        // Matrix3.rotate(m, m, -psi);
+        // m.rotate(-psi);
+        m.setRotationZ(psi);
+        m.scaleVector2(new Vector2(1/scaleX, 1/scaleY));
+        m.transformVector3(_p);
+        return Inside.arcline(0, 0, r, theta, theta + dTheta, 1 - fs, lineWidth, _p.x, _p.y);
       }
     }
     return false;

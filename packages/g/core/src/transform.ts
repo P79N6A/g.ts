@@ -7,7 +7,6 @@
  */
 
 import { Matrix3, Quaternion, Vector3 } from '@gradii/vector-math';
-import { each } from '../../util/src/common';
 
 // 是否未改变
 function isUnchanged(m) {
@@ -25,9 +24,10 @@ function multiple(m1, m2) {
       m1[0] *= m2[0];
       m1[4] *= m2[4];
     } else {
-      Matrix3.multiply(m1, m1, m2);
+      m1.multiply(m2);
     }
   }
+  return m1;
 }
 
 export class Transform {
@@ -60,22 +60,24 @@ export class Transform {
   }
 
   public initTransform() {
-    this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
+    // this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
   }
 
   public translate(tx, ty) {
-    const matrix = this.attr('matrix');
-    mat3.translate(matrix, matrix, [tx, ty]);
-    this.clearTotalMatrix();
-    this.attr('matrix', matrix);
+    // const matrix = this.attr('matrix');
+    // mat3.translate(matrix, matrix, [tx, ty]);
+    // this.clearTotalMatrix();
+    // this.attr('matrix', matrix);
     return this;
   }
 
   public rotate(radian) {
-    const matrix = this.attr('matrix');
-    mat3.rotate(matrix, matrix, radian);
-    this.clearTotalMatrix();
-    this.attr('matrix', matrix);
+    // const matrix = this.attr('matrix');
+    // Matrix3.rotate(matrix, matrix, radian); todo fixme
+    // matrix.rotate(radian);
+    //
+    // this.clearTotalMatrix();
+    // this.attr('matrix', matrix);
     return this;
   }
 
@@ -93,16 +95,16 @@ export class Transform {
    * @param  {Number} rotate 0～360
    */
   public rotateAtStart(rotate) {
-    const x = this.attr('x');
-    const y = this.attr('y');
-    if (Math.abs(rotate) > Math.PI * 2) {
-      rotate = rotate / 180 * Math.PI;
-    }
-    this.transform([
-      ['t', -x, -y],
-      ['r', rotate],
-      ['t', x, y],
-    ]);
+    // const x = this.attr('x');
+    // const y = this.attr('y');
+    // if (Math.abs(rotate) > Math.PI * 2) {
+    //   rotate = rotate / 180 * Math.PI;
+    // }
+    // this.transform([
+    //   ['t', -x, -y],
+    //   ['r', rotate],
+    //   ['t', x, y],
+    // ]);
   }
 
   /**
@@ -111,83 +113,83 @@ export class Transform {
    * @param  {Number} y 移动到y
    */
   public move(x, y) {
-    const cx = this.get('x') || 0; // 当前的x
-    const cy = this.get('y') || 0; // 当前的y
-    this.translate(x - cx, y - cy);
-    this.set('x', x);
-    this.set('y', y);
+    // const cx = this.get('x') || 0; // 当前的x
+    // const cy = this.get('y') || 0; // 当前的y
+    // this.translate(x - cx, y - cy);
+    // this.set('x', x);
+    // this.set('y', y);
   }
 
   public transform(ts) {
-    const self   = this;
-    const matrix = self.attr('matrix');
-
-    each(ts, function (t) {
-      switch (t[0]) {
-        case 't':
-          self.translate(t[1], t[2]);
-          break;
-        case 's':
-          self._scale(t[1], t[2]);
-          break;
-        case 'r':
-          self.rotate(t[1]);
-          break;
-        case 'm':
-          self.attr('matrix', mat3.multiply([], matrix, t[1]));
-          self.clearTotalMatrix();
-          break;
-        default:
-          break;
-      }
-    });
-    return self;
+    // const self   = this;
+    // const matrix = self.attr('matrix');
+    //
+    // each(ts, function (t) {
+    //   switch (t[0]) {
+    //     case 't':
+    //       self.translate(t[1], t[2]);
+    //       break;
+    //     case 's':
+    //       self._scale(t[1], t[2]);
+    //       break;
+    //     case 'r':
+    //       self.rotate(t[1]);
+    //       break;
+    //     case 'm':
+    //       self.attr('matrix', mat3.multiply([], matrix, t[1]));
+    //       self.clearTotalMatrix();
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // });
+    // return self;
   }
 
   public setTransform(ts) {
-    this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
-    return this.transform(ts);
+    // this.attr('matrix', [1, 0, 0, 0, 1, 0, 0, 0, 1]);
+    // return this.transform(ts);
   }
 
   public getMatrix() {
-    return this.attr('matrix');
+    // return this.attr('matrix');
   }
 
   public setMatrix(m) {
-    this.attr('matrix', m);
-    this.clearTotalMatrix();
+    // this.attr('matrix', m);
+    // this.clearTotalMatrix();
     return this;
   }
 
   public apply(v, root) {
-    let m;
-    if (root) {
-      m = this._getMatrixByRoot(root);
-    } else {
-      m = this.attr('matrix');
-    }
-    vec3.transformMat3(v, v, m);
+    // let m;
+    // if (root) {
+    //   m = this._getMatrixByRoot(root);
+    // } else {
+    //   m = this.attr('matrix');
+    // }
+    // Vector3.transformMat3(v, v, m);
     return this;
   }
 
   // 获取到达指定根节点的矩阵
   public _getMatrixByRoot(root) {
-    const self    = this;
-    root          = root || self;
-    let parent    = self;
-    const parents = [];
-
-    while (parent !== root) {
-      parents.unshift(parent);
-      parent = parent.get('parent');
-    }
-    parents.unshift(parent);
-
-    const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    parents.forEach(function (child) {
-      mat3.multiply(m, child.attr('matrix'), m);
-    });
-    return m;
+    // const self    = this;
+    // root          = root || self;
+    // let parent    = self;
+    // const parents = [];
+    //
+    // while (parent !== root) {
+    //   parents.unshift(parent);
+    //   parent = parent.get('parent');
+    // }
+    // parents.unshift(parent);
+    //
+    // const m = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    // parents.forEach(function (child) {
+    //   mat3.multiply(m, child.attr('matrix'), m);
+    // });
+    // return m;
   }
 
   /**
@@ -195,19 +197,19 @@ export class Transform {
    * @return {Matrix} 矩阵
    */
   public getTotalMatrix() {
-    let m = this.__cfg.totalMatrix;
-    if (!m) {
-      m            = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-      const parent = this.__cfg.parent;
-      if (parent) {
-        const pm = parent.getTotalMatrix();
-        multiple(m, pm);
-      }
-
-      multiple(m, this.attr('matrix'));
-      this.__cfg.totalMatrix = m;
-    }
-    return m;
+    // let m = this.__cfg.totalMatrix;
+    // if (!m) {
+    //   m            = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    //   const parent = this.__cfg.parent;
+    //   if (parent) {
+    //     const pm = parent.getTotalMatrix();
+    //     multiple(m, pm);
+    //   }
+    //
+    //   multiple(m, this.attr('matrix'));
+    //   this.__cfg.totalMatrix = m;
+    // }
+    // return m;
   }
 
   // 清除当前的矩阵
@@ -216,25 +218,25 @@ export class Transform {
   }
 
   public invert(v) {
-    const m = this.getTotalMatrix();
+    // const m = this.getTotalMatrix();
     // 单精屏幕下大多数矩阵没变化
-    if (isScale(m)) {
-      v[0] /= m[0];
-      v[1] /= m[4];
-    } else {
-      const inm = mat3.invert([], m);
-      if (inm) {
-        vec3.transformMat3(v, v, inm);
-      }
-    }
-    return this;
+    // if (isScale(m)) {
+    //   v[0] /= m[0];
+    //   v[1] /= m[4];
+    // } else {
+    //   const inm = mat3.invert([], m);
+    //   if (inm) {
+    //     vec3.transformMat3(v, v, inm);
+    //   }
+    // }
+    // return this;
   }
 
   public resetTransform(context) {
-    const mo = this.attr('matrix');
+    // const mo = this.attr('matrix');
     // 不改变时
-    if (!isUnchanged(mo)) {
-      context.transform(mo[0], mo[1], mo[3], mo[4], mo[6], mo[7]);
-    }
+    // if (!isUnchanged(mo)) {
+    //   context.transform(mo[0], mo[1], mo[3], mo[4], mo[6], mo[7]);
+    // }
   }
 }

@@ -1,5 +1,13 @@
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
 import { ShapeAttr } from '@gradii/g/core';
-import { isArray, isBoolean, isFunction, isObject, isString } from '@gradii/g/util';
+import { isArray, isBoolean, isFunction, isObject, isString, upperFirst } from '@gradii/g/util';
 import { each } from '../../util/src/common';
 import { Element } from './element';
 
@@ -142,12 +150,20 @@ export class Group extends Element {
     let backShape  = this.get('backShape');
     const innerBox = this.getBBox();
     // const parent = this.get('parent'); // getParent
-    Util.merge(attrs, {
-      x     : innerBox.minX - padding[3],
-      y     : innerBox.minY - padding[0],
-      width : innerBox.width + padding[1] + padding[3],
-      height: innerBox.height + padding[0] + padding[2]
-    });
+    // Util.merge(attrs, {
+    //   x     : innerBox.minX - padding[3],
+    //   y     : innerBox.minY - padding[0],
+    //   width : innerBox.width + padding[1] + padding[3],
+    //   height: innerBox.height + padding[0] + padding[2]
+    // });
+    attrs = {
+      ...attrs, ...{
+        x     : innerBox.minX - padding[3],
+        y     : innerBox.minY - padding[0],
+        width : innerBox.width + padding[1] + padding[3],
+        height: innerBox.height + padding[0] + padding[2]
+      }
+    };
     if (backShape) {
       backShape.attr(attrs);
     } else {
@@ -192,27 +208,26 @@ export class Group extends Element {
    * @return {Object} group 本尊
    */
   add(items) {
-    const self     = this;
-    const children = self.get('children');
+    const children = this.get('children');
     if (isArray(items)) {
       each(items, function (item) {
         const parent = item.get('parent');
         if (parent) {
           parent.removeChild(item, false);
         }
-        self._setCfgProperty(item);
+        this._setCfgProperty(item);
       });
-      self._cfg.children = children.concat(items);
+      this._cfg.children = children.concat(items);
     } else {
       const item   = items;
       const parent = item.get('parent');
       if (parent) {
         parent.removeChild(item, false);
       }
-      self._setCfgProperty(item);
+      this._setCfgProperty(item);
       children.push(item);
     }
-    return self;
+    return this;
   }
 
   _setCfgProperty(item) {
@@ -244,12 +259,11 @@ export class Group extends Element {
   }
 
   getBBox() {
-    const self     = this;
     let minX       = Infinity;
     let maxX       = -Infinity;
     let minY       = Infinity;
     let maxY       = -Infinity;
-    const children = self.get('children');
+    const children = this.get('children');
     if (children.length > 0) {
       each(children, function (child) {
         if (child.get('visible')) {
@@ -312,17 +326,16 @@ export class Group extends Element {
       minY = 0;
       maxY = 0;
     }
-    const box  = {
+    return {
       minX,
       minY,
       maxX,
-      maxY
+      maxY,
+      x     : minX,
+      y     : minY,
+      width : maxX - minX,
+      height: maxY - minY
     };
-    box.x      = box.minX;
-    box.y      = box.minY;
-    box.width  = box.maxX - box.minX;
-    box.height = box.maxY - box.minY;
-    return box;
   }
 
   getCount() {
@@ -437,13 +450,12 @@ export class Group extends Element {
   }
 
   getShape(x, y) {
-    const self     = this;
-    const clip     = self._attrs.clip;
-    const children = self._cfg.children;
+    const clip     = this._attrs.clip;
+    const children = this._cfg.children;
     let rst;
     if (clip) {
       const v = [x, y, 1];
-      clip.invert(v, self.get('canvas')); // 已经在外面转换
+      clip.invert(v, this.get('canvas')); // 已经在外面转换
       if (clip.isPointInPath(v[0], v[1])) {
         rst = find(children, x, y);
       }
@@ -465,7 +477,7 @@ export class Group extends Element {
     }
   }
 
-  clear(delayRemove) {
+  clear(delayRemove?) {
     const children = this._cfg.children;
     for (let i = children.length - 1; i >= 0; i--) {
       children[i].remove(true, delayRemove);
@@ -483,14 +495,12 @@ export class Group extends Element {
   }
 
   clone() {
-    const self     = this;
-    const children = self._cfg.children;
+    const children = this._cfg.children;
     const clone    = new Group();
     each(children, child => {
       clone.add(child.clone());
     });
     return clone;
   }
-
 
 }

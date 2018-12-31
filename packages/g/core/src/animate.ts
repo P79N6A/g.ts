@@ -1,6 +1,16 @@
-import { isFunction, isNumber } from '@gradii/g/util';
-import { Matrix3 } from '@gradii/vector-math';
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
+import * as Easing from '@gradii/easing';
+import { isEqual, isFunction, isNumber, parsePathString } from '@gradii/g/util';
 import { interpolate, interpolateArray } from '@gradii/interpolate';
+import { zTimer } from '@gradii/timer-engine';
+import { MatrixHelper } from '../../util/src/matrix';
 
 // 目前整体动画只需要数值和数组的差值计算
 
@@ -80,7 +90,7 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
   });
 
   // 执行动画
-  timer = d3Timer.timer(elapsed => {
+  timer = zTimer(elapsed => {
     if (repeat) {
       excuteRepeat(elapsed);
     } else {
@@ -92,14 +102,14 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
 
   function excuteRepeat(elapsed) {
     let ratio = (elapsed % duration) / duration;
-    ratio     = d3Ease[easing](ratio);
+    ratio     = Easing[easing](ratio);
     update(ratio);
   }
 
   function excuteOnce(elapsed) {
     let ratio = elapsed / duration;
     if (ratio < 1) {
-      ratio = d3Ease[easing](ratio);
+      ratio = Easing[easing](ratio);
       update(ratio);
     } else {
       update(1); // 保证最后一帧的绘制
@@ -121,8 +131,8 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
     for (const k in toAttrs) {
       if (!isEqual(fromAttrs[k], toAttrs[k])) {
         if (k === 'path') {
-          const toPath   = PathparsePathString(toAttrs[k]); // 终点状态
-          const fromPath = PathparsePathString(fromAttrs[k]); // 起始状态
+          const toPath   = parsePathString(toAttrs[k]); // 终点状态
+          const fromPath = parsePathString(fromAttrs[k]); // 起始状态
           cProps[k]      = [];
           for (let i = 0; i < toPath.length; i++) {
             const toPathPoint   = toPath[i];
@@ -160,7 +170,8 @@ export function animate(toProps, duration, easing, callback, delay = 0) {
     };
     for (const k in props) {
       if (k === 'transform') {
-        rst.M = Matrix3.transform(self.getMatrix(), props[k]);
+        rst.M = self.getMatrix()
+        rst.M = MatrixHelper.transform(self.getMatrix(), props[k]);
       } else if (k === 'matrix') {
         rst.M = props[k];
       } else if (!ReservedProps[k]) {

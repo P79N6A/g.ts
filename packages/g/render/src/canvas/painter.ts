@@ -1,3 +1,4 @@
+import { uniqueId } from '@gradii/g/util';
 import { createDom } from '../../../util/src/dom';
 
 const SHAPE_ATTRS = [

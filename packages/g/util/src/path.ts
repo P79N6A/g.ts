@@ -5,6 +5,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import { isArray } from './isType';
 
 const SPACES       = '\x09\x0a\x0b\x0c\x0d\x20\xa0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029';
 const PATH_COMMAND = new RegExp('([a-z])[' + SPACES + ',]*((-?\\d*\\.?\\d*(?:e[\\-+]?\\d+)?[' + SPACES + ']*,?[' + SPACES + ']*)+)', 'ig');
@@ -60,6 +61,8 @@ export const parsePathString = function (pathString) {
         }
       }
     }
+
+    return ''
   });
 
   return data;
@@ -68,7 +71,7 @@ export const parsePathString = function (pathString) {
 // http://schepers.cc/getting-to-the-point
 export const catmullRomTobezier = function (crp, z) {
   const d = [];
-  for (let i = 0, iLen = crp.length; iLen - 2 * !z > i; i += 2) {
+  for (let i = 0, iLen = crp.length; iLen - 2 * +!z > i; i += 2) {
     const p = [{
       x: +crp[i - 2],
       y: +crp[i - 1],
@@ -126,7 +129,7 @@ export const catmullRomTobezier = function (crp, z) {
   return d;
 };
 
-export const ellipsePath = function (x, y, rx, ry, a) {
+export function ellipsePath(x, y, rx, ry?, a?) {
   let res = [];
   if (a === null && ry === null) {
     ry = rx;
@@ -214,7 +217,7 @@ export const pathToAbsolute = function (pathArray) {
             dots[++j] = +dots[j] + y;
           }
           res.pop();
-          res = res.concat(catmullRom2bezier(dots, crz));
+          res = res.concat(catmullRomTobezier(dots, crz));
           break;
         case 'O':
           res.pop();
@@ -239,7 +242,7 @@ export const pathToAbsolute = function (pathArray) {
     } else if (pa0 === 'R') {
       dots = [x, y].concat(pa.slice(1));
       res.pop();
-      res = res.concat(catmullRom2bezier(dots, crz));
+      res = res.concat(catmullRomTobezier(dots, crz));
       r   = ['R'].concat(pa.slice(-2));
     } else if (pa0 === 'O') {
       res.pop();
@@ -349,8 +352,8 @@ export const a2c = function (x1, y1, rx, ry, angle, large_arc_flag, sweep_flag, 
       Math.sqrt(Math.abs((rx2 * ry2 - rx2 * y * y - ry2 * x * x) / (rx2 * y * y + ry2 * x * x)));
     cx        = k * rx * y / ry + (x1 + x2) / 2;
     cy        = k * -ry * x / rx + (y1 + y2) / 2;
-    f1        = Math.asin(((y1 - cy) / ry).toFixed(9));
-    f2        = Math.asin(((y2 - cy) / ry).toFixed(9));
+    f1        = Math.asin(+((y1 - cy) / ry).toFixed(9));
+    f2        = Math.asin(+((y2 - cy) / ry).toFixed(9));
 
     f1 = x1 < cx ? Math.PI - f1 : f1;
     f2 = x2 < cx ? Math.PI - f2 : f2;
@@ -404,7 +407,9 @@ export const a2c = function (x1, y1, rx, ry, angle, large_arc_flag, sweep_flag, 
 
 };
 
-export const pathTocurve = function (path, path2) {
+export function pathTocurve(path);
+export function pathTocurve(path, path2);
+export function pathTocurve(path, path2?) {
   const p           = pathToAbsolute(path);
   const p2          = path2 && pathToAbsolute(path2);
   const attrs       = {
@@ -563,20 +568,21 @@ export const pathTocurve = function (path, path2) {
   }
 
   return p2 ? [p, p2] : p;
-};
+}
 
-const p2s                   = /,?([a-z]),?/gi;
-export const parsePathArray = function (path) {
+const p2s = /,?([a-z]),?/gi;
+
+export function parsePathArray(path) {
   return path.join(',').replace(p2s, '$1');
-};
+}
 
-export const base3 = function (t, p1, p2, p3, p4) {
+export function base3(t, p1, p2, p3, p4) {
   const t1 = -3 * p1 + 9 * p2 - 9 * p3 + 3 * p4;
   const t2 = t * t1 + 6 * p1 - 12 * p2 + 6 * p3;
   return t * t2 - 3 * p1 + 3 * p2;
-};
+}
 
-export const bezlen = function (x1, y1, x2, y2, x3, y3, x4, y4, z) {
+export function bezlen(x1, y1, x2, y2, x3, y3, x4, y4, z) {
   if (z === null) {
     z = 1;
   }
@@ -594,9 +600,9 @@ export const bezlen = function (x1, y1, x2, y2, x3, y3, x4, y4, z) {
     sum += Cvalues[i] * Math.sqrt(comb);
   }
   return z2 * sum;
-};
+}
 
-export const curveDim = function (x0, y0, x1, y1, x2, y2, x3, y3) {
+export function curveDim(x0, y0, x1, y1, x2, y2, x3, y3) {
   const tvalues = [];
   const bounds  = [
     [],
@@ -668,9 +674,9 @@ export const curveDim = function (x0, y0, x1, y1, x2, y2, x3, y3) {
       y: Math.max.apply(0, bounds[1]),
     },
   };
-};
+}
 
-export const intersect = function (x1, y1, x2, y2, x3, y3, x4, y4) {
+export function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
   if (
     Math.max(x1, x2) < Math.min(x3, x4) ||
     Math.min(x1, x2) > Math.max(x3, x4) ||
@@ -706,16 +712,16 @@ export const intersect = function (x1, y1, x2, y2, x3, y3, x4, y4) {
     x: px,
     y: py,
   };
-};
+}
 
-export const isPointInsideBBox = function (bbox, x, y) {
+export function isPointInsideBBox(bbox, x, y) {
   return x >= bbox.x &&
     x <= bbox.x + bbox.width &&
     y >= bbox.y &&
     y <= bbox.y + bbox.height;
-};
+}
 
-export const rectPath = function (x, y, w, h, r) {
+export function rectPath(x, y, w, h, r?) {
   if (r) {
     return [
       ['M', +x + (+r), y],
@@ -737,11 +743,14 @@ export const rectPath = function (x, y, w, h, r) {
     ['l', -w, 0],
     ['z'],
   ];
-  res.parsePathArray = parsePathArray;
+  // res.parsePathArray = parsePathArray; todo fixme
   return res;
 };
 
-export const box = function (x, y, width, height) {
+
+export function box({x, y, width, height});
+export function box(x, y, width, height);
+export function box(x, y?, width?, height?) {
   if (x === null) {
     x = y = width = height = 0;
   }
@@ -773,10 +782,26 @@ export const box = function (x, y, width, height) {
 export const isBBoxIntersect = function (bbox1, bbox2) {
   bbox1 = box(bbox1);
   bbox2 = box(bbox2);
-  return isPointInsideBBox(bbox2, bbox1.x, bbox1.y) || isPointInsideBBox(bbox2, bbox1.x2, bbox1.y) || isPointInsideBBox(bbox2, bbox1.x, bbox1.y2) || isPointInsideBBox(bbox2, bbox1.x2, bbox1.y2) || isPointInsideBBox(bbox1, bbox2.x, bbox2.y) || isPointInsideBBox(bbox1, bbox2.x2, bbox2.y) || isPointInsideBBox(bbox1, bbox2.x, bbox2.y2) || isPointInsideBBox(bbox1, bbox2.x2, bbox2.y2) || (bbox1.x < bbox2.x2 && bbox1.x > bbox2.x || bbox2.x < bbox1.x2 && bbox2.x > bbox1.x) && (bbox1.y < bbox2.y2 && bbox1.y > bbox2.y || bbox2.y < bbox1.y2 && bbox2.y > bbox1.y);
+  return isPointInsideBBox(bbox2, bbox1.x, bbox1.y) ||
+    isPointInsideBBox(bbox2, bbox1.x2, bbox1.y) ||
+    isPointInsideBBox(bbox2, bbox1.x, bbox1.y2) ||
+    isPointInsideBBox(bbox2, bbox1.x2, bbox1.y2) ||
+    isPointInsideBBox(bbox1, bbox2.x, bbox2.y) ||
+    isPointInsideBBox(bbox1, bbox2.x2, bbox2.y) ||
+    isPointInsideBBox(bbox1, bbox2.x, bbox2.y2) ||
+    isPointInsideBBox(bbox1, bbox2.x2, bbox2.y2) ||
+    (
+      bbox1.x < bbox2.x2 && bbox1.x > bbox2.x ||
+      bbox2.x < bbox1.x2 && bbox2.x > bbox1.x
+    ) && (
+      bbox1.y < bbox2.y2 && bbox1.y > bbox2.y ||
+      bbox2.y < bbox1.y2 && bbox2.y > bbox1.y
+    );
 };
 
-export const bezierBBox = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) {
+export function bezierBBox(p: any[]);
+export function bezierBBox(p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y);
+export function bezierBBox(p1x, p1y?, c1x?, c1y?, c2x?, c2y?, p2x?, p2y?) {
   if (!isArray(p1x)) {
     p1x = [p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y];
   }
@@ -830,7 +855,7 @@ export const findDotsAtSegment = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2
   };
 };
 
-export const interHelper = function (bez1, bez2, justCount) {
+export function interHelper (bez1, bez2, justCount?): number | number[] {
   const bbox1 = bezierBBox(bez1);
   const bbox2 = bezierBBox(bez2);
   if (!isBBoxIntersect(bbox1, bbox2)) {
@@ -878,8 +903,10 @@ export const interHelper = function (bez1, bez2, justCount) {
         const t2            = dj.t + Math.abs((is[cj] - dj[cj]) / (dj1[cj] - dj[cj])) * (dj1.t - dj.t);
         if (t1 >= 0 && t1 <= 1 && t2 >= 0 && t2 <= 1) {
           if (justCount) {
+            // @ts-ignore
             res++;
           } else {
+            // @ts-ignore
             res.push({
               x: is.x,
               y: is.y,
@@ -894,7 +921,7 @@ export const interHelper = function (bez1, bez2, justCount) {
   return res;
 };
 
-export const interPathHelper = function (path1, path2, justCount) {
+export const interPathHelper = function (path1, path2, justCount?) {
   path1   = pathTocurve(path1);
   path2   = pathTocurve(path2);
   let x1;
@@ -940,14 +967,17 @@ export const interPathHelper = function (path1, path2, justCount) {
           }
           const intr = interHelper(bez1, bez2, justCount);
           if (justCount) {
+            // @ts-ignore
             res += intr;
           } else {
+            // @ts-ignore
             for (let k = 0, kk = intr.length; k < kk; k++) {
               intr[k].segment1 = i;
               intr[k].segment2 = j;
               intr[k].bez1     = bez1;
               intr[k].bez2     = bez2;
             }
+            // @ts-ignore
             res = res.concat(intr);
           }
         }
@@ -957,6 +987,6 @@ export const interPathHelper = function (path1, path2, justCount) {
   return res;
 };
 
-const intersection = function (path1, path2) {
+function intersection(path1, path2) {
   return interPathHelper(path1, path2);
-};
+}

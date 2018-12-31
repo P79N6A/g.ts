@@ -32,15 +32,15 @@ export namespace QuadraticMath {
     let d2;
     let i;
     const EPSILON = 0.0001;
-    const v0      = [x, y];
+    const v0      = new Vector2(x, y);
 
     for (_t = 0; _t < 1; _t += 0.05) {
-      v1 = [
+      v1 = new Vector2(
         at(x1, x2, x3, _t),
         at(y1, y2, y3, _t)
-      ];
+      );
 
-      d1 = vec2.squaredDistance(v0, v1);
+      d1 = Vector2.squaredDistance(v0, v1);
       if (d1 < d) {
         t = _t;
         d = d1;

@@ -1,8 +1,14 @@
-import * as d3Ease from '@gradii/easing';
+/**
+ * @licence
+ * Copyright (c) 2018 LinBo Len <linbolen@gradii.com>
+ *
+ * Use of this source code is governed by an MIT-style license.
+ * See LICENSE file in the project root for full license information.
+ */
+
+import * as Easing from '@gradii/easing';
 import { interpolate, interpolateArray } from '@gradii/interpolate'; // 目前整体动画只需要数值和数组的差值计算
-import * as d3Timer from '@gradii/timer-engine';
-import { isNumber } from '@gradii/g/util';
-import PathUtil from '../path';
+import { isEqual, isNumber, parsePathString } from '@gradii/g/util';
 
 
 function _update(self, animator, ratio) {
@@ -17,8 +23,8 @@ function _update(self, animator, ratio) {
   for (const k in toAttrs) {
     if (!isEqual(fromAttrs[k], toAttrs[k])) {
       if (k === 'path') {
-        const toPath   = PathUtil.parsePathString(toAttrs[k]); // 终点状态
-        const fromPath = PathUtil.parsePathString(fromAttrs[k]); // 起始状态
+        const toPath   = parsePathString(toAttrs[k]); // 终点状态
+        const fromPath = parsePathString(fromAttrs[k]); // 起始状态
         cProps[k]      = [];
         for (let i = 0; i < toPath.length; i++) {
           const toPathPoint   = toPath[i];
@@ -62,11 +68,11 @@ function update(shape, animator, elapsed) {
   elapsed        = elapsed - startTime - animator.delay;
   if (animator.toAttrs.repeat) {
     ratio = (elapsed % duration) / duration;
-    ratio = d3Ease[easing](ratio);
+    ratio = Easing[easing](ratio);
   } else {
     ratio = elapsed / duration;
     if (ratio < 1) {
-      ratio = d3Ease[easing](ratio);
+      ratio = Easing[easing](ratio);
     } else {
       ratio = 1;
       if (animator.callback) {
@@ -80,6 +86,9 @@ function update(shape, animator, elapsed) {
 }
 
 export class Timeline {
+  _animators = [];
+  _current = 0;
+  _timer = null;
 
   constructor() {
     // 待执行动画的队列
@@ -91,20 +100,20 @@ export class Timeline {
   };
 
   initTimer() {
-    const self     = this;
+    /* todo fixme
     let isFinished = false;
     let shape,
         animators,
         animator,
         canvas;
-    self._timer    = d3Timer.timer(elapsed => {
-      self._current = elapsed;
+    this._timer    = zTimer(elapsed => {
+      this._current = elapsed;
       if (this._animators.length > 0) {
         for (let i = this._animators.length - 1; i >= 0; i--) {
           shape = this._animators[i];
           if (shape.get('destroyed')) {
             // 如果已经被销毁，直接移出队列
-            self.removeAnimator(i);
+            this.removeAnimator(i);
             continue;
           }
           if (!canvas) {
@@ -122,7 +131,7 @@ export class Timeline {
             }
           }
           if (animators.length === 0) {
-            self.removeAnimator(i);
+            this.removeAnimator(i);
           }
         }
         if (canvas) {
@@ -130,25 +139,26 @@ export class Timeline {
         }
       }
     });
+    */
   }
 
   addAnimator(shape) {
-    this._animators.push(shape);
+    // this._animators.push(shape); todo fixme
   }
 
   removeAnimator(index) {
-    this._animators.splice(index, 1);
+    // this._animators.splice(index, 1); todo fixme
   }
 
   clear() {
-    this._animators = [];
+    // this._animators = []; todo fixme
   }
 
   isAnimating() {
-    return !!this._animators.length;
+    // return !!this._animators.length; todo fixme
   }
 
   getTime() {
-    return this._current;
+    // return this._current; todo fixme
   }
 }

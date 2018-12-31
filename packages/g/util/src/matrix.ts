@@ -71,3 +71,31 @@
 //     return m;
 //   }
 // };
+
+import { Matrix3, Vector2 } from '@gradii/vector-math';
+import { each } from './common';
+
+export class MatrixHelper {
+  public static transform(m:Matrix3, ts) {
+    m = m.clone();
+    each(ts, t => {
+      switch (t[0]) {
+        case 't':
+          m.translate(new Vector2(t[1], t[2]));
+          break;
+        case 's':
+          m.scaleVector2(new Vector2(t[1], t[2]));
+          break;
+        case 'r':
+          m.setRotationZ(t[1]);
+          break;
+        case 'm':
+          m.multiply(new Matrix3(t[1]));
+          break;
+        default:
+          return false;
+      }
+    });
+    return m;
+  }
+}

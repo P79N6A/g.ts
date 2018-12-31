@@ -72,17 +72,17 @@ export namespace ArcMath {
   }
 
   export function projectPoint(cx, cy, r, startAngle, endAngle, clockwise, x, y, out?) {
-    const v    = [x, y];
-    const v0   = [cx, cy];
-    const v1   = [1, 0];
-    const subv = Vector2.subtract([], v, v0);
-    let angle  = Vector2.angleTo(v1, subv);
+    const v    = new Vector2(x, y);
+    const v0   = new Vector2(cx, cy);
+    const v1   = new Vector2(1, 0);
+    const subv = v.subtract(v0);
+    let angle  = v1.angleTo(subv);
 
     angle        = ArcMath.nearAngle(angle, startAngle, endAngle, clockwise);
-    const vpoint = [r * Math.cos(angle) + cx, r * Math.sin(angle) + cy];
+    const vpoint = new Vector2(r * Math.cos(angle) + cx, r * Math.sin(angle) + cy);
     if (out) {
-      out.x = vpoint[0];
-      out.y = vpoint[1];
+      out.x = vpoint.x;
+      out.y = vpoint.y;
     }
     const d = Vector2.distance(vpoint, v);
     return d;

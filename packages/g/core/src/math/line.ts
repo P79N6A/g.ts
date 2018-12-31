@@ -5,6 +5,7 @@
  * Use of this source code is governed by an MIT-style license.
  * See LICENSE file in the project root for full license information.
  */
+import { Vector2 } from '@gradii/vector-math';
 
 export namespace LineMath {
   export function at(p1, p2, t) {
@@ -12,15 +13,15 @@ export namespace LineMath {
   }
 
   export function pointDistance(x1, y1, x2, y2, x, y) {
-    const d = [x2 - x1, y2 - y1];
-    if (vec2.exactEquals(d, [0, 0])) {
+    const d = new Vector2(x2 - x1, y2 - y1);
+    if (d.equals(Vector2.zero())){
       return NaN;
     }
 
-    const u = [-d[1], d[0]];
-    vec2.normalize(u, u);
-    const a = [x - x1, y - y1];
-    return Math.abs(vec2.dot(a, u));
+    const u = new Vector2(-d.y, d.x);
+    u.normalize();
+    const a = new Vector2(x - x1, y - y1);
+    return Math.abs(Vector2.dot(a, u));
   }
 
   export function box(x1, y1, x2, y2, lineWidth) {

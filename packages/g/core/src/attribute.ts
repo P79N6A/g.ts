@@ -64,6 +64,8 @@ export class Attribute extends EventEmitter {
   public canStroke = false;
 
   protected __attrs;
+  protected _attrs;
+  protected _cfg;
 
   public initAttrs(attrs) {
     this.__attrs = {
@@ -124,7 +126,7 @@ export class Attribute extends EventEmitter {
   }
 
   public clearBBox() {
-    this.setSilent('box', null);
+    // this.setSilent('box', null); todo fixme
   }
 
   public __afterSetAttrAll(...args) {
@@ -168,6 +170,7 @@ export class Attribute extends EventEmitter {
   }
 
   public __setAttrClip(clip) {
+    /* todo fixme
     const self = this;
     if (clip && (CLIP_SHAPES.indexOf(clip.type) > -1)) {
       if (clip.get('canvas') === null) {
@@ -183,9 +186,10 @@ export class Attribute extends EventEmitter {
       return clip;
     }
     return null;
+    */
   }
 
   public __setAttrTrans(value) {
-    return this.transform(value);
+    // return this.transform(value); todo fixme
   }
 }

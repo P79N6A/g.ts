@@ -193,7 +193,8 @@ export class Canvas extends Group {
 
   public _scale() {
     const pixelRatio = this.get('pixelRatio');
-    this.scale(pixelRatio, pixelRatio);
+    // this.transform.scale(new Vector2(pixelRatio, pixelRatio)); todo fixme
+    // this.transform.scale = new Vector3(pixelRatio, pixelRatio, 0); //todo fixme
   }
 
   public _setCanvas() {
@@ -327,33 +328,33 @@ export class Canvas extends Group {
     this.setSilent('toDraw', false);
   }
 
-  public draw() {
-    function drawInner() {
-      this.setSilent('animateHandler', requestAnimationFrame(() => {
-        this.setSilent('animateHandler', undefined);
-        if (this.get('toDraw')) {
-          drawInner();
-        }
-      }));
-      this.beforeDraw();
-      try {
-        const context = this.get('context');
-        super.draw(context);
-        // this._drawCanvas();
-      } catch (ev) { // 绘制时异常，中断重绘
-        console.warn('error in draw canvas, detail as:', ev);
-        this._endDraw();
+  public drawInner(context) {
+    this.setSilent('animateHandler', requestAnimationFrame(() => {
+      this.setSilent('animateHandler', undefined);
+      if (this.get('toDraw')) {
+        this.drawInner(context);
       }
+    }));
+    this.beforeDraw();
+    try {
+      super.draw(context);
+      // this._drawCanvas();
+    } catch (ev) { // 绘制时异常，中断重绘
+      console.warn('error in draw canvas, detail as:', ev);
       this._endDraw();
     }
+    this._endDraw();
+  }
 
+  public draw() {
     if (this.get('destroyed')) {
       return;
     }
     if (this.get('animateHandler')) {
       this._beginDraw();
     } else {
-      drawInner();
+      const context = this.get('context');
+      this.drawInner(context);
     }
   }
 

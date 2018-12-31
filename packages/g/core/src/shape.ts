@@ -1,4 +1,5 @@
 import { each, Inside, isArray, isBlank } from '@gradii/g/util';
+import { Vector3 } from '@gradii/vector-math';
 import { Element } from './element';
 
 export interface IsPointInPath {
@@ -32,11 +33,10 @@ export class Shape extends Element implements IsPointInPath {
   }
 
   drawInner(context) {
-    const self  = this;
-    const attrs = self._attrs;
-    self.createPath(context);
+    const attrs = this._attrs;
+    // this.createPath(context); todo fixme
     const originOpacity = context.globalAlpha;
-    if (self.hasFill()) {
+    if (this.hasFill()) {
       const fillOpacity = attrs.fillOpacity;
       if (!isBlank(fillOpacity) && fillOpacity !== 1) {
         context.globalAlpha = fillOpacity;
@@ -46,8 +46,8 @@ export class Shape extends Element implements IsPointInPath {
         context.fill();
       }
     }
-    if (self.hasStroke()) {
-      const lineWidth = self._attrs.lineWidth;
+    if (this.hasStroke()) {
+      const lineWidth = this._attrs.lineWidth;
       if (lineWidth > 0) {
         const strokeOpacity = attrs.strokeOpacity;
         if (!isBlank(strokeOpacity) && strokeOpacity !== 1) {
@@ -56,7 +56,7 @@ export class Shape extends Element implements IsPointInPath {
         context.stroke();
       }
     }
-    self.afterPath(context);
+    this.afterPath(context);
   }
 
   afterPath(...args);
@@ -77,11 +77,10 @@ export class Shape extends Element implements IsPointInPath {
    * @return {Boolean} 是否在图形中
    */
   isHit(x, y) {
-    const self = this;
-    const v    = [x, y, 1];
-    self.invert(v); // canvas
-    if (self.isHitBox()) {
-      const box = self.getBBox();
+    const v    = new Vector3(x, y, 1);
+    // this.invert(v); // canvas todo fixme
+    if (this.isHitBox()) {
+      const box = this.getBBox();
       if (
         box &&
         !Inside.box(box.minX, box.maxX, box.minY, box.maxY, v[0], v[1])
@@ -89,14 +88,14 @@ export class Shape extends Element implements IsPointInPath {
         return false;
       }
     }
-    const clip = self._attrs.clip;
+    const clip = this._attrs.clip;
     if (clip) {
-      clip.invert(v, self.get('canvas'));
+      clip.invert(v, this.get('canvas'));
       if (clip.isPointInPath(v[0], v[1])) {
-        return self.isPointInPath(v[0], v[1]);
+        return this.isPointInPath(v[0], v[1]);
       }
     } else {
-      return self.isPointInPath(v[0], v[1]);
+      return this.isPointInPath(v[0], v[1]);
     }
     return false;
   }
@@ -149,9 +148,9 @@ export class Shape extends Element implements IsPointInPath {
   }
 
   clone() {
-    const self   = this;
+    /* todo fixme
     let clone    = null;
-    const _attrs = self._attrs;
+    const _attrs = this._attrs;
     const attrs  = {};
     each(_attrs, (i, k) => {
       if (ARRAY_ATTRS[k] && isArray(_attrs[k])) {
@@ -160,10 +159,11 @@ export class Shape extends Element implements IsPointInPath {
         attrs[k] = _attrs[k];
       }
     });
-    clone             = new self.constructor({attrs});
+    clone             = new this.constructor({attrs});
     // zIndex也是绘图属性，但是在cfg中，特殊处理
-    clone._cfg.zIndex = self._cfg.zIndex;
+    clone._cfg.zIndex = this._cfg.zIndex;
     return clone;
+    */
   }
 
   isPointInPath(x, y): boolean {

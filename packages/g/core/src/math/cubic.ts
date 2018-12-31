@@ -59,12 +59,12 @@ export namespace CubicMath {
       prev = t - interval;
       next = t + interval;
 
-      v1 = [
+      v1 = new Vector2(
         at(x1, x2, x3, x4, prev),
         at(y1, y2, y3, y4, prev)
-      ];
+      );
 
-      d1 = vec2.squaredDistance(v0, v1);
+      d1 = Vector2.squaredDistance(v0, v1);
 
       if (prev >= 0 && d1 < d) {
         t = prev;
@@ -75,7 +75,7 @@ export namespace CubicMath {
           at(y1, y2, y3, y4, next)
         ];
 
-        d2 = vec2.squaredDistance(v0, v2);
+        d2 = Vector2.squaredDistance(v0, v2);
 
         if (next <= 1 && d2 < d) {
           t = next;

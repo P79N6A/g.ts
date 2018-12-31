@@ -18,7 +18,7 @@ let frame     = 0, // is an animation frame pending?
     clock     = typeof performance === 'object' && performance.now ? performance : Date,
     setFrame  = typeof window === 'object' && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function (f) { setTimeout(f, 17); };
 
-export function now() {
+export function zNow() {
   return clockNow || (setFrame(clearNow), clockNow = clock.now() + clockSkew);
 }
 
@@ -26,14 +26,14 @@ function clearNow() {
   clockNow = 0;
 }
 
-export function timer(callback, delay, time) {
+export function zTimer(callback, delay?, time?) {
   let t = new Timer;
   t.restart(callback, delay, time);
   return t;
 }
 
-export function timerFlush() {
-  now(); // Get the current time, if not already set.
+export function zTimerFlush() {
+  zNow(); // Get the current time, if not already set.
   ++frame; // Pretend we’ve set an alarm, if we haven’t already.
   let t = taskHead, e;
   while (t) {
@@ -52,7 +52,7 @@ export class Timer {
     clockNow = (clockLast = clock.now()) + clockSkew;
     frame    = timeout = 0;
     try {
-      timerFlush();
+      zTimerFlush();
     } finally {
       frame = 0;
       this.nap();
@@ -99,9 +99,9 @@ export class Timer {
     }
   }
 
-  restart(callback, delay, time) {
+  restart(callback, delay, time?) {
     if (typeof callback !== 'function') { throw new TypeError('callback is not a function'); }
-    time = (time == null ? now() : +time) + (delay == null ? 0 : +delay);
+    time = (time == null ? zNow() : +time) + (delay == null ? 0 : +delay);
     if (!this._next && taskTail !== this) {
       if (taskTail) { taskTail._next = this; } else { taskHead = this; }
       taskTail = this;

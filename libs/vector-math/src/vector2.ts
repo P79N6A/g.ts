@@ -465,7 +465,7 @@ export class Vector2 {
     return dx * dx + dy * dy;
   }
 
-  public angleTo(other: Vector2) {
+  public angleTo(other: Vector2):number {
     return Vector2.angle(this, other);
   }
 
@@ -694,6 +694,10 @@ export class Vector2 {
     const s = Vector2.cross(v1, v2);
     const c = Vector2.dot(v1, v2);
     return Math.atan2(s, c);
+  }
+
+  public static zero() {
+    return new Vector2(0, 0);
   }
 
 }

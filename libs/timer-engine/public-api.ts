@@ -8,9 +8,9 @@
  */
 
 export {
-  now,
-  timer,
-  timerFlush,
+  zNow,
+  zTimer,
+  zTimerFlush,
 } from './src/timer';
 
 export {
