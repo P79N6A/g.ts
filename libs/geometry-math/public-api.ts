@@ -7,4 +7,8 @@
  *
  */
 
-export * from './src/cube.math'
+export * from './src/arc';
+export * from './src/cubic';
+export * from './src/ellipse';
+export * from './src/line';
+export * from './src/quadratic';

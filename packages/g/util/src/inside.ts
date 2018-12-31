@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { ArcMath, CubicMath, LineMath, QuadraticMath } from '@gradii/g/core';
+import { ArcMath, CubicMath, LineMath, QuadraticMath } from '@gradii/geometry-math';
 
 export class Inside {
   public static line(x1, y1, x2, y2, lineWidth, x, y) {

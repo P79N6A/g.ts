@@ -7,10 +7,9 @@
  *
  */
 
-import { Attrs, Shape } from '@gradii/g/core';
-import { parsePath } from './format';
-import { isFunction } from './isType';
-import { PathSegment } from './path-segment';
+import { Attrs } from '@gradii/g/core';
+import { isFunction, parsePath, PathSegment } from '@gradii/g/util';
+import { Shape } from './shape';
 
 @Attrs({
   path     : null,

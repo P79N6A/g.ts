@@ -6,7 +6,7 @@
  * See LICENSE file in the project root for full license information.
  */
 
-import { CubicMath, EllipseMath, QuadraticMath } from '@gradii/g/core';
+import { CubicMath, EllipseMath, QuadraticMath } from '@gradii/geometry-math';
 import { Matrix3, Vector3, Vector2 } from '@gradii/vector-math';
 import { mathMod, toRadian } from './common';
 import { Inside } from './inside';

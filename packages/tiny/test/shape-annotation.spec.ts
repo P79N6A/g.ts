@@ -19,12 +19,18 @@ describe('test shape annotation', () => {
   });
 
   it('shape should create', () => {
-    expect(s instanceof ArcShape).toBe(true)
+    expect(s instanceof ArcShape).toBeTruthy();
   });
 
   it('read annotation arc shape', () => {
     const annotations = reflector.annotations(s);
-    console.log(annotations);
+    expect(annotations instanceof Array).toBeTruthy();
+  });
+
+  it('read annotation arc shape no skip', () => {
+    const annotations = reflector.annotations(s);
+    expect(annotations instanceof Array).toBeTruthy();
   })
+
 
 });

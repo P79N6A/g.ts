@@ -7,8 +7,9 @@
  *
  */
 
-import { LineMath, Shape } from '@gradii/g/core';
+import { Shape } from '@gradii/g/core';
 import { Arrow, each, Inside } from '@gradii/g/util';
+import { LineMath } from '@gradii/geometry-math';
 
 export class PolylineCanvasGraphic extends Shape {
   public static ATTRS = {

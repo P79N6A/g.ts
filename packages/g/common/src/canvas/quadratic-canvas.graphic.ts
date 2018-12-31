@@ -7,8 +7,9 @@
  *
  */
 
-import { Attrs, QuadraticMath, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Arrow, Inside, isPresent } from '@gradii/g/util';
+import { QuadraticMath } from '@gradii/geometry-math';
 
 @Attrs({
   p1        : null, // 起始点

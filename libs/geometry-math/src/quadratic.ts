@@ -7,7 +7,7 @@
  */
 
 import { Vector2 } from '@gradii/vector-math'
-import { isNumberEqual } from '../../../util/src/isType';
+import { isNumberEqual } from '@gradii/g/util';
 
 export namespace QuadraticMath {
   export function at(p0, p1, p2, t) {

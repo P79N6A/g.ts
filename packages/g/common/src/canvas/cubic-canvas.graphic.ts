@@ -7,8 +7,9 @@
  *
  */
 
-import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Arrow, Inside, isBlank } from '@gradii/g/util';
+import { CubicMath } from '@gradii/geometry-math';
 
 @Attrs({
   p1        : null, // 起始点

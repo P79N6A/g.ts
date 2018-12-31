@@ -7,8 +7,9 @@
  *
  */
 
-import { ArcMath, Attrs, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
+import { ArcMath } from '@gradii/geometry-math';
 import { ArcShape } from '../arc.shape';
 
 function _getArcX(x, radius, angle) {

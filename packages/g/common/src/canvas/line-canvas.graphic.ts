@@ -7,8 +7,9 @@
  *
  */
 
-import { Attrs, LineMath, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Arrow, Inside } from '@gradii/g/util';
+import { LineMath } from '@gradii/geometry-math';
 
 @Attrs({
   x1        : 0,

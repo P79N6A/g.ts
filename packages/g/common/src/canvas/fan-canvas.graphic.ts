@@ -7,9 +7,10 @@
  *
  */
 
-import { ArcMath, Attrs, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import { Inside, isNumberEqual } from '@gradii/g/util';
 import { Vector2 } from '@gradii/vector-math';
+import { ArcMath } from '@gradii/geometry-math';
 
 @Attrs({
   x         : 0,

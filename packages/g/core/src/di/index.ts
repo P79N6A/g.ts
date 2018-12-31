@@ -24,3 +24,5 @@ export { ReflectiveKey } from './reflective_key';
 export { InjectionToken } from './injection_token';
 export { Class, TypeDecorator, makeDecorator } from './util/decorators';
 export { Type, isType } from './facade/type';
+
+export { reflector } from './reflection/reflection'

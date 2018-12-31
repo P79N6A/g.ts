@@ -7,7 +7,7 @@
  *
  */
 
-import { Attrs, CubicMath, Shape } from '@gradii/g/core';
+import { Attrs, Shape } from '@gradii/g/core';
 import {
   Arrow,
   each,
@@ -20,6 +20,7 @@ import {
   PathSegment, pathTocurve,
   PathUtil
 } from '@gradii/g/util';
+import { CubicMath } from '@gradii/geometry-math';
 
 @Attrs({
   path      : null,
